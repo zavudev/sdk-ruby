@@ -1,0 +1,22 @@
+module Zavudev
+  module Models
+    module Senders
+      module Agent
+        type knowledge_base_retrieve_response =
+          { knowledge_base: Zavudev::Senders::Agent::AgentKnowledgeBase }
+
+        class KnowledgeBaseRetrieveResponse < Zavudev::Internal::Type::BaseModel
+          attr_accessor knowledge_base: Zavudev::Senders::Agent::AgentKnowledgeBase
+
+          def initialize: (
+            knowledge_base: Zavudev::Senders::Agent::AgentKnowledgeBase
+          ) -> void
+
+          def to_hash: -> {
+            knowledge_base: Zavudev::Senders::Agent::AgentKnowledgeBase
+          }
+        end
+      end
+    end
+  end
+end

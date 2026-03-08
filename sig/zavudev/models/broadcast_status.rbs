@@ -1,0 +1,36 @@
+module Zavudev
+  module Models
+    type broadcast_status =
+      :draft
+      | :pending_review
+      | :approved
+      | :rejected
+      | :escalated
+      | :rejected_final
+      | :scheduled
+      | :sending
+      | :paused
+      | :completed
+      | :cancelled
+      | :failed
+
+    module BroadcastStatus
+      extend Zavudev::Internal::Type::Enum
+
+      DRAFT: :draft
+      PENDING_REVIEW: :pending_review
+      APPROVED: :approved
+      REJECTED: :rejected
+      ESCALATED: :escalated
+      REJECTED_FINAL: :rejected_final
+      SCHEDULED: :scheduled
+      SENDING: :sending
+      PAUSED: :paused
+      COMPLETED: :completed
+      CANCELLED: :cancelled
+      FAILED: :failed
+
+      def self?.values: -> ::Array[Zavudev::Models::broadcast_status]
+    end
+  end
+end

@@ -1,0 +1,47 @@
+module Zavudev
+  module Models
+    type sender_upload_profile_picture_params =
+      {
+        sender_id: String,
+        image_url: String,
+        mime_type: Zavudev::Models::SenderUploadProfilePictureParams::mime_type
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class SenderUploadProfilePictureParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor sender_id: String
+
+      attr_accessor image_url: String
+
+      attr_accessor mime_type: Zavudev::Models::SenderUploadProfilePictureParams::mime_type
+
+      def initialize: (
+        sender_id: String,
+        image_url: String,
+        mime_type: Zavudev::Models::SenderUploadProfilePictureParams::mime_type,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        sender_id: String,
+        image_url: String,
+        mime_type: Zavudev::Models::SenderUploadProfilePictureParams::mime_type,
+        request_options: Zavudev::RequestOptions
+      }
+
+      type mime_type = :"image/jpeg" | :"image/png"
+
+      module MimeType
+        extend Zavudev::Internal::Type::Enum
+
+        IMAGE_JPEG: :"image/jpeg"
+        IMAGE_PNG: :"image/png"
+
+        def self?.values: -> ::Array[Zavudev::Models::SenderUploadProfilePictureParams::mime_type]
+      end
+    end
+  end
+end

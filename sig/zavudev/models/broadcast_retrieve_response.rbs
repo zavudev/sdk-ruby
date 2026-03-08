@@ -1,0 +1,13 @@
+module Zavudev
+  module Models
+    type broadcast_retrieve_response = { broadcast: Zavudev::Broadcast }
+
+    class BroadcastRetrieveResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor broadcast: Zavudev::Broadcast
+
+      def initialize: (broadcast: Zavudev::Broadcast) -> void
+
+      def to_hash: -> { broadcast: Zavudev::Broadcast }
+    end
+  end
+end

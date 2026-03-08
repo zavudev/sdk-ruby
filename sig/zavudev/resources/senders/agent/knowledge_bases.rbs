@@ -1,0 +1,47 @@
+module Zavudev
+  module Resources
+    class Senders
+      class Agent
+        class KnowledgeBases
+          attr_reader documents: Zavudev::Resources::Senders::Agent::KnowledgeBases::Documents
+
+          def create: (
+            String sender_id,
+            name: String,
+            ?description: String,
+            ?request_options: Zavudev::request_opts
+          ) -> Zavudev::Models::Senders::Agent::KnowledgeBaseCreateResponse
+
+          def retrieve: (
+            String kb_id,
+            sender_id: String,
+            ?request_options: Zavudev::request_opts
+          ) -> Zavudev::Models::Senders::Agent::KnowledgeBaseRetrieveResponse
+
+          def update: (
+            String kb_id,
+            sender_id: String,
+            ?description: String?,
+            ?name: String,
+            ?request_options: Zavudev::request_opts
+          ) -> Zavudev::Models::Senders::Agent::KnowledgeBaseUpdateResponse
+
+          def list: (
+            String sender_id,
+            ?cursor: String,
+            ?limit: Integer,
+            ?request_options: Zavudev::request_opts
+          ) -> Zavudev::Internal::Cursor[Zavudev::Senders::Agent::AgentKnowledgeBase]
+
+          def delete: (
+            String kb_id,
+            sender_id: String,
+            ?request_options: Zavudev::request_opts
+          ) -> nil
+
+          def initialize: (client: Zavudev::Client) -> void
+        end
+      end
+    end
+  end
+end

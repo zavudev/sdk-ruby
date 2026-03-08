@@ -1,0 +1,13 @@
+module Zavudev
+  module Models
+    type broadcast_reschedule_response = { broadcast: Zavudev::Broadcast }
+
+    class BroadcastRescheduleResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor broadcast: Zavudev::Broadcast
+
+      def initialize: (broadcast: Zavudev::Broadcast) -> void
+
+      def to_hash: -> { broadcast: Zavudev::Broadcast }
+    end
+  end
+end

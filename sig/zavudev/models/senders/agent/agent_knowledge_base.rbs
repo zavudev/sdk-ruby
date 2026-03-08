@@ -1,0 +1,61 @@
+module Zavudev
+  module Models
+    module Senders
+      class AgentKnowledgeBase = Agent::AgentKnowledgeBase
+
+      module Agent
+        type agent_knowledge_base =
+          {
+            id: String,
+            agent_id: String,
+            created_at: Time,
+            document_count: Integer,
+            name: String,
+            total_chunks: Integer,
+            updated_at: Time,
+            description: String?
+          }
+
+        class AgentKnowledgeBase < Zavudev::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor agent_id: String
+
+          attr_accessor created_at: Time
+
+          attr_accessor document_count: Integer
+
+          attr_accessor name: String
+
+          attr_accessor total_chunks: Integer
+
+          attr_accessor updated_at: Time
+
+          attr_accessor description: String?
+
+          def initialize: (
+            id: String,
+            agent_id: String,
+            created_at: Time,
+            document_count: Integer,
+            name: String,
+            total_chunks: Integer,
+            updated_at: Time,
+            ?description: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            agent_id: String,
+            created_at: Time,
+            document_count: Integer,
+            name: String,
+            total_chunks: Integer,
+            updated_at: Time,
+            description: String?
+          }
+        end
+      end
+    end
+  end
+end

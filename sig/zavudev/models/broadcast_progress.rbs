@@ -1,0 +1,89 @@
+module Zavudev
+  module Models
+    type broadcast_progress =
+      {
+        broadcast_id: String,
+        delivered: Integer,
+        failed: Integer,
+        pending: Integer,
+        percent_complete: Float,
+        sending: Integer,
+        skipped: Integer,
+        status: Zavudev::Models::broadcast_status,
+        total: Integer,
+        actual_cost: Float?,
+        estimated_completion_at: Time,
+        estimated_cost: Float?,
+        reserved_amount: Float?,
+        started_at: Time
+      }
+
+    class BroadcastProgress < Zavudev::Internal::Type::BaseModel
+      attr_accessor broadcast_id: String
+
+      attr_accessor delivered: Integer
+
+      attr_accessor failed: Integer
+
+      attr_accessor pending: Integer
+
+      attr_accessor percent_complete: Float
+
+      attr_accessor sending: Integer
+
+      attr_accessor skipped: Integer
+
+      attr_accessor status: Zavudev::Models::broadcast_status
+
+      attr_accessor total: Integer
+
+      attr_accessor actual_cost: Float?
+
+      attr_reader estimated_completion_at: Time?
+
+      def estimated_completion_at=: (Time) -> Time
+
+      attr_accessor estimated_cost: Float?
+
+      attr_accessor reserved_amount: Float?
+
+      attr_reader started_at: Time?
+
+      def started_at=: (Time) -> Time
+
+      def initialize: (
+        broadcast_id: String,
+        delivered: Integer,
+        failed: Integer,
+        pending: Integer,
+        percent_complete: Float,
+        sending: Integer,
+        skipped: Integer,
+        status: Zavudev::Models::broadcast_status,
+        total: Integer,
+        ?actual_cost: Float?,
+        ?estimated_completion_at: Time,
+        ?estimated_cost: Float?,
+        ?reserved_amount: Float?,
+        ?started_at: Time
+      ) -> void
+
+      def to_hash: -> {
+        broadcast_id: String,
+        delivered: Integer,
+        failed: Integer,
+        pending: Integer,
+        percent_complete: Float,
+        sending: Integer,
+        skipped: Integer,
+        status: Zavudev::Models::broadcast_status,
+        total: Integer,
+        actual_cost: Float?,
+        estimated_completion_at: Time,
+        estimated_cost: Float?,
+        reserved_amount: Float?,
+        started_at: Time
+      }
+    end
+  end
+end

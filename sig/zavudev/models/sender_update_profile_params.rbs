@@ -1,0 +1,70 @@
+module Zavudev
+  module Models
+    type sender_update_profile_params =
+      {
+        sender_id: String,
+        about: String,
+        address: String,
+        description: String,
+        email: String,
+        vertical: Zavudev::Models::whatsapp_business_profile_vertical,
+        websites: ::Array[String]
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class SenderUpdateProfileParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor sender_id: String
+
+      attr_reader about: String?
+
+      def about=: (String) -> String
+
+      attr_reader address: String?
+
+      def address=: (String) -> String
+
+      attr_reader description: String?
+
+      def description=: (String) -> String
+
+      attr_reader email: String?
+
+      def email=: (String) -> String
+
+      attr_reader vertical: Zavudev::Models::whatsapp_business_profile_vertical?
+
+      def vertical=: (
+        Zavudev::Models::whatsapp_business_profile_vertical
+      ) -> Zavudev::Models::whatsapp_business_profile_vertical
+
+      attr_reader websites: ::Array[String]?
+
+      def websites=: (::Array[String]) -> ::Array[String]
+
+      def initialize: (
+        sender_id: String,
+        ?about: String,
+        ?address: String,
+        ?description: String,
+        ?email: String,
+        ?vertical: Zavudev::Models::whatsapp_business_profile_vertical,
+        ?websites: ::Array[String],
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        sender_id: String,
+        about: String,
+        address: String,
+        description: String,
+        email: String,
+        vertical: Zavudev::Models::whatsapp_business_profile_vertical,
+        websites: ::Array[String],
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

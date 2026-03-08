@@ -1,0 +1,19 @@
+module Zavudev
+  module Resources
+    class Senders
+      class Agent
+        class Executions
+          def list: (
+            String sender_id,
+            ?cursor: String,
+            ?limit: Integer,
+            ?status: Zavudev::Models::Senders::agent_execution_status,
+            ?request_options: Zavudev::request_opts
+          ) -> Zavudev::Internal::Cursor[Zavudev::Senders::AgentExecution]
+
+          def initialize: (client: Zavudev::Client) -> void
+        end
+      end
+    end
+  end
+end

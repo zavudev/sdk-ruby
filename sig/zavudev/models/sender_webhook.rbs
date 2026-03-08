@@ -1,0 +1,37 @@
+module Zavudev
+  module Models
+    type sender_webhook =
+      {
+        active: bool,
+        events: ::Array[Zavudev::Models::webhook_event],
+        url: String,
+        secret: String
+      }
+
+    class SenderWebhook < Zavudev::Internal::Type::BaseModel
+      attr_accessor active: bool
+
+      attr_accessor events: ::Array[Zavudev::Models::webhook_event]
+
+      attr_accessor url: String
+
+      attr_reader secret: String?
+
+      def secret=: (String) -> String
+
+      def initialize: (
+        active: bool,
+        events: ::Array[Zavudev::Models::webhook_event],
+        url: String,
+        ?secret: String
+      ) -> void
+
+      def to_hash: -> {
+        active: bool,
+        events: ::Array[Zavudev::Models::webhook_event],
+        url: String,
+        secret: String
+      }
+    end
+  end
+end

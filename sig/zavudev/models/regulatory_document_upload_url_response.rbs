@@ -1,0 +1,13 @@
+module Zavudev
+  module Models
+    type regulatory_document_upload_url_response = { upload_url: String }
+
+    class RegulatoryDocumentUploadURLResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor upload_url: String
+
+      def initialize: (upload_url: String) -> void
+
+      def to_hash: -> { upload_url: String }
+    end
+  end
+end

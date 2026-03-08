@@ -1,0 +1,57 @@
+module Zavudev
+  module Models
+    module Broadcasts
+      type contact_add_response =
+        {
+          added: Integer,
+          duplicates: Integer,
+          invalid: Integer,
+          errors: ::Array[Zavudev::Models::Broadcasts::ContactAddResponse::Error]
+        }
+
+      class ContactAddResponse < Zavudev::Internal::Type::BaseModel
+        attr_accessor added: Integer
+
+        attr_accessor duplicates: Integer
+
+        attr_accessor invalid: Integer
+
+        attr_reader errors: ::Array[Zavudev::Models::Broadcasts::ContactAddResponse::Error]?
+
+        def errors=: (
+          ::Array[Zavudev::Models::Broadcasts::ContactAddResponse::Error]
+        ) -> ::Array[Zavudev::Models::Broadcasts::ContactAddResponse::Error]
+
+        def initialize: (
+          added: Integer,
+          duplicates: Integer,
+          invalid: Integer,
+          ?errors: ::Array[Zavudev::Models::Broadcasts::ContactAddResponse::Error]
+        ) -> void
+
+        def to_hash: -> {
+          added: Integer,
+          duplicates: Integer,
+          invalid: Integer,
+          errors: ::Array[Zavudev::Models::Broadcasts::ContactAddResponse::Error]
+        }
+
+        type error = { reason: String, recipient: String }
+
+        class Error < Zavudev::Internal::Type::BaseModel
+          attr_reader reason: String?
+
+          def reason=: (String) -> String
+
+          attr_reader recipient: String?
+
+          def recipient=: (String) -> String
+
+          def initialize: (?reason: String, ?recipient: String) -> void
+
+          def to_hash: -> { reason: String, recipient: String }
+        end
+      end
+    end
+  end
+end

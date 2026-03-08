@@ -1,0 +1,14 @@
+module Zavudev
+  module Models
+    type phone_number_requirements_response =
+      { items: ::Array[Zavudev::Requirement] }
+
+    class PhoneNumberRequirementsResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor items: ::Array[Zavudev::Requirement]
+
+      def initialize: (items: ::Array[Zavudev::Requirement]) -> void
+
+      def to_hash: -> { items: ::Array[Zavudev::Requirement] }
+    end
+  end
+end

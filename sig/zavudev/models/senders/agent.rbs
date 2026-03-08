@@ -1,0 +1,142 @@
+module Zavudev
+  module Models
+    module Senders
+      type senders_agent =
+        {
+          id: String,
+          created_at: Time,
+          enabled: bool,
+          model: String,
+          name: String,
+          provider: Zavudev::Models::Senders::agent_provider,
+          sender_id: String,
+          system_prompt: String,
+          updated_at: Time,
+          context_window_messages: Integer,
+          include_contact_metadata: bool,
+          max_tokens: Integer?,
+          stats: Zavudev::Senders::SendersAgent::Stats,
+          temperature: Float?,
+          trigger_on_channels: ::Array[String],
+          trigger_on_message_types: ::Array[String]
+        }
+
+      class SendersAgent < Zavudev::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor enabled: bool
+
+        attr_accessor model: String
+
+        attr_accessor name: String
+
+        attr_accessor provider: Zavudev::Models::Senders::agent_provider
+
+        attr_accessor sender_id: String
+
+        attr_accessor system_prompt: String
+
+        attr_accessor updated_at: Time
+
+        attr_reader context_window_messages: Integer?
+
+        def context_window_messages=: (Integer) -> Integer
+
+        attr_reader include_contact_metadata: bool?
+
+        def include_contact_metadata=: (bool) -> bool
+
+        attr_accessor max_tokens: Integer?
+
+        attr_reader stats: Zavudev::Senders::SendersAgent::Stats?
+
+        def stats=: (
+          Zavudev::Senders::SendersAgent::Stats
+        ) -> Zavudev::Senders::SendersAgent::Stats
+
+        attr_accessor temperature: Float?
+
+        attr_reader trigger_on_channels: ::Array[String]?
+
+        def trigger_on_channels=: (::Array[String]) -> ::Array[String]
+
+        attr_reader trigger_on_message_types: ::Array[String]?
+
+        def trigger_on_message_types=: (::Array[String]) -> ::Array[String]
+
+        def initialize: (
+          id: String,
+          created_at: Time,
+          enabled: bool,
+          model: String,
+          name: String,
+          provider: Zavudev::Models::Senders::agent_provider,
+          sender_id: String,
+          system_prompt: String,
+          updated_at: Time,
+          ?context_window_messages: Integer,
+          ?include_contact_metadata: bool,
+          ?max_tokens: Integer?,
+          ?stats: Zavudev::Senders::SendersAgent::Stats,
+          ?temperature: Float?,
+          ?trigger_on_channels: ::Array[String],
+          ?trigger_on_message_types: ::Array[String]
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          created_at: Time,
+          enabled: bool,
+          model: String,
+          name: String,
+          provider: Zavudev::Models::Senders::agent_provider,
+          sender_id: String,
+          system_prompt: String,
+          updated_at: Time,
+          context_window_messages: Integer,
+          include_contact_metadata: bool,
+          max_tokens: Integer?,
+          stats: Zavudev::Senders::SendersAgent::Stats,
+          temperature: Float?,
+          trigger_on_channels: ::Array[String],
+          trigger_on_message_types: ::Array[String]
+        }
+
+        type stats =
+          {
+            total_cost: Float,
+            total_invocations: Integer,
+            total_tokens_used: Integer
+          }
+
+        class Stats < Zavudev::Internal::Type::BaseModel
+          attr_reader total_cost: Float?
+
+          def total_cost=: (Float) -> Float
+
+          attr_reader total_invocations: Integer?
+
+          def total_invocations=: (Integer) -> Integer
+
+          attr_reader total_tokens_used: Integer?
+
+          def total_tokens_used=: (Integer) -> Integer
+
+          def initialize: (
+            ?total_cost: Float,
+            ?total_invocations: Integer,
+            ?total_tokens_used: Integer
+          ) -> void
+
+          def to_hash: -> {
+            total_cost: Float,
+            total_invocations: Integer,
+            total_tokens_used: Integer
+          }
+        end
+      end
+    end
+  end
+end

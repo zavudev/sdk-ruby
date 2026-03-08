@@ -1,0 +1,23 @@
+module Zavudev
+  module Models
+    type message_retrieve_params =
+      { message_id: String } & Zavudev::Internal::Type::request_parameters
+
+    class MessageRetrieveParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor message_id: String
+
+      def initialize: (
+        message_id: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        message_id: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

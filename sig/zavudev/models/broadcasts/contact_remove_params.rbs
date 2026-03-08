@@ -1,0 +1,30 @@
+module Zavudev
+  module Models
+    module Broadcasts
+      type contact_remove_params =
+        { broadcast_id: String, contact_id: String }
+        & Zavudev::Internal::Type::request_parameters
+
+      class ContactRemoveParams < Zavudev::Internal::Type::BaseModel
+        extend Zavudev::Internal::Type::RequestParameters::Converter
+        include Zavudev::Internal::Type::RequestParameters
+
+        attr_accessor broadcast_id: String
+
+        attr_accessor contact_id: String
+
+        def initialize: (
+          broadcast_id: String,
+          contact_id: String,
+          ?request_options: Zavudev::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          broadcast_id: String,
+          contact_id: String,
+          request_options: Zavudev::RequestOptions
+        }
+      end
+    end
+  end
+end

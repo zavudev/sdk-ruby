@@ -1,0 +1,19 @@
+module Zavudev
+  module Models
+    type broadcast_contact_status =
+      :pending | :queued | :sending | :delivered | :failed | :skipped
+
+    module BroadcastContactStatus
+      extend Zavudev::Internal::Type::Enum
+
+      PENDING: :pending
+      QUEUED: :queued
+      SENDING: :sending
+      DELIVERED: :delivered
+      FAILED: :failed
+      SKIPPED: :skipped
+
+      def self?.values: -> ::Array[Zavudev::Models::broadcast_contact_status]
+    end
+  end
+end

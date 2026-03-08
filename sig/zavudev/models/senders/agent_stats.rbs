@@ -1,0 +1,47 @@
+module Zavudev
+  module Models
+    module Senders
+      type agent_stats =
+        {
+          error_count: Integer,
+          success_count: Integer,
+          total_cost: Float,
+          total_invocations: Integer,
+          total_tokens_used: Integer,
+          avg_latency_ms: Float?
+        }
+
+      class AgentStats < Zavudev::Internal::Type::BaseModel
+        attr_accessor error_count: Integer
+
+        attr_accessor success_count: Integer
+
+        attr_accessor total_cost: Float
+
+        attr_accessor total_invocations: Integer
+
+        attr_accessor total_tokens_used: Integer
+
+        attr_accessor avg_latency_ms: Float?
+
+        def initialize: (
+          error_count: Integer,
+          success_count: Integer,
+          total_cost: Float,
+          total_invocations: Integer,
+          total_tokens_used: Integer,
+          ?avg_latency_ms: Float?
+        ) -> void
+
+        def to_hash: -> {
+          error_count: Integer,
+          success_count: Integer,
+          total_cost: Float,
+          total_invocations: Integer,
+          total_tokens_used: Integer,
+          avg_latency_ms: Float?
+        }
+      end
+    end
+  end
+end

@@ -1,0 +1,53 @@
+module Zavudev
+  module Models
+    module Senders
+      module Agent
+        type execution_list_params =
+          {
+            sender_id: String,
+            cursor: String,
+            limit: Integer,
+            status: Zavudev::Models::Senders::agent_execution_status
+          }
+          & Zavudev::Internal::Type::request_parameters
+
+        class ExecutionListParams < Zavudev::Internal::Type::BaseModel
+          extend Zavudev::Internal::Type::RequestParameters::Converter
+          include Zavudev::Internal::Type::RequestParameters
+
+          attr_accessor sender_id: String
+
+          attr_reader cursor: String?
+
+          def cursor=: (String) -> String
+
+          attr_reader limit: Integer?
+
+          def limit=: (Integer) -> Integer
+
+          attr_reader status: Zavudev::Models::Senders::agent_execution_status?
+
+          def status=: (
+            Zavudev::Models::Senders::agent_execution_status
+          ) -> Zavudev::Models::Senders::agent_execution_status
+
+          def initialize: (
+            sender_id: String,
+            ?cursor: String,
+            ?limit: Integer,
+            ?status: Zavudev::Models::Senders::agent_execution_status,
+            ?request_options: Zavudev::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            sender_id: String,
+            cursor: String,
+            limit: Integer,
+            status: Zavudev::Models::Senders::agent_execution_status,
+            request_options: Zavudev::RequestOptions
+          }
+        end
+      end
+    end
+  end
+end

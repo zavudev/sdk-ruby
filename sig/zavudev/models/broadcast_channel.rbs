@@ -1,0 +1,28 @@
+module Zavudev
+  module Models
+    type broadcast_channel =
+      :smart
+      | :sms
+      | :sms_oneway
+      | :whatsapp
+      | :telegram
+      | :email
+      | :instagram
+      | :voice
+
+    module BroadcastChannel
+      extend Zavudev::Internal::Type::Enum
+
+      SMART: :smart
+      SMS: :sms
+      SMS_ONEWAY: :sms_oneway
+      WHATSAPP: :whatsapp
+      TELEGRAM: :telegram
+      EMAIL: :email
+      INSTAGRAM: :instagram
+      VOICE: :voice
+
+      def self?.values: -> ::Array[Zavudev::Models::broadcast_channel]
+    end
+  end
+end

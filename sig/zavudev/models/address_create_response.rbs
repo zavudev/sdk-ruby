@@ -1,0 +1,13 @@
+module Zavudev
+  module Models
+    type address_create_response = { address: Zavudev::Address }
+
+    class AddressCreateResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor address: Zavudev::Address
+
+      def initialize: (address: Zavudev::Address) -> void
+
+      def to_hash: -> { address: Zavudev::Address }
+    end
+  end
+end

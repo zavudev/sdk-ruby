@@ -1,0 +1,51 @@
+module Zavudev
+  module Models
+    type available_phone_number =
+      {
+        capabilities: Zavudev::PhoneNumberCapabilities,
+        phone_number: String,
+        pricing: Zavudev::PhoneNumberPricing,
+        friendly_name: String,
+        locality: String,
+        region: String
+      }
+
+    class AvailablePhoneNumber < Zavudev::Internal::Type::BaseModel
+      attr_accessor capabilities: Zavudev::PhoneNumberCapabilities
+
+      attr_accessor phone_number: String
+
+      attr_accessor pricing: Zavudev::PhoneNumberPricing
+
+      attr_reader friendly_name: String?
+
+      def friendly_name=: (String) -> String
+
+      attr_reader locality: String?
+
+      def locality=: (String) -> String
+
+      attr_reader region: String?
+
+      def region=: (String) -> String
+
+      def initialize: (
+        capabilities: Zavudev::PhoneNumberCapabilities,
+        phone_number: String,
+        pricing: Zavudev::PhoneNumberPricing,
+        ?friendly_name: String,
+        ?locality: String,
+        ?region: String
+      ) -> void
+
+      def to_hash: -> {
+        capabilities: Zavudev::PhoneNumberCapabilities,
+        phone_number: String,
+        pricing: Zavudev::PhoneNumberPricing,
+        friendly_name: String,
+        locality: String,
+        region: String
+      }
+    end
+  end
+end

@@ -1,0 +1,179 @@
+module Zavudev
+  class Address = Zavudev::Models::Address
+
+  class AddressCreateParams = Zavudev::Models::AddressCreateParams
+
+  class AddressDeleteParams = Zavudev::Models::AddressDeleteParams
+
+  class AddressListParams = Zavudev::Models::AddressListParams
+
+  class AddressRetrieveParams = Zavudev::Models::AddressRetrieveParams
+
+  module AddressStatus = Zavudev::Models::AddressStatus
+
+  class AvailablePhoneNumber = Zavudev::Models::AvailablePhoneNumber
+
+  class Broadcast = Zavudev::Models::Broadcast
+
+  class BroadcastCancelParams = Zavudev::Models::BroadcastCancelParams
+
+  module BroadcastChannel = Zavudev::Models::BroadcastChannel
+
+  class BroadcastContact = Zavudev::Models::BroadcastContact
+
+  module BroadcastContactStatus = Zavudev::Models::BroadcastContactStatus
+
+  class BroadcastContent = Zavudev::Models::BroadcastContent
+
+  class BroadcastCreateParams = Zavudev::Models::BroadcastCreateParams
+
+  class BroadcastDeleteParams = Zavudev::Models::BroadcastDeleteParams
+
+  class BroadcastListParams = Zavudev::Models::BroadcastListParams
+
+  module BroadcastMessageType = Zavudev::Models::BroadcastMessageType
+
+  class BroadcastProgress = Zavudev::Models::BroadcastProgress
+
+  class BroadcastProgressParams = Zavudev::Models::BroadcastProgressParams
+
+  class BroadcastRescheduleParams = Zavudev::Models::BroadcastRescheduleParams
+
+  class BroadcastRetrieveParams = Zavudev::Models::BroadcastRetrieveParams
+
+  module Broadcasts = Zavudev::Models::Broadcasts
+
+  class BroadcastSendParams = Zavudev::Models::BroadcastSendParams
+
+  module BroadcastStatus = Zavudev::Models::BroadcastStatus
+
+  class BroadcastUpdateParams = Zavudev::Models::BroadcastUpdateParams
+
+  module Channel = Zavudev::Models::Channel
+
+  class Contact = Zavudev::Models::Contact
+
+  class ContactListParams = Zavudev::Models::ContactListParams
+
+  class ContactRetrieveByPhoneParams = Zavudev::Models::ContactRetrieveByPhoneParams
+
+  class ContactRetrieveParams = Zavudev::Models::ContactRetrieveParams
+
+  class ContactUpdateParams = Zavudev::Models::ContactUpdateParams
+
+  class IntrospectValidatePhoneParams = Zavudev::Models::IntrospectValidatePhoneParams
+
+  module LineType = Zavudev::Models::LineType
+
+  class Message = Zavudev::Models::Message
+
+  class MessageContent = Zavudev::Models::MessageContent
+
+  class MessageListParams = Zavudev::Models::MessageListParams
+
+  class MessageReactParams = Zavudev::Models::MessageReactParams
+
+  class MessageResponse = Zavudev::Models::MessageResponse
+
+  class MessageRetrieveParams = Zavudev::Models::MessageRetrieveParams
+
+  class MessageSendParams = Zavudev::Models::MessageSendParams
+
+  module MessageStatus = Zavudev::Models::MessageStatus
+
+  module MessageType = Zavudev::Models::MessageType
+
+  class OwnedPhoneNumber = Zavudev::Models::OwnedPhoneNumber
+
+  class OwnedPhoneNumberPricing = Zavudev::Models::OwnedPhoneNumberPricing
+
+  class PhoneNumberCapabilities = Zavudev::Models::PhoneNumberCapabilities
+
+  class PhoneNumberListParams = Zavudev::Models::PhoneNumberListParams
+
+  class PhoneNumberPricing = Zavudev::Models::PhoneNumberPricing
+
+  class PhoneNumberPurchaseParams = Zavudev::Models::PhoneNumberPurchaseParams
+
+  class PhoneNumberReleaseParams = Zavudev::Models::PhoneNumberReleaseParams
+
+  class PhoneNumberRequirementsParams = Zavudev::Models::PhoneNumberRequirementsParams
+
+  class PhoneNumberRetrieveParams = Zavudev::Models::PhoneNumberRetrieveParams
+
+  class PhoneNumberSearchAvailableParams = Zavudev::Models::PhoneNumberSearchAvailableParams
+
+  module PhoneNumberStatus = Zavudev::Models::PhoneNumberStatus
+
+  module PhoneNumberType = Zavudev::Models::PhoneNumberType
+
+  class PhoneNumberUpdateParams = Zavudev::Models::PhoneNumberUpdateParams
+
+  class RegulatoryDocument = Zavudev::Models::RegulatoryDocument
+
+  class RegulatoryDocumentCreateParams = Zavudev::Models::RegulatoryDocumentCreateParams
+
+  class RegulatoryDocumentDeleteParams = Zavudev::Models::RegulatoryDocumentDeleteParams
+
+  class RegulatoryDocumentListParams = Zavudev::Models::RegulatoryDocumentListParams
+
+  class RegulatoryDocumentRetrieveParams = Zavudev::Models::RegulatoryDocumentRetrieveParams
+
+  class RegulatoryDocumentUploadURLParams = Zavudev::Models::RegulatoryDocumentUploadURLParams
+
+  class Requirement = Zavudev::Models::Requirement
+
+  class RequirementAcceptanceCriteria = Zavudev::Models::RequirementAcceptanceCriteria
+
+  module RequirementFieldType = Zavudev::Models::RequirementFieldType
+
+  class RequirementType = Zavudev::Models::RequirementType
+
+  class Sender = Zavudev::Models::Sender
+
+  class SenderCreateParams = Zavudev::Models::SenderCreateParams
+
+  class SenderDeleteParams = Zavudev::Models::SenderDeleteParams
+
+  class SenderGetProfileParams = Zavudev::Models::SenderGetProfileParams
+
+  class SenderListParams = Zavudev::Models::SenderListParams
+
+  class SenderRegenerateWebhookSecretParams = Zavudev::Models::SenderRegenerateWebhookSecretParams
+
+  class SenderRetrieveParams = Zavudev::Models::SenderRetrieveParams
+
+  module Senders = Zavudev::Models::Senders
+
+  class SenderUpdateParams = Zavudev::Models::SenderUpdateParams
+
+  class SenderUpdateProfileParams = Zavudev::Models::SenderUpdateProfileParams
+
+  class SenderUploadProfilePictureParams = Zavudev::Models::SenderUploadProfilePictureParams
+
+  class SenderWebhook = Zavudev::Models::SenderWebhook
+
+  class Template = Zavudev::Models::Template
+
+  class TemplateCreateParams = Zavudev::Models::TemplateCreateParams
+
+  class TemplateDeleteParams = Zavudev::Models::TemplateDeleteParams
+
+  class TemplateListParams = Zavudev::Models::TemplateListParams
+
+  class TemplateRetrieveParams = Zavudev::Models::TemplateRetrieveParams
+
+  class TemplateSubmitParams = Zavudev::Models::TemplateSubmitParams
+
+  module WebhookEvent = Zavudev::Models::WebhookEvent
+
+  class WebhookSecretResponse = Zavudev::Models::WebhookSecretResponse
+
+  class WhatsappBusinessProfile = Zavudev::Models::WhatsappBusinessProfile
+
+  class WhatsappBusinessProfileResponse = Zavudev::Models::WhatsappBusinessProfileResponse
+
+  module WhatsappBusinessProfileVertical = Zavudev::Models::WhatsappBusinessProfileVertical
+
+  module WhatsappCategory = Zavudev::Models::WhatsappCategory
+end

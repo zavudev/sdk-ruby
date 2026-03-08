@@ -1,0 +1,82 @@
+module Zavudev
+  module Models
+    type address =
+      {
+        id: String,
+        country_code: String,
+        created_at: Time,
+        locality: String,
+        postal_code: String,
+        status: Zavudev::Models::address_status,
+        street_address: String,
+        administrative_area: String?,
+        business_name: String?,
+        extended_address: String?,
+        first_name: String?,
+        last_name: String?,
+        updated_at: Time
+      }
+
+    class Address < Zavudev::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor country_code: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor locality: String
+
+      attr_accessor postal_code: String
+
+      attr_accessor status: Zavudev::Models::address_status
+
+      attr_accessor street_address: String
+
+      attr_accessor administrative_area: String?
+
+      attr_accessor business_name: String?
+
+      attr_accessor extended_address: String?
+
+      attr_accessor first_name: String?
+
+      attr_accessor last_name: String?
+
+      attr_reader updated_at: Time?
+
+      def updated_at=: (Time) -> Time
+
+      def initialize: (
+        id: String,
+        country_code: String,
+        created_at: Time,
+        locality: String,
+        postal_code: String,
+        status: Zavudev::Models::address_status,
+        street_address: String,
+        ?administrative_area: String?,
+        ?business_name: String?,
+        ?extended_address: String?,
+        ?first_name: String?,
+        ?last_name: String?,
+        ?updated_at: Time
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        country_code: String,
+        created_at: Time,
+        locality: String,
+        postal_code: String,
+        status: Zavudev::Models::address_status,
+        street_address: String,
+        administrative_area: String?,
+        business_name: String?,
+        extended_address: String?,
+        first_name: String?,
+        last_name: String?,
+        updated_at: Time
+      }
+    end
+  end
+end

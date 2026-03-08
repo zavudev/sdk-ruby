@@ -1,0 +1,56 @@
+module Zavudev
+  module Models
+    module Broadcasts
+      type contact_add_params =
+        {
+          broadcast_id: String,
+          contacts: ::Array[Zavudev::Broadcasts::ContactAddParams::Contact]
+        }
+        & Zavudev::Internal::Type::request_parameters
+
+      class ContactAddParams < Zavudev::Internal::Type::BaseModel
+        extend Zavudev::Internal::Type::RequestParameters::Converter
+        include Zavudev::Internal::Type::RequestParameters
+
+        attr_accessor broadcast_id: String
+
+        attr_accessor contacts: ::Array[Zavudev::Broadcasts::ContactAddParams::Contact]
+
+        def initialize: (
+          broadcast_id: String,
+          contacts: ::Array[Zavudev::Broadcasts::ContactAddParams::Contact],
+          ?request_options: Zavudev::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          broadcast_id: String,
+          contacts: ::Array[Zavudev::Broadcasts::ContactAddParams::Contact],
+          request_options: Zavudev::RequestOptions
+        }
+
+        type contact =
+          { recipient: String, template_variables: ::Hash[Symbol, String] }
+
+        class Contact < Zavudev::Internal::Type::BaseModel
+          attr_accessor recipient: String
+
+          attr_reader template_variables: ::Hash[Symbol, String]?
+
+          def template_variables=: (
+            ::Hash[Symbol, String]
+          ) -> ::Hash[Symbol, String]
+
+          def initialize: (
+            recipient: String,
+            ?template_variables: ::Hash[Symbol, String]
+          ) -> void
+
+          def to_hash: -> {
+            recipient: String,
+            template_variables: ::Hash[Symbol, String]
+          }
+        end
+      end
+    end
+  end
+end

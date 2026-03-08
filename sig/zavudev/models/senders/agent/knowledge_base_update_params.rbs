@@ -1,0 +1,47 @@
+module Zavudev
+  module Models
+    module Senders
+      module Agent
+        type knowledge_base_update_params =
+          {
+            sender_id: String,
+            kb_id: String,
+            description: String?,
+            name: String
+          }
+          & Zavudev::Internal::Type::request_parameters
+
+        class KnowledgeBaseUpdateParams < Zavudev::Internal::Type::BaseModel
+          extend Zavudev::Internal::Type::RequestParameters::Converter
+          include Zavudev::Internal::Type::RequestParameters
+
+          attr_accessor sender_id: String
+
+          attr_accessor kb_id: String
+
+          attr_accessor description: String?
+
+          attr_reader name: String?
+
+          def name=: (String) -> String
+
+          def initialize: (
+            sender_id: String,
+            kb_id: String,
+            ?description: String?,
+            ?name: String,
+            ?request_options: Zavudev::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            sender_id: String,
+            kb_id: String,
+            description: String?,
+            name: String,
+            request_options: Zavudev::RequestOptions
+          }
+        end
+      end
+    end
+  end
+end

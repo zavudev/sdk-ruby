@@ -1,0 +1,119 @@
+module Zavudev
+  module Models
+    type message =
+      {
+        id: String,
+        channel: Zavudev::Models::channel,
+        created_at: Time,
+        message_type: Zavudev::Models::message_type,
+        status: Zavudev::Models::message_status,
+        to: String,
+        content: Zavudev::MessageContent,
+        cost: Float?,
+        cost_provider: Float?,
+        cost_total: Float?,
+        error_code: String?,
+        error_message: String?,
+        from: String,
+        metadata: ::Hash[Symbol, String],
+        provider_message_id: String,
+        sender_id: String,
+        text: String,
+        updated_at: Time
+      }
+
+    class Message < Zavudev::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor channel: Zavudev::Models::channel
+
+      attr_accessor created_at: Time
+
+      attr_accessor message_type: Zavudev::Models::message_type
+
+      attr_accessor status: Zavudev::Models::message_status
+
+      attr_accessor to: String
+
+      attr_reader content: Zavudev::MessageContent?
+
+      def content=: (Zavudev::MessageContent) -> Zavudev::MessageContent
+
+      attr_accessor cost: Float?
+
+      attr_accessor cost_provider: Float?
+
+      attr_accessor cost_total: Float?
+
+      attr_accessor error_code: String?
+
+      attr_accessor error_message: String?
+
+      attr_reader from: String?
+
+      def from=: (String) -> String
+
+      attr_reader metadata: ::Hash[Symbol, String]?
+
+      def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+      attr_reader provider_message_id: String?
+
+      def provider_message_id=: (String) -> String
+
+      attr_reader sender_id: String?
+
+      def sender_id=: (String) -> String
+
+      attr_reader text: String?
+
+      def text=: (String) -> String
+
+      attr_reader updated_at: Time?
+
+      def updated_at=: (Time) -> Time
+
+      def initialize: (
+        id: String,
+        channel: Zavudev::Models::channel,
+        created_at: Time,
+        message_type: Zavudev::Models::message_type,
+        status: Zavudev::Models::message_status,
+        to: String,
+        ?content: Zavudev::MessageContent,
+        ?cost: Float?,
+        ?cost_provider: Float?,
+        ?cost_total: Float?,
+        ?error_code: String?,
+        ?error_message: String?,
+        ?from: String,
+        ?metadata: ::Hash[Symbol, String],
+        ?provider_message_id: String,
+        ?sender_id: String,
+        ?text: String,
+        ?updated_at: Time
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        channel: Zavudev::Models::channel,
+        created_at: Time,
+        message_type: Zavudev::Models::message_type,
+        status: Zavudev::Models::message_status,
+        to: String,
+        content: Zavudev::MessageContent,
+        cost: Float?,
+        cost_provider: Float?,
+        cost_total: Float?,
+        error_code: String?,
+        error_message: String?,
+        from: String,
+        metadata: ::Hash[Symbol, String],
+        provider_message_id: String,
+        sender_id: String,
+        text: String,
+        updated_at: Time
+      }
+    end
+  end
+end

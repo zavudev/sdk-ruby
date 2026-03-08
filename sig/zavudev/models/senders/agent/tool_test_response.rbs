@@ -1,0 +1,17 @@
+module Zavudev
+  module Models
+    module Senders
+      module Agent
+        type tool_test_response = { scheduled: bool }
+
+        class ToolTestResponse < Zavudev::Internal::Type::BaseModel
+          attr_accessor scheduled: bool
+
+          def initialize: (scheduled: bool) -> void
+
+          def to_hash: -> { scheduled: bool }
+        end
+      end
+    end
+  end
+end

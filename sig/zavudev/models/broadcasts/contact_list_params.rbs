@@ -1,0 +1,51 @@
+module Zavudev
+  module Models
+    module Broadcasts
+      type contact_list_params =
+        {
+          broadcast_id: String,
+          cursor: String,
+          limit: Integer,
+          status: Zavudev::Models::broadcast_contact_status
+        }
+        & Zavudev::Internal::Type::request_parameters
+
+      class ContactListParams < Zavudev::Internal::Type::BaseModel
+        extend Zavudev::Internal::Type::RequestParameters::Converter
+        include Zavudev::Internal::Type::RequestParameters
+
+        attr_accessor broadcast_id: String
+
+        attr_reader cursor: String?
+
+        def cursor=: (String) -> String
+
+        attr_reader limit: Integer?
+
+        def limit=: (Integer) -> Integer
+
+        attr_reader status: Zavudev::Models::broadcast_contact_status?
+
+        def status=: (
+          Zavudev::Models::broadcast_contact_status
+        ) -> Zavudev::Models::broadcast_contact_status
+
+        def initialize: (
+          broadcast_id: String,
+          ?cursor: String,
+          ?limit: Integer,
+          ?status: Zavudev::Models::broadcast_contact_status,
+          ?request_options: Zavudev::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          broadcast_id: String,
+          cursor: String,
+          limit: Integer,
+          status: Zavudev::Models::broadcast_contact_status,
+          request_options: Zavudev::RequestOptions
+        }
+      end
+    end
+  end
+end

@@ -1,0 +1,31 @@
+module Zavudev
+  module Resources
+    class Contacts
+      def retrieve: (
+        String contact_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Contact
+
+      def update: (
+        String contact_id,
+        ?default_channel: Zavudev::Models::ContactUpdateParams::default_channel?,
+        ?metadata: ::Hash[Symbol, String],
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Contact
+
+      def list: (
+        ?cursor: String,
+        ?limit: Integer,
+        ?phone_number: String,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Internal::Cursor[Zavudev::Contact]
+
+      def retrieve_by_phone: (
+        String phone_number,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Contact
+
+      def initialize: (client: Zavudev::Client) -> void
+    end
+  end
+end

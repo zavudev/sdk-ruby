@@ -1,0 +1,202 @@
+module Zavudev
+  module Models
+    type message_content =
+      {
+        buttons: ::Array[Zavudev::MessageContent::Button],
+        contacts: ::Array[Zavudev::MessageContent::Contact],
+        emoji: String,
+        filename: String,
+        latitude: Float,
+        list_button: String,
+        location_address: String,
+        location_name: String,
+        longitude: Float,
+        media_id: String,
+        media_url: String,
+        mime_type: String,
+        react_to_message_id: String,
+        sections: ::Array[Zavudev::MessageContent::Section],
+        template_id: String,
+        template_variables: ::Hash[Symbol, String]
+      }
+
+    class MessageContent < Zavudev::Internal::Type::BaseModel
+      attr_reader buttons: ::Array[Zavudev::MessageContent::Button]?
+
+      def buttons=: (
+        ::Array[Zavudev::MessageContent::Button]
+      ) -> ::Array[Zavudev::MessageContent::Button]
+
+      attr_reader contacts: ::Array[Zavudev::MessageContent::Contact]?
+
+      def contacts=: (
+        ::Array[Zavudev::MessageContent::Contact]
+      ) -> ::Array[Zavudev::MessageContent::Contact]
+
+      attr_reader emoji: String?
+
+      def emoji=: (String) -> String
+
+      attr_reader filename: String?
+
+      def filename=: (String) -> String
+
+      attr_reader latitude: Float?
+
+      def latitude=: (Float) -> Float
+
+      attr_reader list_button: String?
+
+      def list_button=: (String) -> String
+
+      attr_reader location_address: String?
+
+      def location_address=: (String) -> String
+
+      attr_reader location_name: String?
+
+      def location_name=: (String) -> String
+
+      attr_reader longitude: Float?
+
+      def longitude=: (Float) -> Float
+
+      attr_reader media_id: String?
+
+      def media_id=: (String) -> String
+
+      attr_reader media_url: String?
+
+      def media_url=: (String) -> String
+
+      attr_reader mime_type: String?
+
+      def mime_type=: (String) -> String
+
+      attr_reader react_to_message_id: String?
+
+      def react_to_message_id=: (String) -> String
+
+      attr_reader sections: ::Array[Zavudev::MessageContent::Section]?
+
+      def sections=: (
+        ::Array[Zavudev::MessageContent::Section]
+      ) -> ::Array[Zavudev::MessageContent::Section]
+
+      attr_reader template_id: String?
+
+      def template_id=: (String) -> String
+
+      attr_reader template_variables: ::Hash[Symbol, String]?
+
+      def template_variables=: (
+        ::Hash[Symbol, String]
+      ) -> ::Hash[Symbol, String]
+
+      def initialize: (
+        ?buttons: ::Array[Zavudev::MessageContent::Button],
+        ?contacts: ::Array[Zavudev::MessageContent::Contact],
+        ?emoji: String,
+        ?filename: String,
+        ?latitude: Float,
+        ?list_button: String,
+        ?location_address: String,
+        ?location_name: String,
+        ?longitude: Float,
+        ?media_id: String,
+        ?media_url: String,
+        ?mime_type: String,
+        ?react_to_message_id: String,
+        ?sections: ::Array[Zavudev::MessageContent::Section],
+        ?template_id: String,
+        ?template_variables: ::Hash[Symbol, String]
+      ) -> void
+
+      def to_hash: -> {
+        buttons: ::Array[Zavudev::MessageContent::Button],
+        contacts: ::Array[Zavudev::MessageContent::Contact],
+        emoji: String,
+        filename: String,
+        latitude: Float,
+        list_button: String,
+        location_address: String,
+        location_name: String,
+        longitude: Float,
+        media_id: String,
+        media_url: String,
+        mime_type: String,
+        react_to_message_id: String,
+        sections: ::Array[Zavudev::MessageContent::Section],
+        template_id: String,
+        template_variables: ::Hash[Symbol, String]
+      }
+
+      type button = { id: String, title: String }
+
+      class Button < Zavudev::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type contact = { name: String, phones: ::Array[String] }
+
+      class Contact < Zavudev::Internal::Type::BaseModel
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        attr_reader phones: ::Array[String]?
+
+        def phones=: (::Array[String]) -> ::Array[String]
+
+        def initialize: (?name: String, ?phones: ::Array[String]) -> void
+
+        def to_hash: -> { name: String, phones: ::Array[String] }
+      end
+
+      type section =
+        { rows: ::Array[Zavudev::MessageContent::Section::Row], title: String }
+
+      class Section < Zavudev::Internal::Type::BaseModel
+        attr_accessor rows: ::Array[Zavudev::MessageContent::Section::Row]
+
+        attr_accessor title: String
+
+        def initialize: (
+          rows: ::Array[Zavudev::MessageContent::Section::Row],
+          title: String
+        ) -> void
+
+        def to_hash: -> {
+          rows: ::Array[Zavudev::MessageContent::Section::Row],
+          title: String
+        }
+
+        type row = { id: String, title: String, description: String }
+
+        class Row < Zavudev::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor title: String
+
+          attr_reader description: String?
+
+          def description=: (String) -> String
+
+          def initialize: (
+            id: String,
+            title: String,
+            ?description: String
+          ) -> void
+
+          def to_hash: -> { id: String, title: String, description: String }
+        end
+      end
+    end
+  end
+end

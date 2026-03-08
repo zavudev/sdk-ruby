@@ -1,0 +1,20 @@
+module Zavudev
+  module Models
+    module Senders
+      type agent_execution_status =
+        :success | :error | :filtered | :rate_limited | :balance_insufficient
+
+      module AgentExecutionStatus
+        extend Zavudev::Internal::Type::Enum
+
+        SUCCESS: :success
+        ERROR: :error
+        FILTERED: :filtered
+        RATE_LIMITED: :rate_limited
+        BALANCE_INSUFFICIENT: :balance_insufficient
+
+        def self?.values: -> ::Array[Zavudev::Models::Senders::agent_execution_status]
+      end
+    end
+  end
+end

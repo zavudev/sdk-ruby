@@ -1,0 +1,19 @@
+module Zavudev
+  module Models
+    module Senders
+      type agent_provider = :openai | :anthropic | :google | :mistral | :zavu
+
+      module AgentProvider
+        extend Zavudev::Internal::Type::Enum
+
+        OPENAI: :openai
+        ANTHROPIC: :anthropic
+        GOOGLE: :google
+        MISTRAL: :mistral
+        ZAVU: :zavu
+
+        def self?.values: -> ::Array[Zavudev::Models::Senders::agent_provider]
+      end
+    end
+  end
+end

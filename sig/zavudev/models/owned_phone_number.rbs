@@ -1,0 +1,73 @@
+module Zavudev
+  module Models
+    type owned_phone_number =
+      {
+        id: String,
+        capabilities: ::Array[String],
+        created_at: Time,
+        phone_number: String,
+        pricing: Zavudev::OwnedPhoneNumberPricing,
+        status: Zavudev::Models::phone_number_status,
+        name: String,
+        next_renewal_date: Time,
+        sender_id: String,
+        updated_at: Time
+      }
+
+    class OwnedPhoneNumber < Zavudev::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor capabilities: ::Array[String]
+
+      attr_accessor created_at: Time
+
+      attr_accessor phone_number: String
+
+      attr_accessor pricing: Zavudev::OwnedPhoneNumberPricing
+
+      attr_accessor status: Zavudev::Models::phone_number_status
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader next_renewal_date: Time?
+
+      def next_renewal_date=: (Time) -> Time
+
+      attr_reader sender_id: String?
+
+      def sender_id=: (String) -> String
+
+      attr_reader updated_at: Time?
+
+      def updated_at=: (Time) -> Time
+
+      def initialize: (
+        id: String,
+        capabilities: ::Array[String],
+        created_at: Time,
+        phone_number: String,
+        pricing: Zavudev::OwnedPhoneNumberPricing,
+        status: Zavudev::Models::phone_number_status,
+        ?name: String,
+        ?next_renewal_date: Time,
+        ?sender_id: String,
+        ?updated_at: Time
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        capabilities: ::Array[String],
+        created_at: Time,
+        phone_number: String,
+        pricing: Zavudev::OwnedPhoneNumberPricing,
+        status: Zavudev::Models::phone_number_status,
+        name: String,
+        next_renewal_date: Time,
+        sender_id: String,
+        updated_at: Time
+      }
+    end
+  end
+end

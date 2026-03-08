@@ -1,0 +1,16 @@
+module Zavudev
+  module Models
+    type requirement_field_type = :textual | :address | :document | :action
+
+    module RequirementFieldType
+      extend Zavudev::Internal::Type::Enum
+
+      TEXTUAL: :textual
+      ADDRESS: :address
+      DOCUMENT: :document
+      ACTION: :action
+
+      def self?.values: -> ::Array[Zavudev::Models::requirement_field_type]
+    end
+  end
+end

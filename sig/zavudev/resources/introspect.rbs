@@ -1,0 +1,12 @@
+module Zavudev
+  module Resources
+    class Introspect
+      def validate_phone: (
+        phone_number: String,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::IntrospectValidatePhoneResponse
+
+      def initialize: (client: Zavudev::Client) -> void
+    end
+  end
+end

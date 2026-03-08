@@ -1,0 +1,61 @@
+module Zavudev
+  module Resources
+    class Senders
+      class Agent
+        class Flows
+          def create: (
+            String sender_id,
+            name: String,
+            steps: ::Array[Zavudev::Senders::Agent::FlowCreateParams::Step],
+            trigger: Zavudev::Senders::Agent::FlowCreateParams::Trigger,
+            ?description: String,
+            ?enabled: bool,
+            ?priority: Integer,
+            ?request_options: Zavudev::request_opts
+          ) -> Zavudev::Models::Senders::Agent::FlowCreateResponse
+
+          def retrieve: (
+            String flow_id,
+            sender_id: String,
+            ?request_options: Zavudev::request_opts
+          ) -> Zavudev::Models::Senders::Agent::FlowRetrieveResponse
+
+          def update: (
+            String flow_id,
+            sender_id: String,
+            ?description: String,
+            ?enabled: bool,
+            ?name: String,
+            ?priority: Integer,
+            ?steps: ::Array[Zavudev::Senders::Agent::FlowUpdateParams::Step],
+            ?trigger: Zavudev::Senders::Agent::FlowUpdateParams::Trigger,
+            ?request_options: Zavudev::request_opts
+          ) -> Zavudev::Models::Senders::Agent::FlowUpdateResponse
+
+          def list: (
+            String sender_id,
+            ?cursor: String,
+            ?enabled: bool,
+            ?limit: Integer,
+            ?request_options: Zavudev::request_opts
+          ) -> Zavudev::Internal::Cursor[Zavudev::Senders::Agent::AgentFlow]
+
+          def delete: (
+            String flow_id,
+            sender_id: String,
+            ?request_options: Zavudev::request_opts
+          ) -> nil
+
+          def duplicate: (
+            String flow_id,
+            sender_id: String,
+            new_name: String,
+            ?request_options: Zavudev::request_opts
+          ) -> Zavudev::Models::Senders::Agent::FlowDuplicateResponse
+
+          def initialize: (client: Zavudev::Client) -> void
+        end
+      end
+    end
+  end
+end

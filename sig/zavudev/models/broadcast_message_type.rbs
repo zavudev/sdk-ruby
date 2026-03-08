@@ -1,0 +1,19 @@
+module Zavudev
+  module Models
+    type broadcast_message_type =
+      :text | :image | :video | :audio | :document | :template
+
+    module BroadcastMessageType
+      extend Zavudev::Internal::Type::Enum
+
+      TEXT: :text
+      IMAGE: :image
+      VIDEO: :video
+      AUDIO: :audio
+      DOCUMENT: :document
+      TEMPLATE: :template
+
+      def self?.values: -> ::Array[Zavudev::Models::broadcast_message_type]
+    end
+  end
+end

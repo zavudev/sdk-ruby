@@ -1,0 +1,36 @@
+module Zavudev
+  module Models
+    module Senders
+      module Agent
+        type flow_duplicate_params =
+          { sender_id: String, flow_id: String, new_name: String }
+          & Zavudev::Internal::Type::request_parameters
+
+        class FlowDuplicateParams < Zavudev::Internal::Type::BaseModel
+          extend Zavudev::Internal::Type::RequestParameters::Converter
+          include Zavudev::Internal::Type::RequestParameters
+
+          attr_accessor sender_id: String
+
+          attr_accessor flow_id: String
+
+          attr_accessor new_name: String
+
+          def initialize: (
+            sender_id: String,
+            flow_id: String,
+            new_name: String,
+            ?request_options: Zavudev::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            sender_id: String,
+            flow_id: String,
+            new_name: String,
+            request_options: Zavudev::RequestOptions
+          }
+        end
+      end
+    end
+  end
+end

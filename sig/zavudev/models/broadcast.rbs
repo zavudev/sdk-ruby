@@ -1,0 +1,211 @@
+module Zavudev
+  module Models
+    type broadcast =
+      {
+        id: String,
+        channel: Zavudev::Models::broadcast_channel,
+        created_at: Time,
+        message_type: Zavudev::Models::broadcast_message_type,
+        name: String,
+        status: Zavudev::Models::broadcast_status,
+        total_contacts: Integer,
+        actual_cost: Float?,
+        completed_at: Time,
+        content: Zavudev::BroadcastContent,
+        delivered_count: Integer,
+        email_subject: String,
+        estimated_cost: Float?,
+        failed_count: Integer,
+        metadata: ::Hash[Symbol, String],
+        pending_count: Integer,
+        reserved_amount: Float?,
+        review_attempts: Integer?,
+        review_result: Zavudev::Broadcast::ReviewResult?,
+        scheduled_at: Time,
+        sender_id: String,
+        sending_count: Integer,
+        started_at: Time,
+        text: String,
+        updated_at: Time
+      }
+
+    class Broadcast < Zavudev::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor channel: Zavudev::Models::broadcast_channel
+
+      attr_accessor created_at: Time
+
+      attr_accessor message_type: Zavudev::Models::broadcast_message_type
+
+      attr_accessor name: String
+
+      attr_accessor status: Zavudev::Models::broadcast_status
+
+      attr_accessor total_contacts: Integer
+
+      attr_accessor actual_cost: Float?
+
+      attr_reader completed_at: Time?
+
+      def completed_at=: (Time) -> Time
+
+      attr_reader content: Zavudev::BroadcastContent?
+
+      def content=: (Zavudev::BroadcastContent) -> Zavudev::BroadcastContent
+
+      attr_reader delivered_count: Integer?
+
+      def delivered_count=: (Integer) -> Integer
+
+      attr_reader email_subject: String?
+
+      def email_subject=: (String) -> String
+
+      attr_accessor estimated_cost: Float?
+
+      attr_reader failed_count: Integer?
+
+      def failed_count=: (Integer) -> Integer
+
+      attr_reader metadata: ::Hash[Symbol, String]?
+
+      def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+      attr_reader pending_count: Integer?
+
+      def pending_count=: (Integer) -> Integer
+
+      attr_accessor reserved_amount: Float?
+
+      attr_accessor review_attempts: Integer?
+
+      attr_accessor review_result: Zavudev::Broadcast::ReviewResult?
+
+      attr_reader scheduled_at: Time?
+
+      def scheduled_at=: (Time) -> Time
+
+      attr_reader sender_id: String?
+
+      def sender_id=: (String) -> String
+
+      attr_reader sending_count: Integer?
+
+      def sending_count=: (Integer) -> Integer
+
+      attr_reader started_at: Time?
+
+      def started_at=: (Time) -> Time
+
+      attr_reader text: String?
+
+      def text=: (String) -> String
+
+      attr_reader updated_at: Time?
+
+      def updated_at=: (Time) -> Time
+
+      def initialize: (
+        id: String,
+        channel: Zavudev::Models::broadcast_channel,
+        created_at: Time,
+        message_type: Zavudev::Models::broadcast_message_type,
+        name: String,
+        status: Zavudev::Models::broadcast_status,
+        total_contacts: Integer,
+        ?actual_cost: Float?,
+        ?completed_at: Time,
+        ?content: Zavudev::BroadcastContent,
+        ?delivered_count: Integer,
+        ?email_subject: String,
+        ?estimated_cost: Float?,
+        ?failed_count: Integer,
+        ?metadata: ::Hash[Symbol, String],
+        ?pending_count: Integer,
+        ?reserved_amount: Float?,
+        ?review_attempts: Integer?,
+        ?review_result: Zavudev::Broadcast::ReviewResult?,
+        ?scheduled_at: Time,
+        ?sender_id: String,
+        ?sending_count: Integer,
+        ?started_at: Time,
+        ?text: String,
+        ?updated_at: Time
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        channel: Zavudev::Models::broadcast_channel,
+        created_at: Time,
+        message_type: Zavudev::Models::broadcast_message_type,
+        name: String,
+        status: Zavudev::Models::broadcast_status,
+        total_contacts: Integer,
+        actual_cost: Float?,
+        completed_at: Time,
+        content: Zavudev::BroadcastContent,
+        delivered_count: Integer,
+        email_subject: String,
+        estimated_cost: Float?,
+        failed_count: Integer,
+        metadata: ::Hash[Symbol, String],
+        pending_count: Integer,
+        reserved_amount: Float?,
+        review_attempts: Integer?,
+        review_result: Zavudev::Broadcast::ReviewResult?,
+        scheduled_at: Time,
+        sender_id: String,
+        sending_count: Integer,
+        started_at: Time,
+        text: String,
+        updated_at: Time
+      }
+
+      type review_result =
+        {
+          categories: ::Array[String],
+          flagged_content: ::Array[String]?,
+          reasoning: String,
+          reviewed_at: Time,
+          score: Float
+        }
+
+      class ReviewResult < Zavudev::Internal::Type::BaseModel
+        attr_reader categories: ::Array[String]?
+
+        def categories=: (::Array[String]) -> ::Array[String]
+
+        attr_accessor flagged_content: ::Array[String]?
+
+        attr_reader reasoning: String?
+
+        def reasoning=: (String) -> String
+
+        attr_reader reviewed_at: Time?
+
+        def reviewed_at=: (Time) -> Time
+
+        attr_reader score: Float?
+
+        def score=: (Float) -> Float
+
+        def initialize: (
+          ?categories: ::Array[String],
+          ?flagged_content: ::Array[String]?,
+          ?reasoning: String,
+          ?reviewed_at: Time,
+          ?score: Float
+        ) -> void
+
+        def to_hash: -> {
+          categories: ::Array[String],
+          flagged_content: ::Array[String]?,
+          reasoning: String,
+          reviewed_at: Time,
+          score: Float
+        }
+      end
+    end
+  end
+end

@@ -1,0 +1,50 @@
+module Zavudev
+  module Models
+    type whatsapp_business_profile_vertical =
+      :UNDEFINED
+      | :OTHER
+      | :AUTO
+      | :BEAUTY
+      | :APPAREL
+      | :EDU
+      | :ENTERTAIN
+      | :EVENT_PLAN
+      | :FINANCE
+      | :GROCERY
+      | :GOVT
+      | :HOTEL
+      | :HEALTH
+      | :NONPROFIT
+      | :PROF_SERVICES
+      | :RETAIL
+      | :TRAVEL
+      | :RESTAURANT
+      | :NOT_A_BIZ
+
+    module WhatsappBusinessProfileVertical
+      extend Zavudev::Internal::Type::Enum
+
+      UNDEFINED: :UNDEFINED
+      OTHER: :OTHER
+      AUTO: :AUTO
+      BEAUTY: :BEAUTY
+      APPAREL: :APPAREL
+      EDU: :EDU
+      ENTERTAIN: :ENTERTAIN
+      EVENT_PLAN: :EVENT_PLAN
+      FINANCE: :FINANCE
+      GROCERY: :GROCERY
+      GOVT: :GOVT
+      HOTEL: :HOTEL
+      HEALTH: :HEALTH
+      NONPROFIT: :NONPROFIT
+      PROF_SERVICES: :PROF_SERVICES
+      RETAIL: :RETAIL
+      TRAVEL: :TRAVEL
+      RESTAURANT: :RESTAURANT
+      NOT_A_BIZ: :NOT_A_BIZ
+
+      def self?.values: -> ::Array[Zavudev::Models::whatsapp_business_profile_vertical]
+    end
+  end
+end

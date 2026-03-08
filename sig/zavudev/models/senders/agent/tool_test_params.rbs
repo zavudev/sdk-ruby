@@ -1,0 +1,40 @@
+module Zavudev
+  module Models
+    module Senders
+      module Agent
+        type tool_test_params =
+          {
+            sender_id: String,
+            tool_id: String,
+            test_params: ::Hash[Symbol, top]
+          }
+          & Zavudev::Internal::Type::request_parameters
+
+        class ToolTestParams < Zavudev::Internal::Type::BaseModel
+          extend Zavudev::Internal::Type::RequestParameters::Converter
+          include Zavudev::Internal::Type::RequestParameters
+
+          attr_accessor sender_id: String
+
+          attr_accessor tool_id: String
+
+          attr_accessor test_params: ::Hash[Symbol, top]
+
+          def initialize: (
+            sender_id: String,
+            tool_id: String,
+            test_params: ::Hash[Symbol, top],
+            ?request_options: Zavudev::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            sender_id: String,
+            tool_id: String,
+            test_params: ::Hash[Symbol, top],
+            request_options: Zavudev::RequestOptions
+          }
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,32 @@
+module Zavudev
+  module Models
+    type phone_number_requirements_params =
+      { country_code: String, type: Zavudev::Models::phone_number_type }
+      & Zavudev::Internal::Type::request_parameters
+
+    class PhoneNumberRequirementsParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor country_code: String
+
+      attr_reader type: Zavudev::Models::phone_number_type?
+
+      def type=: (
+        Zavudev::Models::phone_number_type
+      ) -> Zavudev::Models::phone_number_type
+
+      def initialize: (
+        country_code: String,
+        ?type: Zavudev::Models::phone_number_type,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        country_code: String,
+        type: Zavudev::Models::phone_number_type,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

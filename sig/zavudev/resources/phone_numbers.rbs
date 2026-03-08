@@ -1,0 +1,51 @@
+module Zavudev
+  module Resources
+    class PhoneNumbers
+      def retrieve: (
+        String phone_number_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::PhoneNumberRetrieveResponse
+
+      def update: (
+        String phone_number_id,
+        ?name: String?,
+        ?sender_id: String?,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::PhoneNumberUpdateResponse
+
+      def list: (
+        ?cursor: String,
+        ?limit: Integer,
+        ?status: Zavudev::Models::phone_number_status,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Internal::Cursor[Zavudev::OwnedPhoneNumber]
+
+      def purchase: (
+        phone_number: String,
+        ?name: String,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::PhoneNumberPurchaseResponse
+
+      def release: (
+        String phone_number_id,
+        ?request_options: Zavudev::request_opts
+      ) -> nil
+
+      def requirements: (
+        country_code: String,
+        ?type: Zavudev::Models::phone_number_type,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::PhoneNumberRequirementsResponse
+
+      def search_available: (
+        country_code: String,
+        ?contains: String,
+        ?limit: Integer,
+        ?type: Zavudev::Models::phone_number_type,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::PhoneNumberSearchAvailableResponse
+
+      def initialize: (client: Zavudev::Client) -> void
+    end
+  end
+end

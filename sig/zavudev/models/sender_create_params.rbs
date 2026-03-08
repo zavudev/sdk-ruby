@@ -1,0 +1,54 @@
+module Zavudev
+  module Models
+    type sender_create_params =
+      {
+        name: String,
+        phone_number: String,
+        set_as_default: bool,
+        webhook_events: ::Array[Zavudev::Models::webhook_event],
+        webhook_url: String
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class SenderCreateParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor name: String
+
+      attr_accessor phone_number: String
+
+      attr_reader set_as_default: bool?
+
+      def set_as_default=: (bool) -> bool
+
+      attr_reader webhook_events: ::Array[Zavudev::Models::webhook_event]?
+
+      def webhook_events=: (
+        ::Array[Zavudev::Models::webhook_event]
+      ) -> ::Array[Zavudev::Models::webhook_event]
+
+      attr_reader webhook_url: String?
+
+      def webhook_url=: (String) -> String
+
+      def initialize: (
+        name: String,
+        phone_number: String,
+        ?set_as_default: bool,
+        ?webhook_events: ::Array[Zavudev::Models::webhook_event],
+        ?webhook_url: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        name: String,
+        phone_number: String,
+        set_as_default: bool,
+        webhook_events: ::Array[Zavudev::Models::webhook_event],
+        webhook_url: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

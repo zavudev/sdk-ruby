@@ -1,0 +1,26 @@
+module Zavudev
+  module Models
+    type message_status =
+      :queued
+      | :sending
+      | :sent
+      | :delivered
+      | :failed
+      | :received
+      | :pending_url_verification
+
+    module MessageStatus
+      extend Zavudev::Internal::Type::Enum
+
+      QUEUED: :queued
+      SENDING: :sending
+      SENT: :sent
+      DELIVERED: :delivered
+      FAILED: :failed
+      RECEIVED: :received
+      PENDING_URL_VERIFICATION: :pending_url_verification
+
+      def self?.values: -> ::Array[Zavudev::Models::message_status]
+    end
+  end
+end

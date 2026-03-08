@@ -1,0 +1,130 @@
+module Zavudev
+  module Models
+    module Senders
+      module Agent
+        type tool_update_params =
+          {
+            sender_id: String,
+            tool_id: String,
+            description: String,
+            enabled: bool,
+            name: String,
+            parameters: Zavudev::Senders::Agent::ToolUpdateParams::Parameters,
+            webhook_secret: String?,
+            webhook_url: String
+          }
+          & Zavudev::Internal::Type::request_parameters
+
+        class ToolUpdateParams < Zavudev::Internal::Type::BaseModel
+          extend Zavudev::Internal::Type::RequestParameters::Converter
+          include Zavudev::Internal::Type::RequestParameters
+
+          attr_accessor sender_id: String
+
+          attr_accessor tool_id: String
+
+          attr_reader description: String?
+
+          def description=: (String) -> String
+
+          attr_reader enabled: bool?
+
+          def enabled=: (bool) -> bool
+
+          attr_reader name: String?
+
+          def name=: (String) -> String
+
+          attr_reader parameters: Zavudev::Senders::Agent::ToolUpdateParams::Parameters?
+
+          def parameters=: (
+            Zavudev::Senders::Agent::ToolUpdateParams::Parameters
+          ) -> Zavudev::Senders::Agent::ToolUpdateParams::Parameters
+
+          attr_accessor webhook_secret: String?
+
+          attr_reader webhook_url: String?
+
+          def webhook_url=: (String) -> String
+
+          def initialize: (
+            sender_id: String,
+            tool_id: String,
+            ?description: String,
+            ?enabled: bool,
+            ?name: String,
+            ?parameters: Zavudev::Senders::Agent::ToolUpdateParams::Parameters,
+            ?webhook_secret: String?,
+            ?webhook_url: String,
+            ?request_options: Zavudev::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            sender_id: String,
+            tool_id: String,
+            description: String,
+            enabled: bool,
+            name: String,
+            parameters: Zavudev::Senders::Agent::ToolUpdateParams::Parameters,
+            webhook_secret: String?,
+            webhook_url: String,
+            request_options: Zavudev::RequestOptions
+          }
+
+          type parameters =
+            {
+              properties: ::Hash[Symbol, Zavudev::Senders::Agent::ToolUpdateParams::Parameters::Property],
+              required: ::Array[String],
+              type: Zavudev::Models::Senders::Agent::ToolUpdateParams::Parameters::type_
+            }
+
+          class Parameters < Zavudev::Internal::Type::BaseModel
+            attr_accessor properties: ::Hash[Symbol, Zavudev::Senders::Agent::ToolUpdateParams::Parameters::Property]
+
+            attr_accessor required: ::Array[String]
+
+            attr_accessor type: Zavudev::Models::Senders::Agent::ToolUpdateParams::Parameters::type_
+
+            def initialize: (
+              properties: ::Hash[Symbol, Zavudev::Senders::Agent::ToolUpdateParams::Parameters::Property],
+              required: ::Array[String],
+              type: Zavudev::Models::Senders::Agent::ToolUpdateParams::Parameters::type_
+            ) -> void
+
+            def to_hash: -> {
+              properties: ::Hash[Symbol, Zavudev::Senders::Agent::ToolUpdateParams::Parameters::Property],
+              required: ::Array[String],
+              type: Zavudev::Models::Senders::Agent::ToolUpdateParams::Parameters::type_
+            }
+
+            type property = { description: String, type: String }
+
+            class Property < Zavudev::Internal::Type::BaseModel
+              attr_reader description: String?
+
+              def description=: (String) -> String
+
+              attr_reader type: String?
+
+              def type=: (String) -> String
+
+              def initialize: (?description: String, ?type: String) -> void
+
+              def to_hash: -> { description: String, type: String }
+            end
+
+            type type_ = :object
+
+            module Type
+              extend Zavudev::Internal::Type::Enum
+
+              OBJECT: :object
+
+              def self?.values: -> ::Array[Zavudev::Models::Senders::Agent::ToolUpdateParams::Parameters::type_]
+            end
+          end
+        end
+      end
+    end
+  end
+end

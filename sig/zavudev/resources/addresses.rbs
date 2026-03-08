@@ -1,0 +1,36 @@
+module Zavudev
+  module Resources
+    class Addresses
+      def create: (
+        country_code: String,
+        locality: String,
+        postal_code: String,
+        street_address: String,
+        ?administrative_area: String,
+        ?business_name: String,
+        ?extended_address: String,
+        ?first_name: String,
+        ?last_name: String,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::AddressCreateResponse
+
+      def retrieve: (
+        String address_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::AddressRetrieveResponse
+
+      def list: (
+        ?cursor: String,
+        ?limit: Integer,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Internal::Cursor[Zavudev::Address]
+
+      def delete: (
+        String address_id,
+        ?request_options: Zavudev::request_opts
+      ) -> nil
+
+      def initialize: (client: Zavudev::Client) -> void
+    end
+  end
+end

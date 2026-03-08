@@ -1,0 +1,13 @@
+module Zavudev
+  module Models
+    type message_response = { message: Zavudev::Message }
+
+    class MessageResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor message: Zavudev::Message
+
+      def initialize: (message: Zavudev::Message) -> void
+
+      def to_hash: -> { message: Zavudev::Message }
+    end
+  end
+end

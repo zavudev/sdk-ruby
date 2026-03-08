@@ -1,0 +1,112 @@
+module Zavudev
+  module Models
+    type message_send_params =
+      {
+        to: String,
+        channel: Zavudev::Models::channel,
+        content: Zavudev::MessageContent,
+        fallback_enabled: bool,
+        html_body: String,
+        idempotency_key: String,
+        message_type: Zavudev::Models::message_type,
+        metadata: ::Hash[Symbol, String],
+        reply_to: String,
+        subject: String,
+        text: String,
+        voice_language: String,
+        zavu_sender: String
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class MessageSendParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor to: String
+
+      attr_reader channel: Zavudev::Models::channel?
+
+      def channel=: (Zavudev::Models::channel) -> Zavudev::Models::channel
+
+      attr_reader content: Zavudev::MessageContent?
+
+      def content=: (Zavudev::MessageContent) -> Zavudev::MessageContent
+
+      attr_reader fallback_enabled: bool?
+
+      def fallback_enabled=: (bool) -> bool
+
+      attr_reader html_body: String?
+
+      def html_body=: (String) -> String
+
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
+
+      attr_reader message_type: Zavudev::Models::message_type?
+
+      def message_type=: (
+        Zavudev::Models::message_type
+      ) -> Zavudev::Models::message_type
+
+      attr_reader metadata: ::Hash[Symbol, String]?
+
+      def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+      attr_reader reply_to: String?
+
+      def reply_to=: (String) -> String
+
+      attr_reader subject: String?
+
+      def subject=: (String) -> String
+
+      attr_reader text: String?
+
+      def text=: (String) -> String
+
+      attr_reader voice_language: String?
+
+      def voice_language=: (String) -> String
+
+      attr_reader zavu_sender: String?
+
+      def zavu_sender=: (String) -> String
+
+      def initialize: (
+        to: String,
+        ?channel: Zavudev::Models::channel,
+        ?content: Zavudev::MessageContent,
+        ?fallback_enabled: bool,
+        ?html_body: String,
+        ?idempotency_key: String,
+        ?message_type: Zavudev::Models::message_type,
+        ?metadata: ::Hash[Symbol, String],
+        ?reply_to: String,
+        ?subject: String,
+        ?text: String,
+        ?voice_language: String,
+        ?zavu_sender: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        to: String,
+        channel: Zavudev::Models::channel,
+        content: Zavudev::MessageContent,
+        fallback_enabled: bool,
+        html_body: String,
+        idempotency_key: String,
+        message_type: Zavudev::Models::message_type,
+        metadata: ::Hash[Symbol, String],
+        reply_to: String,
+        subject: String,
+        text: String,
+        voice_language: String,
+        zavu_sender: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end
