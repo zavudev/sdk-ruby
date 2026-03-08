@@ -1,0 +1,36 @@
+module Zavudev
+  module Resources
+    class RegulatoryDocuments
+      def create: (
+        document_type: Zavudev::Models::RegulatoryDocumentCreateParams::document_type,
+        file_size: Integer,
+        mime_type: String,
+        name: String,
+        storage_id: String,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::RegulatoryDocumentCreateResponse
+
+      def retrieve: (
+        String document_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::RegulatoryDocumentRetrieveResponse
+
+      def list: (
+        ?cursor: String,
+        ?limit: Integer,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Internal::Cursor[Zavudev::RegulatoryDocument]
+
+      def delete: (
+        String document_id,
+        ?request_options: Zavudev::request_opts
+      ) -> nil
+
+      def upload_url: (
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::RegulatoryDocumentUploadURLResponse
+
+      def initialize: (client: Zavudev::Client) -> void
+    end
+  end
+end

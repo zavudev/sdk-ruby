@@ -1,0 +1,15 @@
+module Zavudev
+  module Models
+    type address_status = :pending | :verified | :rejected
+
+    module AddressStatus
+      extend Zavudev::Internal::Type::Enum
+
+      PENDING: :pending
+      VERIFIED: :verified
+      REJECTED: :rejected
+
+      def self?.values: -> ::Array[Zavudev::Models::address_status]
+    end
+  end
+end

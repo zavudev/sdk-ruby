@@ -1,0 +1,97 @@
+module Zavudev
+  module Models
+    module Senders
+      type agent_create_params =
+        {
+          sender_id: String,
+          model: String,
+          name: String,
+          provider: Zavudev::Models::Senders::agent_provider,
+          system_prompt: String,
+          api_key: String,
+          context_window_messages: Integer,
+          include_contact_metadata: bool,
+          max_tokens: Integer,
+          temperature: Float,
+          trigger_on_channels: ::Array[String],
+          trigger_on_message_types: ::Array[String]
+        }
+        & Zavudev::Internal::Type::request_parameters
+
+      class AgentCreateParams < Zavudev::Internal::Type::BaseModel
+        extend Zavudev::Internal::Type::RequestParameters::Converter
+        include Zavudev::Internal::Type::RequestParameters
+
+        attr_accessor sender_id: String
+
+        attr_accessor model: String
+
+        attr_accessor name: String
+
+        attr_accessor provider: Zavudev::Models::Senders::agent_provider
+
+        attr_accessor system_prompt: String
+
+        attr_reader api_key: String?
+
+        def api_key=: (String) -> String
+
+        attr_reader context_window_messages: Integer?
+
+        def context_window_messages=: (Integer) -> Integer
+
+        attr_reader include_contact_metadata: bool?
+
+        def include_contact_metadata=: (bool) -> bool
+
+        attr_reader max_tokens: Integer?
+
+        def max_tokens=: (Integer) -> Integer
+
+        attr_reader temperature: Float?
+
+        def temperature=: (Float) -> Float
+
+        attr_reader trigger_on_channels: ::Array[String]?
+
+        def trigger_on_channels=: (::Array[String]) -> ::Array[String]
+
+        attr_reader trigger_on_message_types: ::Array[String]?
+
+        def trigger_on_message_types=: (::Array[String]) -> ::Array[String]
+
+        def initialize: (
+          sender_id: String,
+          model: String,
+          name: String,
+          provider: Zavudev::Models::Senders::agent_provider,
+          system_prompt: String,
+          ?api_key: String,
+          ?context_window_messages: Integer,
+          ?include_contact_metadata: bool,
+          ?max_tokens: Integer,
+          ?temperature: Float,
+          ?trigger_on_channels: ::Array[String],
+          ?trigger_on_message_types: ::Array[String],
+          ?request_options: Zavudev::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          sender_id: String,
+          model: String,
+          name: String,
+          provider: Zavudev::Models::Senders::agent_provider,
+          system_prompt: String,
+          api_key: String,
+          context_window_messages: Integer,
+          include_contact_metadata: bool,
+          max_tokens: Integer,
+          temperature: Float,
+          trigger_on_channels: ::Array[String],
+          trigger_on_message_types: ::Array[String],
+          request_options: Zavudev::RequestOptions
+        }
+      end
+    end
+  end
+end

@@ -1,0 +1,68 @@
+module Zavudev
+  module Models
+    type broadcast_update_params =
+      {
+        broadcast_id: String,
+        content: Zavudev::BroadcastContent,
+        email_html_body: String,
+        email_subject: String,
+        metadata: ::Hash[Symbol, String],
+        name: String,
+        text: String
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class BroadcastUpdateParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor broadcast_id: String
+
+      attr_reader content: Zavudev::BroadcastContent?
+
+      def content=: (Zavudev::BroadcastContent) -> Zavudev::BroadcastContent
+
+      attr_reader email_html_body: String?
+
+      def email_html_body=: (String) -> String
+
+      attr_reader email_subject: String?
+
+      def email_subject=: (String) -> String
+
+      attr_reader metadata: ::Hash[Symbol, String]?
+
+      def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader text: String?
+
+      def text=: (String) -> String
+
+      def initialize: (
+        broadcast_id: String,
+        ?content: Zavudev::BroadcastContent,
+        ?email_html_body: String,
+        ?email_subject: String,
+        ?metadata: ::Hash[Symbol, String],
+        ?name: String,
+        ?text: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        broadcast_id: String,
+        content: Zavudev::BroadcastContent,
+        email_html_body: String,
+        email_subject: String,
+        metadata: ::Hash[Symbol, String],
+        name: String,
+        text: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

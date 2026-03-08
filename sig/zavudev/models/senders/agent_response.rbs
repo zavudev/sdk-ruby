@@ -1,0 +1,15 @@
+module Zavudev
+  module Models
+    module Senders
+      type agent_response = { agent: Zavudev::Senders::SendersAgent }
+
+      class AgentResponse < Zavudev::Internal::Type::BaseModel
+        attr_accessor agent: Zavudev::Senders::SendersAgent
+
+        def initialize: (agent: Zavudev::Senders::SendersAgent) -> void
+
+        def to_hash: -> { agent: Zavudev::Senders::SendersAgent }
+      end
+    end
+  end
+end

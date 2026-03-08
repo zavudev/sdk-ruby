@@ -1,0 +1,28 @@
+module Zavudev
+  module Models
+    type webhook_event =
+      :"message.queued"
+      | :"message.sent"
+      | :"message.delivered"
+      | :"message.failed"
+      | :"message.inbound"
+      | :"message.unsupported"
+      | :"conversation.new"
+      | :"template.status_changed"
+
+    module WebhookEvent
+      extend Zavudev::Internal::Type::Enum
+
+      MESSAGE_QUEUED: :"message.queued"
+      MESSAGE_SENT: :"message.sent"
+      MESSAGE_DELIVERED: :"message.delivered"
+      MESSAGE_FAILED: :"message.failed"
+      MESSAGE_INBOUND: :"message.inbound"
+      MESSAGE_UNSUPPORTED: :"message.unsupported"
+      CONVERSATION_NEW: :"conversation.new"
+      TEMPLATE_STATUS_CHANGED: :"template.status_changed"
+
+      def self?.values: -> ::Array[Zavudev::Models::webhook_event]
+    end
+  end
+end

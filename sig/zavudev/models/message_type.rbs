@@ -1,0 +1,36 @@
+module Zavudev
+  module Models
+    type message_type =
+      :text
+      | :image
+      | :video
+      | :audio
+      | :document
+      | :sticker
+      | :location
+      | :contact
+      | :buttons
+      | :list
+      | :reaction
+      | :template
+
+    module MessageType
+      extend Zavudev::Internal::Type::Enum
+
+      TEXT: :text
+      IMAGE: :image
+      VIDEO: :video
+      AUDIO: :audio
+      DOCUMENT: :document
+      STICKER: :sticker
+      LOCATION: :location
+      CONTACT: :contact
+      BUTTONS: :buttons
+      LIST: :list
+      REACTION: :reaction
+      TEMPLATE: :template
+
+      def self?.values: -> ::Array[Zavudev::Models::message_type]
+    end
+  end
+end

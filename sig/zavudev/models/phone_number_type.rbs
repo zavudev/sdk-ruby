@@ -1,0 +1,15 @@
+module Zavudev
+  module Models
+    type phone_number_type = :local | :mobile | :tollFree
+
+    module PhoneNumberType
+      extend Zavudev::Internal::Type::Enum
+
+      LOCAL: :local
+      MOBILE: :mobile
+      TOLL_FREE: :tollFree
+
+      def self?.values: -> ::Array[Zavudev::Models::phone_number_type]
+    end
+  end
+end

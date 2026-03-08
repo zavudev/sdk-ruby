@@ -1,0 +1,37 @@
+# frozen_string_literal: true
+
+module Zavudev
+  module Models
+    # @see Zavudev::Resources::PhoneNumbers#list
+    class PhoneNumberListParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      # @!attribute cursor
+      #   Pagination cursor.
+      #
+      #   @return [String, nil]
+      optional :cursor, String
+
+      # @!attribute limit
+      #
+      #   @return [Integer, nil]
+      optional :limit, Integer
+
+      # @!attribute status
+      #   Filter by phone number status.
+      #
+      #   @return [Symbol, Zavudev::Models::PhoneNumberStatus, nil]
+      optional :status, enum: -> { Zavudev::PhoneNumberStatus }
+
+      # @!method initialize(cursor: nil, limit: nil, status: nil, request_options: {})
+      #   @param cursor [String] Pagination cursor.
+      #
+      #   @param limit [Integer]
+      #
+      #   @param status [Symbol, Zavudev::Models::PhoneNumberStatus] Filter by phone number status.
+      #
+      #   @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}]
+    end
+  end
+end

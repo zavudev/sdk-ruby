@@ -1,0 +1,38 @@
+module Zavudev
+  module Models
+    type contact_list_params =
+      { cursor: String, limit: Integer, phone_number: String }
+      & Zavudev::Internal::Type::request_parameters
+
+    class ContactListParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_reader phone_number: String?
+
+      def phone_number=: (String) -> String
+
+      def initialize: (
+        ?cursor: String,
+        ?limit: Integer,
+        ?phone_number: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        cursor: String,
+        limit: Integer,
+        phone_number: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

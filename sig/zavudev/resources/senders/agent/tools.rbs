@@ -1,0 +1,61 @@
+module Zavudev
+  module Resources
+    class Senders
+      class Agent
+        class Tools
+          def create: (
+            String sender_id,
+            description: String,
+            name: String,
+            parameters: Zavudev::Senders::Agent::ToolCreateParams::Parameters,
+            webhook_url: String,
+            ?enabled: bool,
+            ?webhook_secret: String,
+            ?request_options: Zavudev::request_opts
+          ) -> Zavudev::Models::Senders::Agent::ToolCreateResponse
+
+          def retrieve: (
+            String tool_id,
+            sender_id: String,
+            ?request_options: Zavudev::request_opts
+          ) -> Zavudev::Models::Senders::Agent::ToolRetrieveResponse
+
+          def update: (
+            String tool_id,
+            sender_id: String,
+            ?description: String,
+            ?enabled: bool,
+            ?name: String,
+            ?parameters: Zavudev::Senders::Agent::ToolUpdateParams::Parameters,
+            ?webhook_secret: String?,
+            ?webhook_url: String,
+            ?request_options: Zavudev::request_opts
+          ) -> Zavudev::Models::Senders::Agent::ToolUpdateResponse
+
+          def list: (
+            String sender_id,
+            ?cursor: String,
+            ?enabled: bool,
+            ?limit: Integer,
+            ?request_options: Zavudev::request_opts
+          ) -> Zavudev::Internal::Cursor[Zavudev::Senders::Agent::AgentTool]
+
+          def delete: (
+            String tool_id,
+            sender_id: String,
+            ?request_options: Zavudev::request_opts
+          ) -> nil
+
+          def test_: (
+            String tool_id,
+            sender_id: String,
+            test_params: ::Hash[Symbol, top],
+            ?request_options: Zavudev::request_opts
+          ) -> Zavudev::Models::Senders::Agent::ToolTestResponse
+
+          def initialize: (client: Zavudev::Client) -> void
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,71 @@
+module Zavudev
+  module Models
+    type regulatory_document_create_params =
+      {
+        document_type: Zavudev::Models::RegulatoryDocumentCreateParams::document_type,
+        file_size: Integer,
+        mime_type: String,
+        name: String,
+        storage_id: String
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class RegulatoryDocumentCreateParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor document_type: Zavudev::Models::RegulatoryDocumentCreateParams::document_type
+
+      attr_accessor file_size: Integer
+
+      attr_accessor mime_type: String
+
+      attr_accessor name: String
+
+      attr_accessor storage_id: String
+
+      def initialize: (
+        document_type: Zavudev::Models::RegulatoryDocumentCreateParams::document_type,
+        file_size: Integer,
+        mime_type: String,
+        name: String,
+        storage_id: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        document_type: Zavudev::Models::RegulatoryDocumentCreateParams::document_type,
+        file_size: Integer,
+        mime_type: String,
+        name: String,
+        storage_id: String,
+        request_options: Zavudev::RequestOptions
+      }
+
+      type document_type =
+        :passport
+        | :national_id
+        | :drivers_license
+        | :utility_bill
+        | :tax_id
+        | :business_registration
+        | :proof_of_address
+        | :other
+
+      module DocumentType
+        extend Zavudev::Internal::Type::Enum
+
+        PASSPORT: :passport
+        NATIONAL_ID: :national_id
+        DRIVERS_LICENSE: :drivers_license
+        UTILITY_BILL: :utility_bill
+        TAX_ID: :tax_id
+        BUSINESS_REGISTRATION: :business_registration
+        PROOF_OF_ADDRESS: :proof_of_address
+        OTHER: :other
+
+        def self?.values: -> ::Array[Zavudev::Models::RegulatoryDocumentCreateParams::document_type]
+      end
+    end
+  end
+end

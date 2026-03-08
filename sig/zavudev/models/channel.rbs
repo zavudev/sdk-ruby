@@ -1,0 +1,28 @@
+module Zavudev
+  module Models
+    type channel =
+      :auto
+      | :sms
+      | :sms_oneway
+      | :whatsapp
+      | :telegram
+      | :email
+      | :instagram
+      | :voice
+
+    module Channel
+      extend Zavudev::Internal::Type::Enum
+
+      AUTO: :auto
+      SMS: :sms
+      SMS_ONEWAY: :sms_oneway
+      WHATSAPP: :whatsapp
+      TELEGRAM: :telegram
+      EMAIL: :email
+      INSTAGRAM: :instagram
+      VOICE: :voice
+
+      def self?.values: -> ::Array[Zavudev::Models::channel]
+    end
+  end
+end

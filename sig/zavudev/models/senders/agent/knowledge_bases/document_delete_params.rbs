@@ -1,0 +1,38 @@
+module Zavudev
+  module Models
+    module Senders
+      module Agent
+        module KnowledgeBases
+          type document_delete_params =
+            { sender_id: String, kb_id: String, doc_id: String }
+            & Zavudev::Internal::Type::request_parameters
+
+          class DocumentDeleteParams < Zavudev::Internal::Type::BaseModel
+            extend Zavudev::Internal::Type::RequestParameters::Converter
+            include Zavudev::Internal::Type::RequestParameters
+
+            attr_accessor sender_id: String
+
+            attr_accessor kb_id: String
+
+            attr_accessor doc_id: String
+
+            def initialize: (
+              sender_id: String,
+              kb_id: String,
+              doc_id: String,
+              ?request_options: Zavudev::request_opts
+            ) -> void
+
+            def to_hash: -> {
+              sender_id: String,
+              kb_id: String,
+              doc_id: String,
+              request_options: Zavudev::RequestOptions
+            }
+          end
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,104 @@
+module Zavudev
+  module Models
+    type regulatory_document =
+      {
+        id: String,
+        created_at: Time,
+        document_type: Zavudev::Models::RegulatoryDocument::document_type,
+        name: String,
+        status: Zavudev::Models::RegulatoryDocument::status,
+        file_size: Integer,
+        mime_type: String,
+        rejection_reason: String?,
+        updated_at: Time
+      }
+
+    class RegulatoryDocument < Zavudev::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor document_type: Zavudev::Models::RegulatoryDocument::document_type
+
+      attr_accessor name: String
+
+      attr_accessor status: Zavudev::Models::RegulatoryDocument::status
+
+      attr_reader file_size: Integer?
+
+      def file_size=: (Integer) -> Integer
+
+      attr_reader mime_type: String?
+
+      def mime_type=: (String) -> String
+
+      attr_accessor rejection_reason: String?
+
+      attr_reader updated_at: Time?
+
+      def updated_at=: (Time) -> Time
+
+      def initialize: (
+        id: String,
+        created_at: Time,
+        document_type: Zavudev::Models::RegulatoryDocument::document_type,
+        name: String,
+        status: Zavudev::Models::RegulatoryDocument::status,
+        ?file_size: Integer,
+        ?mime_type: String,
+        ?rejection_reason: String?,
+        ?updated_at: Time
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time,
+        document_type: Zavudev::Models::RegulatoryDocument::document_type,
+        name: String,
+        status: Zavudev::Models::RegulatoryDocument::status,
+        file_size: Integer,
+        mime_type: String,
+        rejection_reason: String?,
+        updated_at: Time
+      }
+
+      type document_type =
+        :passport
+        | :national_id
+        | :drivers_license
+        | :utility_bill
+        | :tax_id
+        | :business_registration
+        | :proof_of_address
+        | :other
+
+      module DocumentType
+        extend Zavudev::Internal::Type::Enum
+
+        PASSPORT: :passport
+        NATIONAL_ID: :national_id
+        DRIVERS_LICENSE: :drivers_license
+        UTILITY_BILL: :utility_bill
+        TAX_ID: :tax_id
+        BUSINESS_REGISTRATION: :business_registration
+        PROOF_OF_ADDRESS: :proof_of_address
+        OTHER: :other
+
+        def self?.values: -> ::Array[Zavudev::Models::RegulatoryDocument::document_type]
+      end
+
+      type status = :pending | :uploaded | :verified | :rejected
+
+      module Status
+        extend Zavudev::Internal::Type::Enum
+
+        PENDING: :pending
+        UPLOADED: :uploaded
+        VERIFIED: :verified
+        REJECTED: :rejected
+
+        def self?.values: -> ::Array[Zavudev::Models::RegulatoryDocument::status]
+      end
+    end
+  end
+end

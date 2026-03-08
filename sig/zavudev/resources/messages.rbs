@@ -1,0 +1,45 @@
+module Zavudev
+  module Resources
+    class Messages
+      def retrieve: (
+        String message_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::MessageResponse
+
+      def list: (
+        ?channel: Zavudev::Models::channel,
+        ?cursor: String,
+        ?limit: Integer,
+        ?status: Zavudev::Models::message_status,
+        ?to: String,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Internal::Cursor[Zavudev::Message]
+
+      def react: (
+        String message_id,
+        emoji: String,
+        ?zavu_sender: String,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::MessageResponse
+
+      def send_: (
+        to: String,
+        ?channel: Zavudev::Models::channel,
+        ?content: Zavudev::MessageContent,
+        ?fallback_enabled: bool,
+        ?html_body: String,
+        ?idempotency_key: String,
+        ?message_type: Zavudev::Models::message_type,
+        ?metadata: ::Hash[Symbol, String],
+        ?reply_to: String,
+        ?subject: String,
+        ?text: String,
+        ?voice_language: String,
+        ?zavu_sender: String,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::MessageResponse
+
+      def initialize: (client: Zavudev::Client) -> void
+    end
+  end
+end

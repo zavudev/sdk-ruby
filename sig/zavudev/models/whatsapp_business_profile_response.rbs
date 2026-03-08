@@ -1,0 +1,14 @@
+module Zavudev
+  module Models
+    type whatsapp_business_profile_response =
+      { profile: Zavudev::WhatsappBusinessProfile }
+
+    class WhatsappBusinessProfileResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor profile: Zavudev::WhatsappBusinessProfile
+
+      def initialize: (profile: Zavudev::WhatsappBusinessProfile) -> void
+
+      def to_hash: -> { profile: Zavudev::WhatsappBusinessProfile }
+    end
+  end
+end

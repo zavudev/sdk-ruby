@@ -1,0 +1,68 @@
+module Zavudev
+  module Models
+    type sender_update_params =
+      {
+        sender_id: String,
+        email_receiving_enabled: bool,
+        name: String,
+        set_as_default: bool,
+        webhook_active: bool,
+        webhook_events: ::Array[Zavudev::Models::webhook_event],
+        webhook_url: String?
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class SenderUpdateParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor sender_id: String
+
+      attr_reader email_receiving_enabled: bool?
+
+      def email_receiving_enabled=: (bool) -> bool
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader set_as_default: bool?
+
+      def set_as_default=: (bool) -> bool
+
+      attr_reader webhook_active: bool?
+
+      def webhook_active=: (bool) -> bool
+
+      attr_reader webhook_events: ::Array[Zavudev::Models::webhook_event]?
+
+      def webhook_events=: (
+        ::Array[Zavudev::Models::webhook_event]
+      ) -> ::Array[Zavudev::Models::webhook_event]
+
+      attr_accessor webhook_url: String?
+
+      def initialize: (
+        sender_id: String,
+        ?email_receiving_enabled: bool,
+        ?name: String,
+        ?set_as_default: bool,
+        ?webhook_active: bool,
+        ?webhook_events: ::Array[Zavudev::Models::webhook_event],
+        ?webhook_url: String?,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        sender_id: String,
+        email_receiving_enabled: bool,
+        name: String,
+        set_as_default: bool,
+        webhook_active: bool,
+        webhook_events: ::Array[Zavudev::Models::webhook_event],
+        webhook_url: String?,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

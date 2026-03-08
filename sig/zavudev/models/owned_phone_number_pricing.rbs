@@ -1,0 +1,43 @@
+module Zavudev
+  module Models
+    type owned_phone_number_pricing =
+      {
+        is_free_number: bool,
+        monthly_cost: Float,
+        monthly_price: Float,
+        upfront_cost: Float
+      }
+
+    class OwnedPhoneNumberPricing < Zavudev::Internal::Type::BaseModel
+      attr_reader is_free_number: bool?
+
+      def is_free_number=: (bool) -> bool
+
+      attr_reader monthly_cost: Float?
+
+      def monthly_cost=: (Float) -> Float
+
+      attr_reader monthly_price: Float?
+
+      def monthly_price=: (Float) -> Float
+
+      attr_reader upfront_cost: Float?
+
+      def upfront_cost=: (Float) -> Float
+
+      def initialize: (
+        ?is_free_number: bool,
+        ?monthly_cost: Float,
+        ?monthly_price: Float,
+        ?upfront_cost: Float
+      ) -> void
+
+      def to_hash: -> {
+        is_free_number: bool,
+        monthly_cost: Float,
+        monthly_price: Float,
+        upfront_cost: Float
+      }
+    end
+  end
+end

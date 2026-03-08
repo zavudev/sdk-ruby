@@ -1,0 +1,77 @@
+module Zavudev
+  module Models
+    type introspect_validate_phone_response =
+      {
+        country_code: String,
+        phone_number: String,
+        valid_number: bool,
+        available_channels: ::Array[String],
+        carrier: Zavudev::Models::IntrospectValidatePhoneResponse::Carrier,
+        line_type: Zavudev::Models::line_type,
+        national_format: String
+      }
+
+    class IntrospectValidatePhoneResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor country_code: String
+
+      attr_accessor phone_number: String
+
+      attr_accessor valid_number: bool
+
+      attr_reader available_channels: ::Array[String]?
+
+      def available_channels=: (::Array[String]) -> ::Array[String]
+
+      attr_reader carrier: Zavudev::Models::IntrospectValidatePhoneResponse::Carrier?
+
+      def carrier=: (
+        Zavudev::Models::IntrospectValidatePhoneResponse::Carrier
+      ) -> Zavudev::Models::IntrospectValidatePhoneResponse::Carrier
+
+      attr_reader line_type: Zavudev::Models::line_type?
+
+      def line_type=: (Zavudev::Models::line_type) -> Zavudev::Models::line_type
+
+      attr_reader national_format: String?
+
+      def national_format=: (String) -> String
+
+      def initialize: (
+        country_code: String,
+        phone_number: String,
+        valid_number: bool,
+        ?available_channels: ::Array[String],
+        ?carrier: Zavudev::Models::IntrospectValidatePhoneResponse::Carrier,
+        ?line_type: Zavudev::Models::line_type,
+        ?national_format: String
+      ) -> void
+
+      def to_hash: -> {
+        country_code: String,
+        phone_number: String,
+        valid_number: bool,
+        available_channels: ::Array[String],
+        carrier: Zavudev::Models::IntrospectValidatePhoneResponse::Carrier,
+        line_type: Zavudev::Models::line_type,
+        national_format: String
+      }
+
+      type carrier = { name: String?, type: Zavudev::Models::line_type }
+
+      class Carrier < Zavudev::Internal::Type::BaseModel
+        attr_accessor name: String?
+
+        attr_reader type: Zavudev::Models::line_type?
+
+        def type=: (Zavudev::Models::line_type) -> Zavudev::Models::line_type
+
+        def initialize: (
+          ?name: String?,
+          ?type: Zavudev::Models::line_type
+        ) -> void
+
+        def to_hash: -> { name: String?, type: Zavudev::Models::line_type }
+      end
+    end
+  end
+end

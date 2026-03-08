@@ -1,0 +1,18 @@
+module Zavudev
+  module Models
+    module Senders
+      module Agent
+        type tool_retrieve_response =
+          { tool: Zavudev::Senders::Agent::AgentTool }
+
+        class ToolRetrieveResponse < Zavudev::Internal::Type::BaseModel
+          attr_accessor tool: Zavudev::Senders::Agent::AgentTool
+
+          def initialize: (tool: Zavudev::Senders::Agent::AgentTool) -> void
+
+          def to_hash: -> { tool: Zavudev::Senders::Agent::AgentTool }
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,18 @@
+module Zavudev
+  module Models
+    module Senders
+      module Agent
+        type flow_duplicate_response =
+          { flow: Zavudev::Senders::Agent::AgentFlow }
+
+        class FlowDuplicateResponse < Zavudev::Internal::Type::BaseModel
+          attr_accessor flow: Zavudev::Senders::Agent::AgentFlow
+
+          def initialize: (flow: Zavudev::Senders::Agent::AgentFlow) -> void
+
+          def to_hash: -> { flow: Zavudev::Senders::Agent::AgentFlow }
+        end
+      end
+    end
+  end
+end

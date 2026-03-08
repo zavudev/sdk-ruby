@@ -1,0 +1,17 @@
+module Zavudev
+  module Models
+    type line_type = :mobile | :landline | :voip | :toll_free | :unknown
+
+    module LineType
+      extend Zavudev::Internal::Type::Enum
+
+      MOBILE: :mobile
+      LANDLINE: :landline
+      VOIP: :voip
+      TOLL_FREE: :toll_free
+      UNKNOWN: :unknown
+
+      def self?.values: -> ::Array[Zavudev::Models::line_type]
+    end
+  end
+end

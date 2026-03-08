@@ -1,0 +1,30 @@
+module Zavudev
+  module Models
+    type phone_number_purchase_params =
+      { phone_number: String, name: String }
+      & Zavudev::Internal::Type::request_parameters
+
+    class PhoneNumberPurchaseParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor phone_number: String
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      def initialize: (
+        phone_number: String,
+        ?name: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        phone_number: String,
+        name: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

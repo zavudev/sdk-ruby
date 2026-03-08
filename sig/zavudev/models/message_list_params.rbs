@@ -1,0 +1,58 @@
+module Zavudev
+  module Models
+    type message_list_params =
+      {
+        channel: Zavudev::Models::channel,
+        cursor: String,
+        limit: Integer,
+        status: Zavudev::Models::message_status,
+        to: String
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class MessageListParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_reader channel: Zavudev::Models::channel?
+
+      def channel=: (Zavudev::Models::channel) -> Zavudev::Models::channel
+
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_reader status: Zavudev::Models::message_status?
+
+      def status=: (
+        Zavudev::Models::message_status
+      ) -> Zavudev::Models::message_status
+
+      attr_reader to: String?
+
+      def to=: (String) -> String
+
+      def initialize: (
+        ?channel: Zavudev::Models::channel,
+        ?cursor: String,
+        ?limit: Integer,
+        ?status: Zavudev::Models::message_status,
+        ?to: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        channel: Zavudev::Models::channel,
+        cursor: String,
+        limit: Integer,
+        status: Zavudev::Models::message_status,
+        to: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

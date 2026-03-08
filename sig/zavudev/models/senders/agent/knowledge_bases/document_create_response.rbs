@@ -1,0 +1,22 @@
+module Zavudev
+  module Models
+    module Senders
+      module Agent
+        module KnowledgeBases
+          type document_create_response =
+            { document: Zavudev::Senders::Agent::AgentDocument }
+
+          class DocumentCreateResponse < Zavudev::Internal::Type::BaseModel
+            attr_accessor document: Zavudev::Senders::Agent::AgentDocument
+
+            def initialize: (
+              document: Zavudev::Senders::Agent::AgentDocument
+            ) -> void
+
+            def to_hash: -> { document: Zavudev::Senders::Agent::AgentDocument }
+          end
+        end
+      end
+    end
+  end
+end

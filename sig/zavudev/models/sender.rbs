@@ -1,0 +1,140 @@
+module Zavudev
+  module Models
+    type sender =
+      {
+        id: String,
+        name: String,
+        phone_number: String,
+        created_at: Time,
+        email_receiving_enabled: bool,
+        is_default: bool,
+        updated_at: Time,
+        webhook: Zavudev::SenderWebhook,
+        whatsapp: Zavudev::Sender::Whatsapp
+      }
+
+    class Sender < Zavudev::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor name: String
+
+      attr_accessor phone_number: String
+
+      attr_reader created_at: Time?
+
+      def created_at=: (Time) -> Time
+
+      attr_reader email_receiving_enabled: bool?
+
+      def email_receiving_enabled=: (bool) -> bool
+
+      attr_reader is_default: bool?
+
+      def is_default=: (bool) -> bool
+
+      attr_reader updated_at: Time?
+
+      def updated_at=: (Time) -> Time
+
+      attr_reader webhook: Zavudev::SenderWebhook?
+
+      def webhook=: (Zavudev::SenderWebhook) -> Zavudev::SenderWebhook
+
+      attr_reader whatsapp: Zavudev::Sender::Whatsapp?
+
+      def whatsapp=: (Zavudev::Sender::Whatsapp) -> Zavudev::Sender::Whatsapp
+
+      def initialize: (
+        id: String,
+        name: String,
+        phone_number: String,
+        ?created_at: Time,
+        ?email_receiving_enabled: bool,
+        ?is_default: bool,
+        ?updated_at: Time,
+        ?webhook: Zavudev::SenderWebhook,
+        ?whatsapp: Zavudev::Sender::Whatsapp
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        name: String,
+        phone_number: String,
+        created_at: Time,
+        email_receiving_enabled: bool,
+        is_default: bool,
+        updated_at: Time,
+        webhook: Zavudev::SenderWebhook,
+        whatsapp: Zavudev::Sender::Whatsapp
+      }
+
+      type whatsapp =
+        {
+          display_phone_number: String,
+          payment_status: Zavudev::Sender::Whatsapp::PaymentStatus,
+          phone_number_id: String
+        }
+
+      class Whatsapp < Zavudev::Internal::Type::BaseModel
+        attr_reader display_phone_number: String?
+
+        def display_phone_number=: (String) -> String
+
+        attr_reader payment_status: Zavudev::Sender::Whatsapp::PaymentStatus?
+
+        def payment_status=: (
+          Zavudev::Sender::Whatsapp::PaymentStatus
+        ) -> Zavudev::Sender::Whatsapp::PaymentStatus
+
+        attr_reader phone_number_id: String?
+
+        def phone_number_id=: (String) -> String
+
+        def initialize: (
+          ?display_phone_number: String,
+          ?payment_status: Zavudev::Sender::Whatsapp::PaymentStatus,
+          ?phone_number_id: String
+        ) -> void
+
+        def to_hash: -> {
+          display_phone_number: String,
+          payment_status: Zavudev::Sender::Whatsapp::PaymentStatus,
+          phone_number_id: String
+        }
+
+        type payment_status =
+          {
+            can_send_templates: bool,
+            method_status: String,
+            setup_status: String
+          }
+
+        class PaymentStatus < Zavudev::Internal::Type::BaseModel
+          attr_reader can_send_templates: bool?
+
+          def can_send_templates=: (bool) -> bool
+
+          attr_reader method_status: String?
+
+          def method_status=: (String) -> String
+
+          attr_reader setup_status: String?
+
+          def setup_status=: (String) -> String
+
+          def initialize: (
+            ?can_send_templates: bool,
+            ?method_status: String,
+            ?setup_status: String
+          ) -> void
+
+          def to_hash: -> {
+            can_send_templates: bool,
+            method_status: String,
+            setup_status: String
+          }
+        end
+      end
+    end
+  end
+end

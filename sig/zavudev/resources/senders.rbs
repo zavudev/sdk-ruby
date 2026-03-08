@@ -1,0 +1,73 @@
+module Zavudev
+  module Resources
+    class Senders
+      attr_reader agent: Zavudev::Resources::Senders::Agent
+
+      def create: (
+        name: String,
+        phone_number: String,
+        ?set_as_default: bool,
+        ?webhook_events: ::Array[Zavudev::Models::webhook_event],
+        ?webhook_url: String,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Sender
+
+      def retrieve: (
+        String sender_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Sender
+
+      def update: (
+        String sender_id,
+        ?email_receiving_enabled: bool,
+        ?name: String,
+        ?set_as_default: bool,
+        ?webhook_active: bool,
+        ?webhook_events: ::Array[Zavudev::Models::webhook_event],
+        ?webhook_url: String?,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Sender
+
+      def list: (
+        ?cursor: String,
+        ?limit: Integer,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Internal::Cursor[Zavudev::Sender]
+
+      def delete: (
+        String sender_id,
+        ?request_options: Zavudev::request_opts
+      ) -> nil
+
+      def get_profile: (
+        String sender_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::WhatsappBusinessProfileResponse
+
+      def regenerate_webhook_secret: (
+        String sender_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::WebhookSecretResponse
+
+      def update_profile: (
+        String sender_id,
+        ?about: String,
+        ?address: String,
+        ?description: String,
+        ?email: String,
+        ?vertical: Zavudev::Models::whatsapp_business_profile_vertical,
+        ?websites: ::Array[String],
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::SenderUpdateProfileResponse
+
+      def upload_profile_picture: (
+        String sender_id,
+        image_url: String,
+        mime_type: Zavudev::Models::SenderUploadProfilePictureParams::mime_type,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::SenderUploadProfilePictureResponse
+
+      def initialize: (client: Zavudev::Client) -> void
+    end
+  end
+end

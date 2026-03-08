@@ -1,0 +1,34 @@
+module Zavudev
+  module Models
+    type message_react_params =
+      { message_id: String, emoji: String, zavu_sender: String }
+      & Zavudev::Internal::Type::request_parameters
+
+    class MessageReactParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor message_id: String
+
+      attr_accessor emoji: String
+
+      attr_reader zavu_sender: String?
+
+      def zavu_sender=: (String) -> String
+
+      def initialize: (
+        message_id: String,
+        emoji: String,
+        ?zavu_sender: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        message_id: String,
+        emoji: String,
+        zavu_sender: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Zavudev
+  module Models
+    type whatsapp_category = :UTILITY | :MARKETING | :AUTHENTICATION
+
+    module WhatsappCategory
+      extend Zavudev::Internal::Type::Enum
+
+      UTILITY: :UTILITY
+      MARKETING: :MARKETING
+      AUTHENTICATION: :AUTHENTICATION
+
+      def self?.values: -> ::Array[Zavudev::Models::whatsapp_category]
+    end
+  end
+end

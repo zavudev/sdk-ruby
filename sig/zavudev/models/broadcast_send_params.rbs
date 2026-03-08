@@ -1,0 +1,30 @@
+module Zavudev
+  module Models
+    type broadcast_send_params =
+      { broadcast_id: String, scheduled_at: Time }
+      & Zavudev::Internal::Type::request_parameters
+
+    class BroadcastSendParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor broadcast_id: String
+
+      attr_reader scheduled_at: Time?
+
+      def scheduled_at=: (Time) -> Time
+
+      def initialize: (
+        broadcast_id: String,
+        ?scheduled_at: Time,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        broadcast_id: String,
+        scheduled_at: Time,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

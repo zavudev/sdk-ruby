@@ -1,0 +1,23 @@
+module Zavudev
+  module Models
+    type address_retrieve_params =
+      { address_id: String } & Zavudev::Internal::Type::request_parameters
+
+    class AddressRetrieveParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor address_id: String
+
+      def initialize: (
+        address_id: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        address_id: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

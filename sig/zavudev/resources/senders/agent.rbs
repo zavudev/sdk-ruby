@@ -1,0 +1,65 @@
+module Zavudev
+  module Resources
+    class Senders
+      class Agent
+        attr_reader executions: Zavudev::Resources::Senders::Agent::Executions
+
+        attr_reader flows: Zavudev::Resources::Senders::Agent::Flows
+
+        attr_reader tools: Zavudev::Resources::Senders::Agent::Tools
+
+        attr_reader knowledge_bases: Zavudev::Resources::Senders::Agent::KnowledgeBases
+
+        def create: (
+          String sender_id,
+          model: String,
+          name: String,
+          provider: Zavudev::Models::Senders::agent_provider,
+          system_prompt: String,
+          ?api_key: String,
+          ?context_window_messages: Integer,
+          ?include_contact_metadata: bool,
+          ?max_tokens: Integer,
+          ?temperature: Float,
+          ?trigger_on_channels: ::Array[String],
+          ?trigger_on_message_types: ::Array[String],
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Senders::AgentResponse
+
+        def retrieve: (
+          String sender_id,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Senders::AgentResponse
+
+        def update: (
+          String sender_id,
+          ?api_key: String,
+          ?context_window_messages: Integer,
+          ?enabled: bool,
+          ?include_contact_metadata: bool,
+          ?max_tokens: Integer?,
+          ?model: String,
+          ?name: String,
+          ?provider: Zavudev::Models::Senders::agent_provider,
+          ?system_prompt: String,
+          ?temperature: Float?,
+          ?trigger_on_channels: ::Array[String],
+          ?trigger_on_message_types: ::Array[String],
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Senders::AgentResponse
+
+        def delete: (
+          String sender_id,
+          ?request_options: Zavudev::request_opts
+        ) -> nil
+
+        def stats: (
+          String sender_id,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Senders::AgentStats
+
+        def initialize: (client: Zavudev::Client) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,74 @@
+module Zavudev
+  module Resources
+    class Broadcasts
+      attr_reader contacts: Zavudev::Resources::Broadcasts::Contacts
+
+      def create: (
+        channel: Zavudev::Models::broadcast_channel,
+        name: String,
+        ?content: Zavudev::BroadcastContent,
+        ?email_html_body: String,
+        ?email_subject: String,
+        ?idempotency_key: String,
+        ?message_type: Zavudev::Models::broadcast_message_type,
+        ?metadata: ::Hash[Symbol, String],
+        ?scheduled_at: Time,
+        ?sender_id: String,
+        ?text: String,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::BroadcastCreateResponse
+
+      def retrieve: (
+        String broadcast_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::BroadcastRetrieveResponse
+
+      def update: (
+        String broadcast_id,
+        ?content: Zavudev::BroadcastContent,
+        ?email_html_body: String,
+        ?email_subject: String,
+        ?metadata: ::Hash[Symbol, String],
+        ?name: String,
+        ?text: String,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::BroadcastUpdateResponse
+
+      def list: (
+        ?cursor: String,
+        ?limit: Integer,
+        ?status: Zavudev::Models::broadcast_status,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Internal::Cursor[Zavudev::Broadcast]
+
+      def delete: (
+        String broadcast_id,
+        ?request_options: Zavudev::request_opts
+      ) -> nil
+
+      def cancel: (
+        String broadcast_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::BroadcastCancelResponse
+
+      def progress: (
+        String broadcast_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::BroadcastProgress
+
+      def reschedule: (
+        String broadcast_id,
+        scheduled_at: Time,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::BroadcastRescheduleResponse
+
+      def send_: (
+        String broadcast_id,
+        ?scheduled_at: Time,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::BroadcastSendResponse
+
+      def initialize: (client: Zavudev::Client) -> void
+    end
+  end
+end

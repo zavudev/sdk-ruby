@@ -1,0 +1,3 @@
+module Zavudev
+  VERSION: String
+end

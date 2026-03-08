@@ -1,0 +1,22 @@
+module Zavudev
+  module Models
+    type sender_upload_profile_picture_response =
+      { profile: Zavudev::WhatsappBusinessProfile, success: bool }
+
+    class SenderUploadProfilePictureResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor profile: Zavudev::WhatsappBusinessProfile
+
+      attr_accessor success: bool
+
+      def initialize: (
+        profile: Zavudev::WhatsappBusinessProfile,
+        success: bool
+      ) -> void
+
+      def to_hash: -> {
+        profile: Zavudev::WhatsappBusinessProfile,
+        success: bool
+      }
+    end
+  end
+end

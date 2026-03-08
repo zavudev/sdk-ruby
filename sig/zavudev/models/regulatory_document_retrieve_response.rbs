@@ -1,0 +1,14 @@
+module Zavudev
+  module Models
+    type regulatory_document_retrieve_response =
+      { document: Zavudev::RegulatoryDocument }
+
+    class RegulatoryDocumentRetrieveResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor document: Zavudev::RegulatoryDocument
+
+      def initialize: (document: Zavudev::RegulatoryDocument) -> void
+
+      def to_hash: -> { document: Zavudev::RegulatoryDocument }
+    end
+  end
+end

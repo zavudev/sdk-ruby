@@ -1,0 +1,14 @@
+module Zavudev
+  module Models
+    type phone_number_update_response =
+      { phone_number: Zavudev::OwnedPhoneNumber }
+
+    class PhoneNumberUpdateResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor phone_number: Zavudev::OwnedPhoneNumber
+
+      def initialize: (phone_number: Zavudev::OwnedPhoneNumber) -> void
+
+      def to_hash: -> { phone_number: Zavudev::OwnedPhoneNumber }
+    end
+  end
+end

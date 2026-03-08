@@ -1,0 +1,14 @@
+module Zavudev
+  module Models
+    type phone_number_search_available_response =
+      { items: ::Array[Zavudev::AvailablePhoneNumber] }
+
+    class PhoneNumberSearchAvailableResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor items: ::Array[Zavudev::AvailablePhoneNumber]
+
+      def initialize: (items: ::Array[Zavudev::AvailablePhoneNumber]) -> void
+
+      def to_hash: -> { items: ::Array[Zavudev::AvailablePhoneNumber] }
+    end
+  end
+end

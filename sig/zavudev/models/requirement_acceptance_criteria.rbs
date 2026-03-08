@@ -1,0 +1,35 @@
+module Zavudev
+  module Models
+    type requirement_acceptance_criteria =
+      {
+        allowed_values: ::Array[String]?,
+        max_length: Integer?,
+        min_length: Integer?,
+        regex_pattern: String?
+      }
+
+    class RequirementAcceptanceCriteria < Zavudev::Internal::Type::BaseModel
+      attr_accessor allowed_values: ::Array[String]?
+
+      attr_accessor max_length: Integer?
+
+      attr_accessor min_length: Integer?
+
+      attr_accessor regex_pattern: String?
+
+      def initialize: (
+        ?allowed_values: ::Array[String]?,
+        ?max_length: Integer?,
+        ?min_length: Integer?,
+        ?regex_pattern: String?
+      ) -> void
+
+      def to_hash: -> {
+        allowed_values: ::Array[String]?,
+        max_length: Integer?,
+        min_length: Integer?,
+        regex_pattern: String?
+      }
+    end
+  end
+end

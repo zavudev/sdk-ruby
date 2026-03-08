@@ -1,0 +1,9 @@
+module Zavudev
+  module Internal
+    extend Zavudev::Internal::Util::SorbetRuntimeSupport
+
+    type file_input = Pathname | StringIO | IO | String | Zavudev::FilePart
+
+    OMIT: Object
+  end
+end

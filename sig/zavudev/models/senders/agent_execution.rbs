@@ -1,0 +1,79 @@
+module Zavudev
+  module Models
+    module Senders
+      type agent_execution =
+        {
+          id: String,
+          agent_id: String,
+          cost: Float,
+          created_at: Time,
+          input_tokens: Integer,
+          latency_ms: Integer,
+          output_tokens: Integer,
+          status: Zavudev::Models::Senders::agent_execution_status,
+          error_message: String?,
+          inbound_message_id: String,
+          response_message_id: String?,
+          response_text: String?
+        }
+
+      class AgentExecution < Zavudev::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor agent_id: String
+
+        attr_accessor cost: Float
+
+        attr_accessor created_at: Time
+
+        attr_accessor input_tokens: Integer
+
+        attr_accessor latency_ms: Integer
+
+        attr_accessor output_tokens: Integer
+
+        attr_accessor status: Zavudev::Models::Senders::agent_execution_status
+
+        attr_accessor error_message: String?
+
+        attr_reader inbound_message_id: String?
+
+        def inbound_message_id=: (String) -> String
+
+        attr_accessor response_message_id: String?
+
+        attr_accessor response_text: String?
+
+        def initialize: (
+          id: String,
+          agent_id: String,
+          cost: Float,
+          created_at: Time,
+          input_tokens: Integer,
+          latency_ms: Integer,
+          output_tokens: Integer,
+          status: Zavudev::Models::Senders::agent_execution_status,
+          ?error_message: String?,
+          ?inbound_message_id: String,
+          ?response_message_id: String?,
+          ?response_text: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          agent_id: String,
+          cost: Float,
+          created_at: Time,
+          input_tokens: Integer,
+          latency_ms: Integer,
+          output_tokens: Integer,
+          status: Zavudev::Models::Senders::agent_execution_status,
+          error_message: String?,
+          inbound_message_id: String,
+          response_message_id: String?,
+          response_text: String?
+        }
+      end
+    end
+  end
+end

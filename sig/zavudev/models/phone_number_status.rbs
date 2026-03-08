@@ -1,0 +1,15 @@
+module Zavudev
+  module Models
+    type phone_number_status = :active | :suspended | :pending
+
+    module PhoneNumberStatus
+      extend Zavudev::Internal::Type::Enum
+
+      ACTIVE: :active
+      SUSPENDED: :suspended
+      PENDING: :pending
+
+      def self?.values: -> ::Array[Zavudev::Models::phone_number_status]
+    end
+  end
+end

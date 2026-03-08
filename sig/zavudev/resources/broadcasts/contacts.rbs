@@ -1,0 +1,29 @@
+module Zavudev
+  module Resources
+    class Broadcasts
+      class Contacts
+        def list: (
+          String broadcast_id,
+          ?cursor: String,
+          ?limit: Integer,
+          ?status: Zavudev::Models::broadcast_contact_status,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Internal::Cursor[Zavudev::BroadcastContact]
+
+        def add: (
+          String broadcast_id,
+          contacts: ::Array[Zavudev::Broadcasts::ContactAddParams::Contact],
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Broadcasts::ContactAddResponse
+
+        def remove: (
+          String contact_id,
+          broadcast_id: String,
+          ?request_options: Zavudev::request_opts
+        ) -> nil
+
+        def initialize: (client: Zavudev::Client) -> void
+      end
+    end
+  end
+end

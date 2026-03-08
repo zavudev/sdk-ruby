@@ -1,0 +1,76 @@
+module Zavudev
+  module Models
+    type address_create_params =
+      {
+        country_code: String,
+        locality: String,
+        postal_code: String,
+        street_address: String,
+        administrative_area: String,
+        business_name: String,
+        extended_address: String,
+        first_name: String,
+        last_name: String
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class AddressCreateParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor country_code: String
+
+      attr_accessor locality: String
+
+      attr_accessor postal_code: String
+
+      attr_accessor street_address: String
+
+      attr_reader administrative_area: String?
+
+      def administrative_area=: (String) -> String
+
+      attr_reader business_name: String?
+
+      def business_name=: (String) -> String
+
+      attr_reader extended_address: String?
+
+      def extended_address=: (String) -> String
+
+      attr_reader first_name: String?
+
+      def first_name=: (String) -> String
+
+      attr_reader last_name: String?
+
+      def last_name=: (String) -> String
+
+      def initialize: (
+        country_code: String,
+        locality: String,
+        postal_code: String,
+        street_address: String,
+        ?administrative_area: String,
+        ?business_name: String,
+        ?extended_address: String,
+        ?first_name: String,
+        ?last_name: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        country_code: String,
+        locality: String,
+        postal_code: String,
+        street_address: String,
+        administrative_area: String,
+        business_name: String,
+        extended_address: String,
+        first_name: String,
+        last_name: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

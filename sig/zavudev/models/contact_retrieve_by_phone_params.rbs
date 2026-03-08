@@ -1,0 +1,23 @@
+module Zavudev
+  module Models
+    type contact_retrieve_by_phone_params =
+      { phone_number: String } & Zavudev::Internal::Type::request_parameters
+
+    class ContactRetrieveByPhoneParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor phone_number: String
+
+      def initialize: (
+        phone_number: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        phone_number: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

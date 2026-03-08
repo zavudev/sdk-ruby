@@ -1,0 +1,158 @@
+module Zavudev
+  module Models
+    type template_create_params =
+      {
+        body: String,
+        language: String,
+        name: String,
+        add_security_recommendation: bool,
+        buttons: ::Array[Zavudev::TemplateCreateParams::Button],
+        code_expiration_minutes: Integer,
+        variables: ::Array[String],
+        whatsapp_category: Zavudev::Models::whatsapp_category
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class TemplateCreateParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor body: String
+
+      attr_accessor language: String
+
+      attr_accessor name: String
+
+      attr_reader add_security_recommendation: bool?
+
+      def add_security_recommendation=: (bool) -> bool
+
+      attr_reader buttons: ::Array[Zavudev::TemplateCreateParams::Button]?
+
+      def buttons=: (
+        ::Array[Zavudev::TemplateCreateParams::Button]
+      ) -> ::Array[Zavudev::TemplateCreateParams::Button]
+
+      attr_reader code_expiration_minutes: Integer?
+
+      def code_expiration_minutes=: (Integer) -> Integer
+
+      attr_reader variables: ::Array[String]?
+
+      def variables=: (::Array[String]) -> ::Array[String]
+
+      attr_reader whatsapp_category: Zavudev::Models::whatsapp_category?
+
+      def whatsapp_category=: (
+        Zavudev::Models::whatsapp_category
+      ) -> Zavudev::Models::whatsapp_category
+
+      def initialize: (
+        body: String,
+        language: String,
+        name: String,
+        ?add_security_recommendation: bool,
+        ?buttons: ::Array[Zavudev::TemplateCreateParams::Button],
+        ?code_expiration_minutes: Integer,
+        ?variables: ::Array[String],
+        ?whatsapp_category: Zavudev::Models::whatsapp_category,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        body: String,
+        language: String,
+        name: String,
+        add_security_recommendation: bool,
+        buttons: ::Array[Zavudev::TemplateCreateParams::Button],
+        code_expiration_minutes: Integer,
+        variables: ::Array[String],
+        whatsapp_category: Zavudev::Models::whatsapp_category,
+        request_options: Zavudev::RequestOptions
+      }
+
+      type button =
+        {
+          text: String,
+          type: Zavudev::Models::TemplateCreateParams::Button::type_,
+          otp_type: Zavudev::Models::TemplateCreateParams::Button::otp_type,
+          package_name: String,
+          phone_number: String,
+          signature_hash: String,
+          url: String
+        }
+
+      class Button < Zavudev::Internal::Type::BaseModel
+        attr_accessor text: String
+
+        attr_accessor type: Zavudev::Models::TemplateCreateParams::Button::type_
+
+        attr_reader otp_type: Zavudev::Models::TemplateCreateParams::Button::otp_type?
+
+        def otp_type=: (
+          Zavudev::Models::TemplateCreateParams::Button::otp_type
+        ) -> Zavudev::Models::TemplateCreateParams::Button::otp_type
+
+        attr_reader package_name: String?
+
+        def package_name=: (String) -> String
+
+        attr_reader phone_number: String?
+
+        def phone_number=: (String) -> String
+
+        attr_reader signature_hash: String?
+
+        def signature_hash=: (String) -> String
+
+        attr_reader url: String?
+
+        def url=: (String) -> String
+
+        def initialize: (
+          text: String,
+          type: Zavudev::Models::TemplateCreateParams::Button::type_,
+          ?otp_type: Zavudev::Models::TemplateCreateParams::Button::otp_type,
+          ?package_name: String,
+          ?phone_number: String,
+          ?signature_hash: String,
+          ?url: String
+        ) -> void
+
+        def to_hash: -> {
+          text: String,
+          type: Zavudev::Models::TemplateCreateParams::Button::type_,
+          otp_type: Zavudev::Models::TemplateCreateParams::Button::otp_type,
+          package_name: String,
+          phone_number: String,
+          signature_hash: String,
+          url: String
+        }
+
+        type type_ = :quick_reply | :url | :phone | :otp
+
+        module Type
+          extend Zavudev::Internal::Type::Enum
+
+          QUICK_REPLY: :quick_reply
+          URL: :url
+          PHONE: :phone
+          OTP: :otp
+
+          def self?.values: -> ::Array[Zavudev::Models::TemplateCreateParams::Button::type_]
+        end
+
+        type otp_type = :COPY_CODE | :ONE_TAP
+
+        module OtpType
+          extend Zavudev::Internal::Type::Enum
+
+          COPY_CODE: :COPY_CODE
+          ONE_TAP: :ONE_TAP
+
+          def self?.values: -> ::Array[Zavudev::Models::TemplateCreateParams::Button::otp_type]
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,40 @@
+module Zavudev
+  module Models
+    type requirement =
+      {
+        id: String,
+        action: String,
+        country_code: String,
+        phone_number_type: String,
+        requirement_types: ::Array[Zavudev::RequirementType]
+      }
+
+    class Requirement < Zavudev::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor action: String
+
+      attr_accessor country_code: String
+
+      attr_accessor phone_number_type: String
+
+      attr_accessor requirement_types: ::Array[Zavudev::RequirementType]
+
+      def initialize: (
+        id: String,
+        action: String,
+        country_code: String,
+        phone_number_type: String,
+        requirement_types: ::Array[Zavudev::RequirementType]
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        action: String,
+        country_code: String,
+        phone_number_type: String,
+        requirement_types: ::Array[Zavudev::RequirementType]
+      }
+    end
+  end
+end

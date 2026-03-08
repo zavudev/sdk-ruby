@@ -1,0 +1,93 @@
+module Zavudev
+  module Models
+    type broadcast_contact =
+      {
+        id: String,
+        created_at: Time,
+        recipient: String,
+        recipient_type: Zavudev::Models::BroadcastContact::recipient_type,
+        status: Zavudev::Models::broadcast_contact_status,
+        cost: Float?,
+        error_code: String,
+        error_message: String,
+        message_id: String,
+        processed_at: Time,
+        template_variables: ::Hash[Symbol, String]
+      }
+
+    class BroadcastContact < Zavudev::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor recipient: String
+
+      attr_accessor recipient_type: Zavudev::Models::BroadcastContact::recipient_type
+
+      attr_accessor status: Zavudev::Models::broadcast_contact_status
+
+      attr_accessor cost: Float?
+
+      attr_reader error_code: String?
+
+      def error_code=: (String) -> String
+
+      attr_reader error_message: String?
+
+      def error_message=: (String) -> String
+
+      attr_reader message_id: String?
+
+      def message_id=: (String) -> String
+
+      attr_reader processed_at: Time?
+
+      def processed_at=: (Time) -> Time
+
+      attr_reader template_variables: ::Hash[Symbol, String]?
+
+      def template_variables=: (
+        ::Hash[Symbol, String]
+      ) -> ::Hash[Symbol, String]
+
+      def initialize: (
+        id: String,
+        created_at: Time,
+        recipient: String,
+        recipient_type: Zavudev::Models::BroadcastContact::recipient_type,
+        status: Zavudev::Models::broadcast_contact_status,
+        ?cost: Float?,
+        ?error_code: String,
+        ?error_message: String,
+        ?message_id: String,
+        ?processed_at: Time,
+        ?template_variables: ::Hash[Symbol, String]
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time,
+        recipient: String,
+        recipient_type: Zavudev::Models::BroadcastContact::recipient_type,
+        status: Zavudev::Models::broadcast_contact_status,
+        cost: Float?,
+        error_code: String,
+        error_message: String,
+        message_id: String,
+        processed_at: Time,
+        template_variables: ::Hash[Symbol, String]
+      }
+
+      type recipient_type = :phone | :email
+
+      module RecipientType
+        extend Zavudev::Internal::Type::Enum
+
+        PHONE: :phone
+        EMAIL: :email
+
+        def self?.values: -> ::Array[Zavudev::Models::BroadcastContact::recipient_type]
+      end
+    end
+  end
+end

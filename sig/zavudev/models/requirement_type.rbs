@@ -1,0 +1,49 @@
+module Zavudev
+  module Models
+    type requirement_type =
+      {
+        id: String,
+        description: String,
+        name: String,
+        type: Zavudev::Models::requirement_field_type,
+        acceptance_criteria: Zavudev::RequirementAcceptanceCriteria,
+        example: String?
+      }
+
+    class RequirementType < Zavudev::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor description: String
+
+      attr_accessor name: String
+
+      attr_accessor type: Zavudev::Models::requirement_field_type
+
+      attr_reader acceptance_criteria: Zavudev::RequirementAcceptanceCriteria?
+
+      def acceptance_criteria=: (
+        Zavudev::RequirementAcceptanceCriteria
+      ) -> Zavudev::RequirementAcceptanceCriteria
+
+      attr_accessor example: String?
+
+      def initialize: (
+        id: String,
+        description: String,
+        name: String,
+        type: Zavudev::Models::requirement_field_type,
+        ?acceptance_criteria: Zavudev::RequirementAcceptanceCriteria,
+        ?example: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        description: String,
+        name: String,
+        type: Zavudev::Models::requirement_field_type,
+        acceptance_criteria: Zavudev::RequirementAcceptanceCriteria,
+        example: String?
+      }
+    end
+  end
+end

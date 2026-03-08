@@ -1,0 +1,23 @@
+module Zavudev
+  module Models
+    type phone_number_release_params =
+      { phone_number_id: String } & Zavudev::Internal::Type::request_parameters
+
+    class PhoneNumberReleaseParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor phone_number_id: String
+
+      def initialize: (
+        phone_number_id: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        phone_number_id: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

@@ -1,0 +1,59 @@
+module Zavudev
+  module Models
+    type broadcast_content =
+      {
+        filename: String,
+        media_id: String,
+        media_url: String,
+        mime_type: String,
+        template_id: String,
+        template_variables: ::Hash[Symbol, String]
+      }
+
+    class BroadcastContent < Zavudev::Internal::Type::BaseModel
+      attr_reader filename: String?
+
+      def filename=: (String) -> String
+
+      attr_reader media_id: String?
+
+      def media_id=: (String) -> String
+
+      attr_reader media_url: String?
+
+      def media_url=: (String) -> String
+
+      attr_reader mime_type: String?
+
+      def mime_type=: (String) -> String
+
+      attr_reader template_id: String?
+
+      def template_id=: (String) -> String
+
+      attr_reader template_variables: ::Hash[Symbol, String]?
+
+      def template_variables=: (
+        ::Hash[Symbol, String]
+      ) -> ::Hash[Symbol, String]
+
+      def initialize: (
+        ?filename: String,
+        ?media_id: String,
+        ?media_url: String,
+        ?mime_type: String,
+        ?template_id: String,
+        ?template_variables: ::Hash[Symbol, String]
+      ) -> void
+
+      def to_hash: -> {
+        filename: String,
+        media_id: String,
+        media_url: String,
+        mime_type: String,
+        template_id: String,
+        template_variables: ::Hash[Symbol, String]
+      }
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Zavudev
+  module Models
+    type phone_number_capabilities = { mms: bool, sms: bool, voice: bool }
+
+    class PhoneNumberCapabilities < Zavudev::Internal::Type::BaseModel
+      attr_reader mms: bool?
+
+      def mms=: (bool) -> bool
+
+      attr_reader sms: bool?
+
+      def sms=: (bool) -> bool
+
+      attr_reader voice: bool?
+
+      def voice=: (bool) -> bool
+
+      def initialize: (?mms: bool, ?sms: bool, ?voice: bool) -> void
+
+      def to_hash: -> { mms: bool, sms: bool, voice: bool }
+    end
+  end
+end

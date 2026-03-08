@@ -1,0 +1,254 @@
+module Zavudev
+  module Models
+    type template =
+      {
+        id: String,
+        body: String,
+        category: Zavudev::Models::whatsapp_category,
+        language: String,
+        name: String,
+        add_security_recommendation: bool,
+        buttons: ::Array[Zavudev::Template::Button],
+        code_expiration_minutes: Integer,
+        created_at: Time,
+        footer: String,
+        header_content: String,
+        header_type: String,
+        status: Zavudev::Models::Template::status,
+        updated_at: Time,
+        variables: ::Array[String],
+        whatsapp: Zavudev::Template::Whatsapp
+      }
+
+    class Template < Zavudev::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor body: String
+
+      attr_accessor category: Zavudev::Models::whatsapp_category
+
+      attr_accessor language: String
+
+      attr_accessor name: String
+
+      attr_reader add_security_recommendation: bool?
+
+      def add_security_recommendation=: (bool) -> bool
+
+      attr_reader buttons: ::Array[Zavudev::Template::Button]?
+
+      def buttons=: (
+        ::Array[Zavudev::Template::Button]
+      ) -> ::Array[Zavudev::Template::Button]
+
+      attr_reader code_expiration_minutes: Integer?
+
+      def code_expiration_minutes=: (Integer) -> Integer
+
+      attr_reader created_at: Time?
+
+      def created_at=: (Time) -> Time
+
+      attr_reader footer: String?
+
+      def footer=: (String) -> String
+
+      attr_reader header_content: String?
+
+      def header_content=: (String) -> String
+
+      attr_reader header_type: String?
+
+      def header_type=: (String) -> String
+
+      attr_reader status: Zavudev::Models::Template::status?
+
+      def status=: (
+        Zavudev::Models::Template::status
+      ) -> Zavudev::Models::Template::status
+
+      attr_reader updated_at: Time?
+
+      def updated_at=: (Time) -> Time
+
+      attr_reader variables: ::Array[String]?
+
+      def variables=: (::Array[String]) -> ::Array[String]
+
+      attr_reader whatsapp: Zavudev::Template::Whatsapp?
+
+      def whatsapp=: (
+        Zavudev::Template::Whatsapp
+      ) -> Zavudev::Template::Whatsapp
+
+      def initialize: (
+        id: String,
+        body: String,
+        category: Zavudev::Models::whatsapp_category,
+        language: String,
+        name: String,
+        ?add_security_recommendation: bool,
+        ?buttons: ::Array[Zavudev::Template::Button],
+        ?code_expiration_minutes: Integer,
+        ?created_at: Time,
+        ?footer: String,
+        ?header_content: String,
+        ?header_type: String,
+        ?status: Zavudev::Models::Template::status,
+        ?updated_at: Time,
+        ?variables: ::Array[String],
+        ?whatsapp: Zavudev::Template::Whatsapp
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        body: String,
+        category: Zavudev::Models::whatsapp_category,
+        language: String,
+        name: String,
+        add_security_recommendation: bool,
+        buttons: ::Array[Zavudev::Template::Button],
+        code_expiration_minutes: Integer,
+        created_at: Time,
+        footer: String,
+        header_content: String,
+        header_type: String,
+        status: Zavudev::Models::Template::status,
+        updated_at: Time,
+        variables: ::Array[String],
+        whatsapp: Zavudev::Template::Whatsapp
+      }
+
+      type button =
+        {
+          otp_type: Zavudev::Models::Template::Button::otp_type,
+          package_name: String,
+          phone_number: String,
+          signature_hash: String,
+          text: String,
+          type: Zavudev::Models::Template::Button::type_,
+          url: String
+        }
+
+      class Button < Zavudev::Internal::Type::BaseModel
+        attr_reader otp_type: Zavudev::Models::Template::Button::otp_type?
+
+        def otp_type=: (
+          Zavudev::Models::Template::Button::otp_type
+        ) -> Zavudev::Models::Template::Button::otp_type
+
+        attr_reader package_name: String?
+
+        def package_name=: (String) -> String
+
+        attr_reader phone_number: String?
+
+        def phone_number=: (String) -> String
+
+        attr_reader signature_hash: String?
+
+        def signature_hash=: (String) -> String
+
+        attr_reader text: String?
+
+        def text=: (String) -> String
+
+        attr_reader type: Zavudev::Models::Template::Button::type_?
+
+        def type=: (
+          Zavudev::Models::Template::Button::type_
+        ) -> Zavudev::Models::Template::Button::type_
+
+        attr_reader url: String?
+
+        def url=: (String) -> String
+
+        def initialize: (
+          ?otp_type: Zavudev::Models::Template::Button::otp_type,
+          ?package_name: String,
+          ?phone_number: String,
+          ?signature_hash: String,
+          ?text: String,
+          ?type: Zavudev::Models::Template::Button::type_,
+          ?url: String
+        ) -> void
+
+        def to_hash: -> {
+          otp_type: Zavudev::Models::Template::Button::otp_type,
+          package_name: String,
+          phone_number: String,
+          signature_hash: String,
+          text: String,
+          type: Zavudev::Models::Template::Button::type_,
+          url: String
+        }
+
+        type otp_type = :COPY_CODE | :ONE_TAP
+
+        module OtpType
+          extend Zavudev::Internal::Type::Enum
+
+          COPY_CODE: :COPY_CODE
+          ONE_TAP: :ONE_TAP
+
+          def self?.values: -> ::Array[Zavudev::Models::Template::Button::otp_type]
+        end
+
+        type type_ = :quick_reply | :url | :phone | :otp
+
+        module Type
+          extend Zavudev::Internal::Type::Enum
+
+          QUICK_REPLY: :quick_reply
+          URL: :url
+          PHONE: :phone
+          OTP: :otp
+
+          def self?.values: -> ::Array[Zavudev::Models::Template::Button::type_]
+        end
+      end
+
+      type status = :draft | :pending | :approved | :rejected
+
+      module Status
+        extend Zavudev::Internal::Type::Enum
+
+        DRAFT: :draft
+        PENDING: :pending
+        APPROVED: :approved
+        REJECTED: :rejected
+
+        def self?.values: -> ::Array[Zavudev::Models::Template::status]
+      end
+
+      type whatsapp =
+        { namespace: String, status: String, template_name: String }
+
+      class Whatsapp < Zavudev::Internal::Type::BaseModel
+        attr_reader namespace: String?
+
+        def namespace=: (String) -> String
+
+        attr_reader status: String?
+
+        def status=: (String) -> String
+
+        attr_reader template_name: String?
+
+        def template_name=: (String) -> String
+
+        def initialize: (
+          ?namespace: String,
+          ?status: String,
+          ?template_name: String
+        ) -> void
+
+        def to_hash: -> {
+          namespace: String,
+          status: String,
+          template_name: String
+        }
+      end
+    end
+  end
+end

@@ -1,0 +1,61 @@
+module Zavudev
+  module Models
+    module Senders
+      class AgentDocument = Agent::AgentDocument
+
+      module Agent
+        type agent_document =
+          {
+            id: String,
+            chunk_count: Integer,
+            content_length: Integer,
+            created_at: Time,
+            is_processed: bool,
+            knowledge_base_id: String,
+            title: String,
+            updated_at: Time
+          }
+
+        class AgentDocument < Zavudev::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor chunk_count: Integer
+
+          attr_accessor content_length: Integer
+
+          attr_accessor created_at: Time
+
+          attr_accessor is_processed: bool
+
+          attr_accessor knowledge_base_id: String
+
+          attr_accessor title: String
+
+          attr_accessor updated_at: Time
+
+          def initialize: (
+            id: String,
+            chunk_count: Integer,
+            content_length: Integer,
+            created_at: Time,
+            is_processed: bool,
+            knowledge_base_id: String,
+            title: String,
+            updated_at: Time
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            chunk_count: Integer,
+            content_length: Integer,
+            created_at: Time,
+            is_processed: bool,
+            knowledge_base_id: String,
+            title: String,
+            updated_at: Time
+          }
+        end
+      end
+    end
+  end
+end

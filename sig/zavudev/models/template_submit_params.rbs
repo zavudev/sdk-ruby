@@ -1,0 +1,40 @@
+module Zavudev
+  module Models
+    type template_submit_params =
+      {
+        template_id: String,
+        sender_id: String,
+        category: Zavudev::Models::whatsapp_category
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class TemplateSubmitParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor template_id: String
+
+      attr_accessor sender_id: String
+
+      attr_reader category: Zavudev::Models::whatsapp_category?
+
+      def category=: (
+        Zavudev::Models::whatsapp_category
+      ) -> Zavudev::Models::whatsapp_category
+
+      def initialize: (
+        template_id: String,
+        sender_id: String,
+        ?category: Zavudev::Models::whatsapp_category,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        template_id: String,
+        sender_id: String,
+        category: Zavudev::Models::whatsapp_category,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end
