@@ -102,10 +102,10 @@ module Zavudev
       # - Window opens when the user messages you first
       # - Use template messages to initiate conversations outside the window
       #
-      # **Email requirements:**
+      # **Daily limits:**
       #
-      # - Email channel requires KYC verification. Complete identity verification in the
-      #   dashboard before sending emails.
+      # - Unverified accounts: 200 messages per channel per day
+      # - Complete KYC verification to increase limits to 10,000/day
       #
       # @overload send_(to:, channel: nil, content: nil, fallback_enabled: nil, html_body: nil, idempotency_key: nil, message_type: nil, metadata: nil, reply_to: nil, subject: nil, text: nil, voice_language: nil, zavu_sender: nil, request_options: {})
       #
