@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0 (2026-03-12)
+
+Full Changelog: [v0.1.0...v0.2.0](https://github.com/zavudev/sdk-ruby/compare/v0.1.0...v0.2.0)
+
+### Features
+
+* **api:** api update ([32f7ff3](https://github.com/zavudev/sdk-ruby/commit/32f7ff374028b15e69dd49053102a43fdc6b3d2d))
+
 ## 0.1.0 (2026-03-10)
 
 Full Changelog: [v0.0.2...v0.1.0](https://github.com/zavudev/sdk-ruby/compare/v0.0.2...v0.1.0)
