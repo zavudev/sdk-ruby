@@ -109,7 +109,7 @@ module Zavudev
       #
       # @overload send_(to:, channel: nil, content: nil, fallback_enabled: nil, html_body: nil, idempotency_key: nil, message_type: nil, metadata: nil, reply_to: nil, subject: nil, text: nil, voice_language: nil, zavu_sender: nil, request_options: {})
       #
-      # @param to [String] Body param: Recipient phone number in E.164 format or email address.
+      # @param to [String] Body param: Recipient phone number in E.164 format, email address, or numeric ch
       #
       # @param channel [Symbol, Zavudev::Models::Channel] Body param: Delivery channel. Use 'auto' for intelligent routing. If omitted wit
       #

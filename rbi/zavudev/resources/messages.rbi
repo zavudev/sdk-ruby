@@ -93,7 +93,8 @@ module Zavudev
         ).returns(Zavudev::MessageResponse)
       end
       def send_(
-        # Body param: Recipient phone number in E.164 format or email address.
+        # Body param: Recipient phone number in E.164 format, email address, or numeric
+        # chat ID (for Telegram/Instagram).
         to:,
         # Body param: Delivery channel. Use 'auto' for intelligent routing. If omitted
         # with non-text messageType, WhatsApp is used. For email recipients, defaults to
