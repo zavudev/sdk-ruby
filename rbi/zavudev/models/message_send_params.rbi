@@ -11,7 +11,8 @@ module Zavudev
           T.any(Zavudev::MessageSendParams, Zavudev::Internal::AnyHash)
         end
 
-      # Recipient phone number in E.164 format or email address.
+      # Recipient phone number in E.164 format, email address, or numeric chat ID (for
+      # Telegram/Instagram).
       sig { returns(String) }
       attr_accessor :to
 
@@ -121,7 +122,8 @@ module Zavudev
         ).returns(T.attached_class)
       end
       def self.new(
-        # Recipient phone number in E.164 format or email address.
+        # Recipient phone number in E.164 format, email address, or numeric chat ID (for
+        # Telegram/Instagram).
         to:,
         # Delivery channel. Use 'auto' for intelligent routing. If omitted with non-text
         # messageType, WhatsApp is used. For email recipients, defaults to 'email'.

@@ -8,7 +8,8 @@ module Zavudev
       include Zavudev::Internal::Type::RequestParameters
 
       # @!attribute to
-      #   Recipient phone number in E.164 format or email address.
+      #   Recipient phone number in E.164 format, email address, or numeric chat ID (for
+      #   Telegram/Instagram).
       #
       #   @return [String]
       required :to, String
@@ -92,7 +93,7 @@ module Zavudev
       #   Some parameter documentations has been truncated, see
       #   {Zavudev::Models::MessageSendParams} for more details.
       #
-      #   @param to [String] Recipient phone number in E.164 format or email address.
+      #   @param to [String] Recipient phone number in E.164 format, email address, or numeric chat ID (for T
       #
       #   @param channel [Symbol, Zavudev::Models::Channel] Delivery channel. Use 'auto' for intelligent routing. If omitted with non-text m
       #
