@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.1 (2026-03-17)
+
+Full Changelog: [v0.2.0...v0.2.1](https://github.com/zavudev/sdk-ruby/compare/v0.2.0...v0.2.1)
+
+### Chores
+
+* **internal:** tweak CI branches ([3e46fa6](https://github.com/zavudev/sdk-ruby/commit/3e46fa681919d7637c42d5c8cb86723f69110062))
+
 ## 0.2.0 (2026-03-12)
 
 Full Changelog: [v0.1.0...v0.2.0](https://github.com/zavudev/sdk-ruby/compare/v0.1.0...v0.2.0)
