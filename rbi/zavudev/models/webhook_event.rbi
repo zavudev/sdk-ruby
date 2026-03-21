@@ -11,6 +11,8 @@ module Zavudev
     # - `message.sent`: Message accepted by the provider. `data.status` = `sent`
     # - `message.delivered`: Message delivered to recipient. `data.status` =
     #   `delivered`
+    # - `message.read`: Message was read by the recipient (WhatsApp only).
+    #   `data.status` = `read`
     # - `message.failed`: Message failed to send. `data.status` = `failed`
     #
     # **Inbound events:**
@@ -34,6 +36,7 @@ module Zavudev
       MESSAGE_SENT = T.let(:"message.sent", Zavudev::WebhookEvent::TaggedSymbol)
       MESSAGE_DELIVERED =
         T.let(:"message.delivered", Zavudev::WebhookEvent::TaggedSymbol)
+      MESSAGE_READ = T.let(:"message.read", Zavudev::WebhookEvent::TaggedSymbol)
       MESSAGE_FAILED =
         T.let(:"message.failed", Zavudev::WebhookEvent::TaggedSymbol)
       MESSAGE_INBOUND =

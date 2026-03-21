@@ -9,6 +9,7 @@ module Zavudev
       SENDING = :sending
       SENT = :sent
       DELIVERED = :delivered
+      READ = :read
       FAILED = :failed
       RECEIVED = :received
       PENDING_URL_VERIFICATION = :pending_url_verification
