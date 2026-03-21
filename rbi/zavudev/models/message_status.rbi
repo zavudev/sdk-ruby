@@ -12,6 +12,7 @@ module Zavudev
       SENDING = T.let(:sending, Zavudev::MessageStatus::TaggedSymbol)
       SENT = T.let(:sent, Zavudev::MessageStatus::TaggedSymbol)
       DELIVERED = T.let(:delivered, Zavudev::MessageStatus::TaggedSymbol)
+      READ = T.let(:read, Zavudev::MessageStatus::TaggedSymbol)
       FAILED = T.let(:failed, Zavudev::MessageStatus::TaggedSymbol)
       RECEIVED = T.let(:received, Zavudev::MessageStatus::TaggedSymbol)
       PENDING_URL_VERIFICATION =

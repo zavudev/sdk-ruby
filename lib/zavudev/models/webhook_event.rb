@@ -11,6 +11,8 @@ module Zavudev
     # - `message.sent`: Message accepted by the provider. `data.status` = `sent`
     # - `message.delivered`: Message delivered to recipient. `data.status` =
     #   `delivered`
+    # - `message.read`: Message was read by the recipient (WhatsApp only).
+    #   `data.status` = `read`
     # - `message.failed`: Message failed to send. `data.status` = `failed`
     #
     # **Inbound events:**
@@ -29,6 +31,7 @@ module Zavudev
       MESSAGE_QUEUED = :"message.queued"
       MESSAGE_SENT = :"message.sent"
       MESSAGE_DELIVERED = :"message.delivered"
+      MESSAGE_READ = :"message.read"
       MESSAGE_FAILED = :"message.failed"
       MESSAGE_INBOUND = :"message.inbound"
       MESSAGE_UNSUPPORTED = :"message.unsupported"
