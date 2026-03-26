@@ -21,6 +21,11 @@ module Zavudev
     #   delivered as `message.inbound` with `messageType='reaction'`
     # - `message.unsupported`: Received a message type that is not supported
     #
+    # **Broadcast events:**
+    #
+    # - `broadcast.status_changed`: Broadcast status changed (pending_review,
+    #   approved, rejected, sending, completed, cancelled)
+    #
     # **Other events:**
     #
     # - `conversation.new`: New conversation started with a contact
@@ -43,6 +48,8 @@ module Zavudev
         T.let(:"message.inbound", Zavudev::WebhookEvent::TaggedSymbol)
       MESSAGE_UNSUPPORTED =
         T.let(:"message.unsupported", Zavudev::WebhookEvent::TaggedSymbol)
+      BROADCAST_STATUS_CHANGED =
+        T.let(:"broadcast.status_changed", Zavudev::WebhookEvent::TaggedSymbol)
       CONVERSATION_NEW =
         T.let(:"conversation.new", Zavudev::WebhookEvent::TaggedSymbol)
       TEMPLATE_STATUS_CHANGED =
