@@ -8,6 +8,7 @@ module Zavudev
       | :"message.failed"
       | :"message.inbound"
       | :"message.unsupported"
+      | :"broadcast.status_changed"
       | :"conversation.new"
       | :"template.status_changed"
 
@@ -21,6 +22,7 @@ module Zavudev
       MESSAGE_FAILED: :"message.failed"
       MESSAGE_INBOUND: :"message.inbound"
       MESSAGE_UNSUPPORTED: :"message.unsupported"
+      BROADCAST_STATUS_CHANGED: :"broadcast.status_changed"
       CONVERSATION_NEW: :"conversation.new"
       TEMPLATE_STATUS_CHANGED: :"template.status_changed"
 
