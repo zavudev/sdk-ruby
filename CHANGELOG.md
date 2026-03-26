@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.4.0 (2026-03-26)
+
+Full Changelog: [v0.3.0...v0.4.0](https://github.com/zavudev/sdk-ruby/compare/v0.3.0...v0.4.0)
+
+### Features
+
+* **api:** api update ([9e1ed5f](https://github.com/zavudev/sdk-ruby/commit/9e1ed5f5446390f37fe98c9eb802d0c10f4f3ff2))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([5773a61](https://github.com/zavudev/sdk-ruby/commit/5773a618c11aea318ee18dae9f0ac2e774c0cce1))
+* **internal:** update gitignore ([40da9c2](https://github.com/zavudev/sdk-ruby/commit/40da9c2e3f869ebfacb738bab74f2f8800db7724))
+
 ## 0.3.0 (2026-03-21)
 
 Full Changelog: [v0.2.1...v0.3.0](https://github.com/zavudev/sdk-ruby/compare/v0.2.1...v0.3.0)
