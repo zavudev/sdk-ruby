@@ -21,6 +21,11 @@ module Zavudev
     #   delivered as `message.inbound` with `messageType='reaction'`
     # - `message.unsupported`: Received a message type that is not supported
     #
+    # **Broadcast events:**
+    #
+    # - `broadcast.status_changed`: Broadcast status changed (pending_review,
+    #   approved, rejected, sending, completed, cancelled)
+    #
     # **Other events:**
     #
     # - `conversation.new`: New conversation started with a contact
@@ -35,6 +40,7 @@ module Zavudev
       MESSAGE_FAILED = :"message.failed"
       MESSAGE_INBOUND = :"message.inbound"
       MESSAGE_UNSUPPORTED = :"message.unsupported"
+      BROADCAST_STATUS_CHANGED = :"broadcast.status_changed"
       CONVERSATION_NEW = :"conversation.new"
       TEMPLATE_STATUS_CHANGED = :"template.status_changed"
 
