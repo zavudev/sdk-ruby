@@ -157,7 +157,7 @@ module Zavudev
           in Hash | nil => coerced
             coerced
           else
-            message = "Expected a #{Hash} or #{Zavudev::Internal::Type::BaseModel}, got #{data.inspect}"
+            message = "Expected a #{Hash} or #{Zavudev::Internal::Type::BaseModel}, got #{input.inspect}"
             raise ArgumentError.new(message)
           end
         end
