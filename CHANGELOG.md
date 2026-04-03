@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.4.1 (2026-04-01)
+
+Full Changelog: [v0.4.0...v0.4.1](https://github.com/zavudev/sdk-ruby/compare/v0.4.0...v0.4.1)
+
+### Bug Fixes
+
+* align path encoding with RFC 3986 section 3.3 ([4cc4622](https://github.com/zavudev/sdk-ruby/commit/4cc462282ec8bcf85f123e7bc7cffbf9d4fca1cd))
+* **internal:** correct multipart form field name encoding ([43d6834](https://github.com/zavudev/sdk-ruby/commit/43d6834dab5f8d11e5a6a420b599a78c9f44b936))
+* variable name typo ([9fc59d5](https://github.com/zavudev/sdk-ruby/commit/9fc59d5049ff0a2eb4223ed13d65602e8b6d49a1))
+
+
+### Chores
+
+* **ci:** support opting out of skipping builds on metadata-only commits ([6011f4f](https://github.com/zavudev/sdk-ruby/commit/6011f4fb2114cd5abce24ec8a37314abf010b8a4))
+
 ## 0.4.0 (2026-03-26)
 
 Full Changelog: [v0.3.0...v0.4.0](https://github.com/zavudev/sdk-ruby/compare/v0.3.0...v0.4.0)
