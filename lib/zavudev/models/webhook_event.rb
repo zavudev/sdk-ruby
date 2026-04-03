@@ -30,6 +30,11 @@ module Zavudev
     #
     # - `conversation.new`: New conversation started with a contact
     # - `template.status_changed`: WhatsApp template approval status changed
+    #
+    # **Partner events:**
+    #
+    # - `invitation.status_changed`: A partner invitation status changed (pending,
+    #   in_progress, completed, cancelled)
     module WebhookEvent
       extend Zavudev::Internal::Type::Enum
 
@@ -43,6 +48,7 @@ module Zavudev
       BROADCAST_STATUS_CHANGED = :"broadcast.status_changed"
       CONVERSATION_NEW = :"conversation.new"
       TEMPLATE_STATUS_CHANGED = :"template.status_changed"
+      INVITATION_STATUS_CHANGED = :"invitation.status_changed"
 
       # @!method self.values
       #   @return [Array<Symbol>]

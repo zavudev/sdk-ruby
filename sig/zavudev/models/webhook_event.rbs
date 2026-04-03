@@ -11,6 +11,7 @@ module Zavudev
       | :"broadcast.status_changed"
       | :"conversation.new"
       | :"template.status_changed"
+      | :"invitation.status_changed"
 
     module WebhookEvent
       extend Zavudev::Internal::Type::Enum
@@ -25,6 +26,7 @@ module Zavudev
       BROADCAST_STATUS_CHANGED: :"broadcast.status_changed"
       CONVERSATION_NEW: :"conversation.new"
       TEMPLATE_STATUS_CHANGED: :"template.status_changed"
+      INVITATION_STATUS_CHANGED: :"invitation.status_changed"
 
       def self?.values: -> ::Array[Zavudev::Models::webhook_event]
     end
