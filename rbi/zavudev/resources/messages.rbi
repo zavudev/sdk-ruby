@@ -77,6 +77,7 @@ module Zavudev
       sig do
         params(
           to: String,
+          attachments: T::Array[Zavudev::MessageSendParams::Attachment::OrHash],
           channel: Zavudev::Channel::OrSymbol,
           content: Zavudev::MessageContent::OrHash,
           fallback_enabled: T::Boolean,
@@ -96,6 +97,9 @@ module Zavudev
         # Body param: Recipient phone number in E.164 format, email address, or numeric
         # chat ID (for Telegram/Instagram).
         to:,
+        # Body param: Email attachments. Only supported when channel is 'email'. Maximum
+        # 40MB total size.
+        attachments: nil,
         # Body param: Delivery channel. Use 'auto' for intelligent routing. If omitted
         # with non-text messageType, WhatsApp is used. For email recipients, defaults to
         # 'email'.

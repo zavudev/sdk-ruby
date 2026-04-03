@@ -3,6 +3,7 @@ module Zavudev
     type message_send_params =
       {
         to: String,
+        attachments: ::Array[Zavudev::MessageSendParams::Attachment],
         channel: Zavudev::Models::channel,
         content: Zavudev::MessageContent,
         fallback_enabled: bool,
@@ -23,6 +24,12 @@ module Zavudev
       include Zavudev::Internal::Type::RequestParameters
 
       attr_accessor to: String
+
+      attr_reader attachments: ::Array[Zavudev::MessageSendParams::Attachment]?
+
+      def attachments=: (
+        ::Array[Zavudev::MessageSendParams::Attachment]
+      ) -> ::Array[Zavudev::MessageSendParams::Attachment]
 
       attr_reader channel: Zavudev::Models::channel?
 
@@ -76,6 +83,7 @@ module Zavudev
 
       def initialize: (
         to: String,
+        ?attachments: ::Array[Zavudev::MessageSendParams::Attachment],
         ?channel: Zavudev::Models::channel,
         ?content: Zavudev::MessageContent,
         ?fallback_enabled: bool,
@@ -93,6 +101,7 @@ module Zavudev
 
       def to_hash: -> {
         to: String,
+        attachments: ::Array[Zavudev::MessageSendParams::Attachment],
         channel: Zavudev::Models::channel,
         content: Zavudev::MessageContent,
         fallback_enabled: bool,
@@ -107,6 +116,51 @@ module Zavudev
         zavu_sender: String,
         request_options: Zavudev::RequestOptions
       }
+
+      type attachment =
+        {
+          filename: String,
+          content: String,
+          content_id: String,
+          content_type: String,
+          path: String
+        }
+
+      class Attachment < Zavudev::Internal::Type::BaseModel
+        attr_accessor filename: String
+
+        attr_reader content: String?
+
+        def content=: (String) -> String
+
+        attr_reader content_id: String?
+
+        def content_id=: (String) -> String
+
+        attr_reader content_type: String?
+
+        def content_type=: (String) -> String
+
+        attr_reader path: String?
+
+        def path=: (String) -> String
+
+        def initialize: (
+          filename: String,
+          ?content: String,
+          ?content_id: String,
+          ?content_type: String,
+          ?path: String
+        ) -> void
+
+        def to_hash: -> {
+          filename: String,
+          content: String,
+          content_id: String,
+          content_type: String,
+          path: String
+        }
+      end
     end
   end
 end

@@ -14,6 +14,13 @@ module Zavudev
       #   @return [String]
       required :to, String
 
+      # @!attribute attachments
+      #   Email attachments. Only supported when channel is 'email'. Maximum 40MB total
+      #   size.
+      #
+      #   @return [Array<Zavudev::Models::MessageSendParams::Attachment>, nil]
+      optional :attachments, -> { Zavudev::Internal::Type::ArrayOf[Zavudev::MessageSendParams::Attachment] }
+
       # @!attribute channel
       #   Delivery channel. Use 'auto' for intelligent routing. If omitted with non-text
       #   messageType, WhatsApp is used. For email recipients, defaults to 'email'.
@@ -89,11 +96,13 @@ module Zavudev
       #   @return [String, nil]
       optional :zavu_sender, String
 
-      # @!method initialize(to:, channel: nil, content: nil, fallback_enabled: nil, html_body: nil, idempotency_key: nil, message_type: nil, metadata: nil, reply_to: nil, subject: nil, text: nil, voice_language: nil, zavu_sender: nil, request_options: {})
+      # @!method initialize(to:, attachments: nil, channel: nil, content: nil, fallback_enabled: nil, html_body: nil, idempotency_key: nil, message_type: nil, metadata: nil, reply_to: nil, subject: nil, text: nil, voice_language: nil, zavu_sender: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Zavudev::Models::MessageSendParams} for more details.
       #
       #   @param to [String] Recipient phone number in E.164 format, email address, or numeric chat ID (for T
+      #
+      #   @param attachments [Array<Zavudev::Models::MessageSendParams::Attachment>] Email attachments. Only supported when channel is 'email'. Maximum 40MB total si
       #
       #   @param channel [Symbol, Zavudev::Models::Channel] Delivery channel. Use 'auto' for intelligent routing. If omitted with non-text m
       #
@@ -120,6 +129,55 @@ module Zavudev
       #   @param zavu_sender [String]
       #
       #   @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}]
+
+      class Attachment < Zavudev::Internal::Type::BaseModel
+        # @!attribute filename
+        #   Name of the attached file.
+        #
+        #   @return [String]
+        required :filename, String
+
+        # @!attribute content
+        #   Content of the attached file as a Base64-encoded string.
+        #
+        #   @return [String, nil]
+        optional :content, String
+
+        # @!attribute content_id
+        #   Content ID for inline images. Reference in HTML as
+        #   `<img src="cid:your_content_id">`.
+        #
+        #   @return [String, nil]
+        optional :content_id, String
+
+        # @!attribute content_type
+        #   MIME type of the attachment. If not set, will be derived from the filename.
+        #
+        #   @return [String, nil]
+        optional :content_type, String
+
+        # @!attribute path
+        #   URL where the attachment file is hosted. The server will fetch the file.
+        #
+        #   @return [String, nil]
+        optional :path, String
+
+        # @!method initialize(filename:, content: nil, content_id: nil, content_type: nil, path: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Zavudev::Models::MessageSendParams::Attachment} for more details.
+        #
+        #   Email attachment. Provide either `content` (base64) or `path` (URL), not both.
+        #
+        #   @param filename [String] Name of the attached file.
+        #
+        #   @param content [String] Content of the attached file as a Base64-encoded string.
+        #
+        #   @param content_id [String] Content ID for inline images. Reference in HTML as `<img src="cid:your_content_i
+        #
+        #   @param content_type [String] MIME type of the attachment. If not set, will be derived from the filename.
+        #
+        #   @param path [String] URL where the attachment file is hosted. The server will fetch the file.
+      end
     end
   end
 end
