@@ -107,9 +107,11 @@ module Zavudev
       # - Unverified accounts: 200 messages per channel per day
       # - Complete KYC verification to increase limits to 10,000/day
       #
-      # @overload send_(to:, channel: nil, content: nil, fallback_enabled: nil, html_body: nil, idempotency_key: nil, message_type: nil, metadata: nil, reply_to: nil, subject: nil, text: nil, voice_language: nil, zavu_sender: nil, request_options: {})
+      # @overload send_(to:, attachments: nil, channel: nil, content: nil, fallback_enabled: nil, html_body: nil, idempotency_key: nil, message_type: nil, metadata: nil, reply_to: nil, subject: nil, text: nil, voice_language: nil, zavu_sender: nil, request_options: {})
       #
       # @param to [String] Body param: Recipient phone number in E.164 format, email address, or numeric ch
+      #
+      # @param attachments [Array<Zavudev::Models::MessageSendParams::Attachment>] Body param: Email attachments. Only supported when channel is 'email'. Maximum 4
       #
       # @param channel [Symbol, Zavudev::Models::Channel] Body param: Delivery channel. Use 'auto' for intelligent routing. If omitted wit
       #

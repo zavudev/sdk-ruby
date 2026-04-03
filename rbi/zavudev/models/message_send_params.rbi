@@ -16,6 +16,20 @@ module Zavudev
       sig { returns(String) }
       attr_accessor :to
 
+      # Email attachments. Only supported when channel is 'email'. Maximum 40MB total
+      # size.
+      sig do
+        returns(T.nilable(T::Array[Zavudev::MessageSendParams::Attachment]))
+      end
+      attr_reader :attachments
+
+      sig do
+        params(
+          attachments: T::Array[Zavudev::MessageSendParams::Attachment::OrHash]
+        ).void
+      end
+      attr_writer :attachments
+
       # Delivery channel. Use 'auto' for intelligent routing. If omitted with non-text
       # messageType, WhatsApp is used. For email recipients, defaults to 'email'.
       sig { returns(T.nilable(Zavudev::Channel::OrSymbol)) }
@@ -106,6 +120,7 @@ module Zavudev
       sig do
         params(
           to: String,
+          attachments: T::Array[Zavudev::MessageSendParams::Attachment::OrHash],
           channel: Zavudev::Channel::OrSymbol,
           content: Zavudev::MessageContent::OrHash,
           fallback_enabled: T::Boolean,
@@ -125,6 +140,9 @@ module Zavudev
         # Recipient phone number in E.164 format, email address, or numeric chat ID (for
         # Telegram/Instagram).
         to:,
+        # Email attachments. Only supported when channel is 'email'. Maximum 40MB total
+        # size.
+        attachments: nil,
         # Delivery channel. Use 'auto' for intelligent routing. If omitted with non-text
         # messageType, WhatsApp is used. For email recipients, defaults to 'email'.
         channel: nil,
@@ -160,6 +178,7 @@ module Zavudev
         override.returns(
           {
             to: String,
+            attachments: T::Array[Zavudev::MessageSendParams::Attachment],
             channel: Zavudev::Channel::OrSymbol,
             content: Zavudev::MessageContent,
             fallback_enabled: T::Boolean,
@@ -177,6 +196,88 @@ module Zavudev
         )
       end
       def to_hash
+      end
+
+      class Attachment < Zavudev::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Zavudev::MessageSendParams::Attachment,
+              Zavudev::Internal::AnyHash
+            )
+          end
+
+        # Name of the attached file.
+        sig { returns(String) }
+        attr_accessor :filename
+
+        # Content of the attached file as a Base64-encoded string.
+        sig { returns(T.nilable(String)) }
+        attr_reader :content
+
+        sig { params(content: String).void }
+        attr_writer :content
+
+        # Content ID for inline images. Reference in HTML as
+        # `<img src="cid:your_content_id">`.
+        sig { returns(T.nilable(String)) }
+        attr_reader :content_id
+
+        sig { params(content_id: String).void }
+        attr_writer :content_id
+
+        # MIME type of the attachment. If not set, will be derived from the filename.
+        sig { returns(T.nilable(String)) }
+        attr_reader :content_type
+
+        sig { params(content_type: String).void }
+        attr_writer :content_type
+
+        # URL where the attachment file is hosted. The server will fetch the file.
+        sig { returns(T.nilable(String)) }
+        attr_reader :path
+
+        sig { params(path: String).void }
+        attr_writer :path
+
+        # Email attachment. Provide either `content` (base64) or `path` (URL), not both.
+        sig do
+          params(
+            filename: String,
+            content: String,
+            content_id: String,
+            content_type: String,
+            path: String
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Name of the attached file.
+          filename:,
+          # Content of the attached file as a Base64-encoded string.
+          content: nil,
+          # Content ID for inline images. Reference in HTML as
+          # `<img src="cid:your_content_id">`.
+          content_id: nil,
+          # MIME type of the attachment. If not set, will be derived from the filename.
+          content_type: nil,
+          # URL where the attachment file is hosted. The server will fetch the file.
+          path: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              filename: String,
+              content: String,
+              content_id: String,
+              content_type: String,
+              path: String
+            }
+          )
+        end
+        def to_hash
+        end
       end
     end
   end

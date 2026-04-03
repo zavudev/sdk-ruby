@@ -24,6 +24,7 @@ module Zavudev
 
       def send_: (
         to: String,
+        ?attachments: ::Array[Zavudev::MessageSendParams::Attachment],
         ?channel: Zavudev::Models::channel,
         ?content: Zavudev::MessageContent,
         ?fallback_enabled: bool,
