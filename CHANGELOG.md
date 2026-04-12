@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.6.0 (2026-04-12)
+
+Full Changelog: [v0.5.0...v0.6.0](https://github.com/zavudev/sdk-ruby/compare/v0.5.0...v0.6.0)
+
+### Features
+
+* **api:** api update ([e8f0d51](https://github.com/zavudev/sdk-ruby/commit/e8f0d51ff5eab8b1a35aa443188197929ce80b66))
+
+
+### Bug Fixes
+
+* multipart encoding for file arrays ([b578a65](https://github.com/zavudev/sdk-ruby/commit/b578a6587fc86e324b69dd9397a719db1b4e9f5a))
+
 ## 0.5.0 (2026-04-03)
 
 Full Changelog: [v0.4.1...v0.5.0](https://github.com/zavudev/sdk-ruby/compare/v0.4.1...v0.5.0)

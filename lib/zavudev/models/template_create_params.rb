@@ -8,6 +8,7 @@ module Zavudev
       include Zavudev::Internal::Type::RequestParameters
 
       # @!attribute body
+      #   Default template body. Used when no channel-specific body is set.
       #
       #   @return [String]
       required :body, String
@@ -42,6 +43,24 @@ module Zavudev
       #   @return [Integer, nil]
       optional :code_expiration_minutes, Integer, api_name: :codeExpirationMinutes
 
+      # @!attribute instagram_body
+      #   Channel-specific body for Instagram. Falls back to `body` if not set.
+      #
+      #   @return [String, nil]
+      optional :instagram_body, String, api_name: :instagramBody
+
+      # @!attribute sms_body
+      #   Channel-specific body for SMS. Falls back to `body` if not set.
+      #
+      #   @return [String, nil]
+      optional :sms_body, String, api_name: :smsBody
+
+      # @!attribute telegram_body
+      #   Channel-specific body for Telegram. Falls back to `body` if not set.
+      #
+      #   @return [String, nil]
+      optional :telegram_body, String, api_name: :telegramBody
+
       # @!attribute variables
       #
       #   @return [Array<String>, nil]
@@ -53,8 +72,8 @@ module Zavudev
       #   @return [Symbol, Zavudev::Models::WhatsappCategory, nil]
       optional :whatsapp_category, enum: -> { Zavudev::WhatsappCategory }, api_name: :whatsappCategory
 
-      # @!method initialize(body:, language:, name:, add_security_recommendation: nil, buttons: nil, code_expiration_minutes: nil, variables: nil, whatsapp_category: nil, request_options: {})
-      #   @param body [String]
+      # @!method initialize(body:, language:, name:, add_security_recommendation: nil, buttons: nil, code_expiration_minutes: nil, instagram_body: nil, sms_body: nil, telegram_body: nil, variables: nil, whatsapp_category: nil, request_options: {})
+      #   @param body [String] Default template body. Used when no channel-specific body is set.
       #
       #   @param language [String]
       #
@@ -65,6 +84,12 @@ module Zavudev
       #   @param buttons [Array<Zavudev::Models::TemplateCreateParams::Button>] Template buttons (max 3).
       #
       #   @param code_expiration_minutes [Integer] Code expiration time in minutes. Only for AUTHENTICATION templates.
+      #
+      #   @param instagram_body [String] Channel-specific body for Instagram. Falls back to `body` if not set.
+      #
+      #   @param sms_body [String] Channel-specific body for SMS. Falls back to `body` if not set.
+      #
+      #   @param telegram_body [String] Channel-specific body for Telegram. Falls back to `body` if not set.
       #
       #   @param variables [Array<String>]
       #

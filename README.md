@@ -26,7 +26,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "zavudev", "~> 0.5.0"
+gem "zavudev", "~> 0.6.0"
 ```
 
 <!-- x-release-please-end -->

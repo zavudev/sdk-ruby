@@ -8,6 +8,9 @@ module Zavudev
         add_security_recommendation: bool,
         buttons: ::Array[Zavudev::TemplateCreateParams::Button],
         code_expiration_minutes: Integer,
+        instagram_body: String,
+        sms_body: String,
+        telegram_body: String,
         variables: ::Array[String],
         whatsapp_category: Zavudev::Models::whatsapp_category
       }
@@ -37,6 +40,18 @@ module Zavudev
 
       def code_expiration_minutes=: (Integer) -> Integer
 
+      attr_reader instagram_body: String?
+
+      def instagram_body=: (String) -> String
+
+      attr_reader sms_body: String?
+
+      def sms_body=: (String) -> String
+
+      attr_reader telegram_body: String?
+
+      def telegram_body=: (String) -> String
+
       attr_reader variables: ::Array[String]?
 
       def variables=: (::Array[String]) -> ::Array[String]
@@ -54,6 +69,9 @@ module Zavudev
         ?add_security_recommendation: bool,
         ?buttons: ::Array[Zavudev::TemplateCreateParams::Button],
         ?code_expiration_minutes: Integer,
+        ?instagram_body: String,
+        ?sms_body: String,
+        ?telegram_body: String,
         ?variables: ::Array[String],
         ?whatsapp_category: Zavudev::Models::whatsapp_category,
         ?request_options: Zavudev::request_opts
@@ -66,6 +84,9 @@ module Zavudev
         add_security_recommendation: bool,
         buttons: ::Array[Zavudev::TemplateCreateParams::Button],
         code_expiration_minutes: Integer,
+        instagram_body: String,
+        sms_body: String,
+        telegram_body: String,
         variables: ::Array[String],
         whatsapp_category: Zavudev::Models::whatsapp_category,
         request_options: Zavudev::RequestOptions

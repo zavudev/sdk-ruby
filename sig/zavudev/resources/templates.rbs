@@ -8,6 +8,9 @@ module Zavudev
         ?add_security_recommendation: bool,
         ?buttons: ::Array[Zavudev::TemplateCreateParams::Button],
         ?code_expiration_minutes: Integer,
+        ?instagram_body: String,
+        ?sms_body: String,
+        ?telegram_body: String,
         ?variables: ::Array[String],
         ?whatsapp_category: Zavudev::Models::whatsapp_category,
         ?request_options: Zavudev::request_opts

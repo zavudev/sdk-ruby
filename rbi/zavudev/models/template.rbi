@@ -9,7 +9,8 @@ module Zavudev
       sig { returns(String) }
       attr_accessor :id
 
-      # Template body with variables: {{1}}, {{2}}, etc.
+      # Default template body with variables: {{1}}, {{2}}, or named variables like
+      # {{contact.first_name}}. Used when no channel-specific body is set.
       sig { returns(String) }
       attr_accessor :body
 
@@ -21,7 +22,7 @@ module Zavudev
       sig { returns(String) }
       attr_accessor :language
 
-      # Template name (must match WhatsApp template name).
+      # Template name. For WhatsApp, must match the approved template name in Meta.
       sig { returns(String) }
       attr_accessor :name
 
@@ -73,11 +74,32 @@ module Zavudev
       sig { params(header_type: String).void }
       attr_writer :header_type
 
+      # Channel-specific body for Instagram messages. Falls back to `body` if not set.
+      sig { returns(T.nilable(String)) }
+      attr_reader :instagram_body
+
+      sig { params(instagram_body: String).void }
+      attr_writer :instagram_body
+
+      # Channel-specific body for SMS messages. Falls back to `body` if not set.
+      sig { returns(T.nilable(String)) }
+      attr_reader :sms_body
+
+      sig { params(sms_body: String).void }
+      attr_writer :sms_body
+
       sig { returns(T.nilable(Zavudev::Template::Status::TaggedSymbol)) }
       attr_reader :status
 
       sig { params(status: Zavudev::Template::Status::OrSymbol).void }
       attr_writer :status
+
+      # Channel-specific body for Telegram messages. Falls back to `body` if not set.
+      sig { returns(T.nilable(String)) }
+      attr_reader :telegram_body
+
+      sig { params(telegram_body: String).void }
+      attr_writer :telegram_body
 
       sig { returns(T.nilable(Time)) }
       attr_reader :updated_at
@@ -113,7 +135,10 @@ module Zavudev
           footer: String,
           header_content: String,
           header_type: String,
+          instagram_body: String,
+          sms_body: String,
           status: Zavudev::Template::Status::OrSymbol,
+          telegram_body: String,
           updated_at: Time,
           variables: T::Array[String],
           whatsapp: Zavudev::Template::Whatsapp::OrHash
@@ -121,13 +146,14 @@ module Zavudev
       end
       def self.new(
         id:,
-        # Template body with variables: {{1}}, {{2}}, etc.
+        # Default template body with variables: {{1}}, {{2}}, or named variables like
+        # {{contact.first_name}}. Used when no channel-specific body is set.
         body:,
         # WhatsApp template category.
         category:,
         # Language code.
         language:,
-        # Template name (must match WhatsApp template name).
+        # Template name. For WhatsApp, must match the approved template name in Meta.
         name:,
         # Add 'Do not share this code' disclaimer. Only for AUTHENTICATION templates.
         add_security_recommendation: nil,
@@ -142,7 +168,13 @@ module Zavudev
         header_content: nil,
         # Type of header (text, image, video, document).
         header_type: nil,
+        # Channel-specific body for Instagram messages. Falls back to `body` if not set.
+        instagram_body: nil,
+        # Channel-specific body for SMS messages. Falls back to `body` if not set.
+        sms_body: nil,
         status: nil,
+        # Channel-specific body for Telegram messages. Falls back to `body` if not set.
+        telegram_body: nil,
         updated_at: nil,
         # List of variable names for documentation.
         variables: nil,
@@ -166,7 +198,10 @@ module Zavudev
             footer: String,
             header_content: String,
             header_type: String,
+            instagram_body: String,
+            sms_body: String,
             status: Zavudev::Template::Status::TaggedSymbol,
+            telegram_body: String,
             updated_at: Time,
             variables: T::Array[String],
             whatsapp: Zavudev::Template::Whatsapp
