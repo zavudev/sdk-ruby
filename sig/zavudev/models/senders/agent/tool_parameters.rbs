@@ -1,0 +1,60 @@
+module Zavudev
+  module Models
+    module Senders
+      module Agent
+        type tool_parameters =
+          {
+            properties: ::Hash[Symbol, Zavudev::Senders::Agent::ToolParameters::Property],
+            required: ::Array[String],
+            type: Zavudev::Models::Senders::Agent::ToolParameters::type_
+          }
+
+        class ToolParameters < Zavudev::Internal::Type::BaseModel
+          attr_accessor properties: ::Hash[Symbol, Zavudev::Senders::Agent::ToolParameters::Property]
+
+          attr_accessor required: ::Array[String]
+
+          attr_accessor type: Zavudev::Models::Senders::Agent::ToolParameters::type_
+
+          def initialize: (
+            properties: ::Hash[Symbol, Zavudev::Senders::Agent::ToolParameters::Property],
+            required: ::Array[String],
+            type: Zavudev::Models::Senders::Agent::ToolParameters::type_
+          ) -> void
+
+          def to_hash: -> {
+            properties: ::Hash[Symbol, Zavudev::Senders::Agent::ToolParameters::Property],
+            required: ::Array[String],
+            type: Zavudev::Models::Senders::Agent::ToolParameters::type_
+          }
+
+          type property = { description: String, type: String }
+
+          class Property < Zavudev::Internal::Type::BaseModel
+            attr_reader description: String?
+
+            def description=: (String) -> String
+
+            attr_reader type: String?
+
+            def type=: (String) -> String
+
+            def initialize: (?description: String, ?type: String) -> void
+
+            def to_hash: -> { description: String, type: String }
+          end
+
+          type type_ = :object
+
+          module Type
+            extend Zavudev::Internal::Type::Enum
+
+            OBJECT: :object
+
+            def self?.values: -> ::Array[Zavudev::Models::Senders::Agent::ToolParameters::type_]
+          end
+        end
+      end
+    end
+  end
+end

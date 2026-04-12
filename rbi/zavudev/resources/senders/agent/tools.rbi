@@ -11,8 +11,7 @@ module Zavudev
               sender_id: String,
               description: String,
               name: String,
-              parameters:
-                Zavudev::Senders::Agent::ToolCreateParams::Parameters::OrHash,
+              parameters: Zavudev::Senders::Agent::ToolParameters::OrHash,
               webhook_url: String,
               enabled: T::Boolean,
               webhook_secret: String,
@@ -52,8 +51,7 @@ module Zavudev
               description: String,
               enabled: T::Boolean,
               name: String,
-              parameters:
-                Zavudev::Senders::Agent::ToolUpdateParams::Parameters::OrHash,
+              parameters: Zavudev::Senders::Agent::ToolParameters::OrHash,
               webhook_secret: T.nilable(String),
               webhook_url: String,
               request_options: Zavudev::RequestOptions::OrHash

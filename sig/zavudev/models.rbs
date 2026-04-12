@@ -53,6 +53,8 @@ module Zavudev
 
   class Contact = Zavudev::Models::Contact
 
+  class ContactChannel = Zavudev::Models::ContactChannel
+
   class ContactListParams = Zavudev::Models::ContactListParams
 
   class ContactRetrieveByPhoneParams = Zavudev::Models::ContactRetrieveByPhoneParams

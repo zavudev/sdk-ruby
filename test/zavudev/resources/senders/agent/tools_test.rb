@@ -82,7 +82,7 @@ class Zavudev::Test::Resources::Senders::Agent::ToolsTest < Zavudev::Test::Resou
         description: String,
         enabled: Zavudev::Internal::Type::Boolean,
         name: String,
-        parameters: Zavudev::Senders::Agent::AgentTool::Parameters,
+        parameters: Zavudev::Senders::Agent::ToolParameters,
         updated_at: Time,
         webhook_url: String
       }

@@ -10,12 +10,8 @@ module Zavudev
             params(
               sender_id: String,
               name: String,
-              steps:
-                T::Array[
-                  Zavudev::Senders::Agent::FlowCreateParams::Step::OrHash
-                ],
-              trigger:
-                Zavudev::Senders::Agent::FlowCreateParams::Trigger::OrHash,
+              steps: T::Array[Zavudev::Senders::Agent::FlowStep::OrHash],
+              trigger: Zavudev::Senders::Agent::FlowTrigger::OrHash,
               description: String,
               enabled: T::Boolean,
               priority: Integer,
@@ -54,12 +50,8 @@ module Zavudev
               enabled: T::Boolean,
               name: String,
               priority: Integer,
-              steps:
-                T::Array[
-                  Zavudev::Senders::Agent::FlowUpdateParams::Step::OrHash
-                ],
-              trigger:
-                Zavudev::Senders::Agent::FlowUpdateParams::Trigger::OrHash,
+              steps: T::Array[Zavudev::Senders::Agent::FlowStep::OrHash],
+              trigger: Zavudev::Senders::Agent::FlowTrigger::OrHash,
               request_options: Zavudev::RequestOptions::OrHash
             ).returns(Zavudev::Models::Senders::Agent::FlowUpdateResponse)
           end

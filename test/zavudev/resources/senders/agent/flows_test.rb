@@ -84,8 +84,8 @@ class Zavudev::Test::Resources::Senders::Agent::FlowsTest < Zavudev::Test::Resou
         enabled: Zavudev::Internal::Type::Boolean,
         name: String,
         priority: Integer,
-        steps: ^(Zavudev::Internal::Type::ArrayOf[Zavudev::Senders::Agent::AgentFlow::Step]),
-        trigger: Zavudev::Senders::Agent::AgentFlow::Trigger,
+        steps: ^(Zavudev::Internal::Type::ArrayOf[Zavudev::Senders::Agent::FlowStep]),
+        trigger: Zavudev::Senders::Agent::FlowTrigger,
         updated_at: Time,
         description: String | nil
       }
