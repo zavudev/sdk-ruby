@@ -22,8 +22,9 @@ module Zavudev
       optional :attachments, -> { Zavudev::Internal::Type::ArrayOf[Zavudev::MessageSendParams::Attachment] }
 
       # @!attribute channel
-      #   Delivery channel. Use 'auto' for intelligent routing. If omitted with non-text
-      #   messageType, WhatsApp is used. For email recipients, defaults to 'email'.
+      #   Delivery channel. Use 'auto' for intelligent routing. If omitted, channel is
+      #   auto-selected based on sender capabilities and recipient type. For email
+      #   recipients, defaults to 'email'.
       #
       #   @return [Symbol, Zavudev::Models::Channel, nil]
       optional :channel, enum: -> { Zavudev::Channel }
@@ -104,7 +105,7 @@ module Zavudev
       #
       #   @param attachments [Array<Zavudev::Models::MessageSendParams::Attachment>] Email attachments. Only supported when channel is 'email'. Maximum 40MB total si
       #
-      #   @param channel [Symbol, Zavudev::Models::Channel] Delivery channel. Use 'auto' for intelligent routing. If omitted with non-text m
+      #   @param channel [Symbol, Zavudev::Models::Channel] Delivery channel. Use 'auto' for intelligent routing. If omitted, channel is aut
       #
       #   @param content [Zavudev::Models::MessageContent] Additional content for non-text message types.
       #

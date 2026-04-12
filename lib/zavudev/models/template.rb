@@ -10,7 +10,8 @@ module Zavudev
       required :id, String
 
       # @!attribute body
-      #   Template body with variables: {{1}}, {{2}}, etc.
+      #   Default template body with variables: {{1}}, {{2}}, or named variables like
+      #   {{contact.first_name}}. Used when no channel-specific body is set.
       #
       #   @return [String]
       required :body, String
@@ -28,7 +29,7 @@ module Zavudev
       required :language, String
 
       # @!attribute name
-      #   Template name (must match WhatsApp template name).
+      #   Template name. For WhatsApp, must match the approved template name in Meta.
       #
       #   @return [String]
       required :name, String
@@ -76,10 +77,28 @@ module Zavudev
       #   @return [String, nil]
       optional :header_type, String, api_name: :headerType
 
+      # @!attribute instagram_body
+      #   Channel-specific body for Instagram messages. Falls back to `body` if not set.
+      #
+      #   @return [String, nil]
+      optional :instagram_body, String, api_name: :instagramBody
+
+      # @!attribute sms_body
+      #   Channel-specific body for SMS messages. Falls back to `body` if not set.
+      #
+      #   @return [String, nil]
+      optional :sms_body, String, api_name: :smsBody
+
       # @!attribute status
       #
       #   @return [Symbol, Zavudev::Models::Template::Status, nil]
       optional :status, enum: -> { Zavudev::Template::Status }
+
+      # @!attribute telegram_body
+      #   Channel-specific body for Telegram messages. Falls back to `body` if not set.
+      #
+      #   @return [String, nil]
+      optional :telegram_body, String, api_name: :telegramBody
 
       # @!attribute updated_at
       #
@@ -98,16 +117,19 @@ module Zavudev
       #   @return [Zavudev::Models::Template::Whatsapp, nil]
       optional :whatsapp, -> { Zavudev::Template::Whatsapp }
 
-      # @!method initialize(id:, body:, category:, language:, name:, add_security_recommendation: nil, buttons: nil, code_expiration_minutes: nil, created_at: nil, footer: nil, header_content: nil, header_type: nil, status: nil, updated_at: nil, variables: nil, whatsapp: nil)
+      # @!method initialize(id:, body:, category:, language:, name:, add_security_recommendation: nil, buttons: nil, code_expiration_minutes: nil, created_at: nil, footer: nil, header_content: nil, header_type: nil, instagram_body: nil, sms_body: nil, status: nil, telegram_body: nil, updated_at: nil, variables: nil, whatsapp: nil)
+      #   Some parameter documentations has been truncated, see
+      #   {Zavudev::Models::Template} for more details.
+      #
       #   @param id [String]
       #
-      #   @param body [String] Template body with variables: {{1}}, {{2}}, etc.
+      #   @param body [String] Default template body with variables: {{1}}, {{2}}, or named variables like {{co
       #
       #   @param category [Symbol, Zavudev::Models::WhatsappCategory] WhatsApp template category.
       #
       #   @param language [String] Language code.
       #
-      #   @param name [String] Template name (must match WhatsApp template name).
+      #   @param name [String] Template name. For WhatsApp, must match the approved template name in Meta.
       #
       #   @param add_security_recommendation [Boolean] Add 'Do not share this code' disclaimer. Only for AUTHENTICATION templates.
       #
@@ -123,7 +145,13 @@ module Zavudev
       #
       #   @param header_type [String] Type of header (text, image, video, document).
       #
+      #   @param instagram_body [String] Channel-specific body for Instagram messages. Falls back to `body` if not set.
+      #
+      #   @param sms_body [String] Channel-specific body for SMS messages. Falls back to `body` if not set.
+      #
       #   @param status [Symbol, Zavudev::Models::Template::Status]
+      #
+      #   @param telegram_body [String] Channel-specific body for Telegram messages. Falls back to `body` if not set.
       #
       #   @param updated_at [Time]
       #

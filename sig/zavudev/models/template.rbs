@@ -14,7 +14,10 @@ module Zavudev
         footer: String,
         header_content: String,
         header_type: String,
+        instagram_body: String,
+        sms_body: String,
         status: Zavudev::Models::Template::status,
+        telegram_body: String,
         updated_at: Time,
         variables: ::Array[String],
         whatsapp: Zavudev::Template::Whatsapp
@@ -61,11 +64,23 @@ module Zavudev
 
       def header_type=: (String) -> String
 
+      attr_reader instagram_body: String?
+
+      def instagram_body=: (String) -> String
+
+      attr_reader sms_body: String?
+
+      def sms_body=: (String) -> String
+
       attr_reader status: Zavudev::Models::Template::status?
 
       def status=: (
         Zavudev::Models::Template::status
       ) -> Zavudev::Models::Template::status
+
+      attr_reader telegram_body: String?
+
+      def telegram_body=: (String) -> String
 
       attr_reader updated_at: Time?
 
@@ -94,7 +109,10 @@ module Zavudev
         ?footer: String,
         ?header_content: String,
         ?header_type: String,
+        ?instagram_body: String,
+        ?sms_body: String,
         ?status: Zavudev::Models::Template::status,
+        ?telegram_body: String,
         ?updated_at: Time,
         ?variables: ::Array[String],
         ?whatsapp: Zavudev::Template::Whatsapp
@@ -113,7 +131,10 @@ module Zavudev
         footer: String,
         header_content: String,
         header_type: String,
+        instagram_body: String,
+        sms_body: String,
         status: Zavudev::Models::Template::status,
+        telegram_body: String,
         updated_at: Time,
         variables: ::Array[String],
         whatsapp: Zavudev::Template::Whatsapp

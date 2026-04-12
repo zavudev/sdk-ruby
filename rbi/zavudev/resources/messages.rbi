@@ -100,9 +100,9 @@ module Zavudev
         # Body param: Email attachments. Only supported when channel is 'email'. Maximum
         # 40MB total size.
         attachments: nil,
-        # Body param: Delivery channel. Use 'auto' for intelligent routing. If omitted
-        # with non-text messageType, WhatsApp is used. For email recipients, defaults to
-        # 'email'.
+        # Body param: Delivery channel. Use 'auto' for intelligent routing. If omitted,
+        # channel is auto-selected based on sender capabilities and recipient type. For
+        # email recipients, defaults to 'email'.
         channel: nil,
         # Body param: Additional content for non-text message types.
         content: nil,
