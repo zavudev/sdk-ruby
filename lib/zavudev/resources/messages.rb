@@ -113,7 +113,7 @@ module Zavudev
       #
       # @param attachments [Array<Zavudev::Models::MessageSendParams::Attachment>] Body param: Email attachments. Only supported when channel is 'email'. Maximum 4
       #
-      # @param channel [Symbol, Zavudev::Models::Channel] Body param: Delivery channel. Use 'auto' for intelligent routing. If omitted wit
+      # @param channel [Symbol, Zavudev::Models::Channel] Body param: Delivery channel. Use 'auto' for intelligent routing. If omitted, ch
       #
       # @param content [Zavudev::Models::MessageContent] Body param: Additional content for non-text message types.
       #

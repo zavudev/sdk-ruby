@@ -31,7 +31,10 @@ class Zavudev::Test::Resources::TemplatesTest < Zavudev::Test::ResourceTest
         footer: String | nil,
         header_content: String | nil,
         header_type: String | nil,
+        instagram_body: String | nil,
+        sms_body: String | nil,
         status: Zavudev::Template::Status | nil,
+        telegram_body: String | nil,
         updated_at: Time | nil,
         variables: ^(Zavudev::Internal::Type::ArrayOf[String]) | nil,
         whatsapp: Zavudev::Template::Whatsapp | nil
@@ -62,7 +65,10 @@ class Zavudev::Test::Resources::TemplatesTest < Zavudev::Test::ResourceTest
         footer: String | nil,
         header_content: String | nil,
         header_type: String | nil,
+        instagram_body: String | nil,
+        sms_body: String | nil,
         status: Zavudev::Template::Status | nil,
+        telegram_body: String | nil,
         updated_at: Time | nil,
         variables: ^(Zavudev::Internal::Type::ArrayOf[String]) | nil,
         whatsapp: Zavudev::Template::Whatsapp | nil
@@ -100,7 +106,10 @@ class Zavudev::Test::Resources::TemplatesTest < Zavudev::Test::ResourceTest
         footer: String | nil,
         header_content: String | nil,
         header_type: String | nil,
+        instagram_body: String | nil,
+        sms_body: String | nil,
         status: Zavudev::Template::Status | nil,
+        telegram_body: String | nil,
         updated_at: Time | nil,
         variables: ^(Zavudev::Internal::Type::ArrayOf[String]) | nil,
         whatsapp: Zavudev::Template::Whatsapp | nil
@@ -141,7 +150,10 @@ class Zavudev::Test::Resources::TemplatesTest < Zavudev::Test::ResourceTest
         footer: String | nil,
         header_content: String | nil,
         header_type: String | nil,
+        instagram_body: String | nil,
+        sms_body: String | nil,
         status: Zavudev::Template::Status | nil,
+        telegram_body: String | nil,
         updated_at: Time | nil,
         variables: ^(Zavudev::Internal::Type::ArrayOf[String]) | nil,
         whatsapp: Zavudev::Template::Whatsapp | nil

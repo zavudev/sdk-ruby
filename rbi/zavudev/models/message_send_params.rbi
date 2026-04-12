@@ -30,8 +30,9 @@ module Zavudev
       end
       attr_writer :attachments
 
-      # Delivery channel. Use 'auto' for intelligent routing. If omitted with non-text
-      # messageType, WhatsApp is used. For email recipients, defaults to 'email'.
+      # Delivery channel. Use 'auto' for intelligent routing. If omitted, channel is
+      # auto-selected based on sender capabilities and recipient type. For email
+      # recipients, defaults to 'email'.
       sig { returns(T.nilable(Zavudev::Channel::OrSymbol)) }
       attr_reader :channel
 
@@ -143,8 +144,9 @@ module Zavudev
         # Email attachments. Only supported when channel is 'email'. Maximum 40MB total
         # size.
         attachments: nil,
-        # Delivery channel. Use 'auto' for intelligent routing. If omitted with non-text
-        # messageType, WhatsApp is used. For email recipients, defaults to 'email'.
+        # Delivery channel. Use 'auto' for intelligent routing. If omitted, channel is
+        # auto-selected based on sender capabilities and recipient type. For email
+        # recipients, defaults to 'email'.
         channel: nil,
         # Additional content for non-text message types.
         content: nil,

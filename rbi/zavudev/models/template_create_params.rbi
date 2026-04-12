@@ -11,6 +11,7 @@ module Zavudev
           T.any(Zavudev::TemplateCreateParams, Zavudev::Internal::AnyHash)
         end
 
+      # Default template body. Used when no channel-specific body is set.
       sig { returns(String) }
       attr_accessor :body
 
@@ -47,6 +48,27 @@ module Zavudev
       sig { params(code_expiration_minutes: Integer).void }
       attr_writer :code_expiration_minutes
 
+      # Channel-specific body for Instagram. Falls back to `body` if not set.
+      sig { returns(T.nilable(String)) }
+      attr_reader :instagram_body
+
+      sig { params(instagram_body: String).void }
+      attr_writer :instagram_body
+
+      # Channel-specific body for SMS. Falls back to `body` if not set.
+      sig { returns(T.nilable(String)) }
+      attr_reader :sms_body
+
+      sig { params(sms_body: String).void }
+      attr_writer :sms_body
+
+      # Channel-specific body for Telegram. Falls back to `body` if not set.
+      sig { returns(T.nilable(String)) }
+      attr_reader :telegram_body
+
+      sig { params(telegram_body: String).void }
+      attr_writer :telegram_body
+
       sig { returns(T.nilable(T::Array[String])) }
       attr_reader :variables
 
@@ -70,12 +92,16 @@ module Zavudev
           add_security_recommendation: T::Boolean,
           buttons: T::Array[Zavudev::TemplateCreateParams::Button::OrHash],
           code_expiration_minutes: Integer,
+          instagram_body: String,
+          sms_body: String,
+          telegram_body: String,
           variables: T::Array[String],
           whatsapp_category: Zavudev::WhatsappCategory::OrSymbol,
           request_options: Zavudev::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # Default template body. Used when no channel-specific body is set.
         body:,
         language:,
         name:,
@@ -85,6 +111,12 @@ module Zavudev
         buttons: nil,
         # Code expiration time in minutes. Only for AUTHENTICATION templates.
         code_expiration_minutes: nil,
+        # Channel-specific body for Instagram. Falls back to `body` if not set.
+        instagram_body: nil,
+        # Channel-specific body for SMS. Falls back to `body` if not set.
+        sms_body: nil,
+        # Channel-specific body for Telegram. Falls back to `body` if not set.
+        telegram_body: nil,
         variables: nil,
         # WhatsApp template category.
         whatsapp_category: nil,
@@ -101,6 +133,9 @@ module Zavudev
             add_security_recommendation: T::Boolean,
             buttons: T::Array[Zavudev::TemplateCreateParams::Button],
             code_expiration_minutes: Integer,
+            instagram_body: String,
+            sms_body: String,
+            telegram_body: String,
             variables: T::Array[String],
             whatsapp_category: Zavudev::WhatsappCategory::OrSymbol,
             request_options: Zavudev::RequestOptions
