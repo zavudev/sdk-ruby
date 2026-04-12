@@ -93,6 +93,8 @@ module Zavudev
 
   Contact = Zavudev::Models::Contact
 
+  ContactChannel = Zavudev::Models::ContactChannel
+
   ContactListParams = Zavudev::Models::ContactListParams
 
   ContactRetrieveByPhoneParams = Zavudev::Models::ContactRetrieveByPhoneParams

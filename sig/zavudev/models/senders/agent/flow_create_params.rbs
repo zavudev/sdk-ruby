@@ -6,8 +6,8 @@ module Zavudev
           {
             sender_id: String,
             name: String,
-            steps: ::Array[Zavudev::Senders::Agent::FlowCreateParams::Step],
-            trigger: Zavudev::Senders::Agent::FlowCreateParams::Trigger,
+            steps: ::Array[Zavudev::Senders::Agent::FlowStep],
+            trigger: Zavudev::Senders::Agent::FlowTrigger,
             description: String,
             enabled: bool,
             priority: Integer
@@ -22,9 +22,9 @@ module Zavudev
 
           attr_accessor name: String
 
-          attr_accessor steps: ::Array[Zavudev::Senders::Agent::FlowCreateParams::Step]
+          attr_accessor steps: ::Array[Zavudev::Senders::Agent::FlowStep]
 
-          attr_accessor trigger: Zavudev::Senders::Agent::FlowCreateParams::Trigger
+          attr_accessor trigger: Zavudev::Senders::Agent::FlowTrigger
 
           attr_reader description: String?
 
@@ -41,8 +41,8 @@ module Zavudev
           def initialize: (
             sender_id: String,
             name: String,
-            steps: ::Array[Zavudev::Senders::Agent::FlowCreateParams::Step],
-            trigger: Zavudev::Senders::Agent::FlowCreateParams::Trigger,
+            steps: ::Array[Zavudev::Senders::Agent::FlowStep],
+            trigger: Zavudev::Senders::Agent::FlowTrigger,
             ?description: String,
             ?enabled: bool,
             ?priority: Integer,
@@ -52,105 +52,13 @@ module Zavudev
           def to_hash: -> {
             sender_id: String,
             name: String,
-            steps: ::Array[Zavudev::Senders::Agent::FlowCreateParams::Step],
-            trigger: Zavudev::Senders::Agent::FlowCreateParams::Trigger,
+            steps: ::Array[Zavudev::Senders::Agent::FlowStep],
+            trigger: Zavudev::Senders::Agent::FlowTrigger,
             description: String,
             enabled: bool,
             priority: Integer,
             request_options: Zavudev::RequestOptions
           }
-
-          type step =
-            {
-              id: String,
-              config: ::Hash[Symbol, top],
-              type: Zavudev::Models::Senders::Agent::FlowCreateParams::Step::type_,
-              next_step_id: String?
-            }
-
-          class Step < Zavudev::Internal::Type::BaseModel
-            attr_accessor id: String
-
-            attr_accessor config: ::Hash[Symbol, top]
-
-            attr_accessor type: Zavudev::Models::Senders::Agent::FlowCreateParams::Step::type_
-
-            attr_accessor next_step_id: String?
-
-            def initialize: (
-              id: String,
-              config: ::Hash[Symbol, top],
-              type: Zavudev::Models::Senders::Agent::FlowCreateParams::Step::type_,
-              ?next_step_id: String?
-            ) -> void
-
-            def to_hash: -> {
-              id: String,
-              config: ::Hash[Symbol, top],
-              type: Zavudev::Models::Senders::Agent::FlowCreateParams::Step::type_,
-              next_step_id: String?
-            }
-
-            type type_ =
-              :message | :collect | :condition | :tool | :llm | :transfer
-
-            module Type
-              extend Zavudev::Internal::Type::Enum
-
-              MESSAGE: :message
-              COLLECT: :collect
-              CONDITION: :condition
-              TOOL: :tool
-              LLM: :llm
-              TRANSFER: :transfer
-
-              def self?.values: -> ::Array[Zavudev::Models::Senders::Agent::FlowCreateParams::Step::type_]
-            end
-          end
-
-          type trigger =
-            {
-              type: Zavudev::Models::Senders::Agent::FlowCreateParams::Trigger::type_,
-              intent: String,
-              keywords: ::Array[String]
-            }
-
-          class Trigger < Zavudev::Internal::Type::BaseModel
-            attr_accessor type: Zavudev::Models::Senders::Agent::FlowCreateParams::Trigger::type_
-
-            attr_reader intent: String?
-
-            def intent=: (String) -> String
-
-            attr_reader keywords: ::Array[String]?
-
-            def keywords=: (::Array[String]) -> ::Array[String]
-
-            def initialize: (
-              type: Zavudev::Models::Senders::Agent::FlowCreateParams::Trigger::type_,
-              ?intent: String,
-              ?keywords: ::Array[String]
-            ) -> void
-
-            def to_hash: -> {
-              type: Zavudev::Models::Senders::Agent::FlowCreateParams::Trigger::type_,
-              intent: String,
-              keywords: ::Array[String]
-            }
-
-            type type_ = :keyword | :intent | :always | :manual
-
-            module Type
-              extend Zavudev::Internal::Type::Enum
-
-              KEYWORD: :keyword
-              INTENT: :intent
-              ALWAYS: :always
-              MANUAL: :manual
-
-              def self?.values: -> ::Array[Zavudev::Models::Senders::Agent::FlowCreateParams::Trigger::type_]
-            end
-          end
         end
       end
     end

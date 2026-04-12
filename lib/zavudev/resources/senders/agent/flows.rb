@@ -11,8 +11,8 @@ module Zavudev
           #
           # @param sender_id [String]
           # @param name [String]
-          # @param steps [Array<Zavudev::Models::Senders::Agent::FlowCreateParams::Step>]
-          # @param trigger [Zavudev::Models::Senders::Agent::FlowCreateParams::Trigger]
+          # @param steps [Array<Zavudev::Models::Senders::Agent::FlowStep>]
+          # @param trigger [Zavudev::Models::Senders::Agent::FlowTrigger]
           # @param description [String]
           # @param enabled [Boolean]
           # @param priority [Integer]
@@ -73,9 +73,9 @@ module Zavudev
           #
           # @param priority [Integer] Body param
           #
-          # @param steps [Array<Zavudev::Models::Senders::Agent::FlowUpdateParams::Step>] Body param
+          # @param steps [Array<Zavudev::Models::Senders::Agent::FlowStep>] Body param
           #
-          # @param trigger [Zavudev::Models::Senders::Agent::FlowUpdateParams::Trigger] Body param
+          # @param trigger [Zavudev::Models::Senders::Agent::FlowTrigger] Body param
           #
           # @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}, nil]
           #

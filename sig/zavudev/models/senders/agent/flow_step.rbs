@@ -1,0 +1,55 @@
+module Zavudev
+  module Models
+    module Senders
+      module Agent
+        type flow_step =
+          {
+            id: String,
+            config: ::Hash[Symbol, top],
+            type: Zavudev::Models::Senders::Agent::FlowStep::type_,
+            next_step_id: String?
+          }
+
+        class FlowStep < Zavudev::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor config: ::Hash[Symbol, top]
+
+          attr_accessor type: Zavudev::Models::Senders::Agent::FlowStep::type_
+
+          attr_accessor next_step_id: String?
+
+          def initialize: (
+            id: String,
+            config: ::Hash[Symbol, top],
+            type: Zavudev::Models::Senders::Agent::FlowStep::type_,
+            ?next_step_id: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            config: ::Hash[Symbol, top],
+            type: Zavudev::Models::Senders::Agent::FlowStep::type_,
+            next_step_id: String?
+          }
+
+          type type_ =
+            :message | :collect | :condition | :tool | :llm | :transfer
+
+          module Type
+            extend Zavudev::Internal::Type::Enum
+
+            MESSAGE: :message
+            COLLECT: :collect
+            CONDITION: :condition
+            TOOL: :tool
+            LLM: :llm
+            TRANSFER: :transfer
+
+            def self?.values: -> ::Array[Zavudev::Models::Senders::Agent::FlowStep::type_]
+          end
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,51 @@
+module Zavudev
+  module Models
+    module Senders
+      module Agent
+        type flow_trigger =
+          {
+            type: Zavudev::Models::Senders::Agent::FlowTrigger::type_,
+            intent: String,
+            keywords: ::Array[String]
+          }
+
+        class FlowTrigger < Zavudev::Internal::Type::BaseModel
+          attr_accessor type: Zavudev::Models::Senders::Agent::FlowTrigger::type_
+
+          attr_reader intent: String?
+
+          def intent=: (String) -> String
+
+          attr_reader keywords: ::Array[String]?
+
+          def keywords=: (::Array[String]) -> ::Array[String]
+
+          def initialize: (
+            type: Zavudev::Models::Senders::Agent::FlowTrigger::type_,
+            ?intent: String,
+            ?keywords: ::Array[String]
+          ) -> void
+
+          def to_hash: -> {
+            type: Zavudev::Models::Senders::Agent::FlowTrigger::type_,
+            intent: String,
+            keywords: ::Array[String]
+          }
+
+          type type_ = :keyword | :intent | :always | :manual
+
+          module Type
+            extend Zavudev::Internal::Type::Enum
+
+            KEYWORD: :keyword
+            INTENT: :intent
+            ALWAYS: :always
+            MANUAL: :manual
+
+            def self?.values: -> ::Array[Zavudev::Models::Senders::Agent::FlowTrigger::type_]
+          end
+        end
+      end
+    end
+  end
+end
