@@ -13,6 +13,9 @@ module Zavudev
           add_security_recommendation: T::Boolean,
           buttons: T::Array[Zavudev::TemplateCreateParams::Button::OrHash],
           code_expiration_minutes: Integer,
+          footer: String,
+          header_content: String,
+          header_type: Zavudev::TemplateCreateParams::HeaderType::OrSymbol,
           instagram_body: String,
           sms_body: String,
           telegram_body: String,
@@ -32,6 +35,12 @@ module Zavudev
         buttons: nil,
         # Code expiration time in minutes. Only for AUTHENTICATION templates.
         code_expiration_minutes: nil,
+        # Footer text for the template.
+        footer: nil,
+        # Header content (text string or media URL).
+        header_content: nil,
+        # Type of header for the template.
+        header_type: nil,
         # Channel-specific body for Instagram. Falls back to `body` if not set.
         instagram_body: nil,
         # Channel-specific body for SMS. Falls back to `body` if not set.
