@@ -39,8 +39,8 @@ module Zavudev
 
           # @!attribute parameters
           #
-          #   @return [Zavudev::Models::Senders::Agent::AgentTool::Parameters]
-          required :parameters, -> { Zavudev::Senders::Agent::AgentTool::Parameters }
+          #   @return [Zavudev::Models::Senders::Agent::ToolParameters]
+          required :parameters, -> { Zavudev::Senders::Agent::ToolParameters }
 
           # @!attribute updated_at
           #
@@ -66,61 +66,11 @@ module Zavudev
           #
           #   @param name [String]
           #
-          #   @param parameters [Zavudev::Models::Senders::Agent::AgentTool::Parameters]
+          #   @param parameters [Zavudev::Models::Senders::Agent::ToolParameters]
           #
           #   @param updated_at [Time]
           #
           #   @param webhook_url [String] HTTPS URL to call when the tool is executed.
-
-          # @see Zavudev::Models::Senders::Agent::AgentTool#parameters
-          class Parameters < Zavudev::Internal::Type::BaseModel
-            # @!attribute properties
-            #
-            #   @return [Hash{Symbol=>Zavudev::Models::Senders::Agent::AgentTool::Parameters::Property}]
-            required :properties,
-                     -> { Zavudev::Internal::Type::HashOf[Zavudev::Senders::Agent::AgentTool::Parameters::Property] }
-
-            # @!attribute required
-            #
-            #   @return [Array<String>]
-            required :required, Zavudev::Internal::Type::ArrayOf[String]
-
-            # @!attribute type
-            #
-            #   @return [Symbol, Zavudev::Models::Senders::Agent::AgentTool::Parameters::Type]
-            required :type, enum: -> { Zavudev::Senders::Agent::AgentTool::Parameters::Type }
-
-            # @!method initialize(properties:, required:, type:)
-            #   @param properties [Hash{Symbol=>Zavudev::Models::Senders::Agent::AgentTool::Parameters::Property}]
-            #   @param required [Array<String>]
-            #   @param type [Symbol, Zavudev::Models::Senders::Agent::AgentTool::Parameters::Type]
-
-            class Property < Zavudev::Internal::Type::BaseModel
-              # @!attribute description
-              #
-              #   @return [String, nil]
-              optional :description, String
-
-              # @!attribute type
-              #
-              #   @return [String, nil]
-              optional :type, String
-
-              # @!method initialize(description: nil, type: nil)
-              #   @param description [String]
-              #   @param type [String]
-            end
-
-            # @see Zavudev::Models::Senders::Agent::AgentTool::Parameters#type
-            module Type
-              extend Zavudev::Internal::Type::Enum
-
-              OBJECT = :object
-
-              # @!method self.values
-              #   @return [Array<Symbol>]
-            end
-          end
         end
       end
 

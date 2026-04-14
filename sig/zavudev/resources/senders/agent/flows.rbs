@@ -6,8 +6,8 @@ module Zavudev
           def create: (
             String sender_id,
             name: String,
-            steps: ::Array[Zavudev::Senders::Agent::FlowCreateParams::Step],
-            trigger: Zavudev::Senders::Agent::FlowCreateParams::Trigger,
+            steps: ::Array[Zavudev::Senders::Agent::FlowStep],
+            trigger: Zavudev::Senders::Agent::FlowTrigger,
             ?description: String,
             ?enabled: bool,
             ?priority: Integer,
@@ -27,8 +27,8 @@ module Zavudev
             ?enabled: bool,
             ?name: String,
             ?priority: Integer,
-            ?steps: ::Array[Zavudev::Senders::Agent::FlowUpdateParams::Step],
-            ?trigger: Zavudev::Senders::Agent::FlowUpdateParams::Trigger,
+            ?steps: ::Array[Zavudev::Senders::Agent::FlowStep],
+            ?trigger: Zavudev::Senders::Agent::FlowTrigger,
             ?request_options: Zavudev::request_opts
           ) -> Zavudev::Models::Senders::Agent::FlowUpdateResponse
 

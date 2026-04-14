@@ -15,7 +15,7 @@ module Zavudev
           #
           # @param name [String]
           #
-          # @param parameters [Zavudev::Models::Senders::Agent::ToolCreateParams::Parameters]
+          # @param parameters [Zavudev::Models::Senders::Agent::ToolParameters]
           #
           # @param webhook_url [String] Must be HTTPS.
           #
@@ -78,7 +78,7 @@ module Zavudev
           #
           # @param name [String] Body param
           #
-          # @param parameters [Zavudev::Models::Senders::Agent::ToolUpdateParams::Parameters] Body param
+          # @param parameters [Zavudev::Models::Senders::Agent::ToolParameters] Body param
           #
           # @param webhook_secret [String, nil] Body param
           #

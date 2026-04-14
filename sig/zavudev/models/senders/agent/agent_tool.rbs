@@ -12,7 +12,7 @@ module Zavudev
             description: String,
             enabled: bool,
             name: String,
-            parameters: Zavudev::Senders::Agent::AgentTool::Parameters,
+            parameters: Zavudev::Senders::Agent::ToolParameters,
             updated_at: Time,
             webhook_url: String
           }
@@ -30,7 +30,7 @@ module Zavudev
 
           attr_accessor name: String
 
-          attr_accessor parameters: Zavudev::Senders::Agent::AgentTool::Parameters
+          attr_accessor parameters: Zavudev::Senders::Agent::ToolParameters
 
           attr_accessor updated_at: Time
 
@@ -43,7 +43,7 @@ module Zavudev
             description: String,
             enabled: bool,
             name: String,
-            parameters: Zavudev::Senders::Agent::AgentTool::Parameters,
+            parameters: Zavudev::Senders::Agent::ToolParameters,
             updated_at: Time,
             webhook_url: String
           ) -> void
@@ -55,63 +55,10 @@ module Zavudev
             description: String,
             enabled: bool,
             name: String,
-            parameters: Zavudev::Senders::Agent::AgentTool::Parameters,
+            parameters: Zavudev::Senders::Agent::ToolParameters,
             updated_at: Time,
             webhook_url: String
           }
-
-          type parameters =
-            {
-              properties: ::Hash[Symbol, Zavudev::Senders::Agent::AgentTool::Parameters::Property],
-              required: ::Array[String],
-              type: Zavudev::Models::Senders::Agent::AgentTool::Parameters::type_
-            }
-
-          class Parameters < Zavudev::Internal::Type::BaseModel
-            attr_accessor properties: ::Hash[Symbol, Zavudev::Senders::Agent::AgentTool::Parameters::Property]
-
-            attr_accessor required: ::Array[String]
-
-            attr_accessor type: Zavudev::Models::Senders::Agent::AgentTool::Parameters::type_
-
-            def initialize: (
-              properties: ::Hash[Symbol, Zavudev::Senders::Agent::AgentTool::Parameters::Property],
-              required: ::Array[String],
-              type: Zavudev::Models::Senders::Agent::AgentTool::Parameters::type_
-            ) -> void
-
-            def to_hash: -> {
-              properties: ::Hash[Symbol, Zavudev::Senders::Agent::AgentTool::Parameters::Property],
-              required: ::Array[String],
-              type: Zavudev::Models::Senders::Agent::AgentTool::Parameters::type_
-            }
-
-            type property = { description: String, type: String }
-
-            class Property < Zavudev::Internal::Type::BaseModel
-              attr_reader description: String?
-
-              def description=: (String) -> String
-
-              attr_reader type: String?
-
-              def type=: (String) -> String
-
-              def initialize: (?description: String, ?type: String) -> void
-
-              def to_hash: -> { description: String, type: String }
-            end
-
-            type type_ = :object
-
-            module Type
-              extend Zavudev::Internal::Type::Enum
-
-              OBJECT: :object
-
-              def self?.values: -> ::Array[Zavudev::Models::Senders::Agent::AgentTool::Parameters::type_]
-            end
-          end
         end
       end
     end

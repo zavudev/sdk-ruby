@@ -43,6 +43,24 @@ module Zavudev
       #   @return [Integer, nil]
       optional :code_expiration_minutes, Integer, api_name: :codeExpirationMinutes
 
+      # @!attribute footer
+      #   Footer text for the template.
+      #
+      #   @return [String, nil]
+      optional :footer, String
+
+      # @!attribute header_content
+      #   Header content (text string or media URL).
+      #
+      #   @return [String, nil]
+      optional :header_content, String, api_name: :headerContent
+
+      # @!attribute header_type
+      #   Type of header for the template.
+      #
+      #   @return [Symbol, Zavudev::Models::TemplateCreateParams::HeaderType, nil]
+      optional :header_type, enum: -> { Zavudev::TemplateCreateParams::HeaderType }, api_name: :headerType
+
       # @!attribute instagram_body
       #   Channel-specific body for Instagram. Falls back to `body` if not set.
       #
@@ -72,7 +90,7 @@ module Zavudev
       #   @return [Symbol, Zavudev::Models::WhatsappCategory, nil]
       optional :whatsapp_category, enum: -> { Zavudev::WhatsappCategory }, api_name: :whatsappCategory
 
-      # @!method initialize(body:, language:, name:, add_security_recommendation: nil, buttons: nil, code_expiration_minutes: nil, instagram_body: nil, sms_body: nil, telegram_body: nil, variables: nil, whatsapp_category: nil, request_options: {})
+      # @!method initialize(body:, language:, name:, add_security_recommendation: nil, buttons: nil, code_expiration_minutes: nil, footer: nil, header_content: nil, header_type: nil, instagram_body: nil, sms_body: nil, telegram_body: nil, variables: nil, whatsapp_category: nil, request_options: {})
       #   @param body [String] Default template body. Used when no channel-specific body is set.
       #
       #   @param language [String]
@@ -84,6 +102,12 @@ module Zavudev
       #   @param buttons [Array<Zavudev::Models::TemplateCreateParams::Button>] Template buttons (max 3).
       #
       #   @param code_expiration_minutes [Integer] Code expiration time in minutes. Only for AUTHENTICATION templates.
+      #
+      #   @param footer [String] Footer text for the template.
+      #
+      #   @param header_content [String] Header content (text string or media URL).
+      #
+      #   @param header_type [Symbol, Zavudev::Models::TemplateCreateParams::HeaderType] Type of header for the template.
       #
       #   @param instagram_body [String] Channel-specific body for Instagram. Falls back to `body` if not set.
       #
@@ -181,6 +205,19 @@ module Zavudev
           # @!method self.values
           #   @return [Array<Symbol>]
         end
+      end
+
+      # Type of header for the template.
+      module HeaderType
+        extend Zavudev::Internal::Type::Enum
+
+        TEXT = :text
+        IMAGE = :image
+        VIDEO = :video
+        DOCUMENT = :document
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

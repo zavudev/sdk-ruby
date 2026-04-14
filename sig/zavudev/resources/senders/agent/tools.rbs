@@ -7,7 +7,7 @@ module Zavudev
             String sender_id,
             description: String,
             name: String,
-            parameters: Zavudev::Senders::Agent::ToolCreateParams::Parameters,
+            parameters: Zavudev::Senders::Agent::ToolParameters,
             webhook_url: String,
             ?enabled: bool,
             ?webhook_secret: String,
@@ -26,7 +26,7 @@ module Zavudev
             ?description: String,
             ?enabled: bool,
             ?name: String,
-            ?parameters: Zavudev::Senders::Agent::ToolUpdateParams::Parameters,
+            ?parameters: Zavudev::Senders::Agent::ToolParameters,
             ?webhook_secret: String?,
             ?webhook_url: String,
             ?request_options: Zavudev::request_opts

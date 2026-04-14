@@ -1,0 +1,150 @@
+module Zavudev
+  module Models
+    type contact_channel =
+      {
+        id: String,
+        channel: Zavudev::Models::ContactChannel::channel,
+        created_at: Time,
+        identifier: String,
+        is_primary: bool,
+        verified: bool,
+        country_code: String,
+        label: String,
+        last_inbound_at: Time,
+        metadata: ::Hash[Symbol, String],
+        metrics: Zavudev::ContactChannel::Metrics,
+        updated_at: Time
+      }
+
+    class ContactChannel < Zavudev::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor channel: Zavudev::Models::ContactChannel::channel
+
+      attr_accessor created_at: Time
+
+      attr_accessor identifier: String
+
+      attr_accessor is_primary: bool
+
+      attr_accessor verified: bool
+
+      attr_reader country_code: String?
+
+      def country_code=: (String) -> String
+
+      attr_reader label: String?
+
+      def label=: (String) -> String
+
+      attr_reader last_inbound_at: Time?
+
+      def last_inbound_at=: (Time) -> Time
+
+      attr_reader metadata: ::Hash[Symbol, String]?
+
+      def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+      attr_reader metrics: Zavudev::ContactChannel::Metrics?
+
+      def metrics=: (
+        Zavudev::ContactChannel::Metrics
+      ) -> Zavudev::ContactChannel::Metrics
+
+      attr_reader updated_at: Time?
+
+      def updated_at=: (Time) -> Time
+
+      def initialize: (
+        id: String,
+        channel: Zavudev::Models::ContactChannel::channel,
+        created_at: Time,
+        identifier: String,
+        is_primary: bool,
+        verified: bool,
+        ?country_code: String,
+        ?label: String,
+        ?last_inbound_at: Time,
+        ?metadata: ::Hash[Symbol, String],
+        ?metrics: Zavudev::ContactChannel::Metrics,
+        ?updated_at: Time
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        channel: Zavudev::Models::ContactChannel::channel,
+        created_at: Time,
+        identifier: String,
+        is_primary: bool,
+        verified: bool,
+        country_code: String,
+        label: String,
+        last_inbound_at: Time,
+        metadata: ::Hash[Symbol, String],
+        metrics: Zavudev::ContactChannel::Metrics,
+        updated_at: Time
+      }
+
+      type channel = :sms | :whatsapp | :email | :telegram | :voice
+
+      module Channel
+        extend Zavudev::Internal::Type::Enum
+
+        SMS: :sms
+        WHATSAPP: :whatsapp
+        EMAIL: :email
+        TELEGRAM: :telegram
+        VOICE: :voice
+
+        def self?.values: -> ::Array[Zavudev::Models::ContactChannel::channel]
+      end
+
+      type metrics =
+        {
+          avg_delivery_time_ms: Float,
+          failure_count: Integer,
+          last_success_at: Time,
+          success_count: Integer,
+          total_attempts: Integer
+        }
+
+      class Metrics < Zavudev::Internal::Type::BaseModel
+        attr_reader avg_delivery_time_ms: Float?
+
+        def avg_delivery_time_ms=: (Float) -> Float
+
+        attr_reader failure_count: Integer?
+
+        def failure_count=: (Integer) -> Integer
+
+        attr_reader last_success_at: Time?
+
+        def last_success_at=: (Time) -> Time
+
+        attr_reader success_count: Integer?
+
+        def success_count=: (Integer) -> Integer
+
+        attr_reader total_attempts: Integer?
+
+        def total_attempts=: (Integer) -> Integer
+
+        def initialize: (
+          ?avg_delivery_time_ms: Float,
+          ?failure_count: Integer,
+          ?last_success_at: Time,
+          ?success_count: Integer,
+          ?total_attempts: Integer
+        ) -> void
+
+        def to_hash: -> {
+          avg_delivery_time_ms: Float,
+          failure_count: Integer,
+          last_success_at: Time,
+          success_count: Integer,
+          total_attempts: Integer
+        }
+      end
+    end
+  end
+end

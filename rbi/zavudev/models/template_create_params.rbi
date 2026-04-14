@@ -48,6 +48,33 @@ module Zavudev
       sig { params(code_expiration_minutes: Integer).void }
       attr_writer :code_expiration_minutes
 
+      # Footer text for the template.
+      sig { returns(T.nilable(String)) }
+      attr_reader :footer
+
+      sig { params(footer: String).void }
+      attr_writer :footer
+
+      # Header content (text string or media URL).
+      sig { returns(T.nilable(String)) }
+      attr_reader :header_content
+
+      sig { params(header_content: String).void }
+      attr_writer :header_content
+
+      # Type of header for the template.
+      sig do
+        returns(T.nilable(Zavudev::TemplateCreateParams::HeaderType::OrSymbol))
+      end
+      attr_reader :header_type
+
+      sig do
+        params(
+          header_type: Zavudev::TemplateCreateParams::HeaderType::OrSymbol
+        ).void
+      end
+      attr_writer :header_type
+
       # Channel-specific body for Instagram. Falls back to `body` if not set.
       sig { returns(T.nilable(String)) }
       attr_reader :instagram_body
@@ -92,6 +119,9 @@ module Zavudev
           add_security_recommendation: T::Boolean,
           buttons: T::Array[Zavudev::TemplateCreateParams::Button::OrHash],
           code_expiration_minutes: Integer,
+          footer: String,
+          header_content: String,
+          header_type: Zavudev::TemplateCreateParams::HeaderType::OrSymbol,
           instagram_body: String,
           sms_body: String,
           telegram_body: String,
@@ -111,6 +141,12 @@ module Zavudev
         buttons: nil,
         # Code expiration time in minutes. Only for AUTHENTICATION templates.
         code_expiration_minutes: nil,
+        # Footer text for the template.
+        footer: nil,
+        # Header content (text string or media URL).
+        header_content: nil,
+        # Type of header for the template.
+        header_type: nil,
         # Channel-specific body for Instagram. Falls back to `body` if not set.
         instagram_body: nil,
         # Channel-specific body for SMS. Falls back to `body` if not set.
@@ -133,6 +169,9 @@ module Zavudev
             add_security_recommendation: T::Boolean,
             buttons: T::Array[Zavudev::TemplateCreateParams::Button],
             code_expiration_minutes: Integer,
+            footer: String,
+            header_content: String,
+            header_type: Zavudev::TemplateCreateParams::HeaderType::OrSymbol,
             instagram_body: String,
             sms_body: String,
             telegram_body: String,
@@ -317,6 +356,37 @@ module Zavudev
           end
           def self.values
           end
+        end
+      end
+
+      # Type of header for the template.
+      module HeaderType
+        extend Zavudev::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, Zavudev::TemplateCreateParams::HeaderType)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        TEXT =
+          T.let(:text, Zavudev::TemplateCreateParams::HeaderType::TaggedSymbol)
+        IMAGE =
+          T.let(:image, Zavudev::TemplateCreateParams::HeaderType::TaggedSymbol)
+        VIDEO =
+          T.let(:video, Zavudev::TemplateCreateParams::HeaderType::TaggedSymbol)
+        DOCUMENT =
+          T.let(
+            :document,
+            Zavudev::TemplateCreateParams::HeaderType::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[Zavudev::TemplateCreateParams::HeaderType::TaggedSymbol]
+          )
+        end
+        def self.values
         end
       end
     end
