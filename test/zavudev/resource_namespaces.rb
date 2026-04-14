@@ -11,7 +11,18 @@ module Zavudev
       module Broadcasts
       end
 
+      module Campaigns
+      end
+
+      module Contacts
+      end
+
       module KnowledgeBases
+      end
+
+      module Number10dlc
+        module Campaigns
+        end
       end
 
       module Senders
@@ -19,6 +30,9 @@ module Zavudev
           module KnowledgeBases
           end
         end
+      end
+
+      module SubAccounts
       end
     end
   end

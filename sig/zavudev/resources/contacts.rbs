@@ -1,6 +1,15 @@
 module Zavudev
   module Resources
     class Contacts
+      attr_reader channels: Zavudev::Resources::Contacts::Channels
+
+      def create: (
+        channels: ::Array[Zavudev::ContactCreateParams::Channel],
+        ?display_name: String,
+        ?metadata: ::Hash[Symbol, String],
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Contact
+
       def retrieve: (
         String contact_id,
         ?request_options: Zavudev::request_opts
@@ -19,6 +28,17 @@ module Zavudev
         ?phone_number: String,
         ?request_options: Zavudev::request_opts
       ) -> Zavudev::Internal::Cursor[Zavudev::Contact]
+
+      def dismiss_merge_suggestion: (
+        String contact_id,
+        ?request_options: Zavudev::request_opts
+      ) -> nil
+
+      def merge: (
+        String contact_id,
+        source_contact_id: String,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Contact
 
       def retrieve_by_phone: (
         String phone_number,

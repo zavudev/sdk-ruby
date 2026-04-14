@@ -45,6 +45,30 @@ module Zavudev
     # @return [Zavudev::Resources::RegulatoryDocuments]
     attr_reader :regulatory_documents
 
+    # @return [Zavudev::Resources::Invitations]
+    attr_reader :invitations
+
+    # @return [Zavudev::Resources::Exports]
+    attr_reader :exports
+
+    # @return [Zavudev::Resources::URLs]
+    attr_reader :urls
+
+    # @return [Zavudev::Resources::Balance]
+    attr_reader :balance
+
+    # @return [Zavudev::Resources::Plan]
+    attr_reader :plan
+
+    # @return [Zavudev::Resources::Usage]
+    attr_reader :usage
+
+    # @return [Zavudev::Resources::SubAccounts]
+    attr_reader :sub_accounts
+
+    # @return [Zavudev::Resources::Number10dlc]
+    attr_reader :number_10dlc
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -101,6 +125,14 @@ module Zavudev
       @phone_numbers = Zavudev::Resources::PhoneNumbers.new(client: self)
       @addresses = Zavudev::Resources::Addresses.new(client: self)
       @regulatory_documents = Zavudev::Resources::RegulatoryDocuments.new(client: self)
+      @invitations = Zavudev::Resources::Invitations.new(client: self)
+      @exports = Zavudev::Resources::Exports.new(client: self)
+      @urls = Zavudev::Resources::URLs.new(client: self)
+      @balance = Zavudev::Resources::Balance.new(client: self)
+      @plan = Zavudev::Resources::Plan.new(client: self)
+      @usage = Zavudev::Resources::Usage.new(client: self)
+      @sub_accounts = Zavudev::Resources::SubAccounts.new(client: self)
+      @number_10dlc = Zavudev::Resources::Number10dlc.new(client: self)
     end
   end
 end

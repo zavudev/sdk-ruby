@@ -1,0 +1,175 @@
+module Zavudev
+  module Models
+    module Number10dlc
+      type ten_dlc_campaign =
+        {
+          id: String,
+          affiliate_marketing: bool,
+          age_gated: bool,
+          brand_id: String,
+          created_at: Time,
+          description: String,
+          direct_lending: bool,
+          embedded_link: bool,
+          embedded_phone: bool,
+          name: String,
+          number_pooling: bool,
+          sample_messages: ::Array[String],
+          status: Zavudev::Models::Number10dlc::TenDlcCampaign::status,
+          subscriber_help: bool,
+          subscriber_opt_in: bool,
+          subscriber_opt_out: bool,
+          updated_at: Time,
+          use_case: String,
+          approved_at: Time?,
+          daily_limit: Integer?,
+          failure_reason: String?,
+          help_message: String?,
+          message_flow: String?,
+          monthly_fee_cents: Integer?,
+          opt_in_keywords: ::Array[String]?,
+          opt_out_keywords: ::Array[String]?,
+          registration_cost_cents: Integer?,
+          submitted_at: Time?,
+          sub_use_cases: ::Array[String]?
+        }
+
+      class TenDlcCampaign < Zavudev::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor affiliate_marketing: bool
+
+        attr_accessor age_gated: bool
+
+        attr_accessor brand_id: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor description: String
+
+        attr_accessor direct_lending: bool
+
+        attr_accessor embedded_link: bool
+
+        attr_accessor embedded_phone: bool
+
+        attr_accessor name: String
+
+        attr_accessor number_pooling: bool
+
+        attr_accessor sample_messages: ::Array[String]
+
+        attr_accessor status: Zavudev::Models::Number10dlc::TenDlcCampaign::status
+
+        attr_accessor subscriber_help: bool
+
+        attr_accessor subscriber_opt_in: bool
+
+        attr_accessor subscriber_opt_out: bool
+
+        attr_accessor updated_at: Time
+
+        attr_accessor use_case: String
+
+        attr_accessor approved_at: Time?
+
+        attr_accessor daily_limit: Integer?
+
+        attr_accessor failure_reason: String?
+
+        attr_accessor help_message: String?
+
+        attr_accessor message_flow: String?
+
+        attr_accessor monthly_fee_cents: Integer?
+
+        attr_accessor opt_in_keywords: ::Array[String]?
+
+        attr_accessor opt_out_keywords: ::Array[String]?
+
+        attr_accessor registration_cost_cents: Integer?
+
+        attr_accessor submitted_at: Time?
+
+        attr_accessor sub_use_cases: ::Array[String]?
+
+        def initialize: (
+          id: String,
+          affiliate_marketing: bool,
+          age_gated: bool,
+          brand_id: String,
+          created_at: Time,
+          description: String,
+          direct_lending: bool,
+          embedded_link: bool,
+          embedded_phone: bool,
+          name: String,
+          number_pooling: bool,
+          sample_messages: ::Array[String],
+          status: Zavudev::Models::Number10dlc::TenDlcCampaign::status,
+          subscriber_help: bool,
+          subscriber_opt_in: bool,
+          subscriber_opt_out: bool,
+          updated_at: Time,
+          use_case: String,
+          ?approved_at: Time?,
+          ?daily_limit: Integer?,
+          ?failure_reason: String?,
+          ?help_message: String?,
+          ?message_flow: String?,
+          ?monthly_fee_cents: Integer?,
+          ?opt_in_keywords: ::Array[String]?,
+          ?opt_out_keywords: ::Array[String]?,
+          ?registration_cost_cents: Integer?,
+          ?submitted_at: Time?,
+          ?sub_use_cases: ::Array[String]?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          affiliate_marketing: bool,
+          age_gated: bool,
+          brand_id: String,
+          created_at: Time,
+          description: String,
+          direct_lending: bool,
+          embedded_link: bool,
+          embedded_phone: bool,
+          name: String,
+          number_pooling: bool,
+          sample_messages: ::Array[String],
+          status: Zavudev::Models::Number10dlc::TenDlcCampaign::status,
+          subscriber_help: bool,
+          subscriber_opt_in: bool,
+          subscriber_opt_out: bool,
+          updated_at: Time,
+          use_case: String,
+          approved_at: Time?,
+          daily_limit: Integer?,
+          failure_reason: String?,
+          help_message: String?,
+          message_flow: String?,
+          monthly_fee_cents: Integer?,
+          opt_in_keywords: ::Array[String]?,
+          opt_out_keywords: ::Array[String]?,
+          registration_cost_cents: Integer?,
+          submitted_at: Time?,
+          sub_use_cases: ::Array[String]?
+        }
+
+        type status = :draft | :pending | :approved | :rejected
+
+        module Status
+          extend Zavudev::Internal::Type::Enum
+
+          DRAFT: :draft
+          PENDING: :pending
+          APPROVED: :approved
+          REJECTED: :rejected
+
+          def self?.values: -> ::Array[Zavudev::Models::Number10dlc::TenDlcCampaign::status]
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,13 @@
+module Zavudev
+  module Models
+    type url_submit_for_verification_response = { url: Zavudev::VerifiedURL }
+
+    class URLSubmitForVerificationResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor url: Zavudev::VerifiedURL
+
+      def initialize: (url: Zavudev::VerifiedURL) -> void
+
+      def to_hash: -> { url: Zavudev::VerifiedURL }
+    end
+  end
+end

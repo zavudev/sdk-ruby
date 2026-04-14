@@ -1,0 +1,24 @@
+module Zavudev
+  module Models
+    module Senders
+      type whatsapp_sync_start_contacts_sync_response =
+        { message: String, sync: Zavudev::Senders::WhatsAppSyncStatus }
+
+      class WhatsappSyncStartContactsSyncResponse < Zavudev::Internal::Type::BaseModel
+        attr_accessor message: String
+
+        attr_accessor sync: Zavudev::Senders::WhatsAppSyncStatus
+
+        def initialize: (
+          message: String,
+          sync: Zavudev::Senders::WhatsAppSyncStatus
+        ) -> void
+
+        def to_hash: -> {
+          message: String,
+          sync: Zavudev::Senders::WhatsAppSyncStatus
+        }
+      end
+    end
+  end
+end

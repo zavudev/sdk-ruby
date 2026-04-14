@@ -1,0 +1,63 @@
+module Zavudev
+  module Models
+    type invitation_create_params =
+      {
+        allowed_phone_countries: ::Array[String],
+        client_email: String,
+        client_name: String,
+        client_phone: String,
+        expires_in_days: Integer,
+        phone_number_id: String
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class InvitationCreateParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_reader allowed_phone_countries: ::Array[String]?
+
+      def allowed_phone_countries=: (::Array[String]) -> ::Array[String]
+
+      attr_reader client_email: String?
+
+      def client_email=: (String) -> String
+
+      attr_reader client_name: String?
+
+      def client_name=: (String) -> String
+
+      attr_reader client_phone: String?
+
+      def client_phone=: (String) -> String
+
+      attr_reader expires_in_days: Integer?
+
+      def expires_in_days=: (Integer) -> Integer
+
+      attr_reader phone_number_id: String?
+
+      def phone_number_id=: (String) -> String
+
+      def initialize: (
+        ?allowed_phone_countries: ::Array[String],
+        ?client_email: String,
+        ?client_name: String,
+        ?client_phone: String,
+        ?expires_in_days: Integer,
+        ?phone_number_id: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        allowed_phone_countries: ::Array[String],
+        client_email: String,
+        client_name: String,
+        client_phone: String,
+        expires_in_days: Integer,
+        phone_number_id: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

@@ -1,0 +1,82 @@
+module Zavudev
+  module Resources
+    class Number10dlc
+      class Brands
+        def create: (
+          city: String,
+          country: String,
+          display_name: String,
+          email: String,
+          entity_type: Zavudev::Models::Number10dlc::BrandCreateParams::entity_type,
+          phone: String,
+          postal_code: String,
+          state: String,
+          street: String,
+          vertical: String,
+          ?company_name: String,
+          ?ein: String,
+          ?first_name: String,
+          ?last_name: String,
+          ?stock_exchange: String,
+          ?stock_symbol: String,
+          ?website: String,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Number10dlc::BrandCreateResponse
+
+        def retrieve: (
+          String brand_id,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Number10dlc::BrandRetrieveResponse
+
+        def update: (
+          String brand_id,
+          ?city: String,
+          ?company_name: String,
+          ?country: String,
+          ?display_name: String,
+          ?ein: String,
+          ?email: String,
+          ?entity_type: Zavudev::Models::Number10dlc::BrandUpdateParams::entity_type,
+          ?first_name: String,
+          ?last_name: String,
+          ?phone: String,
+          ?postal_code: String,
+          ?state: String,
+          ?stock_exchange: String,
+          ?stock_symbol: String,
+          ?street: String,
+          ?vertical: String,
+          ?website: String,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Number10dlc::BrandUpdateResponse
+
+        def list: (
+          ?cursor: String,
+          ?limit: Integer,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Internal::Cursor[Zavudev::Number10dlc::TenDlcBrand]
+
+        def delete: (
+          String brand_id,
+          ?request_options: Zavudev::request_opts
+        ) -> nil
+
+        def list_use_cases: (
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Number10dlc::BrandListUseCasesResponse
+
+        def submit: (
+          String brand_id,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Number10dlc::BrandSubmitResponse
+
+        def sync_status: (
+          String brand_id,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Number10dlc::BrandSyncStatusResponse
+
+        def initialize: (client: Zavudev::Client) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,179 @@
+module Zavudev
+  module Models
+    module Number10dlc
+      type ten_dlc_brand =
+        {
+          id: String,
+          city: String,
+          country: String,
+          created_at: Time,
+          display_name: String,
+          email: String,
+          entity_type: Zavudev::Models::Number10dlc::TenDlcBrand::entity_type,
+          phone: String,
+          postal_code: String,
+          state: String,
+          status: Zavudev::Models::Number10dlc::TenDlcBrand::status,
+          street: String,
+          updated_at: Time,
+          vertical: String,
+          brand_relationship: String?,
+          brand_score: Integer?,
+          company_name: String?,
+          ein: String?,
+          failure_reason: String?,
+          first_name: String?,
+          last_name: String?,
+          stock_exchange: String?,
+          stock_symbol: String?,
+          submitted_at: Time?,
+          verified_at: Time?,
+          website: String?
+        }
+
+      class TenDlcBrand < Zavudev::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor city: String
+
+        attr_accessor country: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor display_name: String
+
+        attr_accessor email: String
+
+        attr_accessor entity_type: Zavudev::Models::Number10dlc::TenDlcBrand::entity_type
+
+        attr_accessor phone: String
+
+        attr_accessor postal_code: String
+
+        attr_accessor state: String
+
+        attr_accessor status: Zavudev::Models::Number10dlc::TenDlcBrand::status
+
+        attr_accessor street: String
+
+        attr_accessor updated_at: Time
+
+        attr_accessor vertical: String
+
+        attr_accessor brand_relationship: String?
+
+        attr_accessor brand_score: Integer?
+
+        attr_accessor company_name: String?
+
+        attr_accessor ein: String?
+
+        attr_accessor failure_reason: String?
+
+        attr_accessor first_name: String?
+
+        attr_accessor last_name: String?
+
+        attr_accessor stock_exchange: String?
+
+        attr_accessor stock_symbol: String?
+
+        attr_accessor submitted_at: Time?
+
+        attr_accessor verified_at: Time?
+
+        attr_accessor website: String?
+
+        def initialize: (
+          id: String,
+          city: String,
+          country: String,
+          created_at: Time,
+          display_name: String,
+          email: String,
+          entity_type: Zavudev::Models::Number10dlc::TenDlcBrand::entity_type,
+          phone: String,
+          postal_code: String,
+          state: String,
+          status: Zavudev::Models::Number10dlc::TenDlcBrand::status,
+          street: String,
+          updated_at: Time,
+          vertical: String,
+          ?brand_relationship: String?,
+          ?brand_score: Integer?,
+          ?company_name: String?,
+          ?ein: String?,
+          ?failure_reason: String?,
+          ?first_name: String?,
+          ?last_name: String?,
+          ?stock_exchange: String?,
+          ?stock_symbol: String?,
+          ?submitted_at: Time?,
+          ?verified_at: Time?,
+          ?website: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          city: String,
+          country: String,
+          created_at: Time,
+          display_name: String,
+          email: String,
+          entity_type: Zavudev::Models::Number10dlc::TenDlcBrand::entity_type,
+          phone: String,
+          postal_code: String,
+          state: String,
+          status: Zavudev::Models::Number10dlc::TenDlcBrand::status,
+          street: String,
+          updated_at: Time,
+          vertical: String,
+          brand_relationship: String?,
+          brand_score: Integer?,
+          company_name: String?,
+          ein: String?,
+          failure_reason: String?,
+          first_name: String?,
+          last_name: String?,
+          stock_exchange: String?,
+          stock_symbol: String?,
+          submitted_at: Time?,
+          verified_at: Time?,
+          website: String?
+        }
+
+        type entity_type =
+          :PRIVATE_PROFIT
+          | :PUBLIC_PROFIT
+          | :NON_PROFIT
+          | :GOVERNMENT
+          | :SOLE_PROPRIETOR
+
+        module EntityType
+          extend Zavudev::Internal::Type::Enum
+
+          PRIVATE_PROFIT: :PRIVATE_PROFIT
+          PUBLIC_PROFIT: :PUBLIC_PROFIT
+          NON_PROFIT: :NON_PROFIT
+          GOVERNMENT: :GOVERNMENT
+          SOLE_PROPRIETOR: :SOLE_PROPRIETOR
+
+          def self?.values: -> ::Array[Zavudev::Models::Number10dlc::TenDlcBrand::entity_type]
+        end
+
+        type status = :draft | :pending | :verified | :rejected
+
+        module Status
+          extend Zavudev::Internal::Type::Enum
+
+          DRAFT: :draft
+          PENDING: :pending
+          VERIFIED: :verified
+          REJECTED: :rejected
+
+          def self?.values: -> ::Array[Zavudev::Models::Number10dlc::TenDlcBrand::status]
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,28 @@
+module Zavudev
+  module Resources
+    class SubAccounts
+      class APIKeys
+        def create: (
+          String id,
+          name: String,
+          ?environment: Zavudev::Models::SubAccounts::APIKeyCreateParams::environment,
+          ?permissions: ::Array[String],
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::SubAccounts::APIKeyCreateResponse
+
+        def list: (
+          String id,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::SubAccounts::APIKeyListResponse
+
+        def revoke: (
+          String key_id,
+          id: String,
+          ?request_options: Zavudev::request_opts
+        ) -> nil
+
+        def initialize: (client: Zavudev::Client) -> void
+      end
+    end
+  end
+end

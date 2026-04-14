@@ -1,0 +1,40 @@
+module Zavudev
+  module Resources
+    class Contacts
+      class Channels
+        def update: (
+          String channel_id,
+          contact_id: String,
+          ?label: String?,
+          ?metadata: ::Hash[Symbol, String],
+          ?verified: bool,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Contacts::ChannelUpdateResponse
+
+        def add: (
+          String contact_id,
+          channel: Zavudev::Models::Contacts::ChannelAddParams::channel,
+          identifier: String,
+          ?country_code: String,
+          ?is_primary: bool,
+          ?label: String,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Contacts::ChannelAddResponse
+
+        def remove: (
+          String channel_id,
+          contact_id: String,
+          ?request_options: Zavudev::request_opts
+        ) -> nil
+
+        def set_primary: (
+          String channel_id,
+          contact_id: String,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Contacts::ChannelSetPrimaryResponse
+
+        def initialize: (client: Zavudev::Client) -> void
+      end
+    end
+  end
+end

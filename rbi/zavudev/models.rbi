@@ -15,6 +15,8 @@ module Zavudev
 
   AvailablePhoneNumber = Zavudev::Models::AvailablePhoneNumber
 
+  BalanceRetrieveParams = Zavudev::Models::BalanceRetrieveParams
+
   Broadcast = Zavudev::Models::Broadcast
 
   BroadcastCancelParams = Zavudev::Models::BroadcastCancelParams
@@ -31,6 +33,8 @@ module Zavudev
 
   BroadcastDeleteParams = Zavudev::Models::BroadcastDeleteParams
 
+  BroadcastEscalateReviewParams = Zavudev::Models::BroadcastEscalateReviewParams
+
   BroadcastListParams = Zavudev::Models::BroadcastListParams
 
   BroadcastMessageType = Zavudev::Models::BroadcastMessageType
@@ -42,6 +46,8 @@ module Zavudev
   BroadcastRescheduleParams = Zavudev::Models::BroadcastRescheduleParams
 
   BroadcastRetrieveParams = Zavudev::Models::BroadcastRetrieveParams
+
+  BroadcastRetryReviewParams = Zavudev::Models::BroadcastRetryReviewParams
 
   Broadcasts = Zavudev::Models::Broadcasts
 
@@ -57,15 +63,42 @@ module Zavudev
 
   ContactChannel = Zavudev::Models::ContactChannel
 
+  ContactCreateParams = Zavudev::Models::ContactCreateParams
+
+  ContactDismissMergeSuggestionParams =
+    Zavudev::Models::ContactDismissMergeSuggestionParams
+
   ContactListParams = Zavudev::Models::ContactListParams
+
+  ContactMergeParams = Zavudev::Models::ContactMergeParams
 
   ContactRetrieveByPhoneParams = Zavudev::Models::ContactRetrieveByPhoneParams
 
   ContactRetrieveParams = Zavudev::Models::ContactRetrieveParams
 
+  Contacts = Zavudev::Models::Contacts
+
   ContactUpdateParams = Zavudev::Models::ContactUpdateParams
 
+  DataExport = Zavudev::Models::DataExport
+
+  ExportCreateParams = Zavudev::Models::ExportCreateParams
+
+  ExportListParams = Zavudev::Models::ExportListParams
+
+  ExportRetrieveParams = Zavudev::Models::ExportRetrieveParams
+
   IntrospectValidatePhoneParams = Zavudev::Models::IntrospectValidatePhoneParams
+
+  Invitation = Zavudev::Models::Invitation
+
+  InvitationCancelParams = Zavudev::Models::InvitationCancelParams
+
+  InvitationCreateParams = Zavudev::Models::InvitationCreateParams
+
+  InvitationListParams = Zavudev::Models::InvitationListParams
+
+  InvitationRetrieveParams = Zavudev::Models::InvitationRetrieveParams
 
   LineType = Zavudev::Models::LineType
 
@@ -86,6 +119,8 @@ module Zavudev
   MessageStatus = Zavudev::Models::MessageStatus
 
   MessageType = Zavudev::Models::MessageType
+
+  Number10dlc = Zavudev::Models::Number10dlc
 
   OwnedPhoneNumber = Zavudev::Models::OwnedPhoneNumber
 
@@ -113,6 +148,8 @@ module Zavudev
   PhoneNumberType = Zavudev::Models::PhoneNumberType
 
   PhoneNumberUpdateParams = Zavudev::Models::PhoneNumberUpdateParams
+
+  PlanRetrieveParams = Zavudev::Models::PlanRetrieveParams
 
   RegulatoryDocument = Zavudev::Models::RegulatoryDocument
 
@@ -164,6 +201,22 @@ module Zavudev
 
   SenderWebhook = Zavudev::Models::SenderWebhook
 
+  SubAccount = Zavudev::Models::SubAccount
+
+  SubAccountCreateParams = Zavudev::Models::SubAccountCreateParams
+
+  SubAccountDeactivateParams = Zavudev::Models::SubAccountDeactivateParams
+
+  SubAccountGetBalanceParams = Zavudev::Models::SubAccountGetBalanceParams
+
+  SubAccountListParams = Zavudev::Models::SubAccountListParams
+
+  SubAccountRetrieveParams = Zavudev::Models::SubAccountRetrieveParams
+
+  SubAccounts = Zavudev::Models::SubAccounts
+
+  SubAccountUpdateParams = Zavudev::Models::SubAccountUpdateParams
+
   Template = Zavudev::Models::Template
 
   TemplateCreateParams = Zavudev::Models::TemplateCreateParams
@@ -175,6 +228,17 @@ module Zavudev
   TemplateRetrieveParams = Zavudev::Models::TemplateRetrieveParams
 
   TemplateSubmitParams = Zavudev::Models::TemplateSubmitParams
+
+  URLListVerifiedParams = Zavudev::Models::URLListVerifiedParams
+
+  URLRetrieveDetailsParams = Zavudev::Models::URLRetrieveDetailsParams
+
+  URLSubmitForVerificationParams =
+    Zavudev::Models::URLSubmitForVerificationParams
+
+  UsageRetrieveParams = Zavudev::Models::UsageRetrieveParams
+
+  VerifiedURL = Zavudev::Models::VerifiedURL
 
   WebhookEvent = Zavudev::Models::WebhookEvent
 

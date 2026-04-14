@@ -1,0 +1,13 @@
+module Zavudev
+  module Models
+    type export_create_response = { export: Zavudev::DataExport }
+
+    class ExportCreateResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor export: Zavudev::DataExport
+
+      def initialize: (export: Zavudev::DataExport) -> void
+
+      def to_hash: -> { export: Zavudev::DataExport }
+    end
+  end
+end

@@ -1,0 +1,77 @@
+module Zavudev
+  module Models
+    module Number10dlc
+      type campaign_update_params =
+        {
+          campaign_id: String,
+          description: String,
+          help_message: String,
+          message_flow: String,
+          name: String,
+          opt_in_keywords: ::Array[String],
+          opt_out_keywords: ::Array[String],
+          sample_messages: ::Array[String]
+        }
+        & Zavudev::Internal::Type::request_parameters
+
+      class CampaignUpdateParams < Zavudev::Internal::Type::BaseModel
+        extend Zavudev::Internal::Type::RequestParameters::Converter
+        include Zavudev::Internal::Type::RequestParameters
+
+        attr_accessor campaign_id: String
+
+        attr_reader description: String?
+
+        def description=: (String) -> String
+
+        attr_reader help_message: String?
+
+        def help_message=: (String) -> String
+
+        attr_reader message_flow: String?
+
+        def message_flow=: (String) -> String
+
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        attr_reader opt_in_keywords: ::Array[String]?
+
+        def opt_in_keywords=: (::Array[String]) -> ::Array[String]
+
+        attr_reader opt_out_keywords: ::Array[String]?
+
+        def opt_out_keywords=: (::Array[String]) -> ::Array[String]
+
+        attr_reader sample_messages: ::Array[String]?
+
+        def sample_messages=: (::Array[String]) -> ::Array[String]
+
+        def initialize: (
+          campaign_id: String,
+          ?description: String,
+          ?help_message: String,
+          ?message_flow: String,
+          ?name: String,
+          ?opt_in_keywords: ::Array[String],
+          ?opt_out_keywords: ::Array[String],
+          ?sample_messages: ::Array[String],
+          ?request_options: Zavudev::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          campaign_id: String,
+          description: String,
+          help_message: String,
+          message_flow: String,
+          name: String,
+          opt_in_keywords: ::Array[String],
+          opt_out_keywords: ::Array[String],
+          sample_messages: ::Array[String],
+          request_options: Zavudev::RequestOptions
+        }
+      end
+    end
+  end
+end

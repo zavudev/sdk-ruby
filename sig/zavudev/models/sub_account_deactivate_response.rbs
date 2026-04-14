@@ -1,0 +1,16 @@
+module Zavudev
+  module Models
+    type sub_account_deactivate_response =
+      { keys_revoked: Integer, message: String }
+
+    class SubAccountDeactivateResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor keys_revoked: Integer
+
+      attr_accessor message: String
+
+      def initialize: (keys_revoked: Integer, message: String) -> void
+
+      def to_hash: -> { keys_revoked: Integer, message: String }
+    end
+  end
+end

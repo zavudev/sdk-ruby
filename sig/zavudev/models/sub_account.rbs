@@ -1,0 +1,73 @@
+module Zavudev
+  module Models
+    type sub_account =
+      {
+        id: String,
+        created_at: Time,
+        name: String,
+        status: Zavudev::Models::SubAccount::status,
+        total_spent: Integer,
+        api_key: String,
+        credit_limit: Integer?,
+        external_id: String?,
+        metadata: ::Hash[Symbol, top]?
+      }
+
+    class SubAccount < Zavudev::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor name: String
+
+      attr_accessor status: Zavudev::Models::SubAccount::status
+
+      attr_accessor total_spent: Integer
+
+      attr_reader api_key: String?
+
+      def api_key=: (String) -> String
+
+      attr_accessor credit_limit: Integer?
+
+      attr_accessor external_id: String?
+
+      attr_accessor metadata: ::Hash[Symbol, top]?
+
+      def initialize: (
+        id: String,
+        created_at: Time,
+        name: String,
+        status: Zavudev::Models::SubAccount::status,
+        total_spent: Integer,
+        ?api_key: String,
+        ?credit_limit: Integer?,
+        ?external_id: String?,
+        ?metadata: ::Hash[Symbol, top]?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time,
+        name: String,
+        status: Zavudev::Models::SubAccount::status,
+        total_spent: Integer,
+        api_key: String,
+        credit_limit: Integer?,
+        external_id: String?,
+        metadata: ::Hash[Symbol, top]?
+      }
+
+      type status = :active | :inactive
+
+      module Status
+        extend Zavudev::Internal::Type::Enum
+
+        ACTIVE: :active
+        INACTIVE: :inactive
+
+        def self?.values: -> ::Array[Zavudev::Models::SubAccount::status]
+      end
+    end
+  end
+end

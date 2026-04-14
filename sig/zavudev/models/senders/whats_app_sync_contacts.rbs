@@ -1,0 +1,45 @@
+module Zavudev
+  module Models
+    module Senders
+      type whats_app_sync_contacts =
+        {
+          can_sync: bool,
+          status: Zavudev::Models::Senders::WhatsAppSyncContacts::status,
+          requested_at: Time?
+        }
+
+      class WhatsAppSyncContacts < Zavudev::Internal::Type::BaseModel
+        attr_accessor can_sync: bool
+
+        attr_accessor status: Zavudev::Models::Senders::WhatsAppSyncContacts::status
+
+        attr_accessor requested_at: Time?
+
+        def initialize: (
+          can_sync: bool,
+          status: Zavudev::Models::Senders::WhatsAppSyncContacts::status,
+          ?requested_at: Time?
+        ) -> void
+
+        def to_hash: -> {
+          can_sync: bool,
+          status: Zavudev::Models::Senders::WhatsAppSyncContacts::status,
+          requested_at: Time?
+        }
+
+        type status = :not_requested | :pending | :syncing | :completed
+
+        module Status
+          extend Zavudev::Internal::Type::Enum
+
+          NOT_REQUESTED: :not_requested
+          PENDING: :pending
+          SYNCING: :syncing
+          COMPLETED: :completed
+
+          def self?.values: -> ::Array[Zavudev::Models::Senders::WhatsAppSyncContacts::status]
+        end
+      end
+    end
+  end
+end

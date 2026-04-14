@@ -1,0 +1,168 @@
+module Zavudev
+  module Models
+    module Number10dlc
+      type brand_update_params =
+        {
+          brand_id: String,
+          city: String,
+          company_name: String,
+          country: String,
+          display_name: String,
+          ein: String,
+          email: String,
+          entity_type: Zavudev::Models::Number10dlc::BrandUpdateParams::entity_type,
+          first_name: String,
+          last_name: String,
+          phone: String,
+          postal_code: String,
+          state: String,
+          stock_exchange: String,
+          stock_symbol: String,
+          street: String,
+          vertical: String,
+          website: String
+        }
+        & Zavudev::Internal::Type::request_parameters
+
+      class BrandUpdateParams < Zavudev::Internal::Type::BaseModel
+        extend Zavudev::Internal::Type::RequestParameters::Converter
+        include Zavudev::Internal::Type::RequestParameters
+
+        attr_accessor brand_id: String
+
+        attr_reader city: String?
+
+        def city=: (String) -> String
+
+        attr_reader company_name: String?
+
+        def company_name=: (String) -> String
+
+        attr_reader country: String?
+
+        def country=: (String) -> String
+
+        attr_reader display_name: String?
+
+        def display_name=: (String) -> String
+
+        attr_reader ein: String?
+
+        def ein=: (String) -> String
+
+        attr_reader email: String?
+
+        def email=: (String) -> String
+
+        attr_reader entity_type: Zavudev::Models::Number10dlc::BrandUpdateParams::entity_type?
+
+        def entity_type=: (
+          Zavudev::Models::Number10dlc::BrandUpdateParams::entity_type
+        ) -> Zavudev::Models::Number10dlc::BrandUpdateParams::entity_type
+
+        attr_reader first_name: String?
+
+        def first_name=: (String) -> String
+
+        attr_reader last_name: String?
+
+        def last_name=: (String) -> String
+
+        attr_reader phone: String?
+
+        def phone=: (String) -> String
+
+        attr_reader postal_code: String?
+
+        def postal_code=: (String) -> String
+
+        attr_reader state: String?
+
+        def state=: (String) -> String
+
+        attr_reader stock_exchange: String?
+
+        def stock_exchange=: (String) -> String
+
+        attr_reader stock_symbol: String?
+
+        def stock_symbol=: (String) -> String
+
+        attr_reader street: String?
+
+        def street=: (String) -> String
+
+        attr_reader vertical: String?
+
+        def vertical=: (String) -> String
+
+        attr_reader website: String?
+
+        def website=: (String) -> String
+
+        def initialize: (
+          brand_id: String,
+          ?city: String,
+          ?company_name: String,
+          ?country: String,
+          ?display_name: String,
+          ?ein: String,
+          ?email: String,
+          ?entity_type: Zavudev::Models::Number10dlc::BrandUpdateParams::entity_type,
+          ?first_name: String,
+          ?last_name: String,
+          ?phone: String,
+          ?postal_code: String,
+          ?state: String,
+          ?stock_exchange: String,
+          ?stock_symbol: String,
+          ?street: String,
+          ?vertical: String,
+          ?website: String,
+          ?request_options: Zavudev::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          brand_id: String,
+          city: String,
+          company_name: String,
+          country: String,
+          display_name: String,
+          ein: String,
+          email: String,
+          entity_type: Zavudev::Models::Number10dlc::BrandUpdateParams::entity_type,
+          first_name: String,
+          last_name: String,
+          phone: String,
+          postal_code: String,
+          state: String,
+          stock_exchange: String,
+          stock_symbol: String,
+          street: String,
+          vertical: String,
+          website: String,
+          request_options: Zavudev::RequestOptions
+        }
+
+        type entity_type =
+          :PRIVATE_PROFIT
+          | :PUBLIC_PROFIT
+          | :NON_PROFIT
+          | :GOVERNMENT
+          | :SOLE_PROPRIETOR
+
+        module EntityType
+          extend Zavudev::Internal::Type::Enum
+
+          PRIVATE_PROFIT: :PRIVATE_PROFIT
+          PUBLIC_PROFIT: :PUBLIC_PROFIT
+          NON_PROFIT: :NON_PROFIT
+          GOVERNMENT: :GOVERNMENT
+          SOLE_PROPRIETOR: :SOLE_PROPRIETOR
+
+          def self?.values: -> ::Array[Zavudev::Models::Number10dlc::BrandUpdateParams::entity_type]
+        end
+      end
+    end
+  end
+end

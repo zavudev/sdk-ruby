@@ -6,6 +6,9 @@ module Zavudev
       sig { returns(Zavudev::Resources::Senders::Agent) }
       attr_reader :agent
 
+      sig { returns(Zavudev::Resources::Senders::WhatsappSync) }
+      attr_reader :whatsapp_sync
+
       # Create sender
       sig do
         params(

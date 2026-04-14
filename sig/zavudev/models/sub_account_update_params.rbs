@@ -1,0 +1,72 @@
+module Zavudev
+  module Models
+    type sub_account_update_params =
+      {
+        id: String,
+        credit_limit: Integer?,
+        external_id: String,
+        metadata: ::Hash[Symbol, top],
+        name: String,
+        status: Zavudev::Models::SubAccountUpdateParams::status
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class SubAccountUpdateParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      attr_accessor credit_limit: Integer?
+
+      attr_reader external_id: String?
+
+      def external_id=: (String) -> String
+
+      attr_reader metadata: ::Hash[Symbol, top]?
+
+      def metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader status: Zavudev::Models::SubAccountUpdateParams::status?
+
+      def status=: (
+        Zavudev::Models::SubAccountUpdateParams::status
+      ) -> Zavudev::Models::SubAccountUpdateParams::status
+
+      def initialize: (
+        id: String,
+        ?credit_limit: Integer?,
+        ?external_id: String,
+        ?metadata: ::Hash[Symbol, top],
+        ?name: String,
+        ?status: Zavudev::Models::SubAccountUpdateParams::status,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        credit_limit: Integer?,
+        external_id: String,
+        metadata: ::Hash[Symbol, top],
+        name: String,
+        status: Zavudev::Models::SubAccountUpdateParams::status,
+        request_options: Zavudev::RequestOptions
+      }
+
+      type status = :active | :inactive
+
+      module Status
+        extend Zavudev::Internal::Type::Enum
+
+        ACTIVE: :active
+        INACTIVE: :inactive
+
+        def self?.values: -> ::Array[Zavudev::Models::SubAccountUpdateParams::status]
+      end
+    end
+  end
+end

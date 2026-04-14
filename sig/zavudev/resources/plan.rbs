@@ -1,0 +1,11 @@
+module Zavudev
+  module Resources
+    class Plan
+      def retrieve: (
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::PlanRetrieveResponse
+
+      def initialize: (client: Zavudev::Client) -> void
+    end
+  end
+end

@@ -28,6 +28,22 @@ module Zavudev
 
     attr_reader regulatory_documents: Zavudev::Resources::RegulatoryDocuments
 
+    attr_reader invitations: Zavudev::Resources::Invitations
+
+    attr_reader exports: Zavudev::Resources::Exports
+
+    attr_reader urls: Zavudev::Resources::URLs
+
+    attr_reader balance: Zavudev::Resources::Balance
+
+    attr_reader plan: Zavudev::Resources::Plan
+
+    attr_reader usage: Zavudev::Resources::Usage
+
+    attr_reader sub_accounts: Zavudev::Resources::SubAccounts
+
+    attr_reader number_10dlc: Zavudev::Resources::Number10dlc
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

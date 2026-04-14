@@ -1,0 +1,30 @@
+module Zavudev
+  module Models
+    module SubAccounts
+      type api_key_revoke_params =
+        { id: String, key_id: String }
+        & Zavudev::Internal::Type::request_parameters
+
+      class APIKeyRevokeParams < Zavudev::Internal::Type::BaseModel
+        extend Zavudev::Internal::Type::RequestParameters::Converter
+        include Zavudev::Internal::Type::RequestParameters
+
+        attr_accessor id: String
+
+        attr_accessor key_id: String
+
+        def initialize: (
+          id: String,
+          key_id: String,
+          ?request_options: Zavudev::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          key_id: String,
+          request_options: Zavudev::RequestOptions
+        }
+      end
+    end
+  end
+end

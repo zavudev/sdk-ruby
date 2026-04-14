@@ -1,0 +1,25 @@
+module Zavudev
+  module Models
+    module Number10dlc
+      type brand_sync_status_params =
+        { brand_id: String } & Zavudev::Internal::Type::request_parameters
+
+      class BrandSyncStatusParams < Zavudev::Internal::Type::BaseModel
+        extend Zavudev::Internal::Type::RequestParameters::Converter
+        include Zavudev::Internal::Type::RequestParameters
+
+        attr_accessor brand_id: String
+
+        def initialize: (
+          brand_id: String,
+          ?request_options: Zavudev::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          brand_id: String,
+          request_options: Zavudev::RequestOptions
+        }
+      end
+    end
+  end
+end

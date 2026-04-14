@@ -1,0 +1,26 @@
+module Zavudev
+  module Resources
+    class Exports
+      def create: (
+        data_types: ::Array[Zavudev::Models::ExportCreateParams::data_type],
+        ?date_from: Time,
+        ?date_to: Time,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::ExportCreateResponse
+
+      def retrieve: (
+        String export_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::ExportRetrieveResponse
+
+      def list: (
+        ?cursor: String,
+        ?limit: Integer,
+        ?status: Zavudev::Models::ExportListParams::status,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Internal::Cursor[Zavudev::DataExport]
+
+      def initialize: (client: Zavudev::Client) -> void
+    end
+  end
+end
