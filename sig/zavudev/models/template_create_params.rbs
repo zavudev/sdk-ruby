@@ -8,6 +8,9 @@ module Zavudev
         add_security_recommendation: bool,
         buttons: ::Array[Zavudev::TemplateCreateParams::Button],
         code_expiration_minutes: Integer,
+        footer: String,
+        header_content: String,
+        header_type: Zavudev::Models::TemplateCreateParams::header_type,
         instagram_body: String,
         sms_body: String,
         telegram_body: String,
@@ -40,6 +43,20 @@ module Zavudev
 
       def code_expiration_minutes=: (Integer) -> Integer
 
+      attr_reader footer: String?
+
+      def footer=: (String) -> String
+
+      attr_reader header_content: String?
+
+      def header_content=: (String) -> String
+
+      attr_reader header_type: Zavudev::Models::TemplateCreateParams::header_type?
+
+      def header_type=: (
+        Zavudev::Models::TemplateCreateParams::header_type
+      ) -> Zavudev::Models::TemplateCreateParams::header_type
+
       attr_reader instagram_body: String?
 
       def instagram_body=: (String) -> String
@@ -69,6 +86,9 @@ module Zavudev
         ?add_security_recommendation: bool,
         ?buttons: ::Array[Zavudev::TemplateCreateParams::Button],
         ?code_expiration_minutes: Integer,
+        ?footer: String,
+        ?header_content: String,
+        ?header_type: Zavudev::Models::TemplateCreateParams::header_type,
         ?instagram_body: String,
         ?sms_body: String,
         ?telegram_body: String,
@@ -84,6 +104,9 @@ module Zavudev
         add_security_recommendation: bool,
         buttons: ::Array[Zavudev::TemplateCreateParams::Button],
         code_expiration_minutes: Integer,
+        footer: String,
+        header_content: String,
+        header_type: Zavudev::Models::TemplateCreateParams::header_type,
         instagram_body: String,
         sms_body: String,
         telegram_body: String,
@@ -173,6 +196,19 @@ module Zavudev
 
           def self?.values: -> ::Array[Zavudev::Models::TemplateCreateParams::Button::otp_type]
         end
+      end
+
+      type header_type = :text | :image | :video | :document
+
+      module HeaderType
+        extend Zavudev::Internal::Type::Enum
+
+        TEXT: :text
+        IMAGE: :image
+        VIDEO: :video
+        DOCUMENT: :document
+
+        def self?.values: -> ::Array[Zavudev::Models::TemplateCreateParams::header_type]
       end
     end
   end

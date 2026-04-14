@@ -6,7 +6,7 @@ module Zavudev
       # Create a WhatsApp message template. Note: Templates must be approved by Meta
       # before use.
       #
-      # @overload create(body:, language:, name:, add_security_recommendation: nil, buttons: nil, code_expiration_minutes: nil, instagram_body: nil, sms_body: nil, telegram_body: nil, variables: nil, whatsapp_category: nil, request_options: {})
+      # @overload create(body:, language:, name:, add_security_recommendation: nil, buttons: nil, code_expiration_minutes: nil, footer: nil, header_content: nil, header_type: nil, instagram_body: nil, sms_body: nil, telegram_body: nil, variables: nil, whatsapp_category: nil, request_options: {})
       #
       # @param body [String] Default template body. Used when no channel-specific body is set.
       #
@@ -19,6 +19,12 @@ module Zavudev
       # @param buttons [Array<Zavudev::Models::TemplateCreateParams::Button>] Template buttons (max 3).
       #
       # @param code_expiration_minutes [Integer] Code expiration time in minutes. Only for AUTHENTICATION templates.
+      #
+      # @param footer [String] Footer text for the template.
+      #
+      # @param header_content [String] Header content (text string or media URL).
+      #
+      # @param header_type [Symbol, Zavudev::Models::TemplateCreateParams::HeaderType] Type of header for the template.
       #
       # @param instagram_body [String] Channel-specific body for Instagram. Falls back to `body` if not set.
       #
