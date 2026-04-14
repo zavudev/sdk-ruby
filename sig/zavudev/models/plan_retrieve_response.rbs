@@ -1,0 +1,158 @@
+module Zavudev
+  module Models
+    type plan_retrieve_response =
+      {
+        billing_interval: Zavudev::Models::PlanRetrieveResponse::billing_interval,
+        status: Zavudev::Models::PlanRetrieveResponse::status,
+        tier: Zavudev::Models::PlanRetrieveResponse::tier,
+        cancel_at_period_end: bool,
+        current_period_end: Time,
+        current_period_start: Time,
+        limits: Zavudev::Models::PlanRetrieveResponse::Limits
+      }
+
+    class PlanRetrieveResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor billing_interval: Zavudev::Models::PlanRetrieveResponse::billing_interval
+
+      attr_accessor status: Zavudev::Models::PlanRetrieveResponse::status
+
+      attr_accessor tier: Zavudev::Models::PlanRetrieveResponse::tier
+
+      attr_reader cancel_at_period_end: bool?
+
+      def cancel_at_period_end=: (bool) -> bool
+
+      attr_reader current_period_end: Time?
+
+      def current_period_end=: (Time) -> Time
+
+      attr_reader current_period_start: Time?
+
+      def current_period_start=: (Time) -> Time
+
+      attr_reader limits: Zavudev::Models::PlanRetrieveResponse::Limits?
+
+      def limits=: (
+        Zavudev::Models::PlanRetrieveResponse::Limits
+      ) -> Zavudev::Models::PlanRetrieveResponse::Limits
+
+      def initialize: (
+        billing_interval: Zavudev::Models::PlanRetrieveResponse::billing_interval,
+        status: Zavudev::Models::PlanRetrieveResponse::status,
+        tier: Zavudev::Models::PlanRetrieveResponse::tier,
+        ?cancel_at_period_end: bool,
+        ?current_period_end: Time,
+        ?current_period_start: Time,
+        ?limits: Zavudev::Models::PlanRetrieveResponse::Limits
+      ) -> void
+
+      def to_hash: -> {
+        billing_interval: Zavudev::Models::PlanRetrieveResponse::billing_interval,
+        status: Zavudev::Models::PlanRetrieveResponse::status,
+        tier: Zavudev::Models::PlanRetrieveResponse::tier,
+        cancel_at_period_end: bool,
+        current_period_end: Time,
+        current_period_start: Time,
+        limits: Zavudev::Models::PlanRetrieveResponse::Limits
+      }
+
+      type billing_interval = :monthly | :annual
+
+      module BillingInterval
+        extend Zavudev::Internal::Type::Enum
+
+        MONTHLY: :monthly
+        ANNUAL: :annual
+
+        def self?.values: -> ::Array[Zavudev::Models::PlanRetrieveResponse::billing_interval]
+      end
+
+      type status = :active | :past_due | :canceled | :trialing
+
+      module Status
+        extend Zavudev::Internal::Type::Enum
+
+        ACTIVE: :active
+        PAST_DUE: :past_due
+        CANCELED: :canceled
+        TRIALING: :trialing
+
+        def self?.values: -> ::Array[Zavudev::Models::PlanRetrieveResponse::status]
+      end
+
+      type tier = :free | :pro | :scale | :enterprise
+
+      module Tier
+        extend Zavudev::Internal::Type::Enum
+
+        FREE: :free
+        PRO: :pro
+        SCALE: :scale
+        ENTERPRISE: :enterprise
+
+        def self?.values: -> ::Array[Zavudev::Models::PlanRetrieveResponse::tier]
+      end
+
+      type limits =
+        {
+          broadcasts: bool,
+          emails: Integer,
+          :messages_a2_p => Integer,
+          phone_numbers: Integer,
+          senders: Integer,
+          sub_accounts: bool,
+          waba_connections: Integer
+        }
+
+      class Limits < Zavudev::Internal::Type::BaseModel
+        attr_reader broadcasts: bool?
+
+        def broadcasts=: (bool) -> bool
+
+        attr_reader emails: Integer?
+
+        def emails=: (Integer) -> Integer
+
+        attr_reader messages_a2_p: Integer?
+
+        def messages_a2_p=: (Integer) -> Integer
+
+        attr_reader phone_numbers: Integer?
+
+        def phone_numbers=: (Integer) -> Integer
+
+        attr_reader senders: Integer?
+
+        def senders=: (Integer) -> Integer
+
+        attr_reader sub_accounts: bool?
+
+        def sub_accounts=: (bool) -> bool
+
+        attr_reader waba_connections: Integer?
+
+        def waba_connections=: (Integer) -> Integer
+
+        def initialize: (
+          ?broadcasts: bool,
+          ?emails: Integer,
+          ?messages_a2_p: Integer,
+          ?phone_numbers: Integer,
+          ?senders: Integer,
+          ?sub_accounts: bool,
+          ?waba_connections: Integer
+        ) -> void
+
+        def to_hash: -> {
+          broadcasts: bool,
+          emails: Integer,
+          :messages_a2_p => Integer,
+          phone_numbers: Integer,
+          senders: Integer,
+          sub_accounts: bool,
+          waba_connections: Integer
+        }
+      end
+    end
+  end
+end

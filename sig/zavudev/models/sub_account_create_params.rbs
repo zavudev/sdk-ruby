@@ -1,0 +1,47 @@
+module Zavudev
+  module Models
+    type sub_account_create_params =
+      {
+        name: String,
+        credit_limit: Integer,
+        external_id: String,
+        metadata: ::Hash[Symbol, top]
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class SubAccountCreateParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor name: String
+
+      attr_reader credit_limit: Integer?
+
+      def credit_limit=: (Integer) -> Integer
+
+      attr_reader external_id: String?
+
+      def external_id=: (String) -> String
+
+      attr_reader metadata: ::Hash[Symbol, top]?
+
+      def metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      def initialize: (
+        name: String,
+        ?credit_limit: Integer,
+        ?external_id: String,
+        ?metadata: ::Hash[Symbol, top],
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        name: String,
+        credit_limit: Integer,
+        external_id: String,
+        metadata: ::Hash[Symbol, top],
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

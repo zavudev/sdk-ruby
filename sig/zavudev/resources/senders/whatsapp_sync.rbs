@@ -1,0 +1,24 @@
+module Zavudev
+  module Resources
+    class Senders
+      class WhatsappSync
+        def retrieve: (
+          String sender_id,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Senders::WhatsappSyncRetrieveResponse
+
+        def start_contacts_sync: (
+          String sender_id,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Senders::WhatsappSyncStartContactsSyncResponse
+
+        def start_history_sync: (
+          String sender_id,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Senders::WhatsappSyncStartHistorySyncResponse
+
+        def initialize: (client: Zavudev::Client) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,52 @@
+module Zavudev
+  module Models
+    module Contacts
+      type channel_update_params =
+        {
+          contact_id: String,
+          channel_id: String,
+          label: String?,
+          metadata: ::Hash[Symbol, String],
+          verified: bool
+        }
+        & Zavudev::Internal::Type::request_parameters
+
+      class ChannelUpdateParams < Zavudev::Internal::Type::BaseModel
+        extend Zavudev::Internal::Type::RequestParameters::Converter
+        include Zavudev::Internal::Type::RequestParameters
+
+        attr_accessor contact_id: String
+
+        attr_accessor channel_id: String
+
+        attr_accessor label: String?
+
+        attr_reader metadata: ::Hash[Symbol, String]?
+
+        def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+        attr_reader verified: bool?
+
+        def verified=: (bool) -> bool
+
+        def initialize: (
+          contact_id: String,
+          channel_id: String,
+          ?label: String?,
+          ?metadata: ::Hash[Symbol, String],
+          ?verified: bool,
+          ?request_options: Zavudev::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          contact_id: String,
+          channel_id: String,
+          label: String?,
+          metadata: ::Hash[Symbol, String],
+          verified: bool,
+          request_options: Zavudev::RequestOptions
+        }
+      end
+    end
+  end
+end

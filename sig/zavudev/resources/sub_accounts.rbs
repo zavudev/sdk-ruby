@@ -1,0 +1,48 @@
+module Zavudev
+  module Resources
+    class SubAccounts
+      attr_reader api_keys: Zavudev::Resources::SubAccounts::APIKeys
+
+      def create: (
+        name: String,
+        ?credit_limit: Integer,
+        ?external_id: String,
+        ?metadata: ::Hash[Symbol, top],
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::SubAccountCreateResponse
+
+      def retrieve: (
+        String id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::SubAccountRetrieveResponse
+
+      def update: (
+        String id,
+        ?credit_limit: Integer?,
+        ?external_id: String,
+        ?metadata: ::Hash[Symbol, top],
+        ?name: String,
+        ?status: Zavudev::Models::SubAccountUpdateParams::status,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::SubAccountUpdateResponse
+
+      def list: (
+        ?cursor: String,
+        ?limit: Integer,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Internal::Cursor[Zavudev::SubAccount]
+
+      def deactivate: (
+        String id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::SubAccountDeactivateResponse
+
+      def get_balance: (
+        String id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::SubAccountGetBalanceResponse
+
+      def initialize: (client: Zavudev::Client) -> void
+    end
+  end
+end

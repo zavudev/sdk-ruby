@@ -1,0 +1,27 @@
+module Zavudev
+  module Models
+    module Number10dlc
+      module Campaigns
+        type phone_number_list_params =
+          { campaign_id: String } & Zavudev::Internal::Type::request_parameters
+
+        class PhoneNumberListParams < Zavudev::Internal::Type::BaseModel
+          extend Zavudev::Internal::Type::RequestParameters::Converter
+          include Zavudev::Internal::Type::RequestParameters
+
+          attr_accessor campaign_id: String
+
+          def initialize: (
+            campaign_id: String,
+            ?request_options: Zavudev::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            campaign_id: String,
+            request_options: Zavudev::RequestOptions
+          }
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,13 @@
+module Zavudev
+  module Models
+    type url_retrieve_details_response = { url: Zavudev::VerifiedURL }
+
+    class URLRetrieveDetailsResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor url: Zavudev::VerifiedURL
+
+      def initialize: (url: Zavudev::VerifiedURL) -> void
+
+      def to_hash: -> { url: Zavudev::VerifiedURL }
+    end
+  end
+end

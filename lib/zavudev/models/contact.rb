@@ -2,7 +2,7 @@
 
 module Zavudev
   module Models
-    # @see Zavudev::Resources::Contacts#retrieve
+    # @see Zavudev::Resources::Contacts#create
     class Contact < Zavudev::Internal::Type::BaseModel
       # @!attribute id
       #

@@ -1,0 +1,60 @@
+module Zavudev
+  module Models
+    module SubAccounts
+      type api_key_create_params =
+        {
+          id: String,
+          name: String,
+          environment: Zavudev::Models::SubAccounts::APIKeyCreateParams::environment,
+          permissions: ::Array[String]
+        }
+        & Zavudev::Internal::Type::request_parameters
+
+      class APIKeyCreateParams < Zavudev::Internal::Type::BaseModel
+        extend Zavudev::Internal::Type::RequestParameters::Converter
+        include Zavudev::Internal::Type::RequestParameters
+
+        attr_accessor id: String
+
+        attr_accessor name: String
+
+        attr_reader environment: Zavudev::Models::SubAccounts::APIKeyCreateParams::environment?
+
+        def environment=: (
+          Zavudev::Models::SubAccounts::APIKeyCreateParams::environment
+        ) -> Zavudev::Models::SubAccounts::APIKeyCreateParams::environment
+
+        attr_reader permissions: ::Array[String]?
+
+        def permissions=: (::Array[String]) -> ::Array[String]
+
+        def initialize: (
+          id: String,
+          name: String,
+          ?environment: Zavudev::Models::SubAccounts::APIKeyCreateParams::environment,
+          ?permissions: ::Array[String],
+          ?request_options: Zavudev::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          name: String,
+          environment: Zavudev::Models::SubAccounts::APIKeyCreateParams::environment,
+          permissions: ::Array[String],
+          request_options: Zavudev::RequestOptions
+        }
+
+        type environment = :live | :test
+
+        module Environment
+          extend Zavudev::Internal::Type::Enum
+
+          LIVE: :live
+          TEST: :test
+
+          def self?.values: -> ::Array[Zavudev::Models::SubAccounts::APIKeyCreateParams::environment]
+        end
+      end
+    end
+  end
+end

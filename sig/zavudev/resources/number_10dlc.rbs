@@ -1,0 +1,11 @@
+module Zavudev
+  module Resources
+    class Number10dlc
+      attr_reader brands: Zavudev::Resources::Number10dlc::Brands
+
+      attr_reader campaigns: Zavudev::Resources::Number10dlc::Campaigns
+
+      def initialize: (client: Zavudev::Client) -> void
+    end
+  end
+end

@@ -1,0 +1,58 @@
+module Zavudev
+  module Models
+    type invitation_list_params =
+      {
+        cursor: String,
+        limit: Integer,
+        status: Zavudev::Models::InvitationListParams::status
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class InvitationListParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_reader status: Zavudev::Models::InvitationListParams::status?
+
+      def status=: (
+        Zavudev::Models::InvitationListParams::status
+      ) -> Zavudev::Models::InvitationListParams::status
+
+      def initialize: (
+        ?cursor: String,
+        ?limit: Integer,
+        ?status: Zavudev::Models::InvitationListParams::status,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        cursor: String,
+        limit: Integer,
+        status: Zavudev::Models::InvitationListParams::status,
+        request_options: Zavudev::RequestOptions
+      }
+
+      type status = :pending | :in_progress | :completed | :expired | :cancelled
+
+      module Status
+        extend Zavudev::Internal::Type::Enum
+
+        PENDING: :pending
+        IN_PROGRESS: :in_progress
+        COMPLETED: :completed
+        EXPIRED: :expired
+        CANCELLED: :cancelled
+
+        def self?.values: -> ::Array[Zavudev::Models::InvitationListParams::status]
+      end
+    end
+  end
+end

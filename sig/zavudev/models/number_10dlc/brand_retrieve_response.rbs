@@ -1,0 +1,16 @@
+module Zavudev
+  module Models
+    module Number10dlc
+      type brand_retrieve_response =
+        { brand: Zavudev::Number10dlc::TenDlcBrand }
+
+      class BrandRetrieveResponse < Zavudev::Internal::Type::BaseModel
+        attr_accessor brand: Zavudev::Number10dlc::TenDlcBrand
+
+        def initialize: (brand: Zavudev::Number10dlc::TenDlcBrand) -> void
+
+        def to_hash: -> { brand: Zavudev::Number10dlc::TenDlcBrand }
+      end
+    end
+  end
+end

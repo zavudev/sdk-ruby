@@ -1,0 +1,73 @@
+module Zavudev
+  module Resources
+    class Number10dlc
+      class Campaigns
+        attr_reader phone_numbers: Zavudev::Resources::Number10dlc::Campaigns::PhoneNumbers
+
+        def create: (
+          affiliate_marketing: bool,
+          age_gated: bool,
+          brand_id: String,
+          description: String,
+          direct_lending: bool,
+          embedded_link: bool,
+          embedded_phone: bool,
+          name: String,
+          number_pooling: bool,
+          sample_messages: ::Array[String],
+          subscriber_help: bool,
+          subscriber_opt_in: bool,
+          subscriber_opt_out: bool,
+          use_case: String,
+          ?help_message: String,
+          ?message_flow: String,
+          ?opt_in_keywords: ::Array[String],
+          ?opt_out_keywords: ::Array[String],
+          ?sub_use_cases: ::Array[String],
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Number10dlc::CampaignCreateResponse
+
+        def retrieve: (
+          String campaign_id,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Number10dlc::CampaignRetrieveResponse
+
+        def update: (
+          String campaign_id,
+          ?description: String,
+          ?help_message: String,
+          ?message_flow: String,
+          ?name: String,
+          ?opt_in_keywords: ::Array[String],
+          ?opt_out_keywords: ::Array[String],
+          ?sample_messages: ::Array[String],
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Number10dlc::CampaignUpdateResponse
+
+        def list: (
+          ?brand_id: String,
+          ?cursor: String,
+          ?limit: Integer,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Internal::Cursor[Zavudev::Number10dlc::TenDlcCampaign]
+
+        def delete: (
+          String campaign_id,
+          ?request_options: Zavudev::request_opts
+        ) -> nil
+
+        def submit: (
+          String campaign_id,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Number10dlc::CampaignSubmitResponse
+
+        def sync_status: (
+          String campaign_id,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Number10dlc::CampaignSyncStatusResponse
+
+        def initialize: (client: Zavudev::Client) -> void
+      end
+    end
+  end
+end

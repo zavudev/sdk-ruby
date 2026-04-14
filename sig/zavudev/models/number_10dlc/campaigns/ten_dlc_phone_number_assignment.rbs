@@ -1,0 +1,71 @@
+module Zavudev
+  module Models
+    module Number10dlc
+      module Campaigns
+        type ten_dlc_phone_number_assignment =
+          {
+            id: String,
+            campaign_id: String,
+            created_at: Time,
+            phone_number_id: String,
+            status: Zavudev::Models::Number10dlc::Campaigns::TenDlcPhoneNumberAssignment::status,
+            updated_at: Time,
+            assigned_at: Time?,
+            failure_reason: String?
+          }
+
+        class TenDlcPhoneNumberAssignment < Zavudev::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor campaign_id: String
+
+          attr_accessor created_at: Time
+
+          attr_accessor phone_number_id: String
+
+          attr_accessor status: Zavudev::Models::Number10dlc::Campaigns::TenDlcPhoneNumberAssignment::status
+
+          attr_accessor updated_at: Time
+
+          attr_accessor assigned_at: Time?
+
+          attr_accessor failure_reason: String?
+
+          def initialize: (
+            id: String,
+            campaign_id: String,
+            created_at: Time,
+            phone_number_id: String,
+            status: Zavudev::Models::Number10dlc::Campaigns::TenDlcPhoneNumberAssignment::status,
+            updated_at: Time,
+            ?assigned_at: Time?,
+            ?failure_reason: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            campaign_id: String,
+            created_at: Time,
+            phone_number_id: String,
+            status: Zavudev::Models::Number10dlc::Campaigns::TenDlcPhoneNumberAssignment::status,
+            updated_at: Time,
+            assigned_at: Time?,
+            failure_reason: String?
+          }
+
+          type status = :pending | :active | :failed
+
+          module Status
+            extend Zavudev::Internal::Type::Enum
+
+            PENDING: :pending
+            ACTIVE: :active
+            FAILED: :failed
+
+            def self?.values: -> ::Array[Zavudev::Models::Number10dlc::Campaigns::TenDlcPhoneNumberAssignment::status]
+          end
+        end
+      end
+    end
+  end
+end

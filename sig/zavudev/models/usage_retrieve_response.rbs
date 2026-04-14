@@ -1,0 +1,69 @@
+module Zavudev
+  module Models
+    type usage_retrieve_response =
+      {
+        emails_sent: Integer,
+        limits: Zavudev::Models::UsageRetrieveResponse::Limits,
+        :messages_a2_p => Integer,
+        month_key: String,
+        tier: Zavudev::Models::UsageRetrieveResponse::tier
+      }
+
+    class UsageRetrieveResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor emails_sent: Integer
+
+      attr_accessor limits: Zavudev::Models::UsageRetrieveResponse::Limits
+
+      attr_accessor messages_a2_p: Integer
+
+      attr_accessor month_key: String
+
+      attr_accessor tier: Zavudev::Models::UsageRetrieveResponse::tier
+
+      def initialize: (
+        emails_sent: Integer,
+        limits: Zavudev::Models::UsageRetrieveResponse::Limits,
+        messages_a2_p: Integer,
+        month_key: String,
+        tier: Zavudev::Models::UsageRetrieveResponse::tier
+      ) -> void
+
+      def to_hash: -> {
+        emails_sent: Integer,
+        limits: Zavudev::Models::UsageRetrieveResponse::Limits,
+        :messages_a2_p => Integer,
+        month_key: String,
+        tier: Zavudev::Models::UsageRetrieveResponse::tier
+      }
+
+      type limits = { emails: Integer, :messages_a2_p => Integer }
+
+      class Limits < Zavudev::Internal::Type::BaseModel
+        attr_reader emails: Integer?
+
+        def emails=: (Integer) -> Integer
+
+        attr_reader messages_a2_p: Integer?
+
+        def messages_a2_p=: (Integer) -> Integer
+
+        def initialize: (?emails: Integer, ?messages_a2_p: Integer) -> void
+
+        def to_hash: -> { emails: Integer, :messages_a2_p => Integer }
+      end
+
+      type tier = :free | :pro | :scale | :enterprise
+
+      module Tier
+        extend Zavudev::Internal::Type::Enum
+
+        FREE: :free
+        PRO: :pro
+        SCALE: :scale
+        ENTERPRISE: :enterprise
+
+        def self?.values: -> ::Array[Zavudev::Models::UsageRetrieveResponse::tier]
+      end
+    end
+  end
+end

@@ -1,0 +1,52 @@
+module Zavudev
+  module Models
+    module Senders
+      type whats_app_sync_history =
+        {
+          can_sync: bool,
+          status: Zavudev::Models::Senders::WhatsAppSyncHistory::status,
+          completed_at: Time?,
+          requested_at: Time?
+        }
+
+      class WhatsAppSyncHistory < Zavudev::Internal::Type::BaseModel
+        attr_accessor can_sync: bool
+
+        attr_accessor status: Zavudev::Models::Senders::WhatsAppSyncHistory::status
+
+        attr_accessor completed_at: Time?
+
+        attr_accessor requested_at: Time?
+
+        def initialize: (
+          can_sync: bool,
+          status: Zavudev::Models::Senders::WhatsAppSyncHistory::status,
+          ?completed_at: Time?,
+          ?requested_at: Time?
+        ) -> void
+
+        def to_hash: -> {
+          can_sync: bool,
+          status: Zavudev::Models::Senders::WhatsAppSyncHistory::status,
+          completed_at: Time?,
+          requested_at: Time?
+        }
+
+        type status =
+          :not_requested | :pending | :syncing | :completed | :rejected
+
+        module Status
+          extend Zavudev::Internal::Type::Enum
+
+          NOT_REQUESTED: :not_requested
+          PENDING: :pending
+          SYNCING: :syncing
+          COMPLETED: :completed
+          REJECTED: :rejected
+
+          def self?.values: -> ::Array[Zavudev::Models::Senders::WhatsAppSyncHistory::status]
+        end
+      end
+    end
+  end
+end

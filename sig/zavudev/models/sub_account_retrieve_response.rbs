@@ -1,0 +1,13 @@
+module Zavudev
+  module Models
+    type sub_account_retrieve_response = { sub_account: Zavudev::SubAccount }
+
+    class SubAccountRetrieveResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor sub_account: Zavudev::SubAccount
+
+      def initialize: (sub_account: Zavudev::SubAccount) -> void
+
+      def to_hash: -> { sub_account: Zavudev::SubAccount }
+    end
+  end
+end

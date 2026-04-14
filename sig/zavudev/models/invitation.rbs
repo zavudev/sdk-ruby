@@ -1,0 +1,104 @@
+module Zavudev
+  module Models
+    type invitation =
+      {
+        id: String,
+        token: String,
+        created_at: Time,
+        expires_at: Time,
+        status: Zavudev::Models::Invitation::status,
+        updated_at: Time,
+        url: String,
+        client_email: String?,
+        client_name: String?,
+        client_phone: String?,
+        completed_at: Time?,
+        phone_number_id: String?,
+        sender_id: String?,
+        started_at: Time?,
+        viewed_at: Time?
+      }
+
+    class Invitation < Zavudev::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor token: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor expires_at: Time
+
+      attr_accessor status: Zavudev::Models::Invitation::status
+
+      attr_accessor updated_at: Time
+
+      attr_accessor url: String
+
+      attr_accessor client_email: String?
+
+      attr_accessor client_name: String?
+
+      attr_accessor client_phone: String?
+
+      attr_accessor completed_at: Time?
+
+      attr_accessor phone_number_id: String?
+
+      attr_accessor sender_id: String?
+
+      attr_accessor started_at: Time?
+
+      attr_accessor viewed_at: Time?
+
+      def initialize: (
+        id: String,
+        token: String,
+        created_at: Time,
+        expires_at: Time,
+        status: Zavudev::Models::Invitation::status,
+        updated_at: Time,
+        url: String,
+        ?client_email: String?,
+        ?client_name: String?,
+        ?client_phone: String?,
+        ?completed_at: Time?,
+        ?phone_number_id: String?,
+        ?sender_id: String?,
+        ?started_at: Time?,
+        ?viewed_at: Time?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        token: String,
+        created_at: Time,
+        expires_at: Time,
+        status: Zavudev::Models::Invitation::status,
+        updated_at: Time,
+        url: String,
+        client_email: String?,
+        client_name: String?,
+        client_phone: String?,
+        completed_at: Time?,
+        phone_number_id: String?,
+        sender_id: String?,
+        started_at: Time?,
+        viewed_at: Time?
+      }
+
+      type status = :pending | :in_progress | :completed | :expired | :cancelled
+
+      module Status
+        extend Zavudev::Internal::Type::Enum
+
+        PENDING: :pending
+        IN_PROGRESS: :in_progress
+        COMPLETED: :completed
+        EXPIRED: :expired
+        CANCELLED: :cancelled
+
+        def self?.values: -> ::Array[Zavudev::Models::Invitation::status]
+      end
+    end
+  end
+end

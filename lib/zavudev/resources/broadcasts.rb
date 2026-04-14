@@ -168,6 +168,26 @@ module Zavudev
         )
       end
 
+      # Request manual review by the Zavu team for a rejected broadcast. Use this after
+      # automated review rejection if you believe the content is legitimate.
+      #
+      # @overload escalate_review(broadcast_id, request_options: {})
+      #
+      # @param broadcast_id [String]
+      # @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Zavudev::Models::BroadcastEscalateReviewResponse]
+      #
+      # @see Zavudev::Models::BroadcastEscalateReviewParams
+      def escalate_review(broadcast_id, params = {})
+        @client.request(
+          method: :post,
+          path: ["v1/broadcasts/%1$s/escalate", broadcast_id],
+          model: Zavudev::Models::BroadcastEscalateReviewResponse,
+          options: params[:request_options]
+        )
+      end
+
       # Get real-time progress of a broadcast including delivery counts and estimated
       # completion time.
       #
@@ -210,6 +230,26 @@ module Zavudev
           body: parsed,
           model: Zavudev::Models::BroadcastRescheduleResponse,
           options: options
+        )
+      end
+
+      # Resubmit a rejected broadcast for AI review after editing content. Maximum 3
+      # review attempts allowed per broadcast.
+      #
+      # @overload retry_review(broadcast_id, request_options: {})
+      #
+      # @param broadcast_id [String]
+      # @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Zavudev::Models::BroadcastRetryReviewResponse]
+      #
+      # @see Zavudev::Models::BroadcastRetryReviewParams
+      def retry_review(broadcast_id, params = {})
+        @client.request(
+          method: :post,
+          path: ["v1/broadcasts/%1$s/retry-review", broadcast_id],
+          model: Zavudev::Models::BroadcastRetryReviewResponse,
+          options: params[:request_options]
         )
       end
 

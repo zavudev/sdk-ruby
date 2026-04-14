@@ -1,0 +1,38 @@
+module Zavudev
+  module Models
+    module Number10dlc
+      type brand_list_use_cases_response =
+        {
+          use_cases: ::Array[Zavudev::Models::Number10dlc::BrandListUseCasesResponse::UseCase]
+        }
+
+      class BrandListUseCasesResponse < Zavudev::Internal::Type::BaseModel
+        attr_accessor use_cases: ::Array[Zavudev::Models::Number10dlc::BrandListUseCasesResponse::UseCase]
+
+        def initialize: (
+          use_cases: ::Array[Zavudev::Models::Number10dlc::BrandListUseCasesResponse::UseCase]
+        ) -> void
+
+        def to_hash: -> {
+          use_cases: ::Array[Zavudev::Models::Number10dlc::BrandListUseCasesResponse::UseCase]
+        }
+
+        type use_case = { description: String, name: String }
+
+        class UseCase < Zavudev::Internal::Type::BaseModel
+          attr_reader description: String?
+
+          def description=: (String) -> String
+
+          attr_reader name: String?
+
+          def name=: (String) -> String
+
+          def initialize: (?description: String, ?name: String) -> void
+
+          def to_hash: -> { description: String, name: String }
+        end
+      end
+    end
+  end
+end

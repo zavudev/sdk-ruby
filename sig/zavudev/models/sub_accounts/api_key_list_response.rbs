@@ -1,0 +1,94 @@
+module Zavudev
+  module Models
+    module SubAccounts
+      type api_key_list_response =
+        {
+          items: ::Array[Zavudev::Models::SubAccounts::APIKeyListResponse::Item]
+        }
+
+      class APIKeyListResponse < Zavudev::Internal::Type::BaseModel
+        attr_accessor items: ::Array[Zavudev::Models::SubAccounts::APIKeyListResponse::Item]
+
+        def initialize: (
+          items: ::Array[Zavudev::Models::SubAccounts::APIKeyListResponse::Item]
+        ) -> void
+
+        def to_hash: -> {
+          items: ::Array[Zavudev::Models::SubAccounts::APIKeyListResponse::Item]
+        }
+
+        type item =
+          {
+            id: String,
+            created_at: Float,
+            environment: Zavudev::Models::SubAccounts::APIKeyListResponse::Item::environment,
+            key_prefix: String,
+            name: String,
+            key: String,
+            last_used_at: Float?,
+            permissions: ::Array[String],
+            revoked_at: Float?
+          }
+
+        class Item < Zavudev::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor created_at: Float
+
+          attr_accessor environment: Zavudev::Models::SubAccounts::APIKeyListResponse::Item::environment
+
+          attr_accessor key_prefix: String
+
+          attr_accessor name: String
+
+          attr_reader key: String?
+
+          def key=: (String) -> String
+
+          attr_accessor last_used_at: Float?
+
+          attr_reader permissions: ::Array[String]?
+
+          def permissions=: (::Array[String]) -> ::Array[String]
+
+          attr_accessor revoked_at: Float?
+
+          def initialize: (
+            id: String,
+            created_at: Float,
+            environment: Zavudev::Models::SubAccounts::APIKeyListResponse::Item::environment,
+            key_prefix: String,
+            name: String,
+            ?key: String,
+            ?last_used_at: Float?,
+            ?permissions: ::Array[String],
+            ?revoked_at: Float?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            created_at: Float,
+            environment: Zavudev::Models::SubAccounts::APIKeyListResponse::Item::environment,
+            key_prefix: String,
+            name: String,
+            key: String,
+            last_used_at: Float?,
+            permissions: ::Array[String],
+            revoked_at: Float?
+          }
+
+          type environment = :live | :test
+
+          module Environment
+            extend Zavudev::Internal::Type::Enum
+
+            LIVE: :live
+            TEST: :test
+
+            def self?.values: -> ::Array[Zavudev::Models::SubAccounts::APIKeyListResponse::Item::environment]
+          end
+        end
+      end
+    end
+  end
+end
