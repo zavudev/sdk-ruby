@@ -15,6 +15,38 @@ module Zavudev
       #   @return [Array<Zavudev::Models::MessageContent::Contact>, nil]
       optional :contacts, -> { Zavudev::Internal::Type::ArrayOf[Zavudev::MessageContent::Contact] }
 
+      # @!attribute cta_display_text
+      #   Button label for cta_url messages.
+      #
+      #   @return [String, nil]
+      optional :cta_display_text, String, api_name: :ctaDisplayText
+
+      # @!attribute cta_header_media_url
+      #   Public URL of the header media when ctaHeaderType is 'image', 'video', or
+      #   'document'.
+      #
+      #   @return [String, nil]
+      optional :cta_header_media_url, String, api_name: :ctaHeaderMediaUrl
+
+      # @!attribute cta_header_text
+      #   Header text when ctaHeaderType is 'text'.
+      #
+      #   @return [String, nil]
+      optional :cta_header_text, String, api_name: :ctaHeaderText
+
+      # @!attribute cta_header_type
+      #   Optional header type for cta_url messages.
+      #
+      #   @return [Symbol, Zavudev::Models::MessageContent::CtaHeaderType, nil]
+      optional :cta_header_type, enum: -> { Zavudev::MessageContent::CtaHeaderType }, api_name: :ctaHeaderType
+
+      # @!attribute cta_url
+      #   Destination URL opened in the device's default browser when the button is
+      #   tapped. Used with messageType=cta_url.
+      #
+      #   @return [String, nil]
+      optional :cta_url, String, api_name: :ctaUrl
+
       # @!attribute emoji
       #   Emoji for reaction messages.
       #
@@ -26,6 +58,12 @@ module Zavudev
       #
       #   @return [String, nil]
       optional :filename, String
+
+      # @!attribute footer_text
+      #   Optional footer text for cta_url messages.
+      #
+      #   @return [String, nil]
+      optional :footer_text, String, api_name: :footerText
 
       # @!attribute latitude
       #   Latitude for location messages.
@@ -99,16 +137,31 @@ module Zavudev
       #   @return [Hash{Symbol=>String}, nil]
       optional :template_variables, Zavudev::Internal::Type::HashOf[String], api_name: :templateVariables
 
-      # @!method initialize(buttons: nil, contacts: nil, emoji: nil, filename: nil, latitude: nil, list_button: nil, location_address: nil, location_name: nil, longitude: nil, media_id: nil, media_url: nil, mime_type: nil, react_to_message_id: nil, sections: nil, template_id: nil, template_variables: nil)
+      # @!method initialize(buttons: nil, contacts: nil, cta_display_text: nil, cta_header_media_url: nil, cta_header_text: nil, cta_header_type: nil, cta_url: nil, emoji: nil, filename: nil, footer_text: nil, latitude: nil, list_button: nil, location_address: nil, location_name: nil, longitude: nil, media_id: nil, media_url: nil, mime_type: nil, react_to_message_id: nil, sections: nil, template_id: nil, template_variables: nil)
+      #   Some parameter documentations has been truncated, see
+      #   {Zavudev::Models::MessageContent} for more details.
+      #
       #   Content for non-text message types (WhatsApp and Telegram).
       #
       #   @param buttons [Array<Zavudev::Models::MessageContent::Button>] Interactive buttons (max 3).
       #
       #   @param contacts [Array<Zavudev::Models::MessageContent::Contact>] Contact cards for contact messages.
       #
+      #   @param cta_display_text [String] Button label for cta_url messages.
+      #
+      #   @param cta_header_media_url [String] Public URL of the header media when ctaHeaderType is 'image', 'video', or 'docum
+      #
+      #   @param cta_header_text [String] Header text when ctaHeaderType is 'text'.
+      #
+      #   @param cta_header_type [Symbol, Zavudev::Models::MessageContent::CtaHeaderType] Optional header type for cta_url messages.
+      #
+      #   @param cta_url [String] Destination URL opened in the device's default browser when the button is tapped
+      #
       #   @param emoji [String] Emoji for reaction messages.
       #
       #   @param filename [String] Filename for documents.
+      #
+      #   @param footer_text [String] Optional footer text for cta_url messages.
       #
       #   @param latitude [Float] Latitude for location messages.
       #
@@ -164,6 +217,21 @@ module Zavudev
         # @!method initialize(name: nil, phones: nil)
         #   @param name [String]
         #   @param phones [Array<String>]
+      end
+
+      # Optional header type for cta_url messages.
+      #
+      # @see Zavudev::Models::MessageContent#cta_header_type
+      module CtaHeaderType
+        extend Zavudev::Internal::Type::Enum
+
+        TEXT = :text
+        IMAGE = :image
+        VIDEO = :video
+        DOCUMENT = :document
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       class Section < Zavudev::Internal::Type::BaseModel

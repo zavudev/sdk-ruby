@@ -20,6 +20,7 @@ module Zavudev
       CONTACT = T.let(:contact, Zavudev::MessageType::TaggedSymbol)
       BUTTONS = T.let(:buttons, Zavudev::MessageType::TaggedSymbol)
       LIST = T.let(:list, Zavudev::MessageType::TaggedSymbol)
+      CTA_URL = T.let(:cta_url, Zavudev::MessageType::TaggedSymbol)
       REACTION = T.let(:reaction, Zavudev::MessageType::TaggedSymbol)
       TEMPLATE = T.let(:template, Zavudev::MessageType::TaggedSymbol)
 
