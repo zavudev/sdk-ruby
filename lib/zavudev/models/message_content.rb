@@ -22,8 +22,9 @@ module Zavudev
       optional :cta_display_text, String, api_name: :ctaDisplayText
 
       # @!attribute cta_header_media_url
-      #   Public URL of the header media when ctaHeaderType is 'image', 'video', or
-      #   'document'.
+      #   Public HTTPS URL of the header media when ctaHeaderType is 'image', 'video', or
+      #   'document'. WhatsApp fetches this URL — it must be publicly reachable and return
+      #   the declared content type.
       #
       #   @return [String, nil]
       optional :cta_header_media_url, String, api_name: :ctaHeaderMediaUrl
@@ -42,7 +43,7 @@ module Zavudev
 
       # @!attribute cta_url
       #   Destination URL opened in the device's default browser when the button is
-      #   tapped. Used with messageType=cta_url.
+      #   tapped. Used with messageType=cta_url. WhatsApp requires HTTPS in production.
       #
       #   @return [String, nil]
       optional :cta_url, String, api_name: :ctaUrl
@@ -149,7 +150,7 @@ module Zavudev
       #
       #   @param cta_display_text [String] Button label for cta_url messages.
       #
-      #   @param cta_header_media_url [String] Public URL of the header media when ctaHeaderType is 'image', 'video', or 'docum
+      #   @param cta_header_media_url [String] Public HTTPS URL of the header media when ctaHeaderType is 'image', 'video', or
       #
       #   @param cta_header_text [String] Header text when ctaHeaderType is 'text'.
       #

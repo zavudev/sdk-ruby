@@ -35,8 +35,9 @@ module Zavudev
       sig { params(cta_display_text: String).void }
       attr_writer :cta_display_text
 
-      # Public URL of the header media when ctaHeaderType is 'image', 'video', or
-      # 'document'.
+      # Public HTTPS URL of the header media when ctaHeaderType is 'image', 'video', or
+      # 'document'. WhatsApp fetches this URL — it must be publicly reachable and return
+      # the declared content type.
       sig { returns(T.nilable(String)) }
       attr_reader :cta_header_media_url
 
@@ -64,7 +65,7 @@ module Zavudev
       attr_writer :cta_header_type
 
       # Destination URL opened in the device's default browser when the button is
-      # tapped. Used with messageType=cta_url.
+      # tapped. Used with messageType=cta_url. WhatsApp requires HTTPS in production.
       sig { returns(T.nilable(String)) }
       attr_reader :cta_url
 
@@ -214,15 +215,16 @@ module Zavudev
         contacts: nil,
         # Button label for cta_url messages.
         cta_display_text: nil,
-        # Public URL of the header media when ctaHeaderType is 'image', 'video', or
-        # 'document'.
+        # Public HTTPS URL of the header media when ctaHeaderType is 'image', 'video', or
+        # 'document'. WhatsApp fetches this URL — it must be publicly reachable and return
+        # the declared content type.
         cta_header_media_url: nil,
         # Header text when ctaHeaderType is 'text'.
         cta_header_text: nil,
         # Optional header type for cta_url messages.
         cta_header_type: nil,
         # Destination URL opened in the device's default browser when the button is
-        # tapped. Used with messageType=cta_url.
+        # tapped. Used with messageType=cta_url. WhatsApp requires HTTPS in production.
         cta_url: nil,
         # Emoji for reaction messages.
         emoji: nil,
