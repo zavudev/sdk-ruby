@@ -4,8 +4,14 @@ module Zavudev
       {
         buttons: ::Array[Zavudev::MessageContent::Button],
         contacts: ::Array[Zavudev::MessageContent::Contact],
+        cta_display_text: String,
+        cta_header_media_url: String,
+        cta_header_text: String,
+        cta_header_type: Zavudev::Models::MessageContent::cta_header_type,
+        cta_url: String,
         emoji: String,
         filename: String,
+        footer_text: String,
         latitude: Float,
         list_button: String,
         location_address: String,
@@ -33,6 +39,28 @@ module Zavudev
         ::Array[Zavudev::MessageContent::Contact]
       ) -> ::Array[Zavudev::MessageContent::Contact]
 
+      attr_reader cta_display_text: String?
+
+      def cta_display_text=: (String) -> String
+
+      attr_reader cta_header_media_url: String?
+
+      def cta_header_media_url=: (String) -> String
+
+      attr_reader cta_header_text: String?
+
+      def cta_header_text=: (String) -> String
+
+      attr_reader cta_header_type: Zavudev::Models::MessageContent::cta_header_type?
+
+      def cta_header_type=: (
+        Zavudev::Models::MessageContent::cta_header_type
+      ) -> Zavudev::Models::MessageContent::cta_header_type
+
+      attr_reader cta_url: String?
+
+      def cta_url=: (String) -> String
+
       attr_reader emoji: String?
 
       def emoji=: (String) -> String
@@ -40,6 +68,10 @@ module Zavudev
       attr_reader filename: String?
 
       def filename=: (String) -> String
+
+      attr_reader footer_text: String?
+
+      def footer_text=: (String) -> String
 
       attr_reader latitude: Float?
 
@@ -96,8 +128,14 @@ module Zavudev
       def initialize: (
         ?buttons: ::Array[Zavudev::MessageContent::Button],
         ?contacts: ::Array[Zavudev::MessageContent::Contact],
+        ?cta_display_text: String,
+        ?cta_header_media_url: String,
+        ?cta_header_text: String,
+        ?cta_header_type: Zavudev::Models::MessageContent::cta_header_type,
+        ?cta_url: String,
         ?emoji: String,
         ?filename: String,
+        ?footer_text: String,
         ?latitude: Float,
         ?list_button: String,
         ?location_address: String,
@@ -115,8 +153,14 @@ module Zavudev
       def to_hash: -> {
         buttons: ::Array[Zavudev::MessageContent::Button],
         contacts: ::Array[Zavudev::MessageContent::Contact],
+        cta_display_text: String,
+        cta_header_media_url: String,
+        cta_header_text: String,
+        cta_header_type: Zavudev::Models::MessageContent::cta_header_type,
+        cta_url: String,
         emoji: String,
         filename: String,
+        footer_text: String,
         latitude: Float,
         list_button: String,
         location_address: String,
@@ -157,6 +201,19 @@ module Zavudev
         def initialize: (?name: String, ?phones: ::Array[String]) -> void
 
         def to_hash: -> { name: String, phones: ::Array[String] }
+      end
+
+      type cta_header_type = :text | :image | :video | :document
+
+      module CtaHeaderType
+        extend Zavudev::Internal::Type::Enum
+
+        TEXT: :text
+        IMAGE: :image
+        VIDEO: :video
+        DOCUMENT: :document
+
+        def self?.values: -> ::Array[Zavudev::Models::MessageContent::cta_header_type]
       end
 
       type section =
