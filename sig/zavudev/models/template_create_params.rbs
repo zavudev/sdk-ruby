@@ -119,6 +119,7 @@ module Zavudev
         {
           text: String,
           type: Zavudev::Models::TemplateCreateParams::Button::type_,
+          example: String,
           otp_type: Zavudev::Models::TemplateCreateParams::Button::otp_type,
           package_name: String,
           phone_number: String,
@@ -130,6 +131,10 @@ module Zavudev
         attr_accessor text: String
 
         attr_accessor type: Zavudev::Models::TemplateCreateParams::Button::type_
+
+        attr_reader example: String?
+
+        def example=: (String) -> String
 
         attr_reader otp_type: Zavudev::Models::TemplateCreateParams::Button::otp_type?
 
@@ -156,6 +161,7 @@ module Zavudev
         def initialize: (
           text: String,
           type: Zavudev::Models::TemplateCreateParams::Button::type_,
+          ?example: String,
           ?otp_type: Zavudev::Models::TemplateCreateParams::Button::otp_type,
           ?package_name: String,
           ?phone_number: String,
@@ -166,6 +172,7 @@ module Zavudev
         def to_hash: -> {
           text: String,
           type: Zavudev::Models::TemplateCreateParams::Button::type_,
+          example: String,
           otp_type: Zavudev::Models::TemplateCreateParams::Button::otp_type,
           package_name: String,
           phone_number: String,

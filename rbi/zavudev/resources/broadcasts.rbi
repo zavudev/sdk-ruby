@@ -124,6 +124,17 @@ module Zavudev
       def cancel(broadcast_id, request_options: {})
       end
 
+      # Request manual review by the Zavu team for a rejected broadcast. Use this after
+      # automated review rejection if you believe the content is legitimate.
+      sig do
+        params(
+          broadcast_id: String,
+          request_options: Zavudev::RequestOptions::OrHash
+        ).returns(Zavudev::Models::BroadcastEscalateReviewResponse)
+      end
+      def escalate_review(broadcast_id, request_options: {})
+      end
+
       # Get real-time progress of a broadcast including delivery counts and estimated
       # completion time.
       sig do
@@ -150,6 +161,17 @@ module Zavudev
         scheduled_at:,
         request_options: {}
       )
+      end
+
+      # Resubmit a rejected broadcast for AI review after editing content. Maximum 3
+      # review attempts allowed per broadcast.
+      sig do
+        params(
+          broadcast_id: String,
+          request_options: Zavudev::RequestOptions::OrHash
+        ).returns(Zavudev::Models::BroadcastRetryReviewResponse)
+      end
+      def retry_review(broadcast_id, request_options: {})
       end
 
       # Start sending the broadcast immediately or schedule for later. Broadcasts go

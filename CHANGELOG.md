@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.8.0 (2026-04-27)
+
+Full Changelog: [v0.7.0...v0.8.0](https://github.com/zavudev/sdk-ruby/compare/v0.7.0...v0.8.0)
+
+### Features
+
+* **api:** api update ([fcdb3bb](https://github.com/zavudev/sdk-ruby/commit/fcdb3bbf40b86d44934d7e8e79326534611565c6))
+* **api:** api update ([f2539c4](https://github.com/zavudev/sdk-ruby/commit/f2539c4ba08fbda9e2e6ed06362bb2bfd57020c3))
+* **api:** api update ([5615955](https://github.com/zavudev/sdk-ruby/commit/5615955a45679123ee08a44f873c79a0809bb22d))
+* **api:** api update ([8661c49](https://github.com/zavudev/sdk-ruby/commit/8661c4974d3b0b702053ae64b48e6b12402d94f6))
+* **api:** api update ([1512e7b](https://github.com/zavudev/sdk-ruby/commit/1512e7b3aa6b6452a3baba8c4dfecbf600bb83a7))
+* **api:** manual updates ([5ead4c0](https://github.com/zavudev/sdk-ruby/commit/5ead4c049395271330159c846392d5a03e34c71e))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([933b9ef](https://github.com/zavudev/sdk-ruby/commit/933b9efa805ab75d7086e752d76f1cdebbdf63a6))
+
 ## 0.7.0 (2026-04-14)
 
 Full Changelog: [v0.6.0...v0.7.0](https://github.com/zavudev/sdk-ruby/compare/v0.6.0...v0.7.0)

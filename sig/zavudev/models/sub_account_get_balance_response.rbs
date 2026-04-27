@@ -1,0 +1,42 @@
+module Zavudev
+  module Models
+    type sub_account_get_balance_response =
+      {
+        balance: Integer,
+        currency: String,
+        credit_limit: Integer?,
+        is_sub_account: bool,
+        total_spent: Integer?
+      }
+
+    class SubAccountGetBalanceResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor balance: Integer
+
+      attr_accessor currency: String
+
+      attr_accessor credit_limit: Integer?
+
+      attr_reader is_sub_account: bool?
+
+      def is_sub_account=: (bool) -> bool
+
+      attr_accessor total_spent: Integer?
+
+      def initialize: (
+        balance: Integer,
+        currency: String,
+        ?credit_limit: Integer?,
+        ?is_sub_account: bool,
+        ?total_spent: Integer?
+      ) -> void
+
+      def to_hash: -> {
+        balance: Integer,
+        currency: String,
+        credit_limit: Integer?,
+        is_sub_account: bool,
+        total_spent: Integer?
+      }
+    end
+  end
+end

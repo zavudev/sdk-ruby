@@ -1,0 +1,128 @@
+module Zavudev
+  module Models
+    module Number10dlc
+      type campaign_create_params =
+        {
+          affiliate_marketing: bool,
+          age_gated: bool,
+          brand_id: String,
+          description: String,
+          direct_lending: bool,
+          embedded_link: bool,
+          embedded_phone: bool,
+          name: String,
+          number_pooling: bool,
+          sample_messages: ::Array[String],
+          subscriber_help: bool,
+          subscriber_opt_in: bool,
+          subscriber_opt_out: bool,
+          use_case: String,
+          help_message: String,
+          message_flow: String,
+          opt_in_keywords: ::Array[String],
+          opt_out_keywords: ::Array[String],
+          sub_use_cases: ::Array[String]
+        }
+        & Zavudev::Internal::Type::request_parameters
+
+      class CampaignCreateParams < Zavudev::Internal::Type::BaseModel
+        extend Zavudev::Internal::Type::RequestParameters::Converter
+        include Zavudev::Internal::Type::RequestParameters
+
+        attr_accessor affiliate_marketing: bool
+
+        attr_accessor age_gated: bool
+
+        attr_accessor brand_id: String
+
+        attr_accessor description: String
+
+        attr_accessor direct_lending: bool
+
+        attr_accessor embedded_link: bool
+
+        attr_accessor embedded_phone: bool
+
+        attr_accessor name: String
+
+        attr_accessor number_pooling: bool
+
+        attr_accessor sample_messages: ::Array[String]
+
+        attr_accessor subscriber_help: bool
+
+        attr_accessor subscriber_opt_in: bool
+
+        attr_accessor subscriber_opt_out: bool
+
+        attr_accessor use_case: String
+
+        attr_reader help_message: String?
+
+        def help_message=: (String) -> String
+
+        attr_reader message_flow: String?
+
+        def message_flow=: (String) -> String
+
+        attr_reader opt_in_keywords: ::Array[String]?
+
+        def opt_in_keywords=: (::Array[String]) -> ::Array[String]
+
+        attr_reader opt_out_keywords: ::Array[String]?
+
+        def opt_out_keywords=: (::Array[String]) -> ::Array[String]
+
+        attr_reader sub_use_cases: ::Array[String]?
+
+        def sub_use_cases=: (::Array[String]) -> ::Array[String]
+
+        def initialize: (
+          affiliate_marketing: bool,
+          age_gated: bool,
+          brand_id: String,
+          description: String,
+          direct_lending: bool,
+          embedded_link: bool,
+          embedded_phone: bool,
+          name: String,
+          number_pooling: bool,
+          sample_messages: ::Array[String],
+          subscriber_help: bool,
+          subscriber_opt_in: bool,
+          subscriber_opt_out: bool,
+          use_case: String,
+          ?help_message: String,
+          ?message_flow: String,
+          ?opt_in_keywords: ::Array[String],
+          ?opt_out_keywords: ::Array[String],
+          ?sub_use_cases: ::Array[String],
+          ?request_options: Zavudev::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          affiliate_marketing: bool,
+          age_gated: bool,
+          brand_id: String,
+          description: String,
+          direct_lending: bool,
+          embedded_link: bool,
+          embedded_phone: bool,
+          name: String,
+          number_pooling: bool,
+          sample_messages: ::Array[String],
+          subscriber_help: bool,
+          subscriber_opt_in: bool,
+          subscriber_opt_out: bool,
+          use_case: String,
+          help_message: String,
+          message_flow: String,
+          opt_in_keywords: ::Array[String],
+          opt_out_keywords: ::Array[String],
+          sub_use_cases: ::Array[String],
+          request_options: Zavudev::RequestOptions
+        }
+      end
+    end
+  end
+end

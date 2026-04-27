@@ -1,0 +1,15 @@
+module Zavudev
+  module Models
+    module Contacts
+      type channel_add_response = { channel: Zavudev::ContactChannel }
+
+      class ChannelAddResponse < Zavudev::Internal::Type::BaseModel
+        attr_accessor channel: Zavudev::ContactChannel
+
+        def initialize: (channel: Zavudev::ContactChannel) -> void
+
+        def to_hash: -> { channel: Zavudev::ContactChannel }
+      end
+    end
+  end
+end

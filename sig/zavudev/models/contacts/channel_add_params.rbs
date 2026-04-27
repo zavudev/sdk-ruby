@@ -1,0 +1,73 @@
+module Zavudev
+  module Models
+    module Contacts
+      type channel_add_params =
+        {
+          contact_id: String,
+          channel: Zavudev::Models::Contacts::ChannelAddParams::channel,
+          identifier: String,
+          country_code: String,
+          is_primary: bool,
+          label: String
+        }
+        & Zavudev::Internal::Type::request_parameters
+
+      class ChannelAddParams < Zavudev::Internal::Type::BaseModel
+        extend Zavudev::Internal::Type::RequestParameters::Converter
+        include Zavudev::Internal::Type::RequestParameters
+
+        attr_accessor contact_id: String
+
+        attr_accessor channel: Zavudev::Models::Contacts::ChannelAddParams::channel
+
+        attr_accessor identifier: String
+
+        attr_reader country_code: String?
+
+        def country_code=: (String) -> String
+
+        attr_reader is_primary: bool?
+
+        def is_primary=: (bool) -> bool
+
+        attr_reader label: String?
+
+        def label=: (String) -> String
+
+        def initialize: (
+          contact_id: String,
+          channel: Zavudev::Models::Contacts::ChannelAddParams::channel,
+          identifier: String,
+          ?country_code: String,
+          ?is_primary: bool,
+          ?label: String,
+          ?request_options: Zavudev::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          contact_id: String,
+          channel: Zavudev::Models::Contacts::ChannelAddParams::channel,
+          identifier: String,
+          country_code: String,
+          is_primary: bool,
+          label: String,
+          request_options: Zavudev::RequestOptions
+        }
+
+        type channel = :sms | :whatsapp | :email | :telegram | :voice
+
+        module Channel
+          extend Zavudev::Internal::Type::Enum
+
+          SMS: :sms
+          WHATSAPP: :whatsapp
+          EMAIL: :email
+          TELEGRAM: :telegram
+          VOICE: :voice
+
+          def self?.values: -> ::Array[Zavudev::Models::Contacts::ChannelAddParams::channel]
+        end
+      end
+    end
+  end
+end

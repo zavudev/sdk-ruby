@@ -1,0 +1,141 @@
+module Zavudev
+  module Models
+    module Number10dlc
+      type brand_create_params =
+        {
+          city: String,
+          country: String,
+          display_name: String,
+          email: String,
+          entity_type: Zavudev::Models::Number10dlc::BrandCreateParams::entity_type,
+          phone: String,
+          postal_code: String,
+          state: String,
+          street: String,
+          vertical: String,
+          company_name: String,
+          ein: String,
+          first_name: String,
+          last_name: String,
+          stock_exchange: String,
+          stock_symbol: String,
+          website: String
+        }
+        & Zavudev::Internal::Type::request_parameters
+
+      class BrandCreateParams < Zavudev::Internal::Type::BaseModel
+        extend Zavudev::Internal::Type::RequestParameters::Converter
+        include Zavudev::Internal::Type::RequestParameters
+
+        attr_accessor city: String
+
+        attr_accessor country: String
+
+        attr_accessor display_name: String
+
+        attr_accessor email: String
+
+        attr_accessor entity_type: Zavudev::Models::Number10dlc::BrandCreateParams::entity_type
+
+        attr_accessor phone: String
+
+        attr_accessor postal_code: String
+
+        attr_accessor state: String
+
+        attr_accessor street: String
+
+        attr_accessor vertical: String
+
+        attr_reader company_name: String?
+
+        def company_name=: (String) -> String
+
+        attr_reader ein: String?
+
+        def ein=: (String) -> String
+
+        attr_reader first_name: String?
+
+        def first_name=: (String) -> String
+
+        attr_reader last_name: String?
+
+        def last_name=: (String) -> String
+
+        attr_reader stock_exchange: String?
+
+        def stock_exchange=: (String) -> String
+
+        attr_reader stock_symbol: String?
+
+        def stock_symbol=: (String) -> String
+
+        attr_reader website: String?
+
+        def website=: (String) -> String
+
+        def initialize: (
+          city: String,
+          country: String,
+          display_name: String,
+          email: String,
+          entity_type: Zavudev::Models::Number10dlc::BrandCreateParams::entity_type,
+          phone: String,
+          postal_code: String,
+          state: String,
+          street: String,
+          vertical: String,
+          ?company_name: String,
+          ?ein: String,
+          ?first_name: String,
+          ?last_name: String,
+          ?stock_exchange: String,
+          ?stock_symbol: String,
+          ?website: String,
+          ?request_options: Zavudev::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          city: String,
+          country: String,
+          display_name: String,
+          email: String,
+          entity_type: Zavudev::Models::Number10dlc::BrandCreateParams::entity_type,
+          phone: String,
+          postal_code: String,
+          state: String,
+          street: String,
+          vertical: String,
+          company_name: String,
+          ein: String,
+          first_name: String,
+          last_name: String,
+          stock_exchange: String,
+          stock_symbol: String,
+          website: String,
+          request_options: Zavudev::RequestOptions
+        }
+
+        type entity_type =
+          :PRIVATE_PROFIT
+          | :PUBLIC_PROFIT
+          | :NON_PROFIT
+          | :GOVERNMENT
+          | :SOLE_PROPRIETOR
+
+        module EntityType
+          extend Zavudev::Internal::Type::Enum
+
+          PRIVATE_PROFIT: :PRIVATE_PROFIT
+          PUBLIC_PROFIT: :PUBLIC_PROFIT
+          NON_PROFIT: :NON_PROFIT
+          GOVERNMENT: :GOVERNMENT
+          SOLE_PROPRIETOR: :SOLE_PROPRIETOR
+
+          def self?.values: -> ::Array[Zavudev::Models::Number10dlc::BrandCreateParams::entity_type]
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Zavudev
+  module Models
+    module Number10dlc
+      type brand_list_use_cases_params =
+        {  } & Zavudev::Internal::Type::request_parameters
+
+      class BrandListUseCasesParams < Zavudev::Internal::Type::BaseModel
+        extend Zavudev::Internal::Type::RequestParameters::Converter
+        include Zavudev::Internal::Type::RequestParameters
+
+        def initialize: (?request_options: Zavudev::request_opts) -> void
+
+        def to_hash: -> { request_options: Zavudev::RequestOptions }
+      end
+    end
+  end
+end

@@ -1,0 +1,34 @@
+module Zavudev
+  module Resources
+    class Invitations
+      def create: (
+        ?allowed_phone_countries: ::Array[String],
+        ?client_email: String,
+        ?client_name: String,
+        ?client_phone: String,
+        ?expires_in_days: Integer,
+        ?phone_number_id: String,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::InvitationCreateResponse
+
+      def retrieve: (
+        String invitation_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::InvitationRetrieveResponse
+
+      def list: (
+        ?cursor: String,
+        ?limit: Integer,
+        ?status: Zavudev::Models::InvitationListParams::status,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Internal::Cursor[Zavudev::Invitation]
+
+      def cancel: (
+        String invitation_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::InvitationCancelResponse
+
+      def initialize: (client: Zavudev::Client) -> void
+    end
+  end
+end

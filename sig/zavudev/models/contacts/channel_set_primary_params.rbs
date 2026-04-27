@@ -1,0 +1,30 @@
+module Zavudev
+  module Models
+    module Contacts
+      type channel_set_primary_params =
+        { contact_id: String, channel_id: String }
+        & Zavudev::Internal::Type::request_parameters
+
+      class ChannelSetPrimaryParams < Zavudev::Internal::Type::BaseModel
+        extend Zavudev::Internal::Type::RequestParameters::Converter
+        include Zavudev::Internal::Type::RequestParameters
+
+        attr_accessor contact_id: String
+
+        attr_accessor channel_id: String
+
+        def initialize: (
+          contact_id: String,
+          channel_id: String,
+          ?request_options: Zavudev::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          contact_id: String,
+          channel_id: String,
+          request_options: Zavudev::RequestOptions
+        }
+      end
+    end
+  end
+end

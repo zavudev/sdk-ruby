@@ -1,0 +1,59 @@
+module Zavudev
+  module Models
+    type export_create_params =
+      {
+        data_types: ::Array[Zavudev::Models::ExportCreateParams::data_type],
+        date_from: Time,
+        date_to: Time
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class ExportCreateParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor data_types: ::Array[Zavudev::Models::ExportCreateParams::data_type]
+
+      attr_reader date_from: Time?
+
+      def date_from=: (Time) -> Time
+
+      attr_reader date_to: Time?
+
+      def date_to=: (Time) -> Time
+
+      def initialize: (
+        data_types: ::Array[Zavudev::Models::ExportCreateParams::data_type],
+        ?date_from: Time,
+        ?date_to: Time,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        data_types: ::Array[Zavudev::Models::ExportCreateParams::data_type],
+        date_from: Time,
+        date_to: Time,
+        request_options: Zavudev::RequestOptions
+      }
+
+      type data_type =
+        :messages
+        | :conversations
+        | :webhookDeliveries
+        | :agentExecutions
+        | :activities
+
+      module DataType
+        extend Zavudev::Internal::Type::Enum
+
+        MESSAGES: :messages
+        CONVERSATIONS: :conversations
+        WEBHOOK_DELIVERIES: :webhookDeliveries
+        AGENT_EXECUTIONS: :agentExecutions
+        ACTIVITIES: :activities
+
+        def self?.values: -> ::Array[Zavudev::Models::ExportCreateParams::data_type]
+      end
+    end
+  end
+end

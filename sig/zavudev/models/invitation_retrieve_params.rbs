@@ -1,0 +1,23 @@
+module Zavudev
+  module Models
+    type invitation_retrieve_params =
+      { invitation_id: String } & Zavudev::Internal::Type::request_parameters
+
+    class InvitationRetrieveParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor invitation_id: String
+
+      def initialize: (
+        invitation_id: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        invitation_id: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

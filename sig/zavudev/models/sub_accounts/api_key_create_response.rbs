@@ -1,0 +1,63 @@
+module Zavudev
+  module Models
+    module SubAccounts
+      type api_key_create_response =
+        { api_key: Zavudev::Models::SubAccounts::APIKeyCreateResponse::APIKey }
+
+      class APIKeyCreateResponse < Zavudev::Internal::Type::BaseModel
+        attr_accessor api_key: Zavudev::Models::SubAccounts::APIKeyCreateResponse::APIKey
+
+        def initialize: (
+          api_key: Zavudev::Models::SubAccounts::APIKeyCreateResponse::APIKey
+        ) -> void
+
+        def to_hash: -> {
+          api_key: Zavudev::Models::SubAccounts::APIKeyCreateResponse::APIKey
+        }
+
+        type api_key =
+          {
+            id: String,
+            environment: Zavudev::Models::SubAccounts::APIKeyCreateResponse::APIKey::environment,
+            key: String,
+            name: String
+          }
+
+        class APIKey < Zavudev::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor environment: Zavudev::Models::SubAccounts::APIKeyCreateResponse::APIKey::environment
+
+          attr_accessor key: String
+
+          attr_accessor name: String
+
+          def initialize: (
+            id: String,
+            environment: Zavudev::Models::SubAccounts::APIKeyCreateResponse::APIKey::environment,
+            key: String,
+            name: String
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            environment: Zavudev::Models::SubAccounts::APIKeyCreateResponse::APIKey::environment,
+            key: String,
+            name: String
+          }
+
+          type environment = :live | :test
+
+          module Environment
+            extend Zavudev::Internal::Type::Enum
+
+            LIVE: :live
+            TEST: :test
+
+            def self?.values: -> ::Array[Zavudev::Models::SubAccounts::APIKeyCreateResponse::APIKey::environment]
+          end
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,24 @@
+module Zavudev
+  module Resources
+    class URLs
+      def list_verified: (
+        ?cursor: String,
+        ?limit: Integer,
+        ?status: Zavudev::Models::URLListVerifiedParams::status,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Internal::Cursor[Zavudev::VerifiedURL]
+
+      def retrieve_details: (
+        String url_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::URLRetrieveDetailsResponse
+
+      def submit_for_verification: (
+        url: String,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::URLSubmitForVerificationResponse
+
+      def initialize: (client: Zavudev::Client) -> void
+    end
+  end
+end

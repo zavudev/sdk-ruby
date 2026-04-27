@@ -6,6 +6,9 @@ module Zavudev
       # @return [Zavudev::Resources::Senders::Agent]
       attr_reader :agent
 
+      # @return [Zavudev::Resources::Senders::WhatsappSync]
+      attr_reader :whatsapp_sync
+
       # Create sender
       #
       # @overload create(name:, phone_number:, set_as_default: nil, webhook_events: nil, webhook_url: nil, request_options: {})
@@ -240,6 +243,7 @@ module Zavudev
       def initialize(client:)
         @client = client
         @agent = Zavudev::Resources::Senders::Agent.new(client: client)
+        @whatsapp_sync = Zavudev::Resources::Senders::WhatsappSync.new(client: client)
       end
     end
   end

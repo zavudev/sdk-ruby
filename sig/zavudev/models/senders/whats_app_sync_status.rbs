@@ -1,0 +1,56 @@
+module Zavudev
+  module Models
+    module Senders
+      type whats_app_sync_status =
+        {
+          contacts: Zavudev::Senders::WhatsAppSyncContacts,
+          history: Zavudev::Senders::WhatsAppSyncHistory,
+          is_coexistence: bool,
+          status: Zavudev::Models::Senders::WhatsAppSyncStatus::status
+        }
+
+      class WhatsAppSyncStatus < Zavudev::Internal::Type::BaseModel
+        attr_accessor contacts: Zavudev::Senders::WhatsAppSyncContacts
+
+        attr_accessor history: Zavudev::Senders::WhatsAppSyncHistory
+
+        attr_accessor is_coexistence: bool
+
+        attr_accessor status: Zavudev::Models::Senders::WhatsAppSyncStatus::status
+
+        def initialize: (
+          contacts: Zavudev::Senders::WhatsAppSyncContacts,
+          history: Zavudev::Senders::WhatsAppSyncHistory,
+          is_coexistence: bool,
+          status: Zavudev::Models::Senders::WhatsAppSyncStatus::status
+        ) -> void
+
+        def to_hash: -> {
+          contacts: Zavudev::Senders::WhatsAppSyncContacts,
+          history: Zavudev::Senders::WhatsAppSyncHistory,
+          is_coexistence: bool,
+          status: Zavudev::Models::Senders::WhatsAppSyncStatus::status
+        }
+
+        type status =
+          :pending_verification
+          | :pending_registration
+          | :active
+          | :disconnected
+          | :error
+
+        module Status
+          extend Zavudev::Internal::Type::Enum
+
+          PENDING_VERIFICATION: :pending_verification
+          PENDING_REGISTRATION: :pending_registration
+          ACTIVE: :active
+          DISCONNECTED: :disconnected
+          ERROR: :error
+
+          def self?.values: -> ::Array[Zavudev::Models::Senders::WhatsAppSyncStatus::status]
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,34 @@
+module Zavudev
+  module Models
+    module Number10dlc
+      type brand_list_params =
+        { cursor: String, limit: Integer }
+        & Zavudev::Internal::Type::request_parameters
+
+      class BrandListParams < Zavudev::Internal::Type::BaseModel
+        extend Zavudev::Internal::Type::RequestParameters::Converter
+        include Zavudev::Internal::Type::RequestParameters
+
+        attr_reader cursor: String?
+
+        def cursor=: (String) -> String
+
+        attr_reader limit: Integer?
+
+        def limit=: (Integer) -> Integer
+
+        def initialize: (
+          ?cursor: String,
+          ?limit: Integer,
+          ?request_options: Zavudev::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          cursor: String,
+          limit: Integer,
+          request_options: Zavudev::RequestOptions
+        }
+      end
+    end
+  end
+end

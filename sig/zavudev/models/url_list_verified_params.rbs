@@ -1,0 +1,57 @@
+module Zavudev
+  module Models
+    type url_list_verified_params =
+      {
+        cursor: String,
+        limit: Integer,
+        status: Zavudev::Models::URLListVerifiedParams::status
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class URLListVerifiedParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_reader status: Zavudev::Models::URLListVerifiedParams::status?
+
+      def status=: (
+        Zavudev::Models::URLListVerifiedParams::status
+      ) -> Zavudev::Models::URLListVerifiedParams::status
+
+      def initialize: (
+        ?cursor: String,
+        ?limit: Integer,
+        ?status: Zavudev::Models::URLListVerifiedParams::status,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        cursor: String,
+        limit: Integer,
+        status: Zavudev::Models::URLListVerifiedParams::status,
+        request_options: Zavudev::RequestOptions
+      }
+
+      type status = :pending | :approved | :rejected | :malicious
+
+      module Status
+        extend Zavudev::Internal::Type::Enum
+
+        PENDING: :pending
+        APPROVED: :approved
+        REJECTED: :rejected
+        MALICIOUS: :malicious
+
+        def self?.values: -> ::Array[Zavudev::Models::URLListVerifiedParams::status]
+      end
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Zavudev
+  module Models
+    type contact_dismiss_merge_suggestion_params =
+      { contact_id: String } & Zavudev::Internal::Type::request_parameters
+
+    class ContactDismissMergeSuggestionParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor contact_id: String
+
+      def initialize: (
+        contact_id: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        contact_id: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

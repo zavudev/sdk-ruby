@@ -124,6 +124,22 @@ class Zavudev::Test::Resources::BroadcastsTest < Zavudev::Test::ResourceTest
     end
   end
 
+  def test_escalate_review
+    skip("Mock server tests are disabled")
+
+    response = @zavudev.broadcasts.escalate_review("broadcastId")
+
+    assert_pattern do
+      response => Zavudev::Models::BroadcastEscalateReviewResponse
+    end
+
+    assert_pattern do
+      response => {
+        broadcast: Zavudev::Broadcast
+      }
+    end
+  end
+
   def test_progress
     skip("Mock server tests are disabled")
 
@@ -160,6 +176,22 @@ class Zavudev::Test::Resources::BroadcastsTest < Zavudev::Test::ResourceTest
 
     assert_pattern do
       response => Zavudev::Models::BroadcastRescheduleResponse
+    end
+
+    assert_pattern do
+      response => {
+        broadcast: Zavudev::Broadcast
+      }
+    end
+  end
+
+  def test_retry_review
+    skip("Mock server tests are disabled")
+
+    response = @zavudev.broadcasts.retry_review("broadcastId")
+
+    assert_pattern do
+      response => Zavudev::Models::BroadcastRetryReviewResponse
     end
 
     assert_pattern do

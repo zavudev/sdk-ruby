@@ -13,6 +13,8 @@ module Zavudev
 
   class AvailablePhoneNumber = Zavudev::Models::AvailablePhoneNumber
 
+  class BalanceRetrieveParams = Zavudev::Models::BalanceRetrieveParams
+
   class Broadcast = Zavudev::Models::Broadcast
 
   class BroadcastCancelParams = Zavudev::Models::BroadcastCancelParams
@@ -29,6 +31,8 @@ module Zavudev
 
   class BroadcastDeleteParams = Zavudev::Models::BroadcastDeleteParams
 
+  class BroadcastEscalateReviewParams = Zavudev::Models::BroadcastEscalateReviewParams
+
   class BroadcastListParams = Zavudev::Models::BroadcastListParams
 
   module BroadcastMessageType = Zavudev::Models::BroadcastMessageType
@@ -40,6 +44,8 @@ module Zavudev
   class BroadcastRescheduleParams = Zavudev::Models::BroadcastRescheduleParams
 
   class BroadcastRetrieveParams = Zavudev::Models::BroadcastRetrieveParams
+
+  class BroadcastRetryReviewParams = Zavudev::Models::BroadcastRetryReviewParams
 
   module Broadcasts = Zavudev::Models::Broadcasts
 
@@ -55,15 +61,41 @@ module Zavudev
 
   class ContactChannel = Zavudev::Models::ContactChannel
 
+  class ContactCreateParams = Zavudev::Models::ContactCreateParams
+
+  class ContactDismissMergeSuggestionParams = Zavudev::Models::ContactDismissMergeSuggestionParams
+
   class ContactListParams = Zavudev::Models::ContactListParams
+
+  class ContactMergeParams = Zavudev::Models::ContactMergeParams
 
   class ContactRetrieveByPhoneParams = Zavudev::Models::ContactRetrieveByPhoneParams
 
   class ContactRetrieveParams = Zavudev::Models::ContactRetrieveParams
 
+  module Contacts = Zavudev::Models::Contacts
+
   class ContactUpdateParams = Zavudev::Models::ContactUpdateParams
 
+  class DataExport = Zavudev::Models::DataExport
+
+  class ExportCreateParams = Zavudev::Models::ExportCreateParams
+
+  class ExportListParams = Zavudev::Models::ExportListParams
+
+  class ExportRetrieveParams = Zavudev::Models::ExportRetrieveParams
+
   class IntrospectValidatePhoneParams = Zavudev::Models::IntrospectValidatePhoneParams
+
+  class Invitation = Zavudev::Models::Invitation
+
+  class InvitationCancelParams = Zavudev::Models::InvitationCancelParams
+
+  class InvitationCreateParams = Zavudev::Models::InvitationCreateParams
+
+  class InvitationListParams = Zavudev::Models::InvitationListParams
+
+  class InvitationRetrieveParams = Zavudev::Models::InvitationRetrieveParams
 
   module LineType = Zavudev::Models::LineType
 
@@ -84,6 +116,8 @@ module Zavudev
   module MessageStatus = Zavudev::Models::MessageStatus
 
   module MessageType = Zavudev::Models::MessageType
+
+  module Number10dlc = Zavudev::Models::Number10dlc
 
   class OwnedPhoneNumber = Zavudev::Models::OwnedPhoneNumber
 
@@ -110,6 +144,8 @@ module Zavudev
   module PhoneNumberType = Zavudev::Models::PhoneNumberType
 
   class PhoneNumberUpdateParams = Zavudev::Models::PhoneNumberUpdateParams
+
+  class PlanRetrieveParams = Zavudev::Models::PlanRetrieveParams
 
   class RegulatoryDocument = Zavudev::Models::RegulatoryDocument
 
@@ -155,6 +191,22 @@ module Zavudev
 
   class SenderWebhook = Zavudev::Models::SenderWebhook
 
+  class SubAccount = Zavudev::Models::SubAccount
+
+  class SubAccountCreateParams = Zavudev::Models::SubAccountCreateParams
+
+  class SubAccountDeactivateParams = Zavudev::Models::SubAccountDeactivateParams
+
+  class SubAccountGetBalanceParams = Zavudev::Models::SubAccountGetBalanceParams
+
+  class SubAccountListParams = Zavudev::Models::SubAccountListParams
+
+  class SubAccountRetrieveParams = Zavudev::Models::SubAccountRetrieveParams
+
+  module SubAccounts = Zavudev::Models::SubAccounts
+
+  class SubAccountUpdateParams = Zavudev::Models::SubAccountUpdateParams
+
   class Template = Zavudev::Models::Template
 
   class TemplateCreateParams = Zavudev::Models::TemplateCreateParams
@@ -166,6 +218,16 @@ module Zavudev
   class TemplateRetrieveParams = Zavudev::Models::TemplateRetrieveParams
 
   class TemplateSubmitParams = Zavudev::Models::TemplateSubmitParams
+
+  class URLListVerifiedParams = Zavudev::Models::URLListVerifiedParams
+
+  class URLRetrieveDetailsParams = Zavudev::Models::URLRetrieveDetailsParams
+
+  class URLSubmitForVerificationParams = Zavudev::Models::URLSubmitForVerificationParams
+
+  class UsageRetrieveParams = Zavudev::Models::UsageRetrieveParams
+
+  class VerifiedURL = Zavudev::Models::VerifiedURL
 
   module WebhookEvent = Zavudev::Models::WebhookEvent
 

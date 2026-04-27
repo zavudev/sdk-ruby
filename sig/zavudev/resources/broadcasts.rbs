@@ -51,6 +51,11 @@ module Zavudev
         ?request_options: Zavudev::request_opts
       ) -> Zavudev::Models::BroadcastCancelResponse
 
+      def escalate_review: (
+        String broadcast_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::BroadcastEscalateReviewResponse
+
       def progress: (
         String broadcast_id,
         ?request_options: Zavudev::request_opts
@@ -61,6 +66,11 @@ module Zavudev
         scheduled_at: Time,
         ?request_options: Zavudev::request_opts
       ) -> Zavudev::Models::BroadcastRescheduleResponse
+
+      def retry_review: (
+        String broadcast_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::BroadcastRetryReviewResponse
 
       def send_: (
         String broadcast_id,

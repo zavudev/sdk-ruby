@@ -1,0 +1,13 @@
+module Zavudev
+  module Models
+    type invitation_create_response = { invitation: Zavudev::Invitation }
+
+    class InvitationCreateResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor invitation: Zavudev::Invitation
+
+      def initialize: (invitation: Zavudev::Invitation) -> void
+
+      def to_hash: -> { invitation: Zavudev::Invitation }
+    end
+  end
+end

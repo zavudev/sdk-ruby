@@ -1,0 +1,23 @@
+module Zavudev
+  module Models
+    type url_retrieve_details_params =
+      { url_id: String } & Zavudev::Internal::Type::request_parameters
+
+    class URLRetrieveDetailsParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor url_id: String
+
+      def initialize: (
+        url_id: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        url_id: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

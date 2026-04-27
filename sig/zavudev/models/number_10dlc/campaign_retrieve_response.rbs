@@ -1,0 +1,16 @@
+module Zavudev
+  module Models
+    module Number10dlc
+      type campaign_retrieve_response =
+        { campaign: Zavudev::Number10dlc::TenDlcCampaign }
+
+      class CampaignRetrieveResponse < Zavudev::Internal::Type::BaseModel
+        attr_accessor campaign: Zavudev::Number10dlc::TenDlcCampaign
+
+        def initialize: (campaign: Zavudev::Number10dlc::TenDlcCampaign) -> void
+
+        def to_hash: -> { campaign: Zavudev::Number10dlc::TenDlcCampaign }
+      end
+    end
+  end
+end

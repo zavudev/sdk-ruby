@@ -15,6 +15,39 @@ module Zavudev
       #   @return [Array<Zavudev::Models::MessageContent::Contact>, nil]
       optional :contacts, -> { Zavudev::Internal::Type::ArrayOf[Zavudev::MessageContent::Contact] }
 
+      # @!attribute cta_display_text
+      #   Button label for cta_url messages.
+      #
+      #   @return [String, nil]
+      optional :cta_display_text, String, api_name: :ctaDisplayText
+
+      # @!attribute cta_header_media_url
+      #   Public HTTPS URL of the header media when ctaHeaderType is 'image', 'video', or
+      #   'document'. WhatsApp fetches this URL — it must be publicly reachable and return
+      #   the declared content type.
+      #
+      #   @return [String, nil]
+      optional :cta_header_media_url, String, api_name: :ctaHeaderMediaUrl
+
+      # @!attribute cta_header_text
+      #   Header text when ctaHeaderType is 'text'.
+      #
+      #   @return [String, nil]
+      optional :cta_header_text, String, api_name: :ctaHeaderText
+
+      # @!attribute cta_header_type
+      #   Optional header type for cta_url messages.
+      #
+      #   @return [Symbol, Zavudev::Models::MessageContent::CtaHeaderType, nil]
+      optional :cta_header_type, enum: -> { Zavudev::MessageContent::CtaHeaderType }, api_name: :ctaHeaderType
+
+      # @!attribute cta_url
+      #   Destination URL opened in the device's default browser when the button is
+      #   tapped. Used with messageType=cta_url. WhatsApp requires HTTPS in production.
+      #
+      #   @return [String, nil]
+      optional :cta_url, String, api_name: :ctaUrl
+
       # @!attribute emoji
       #   Emoji for reaction messages.
       #
@@ -26,6 +59,12 @@ module Zavudev
       #
       #   @return [String, nil]
       optional :filename, String
+
+      # @!attribute footer_text
+      #   Optional footer text for cta_url messages.
+      #
+      #   @return [String, nil]
+      optional :footer_text, String, api_name: :footerText
 
       # @!attribute latitude
       #   Latitude for location messages.
@@ -87,6 +126,27 @@ module Zavudev
       #   @return [Array<Zavudev::Models::MessageContent::Section>, nil]
       optional :sections, -> { Zavudev::Internal::Type::ArrayOf[Zavudev::MessageContent::Section] }
 
+      # @!attribute template_button_variables
+      #   Variables for dynamic button placeholders (URL buttons and OTP buttons). Keys
+      #   are the button index (0, 1, 2) in the template's `buttons` array — not the
+      #   placeholder name. Values substitute the `{{1}}` placeholder inside that button's
+      #   URL.
+      #
+      #   **WhatsApp constraints:**
+      #
+      #   - URL buttons only accept `{{1}}` — positional, numeric, no whitespace, no name.
+      #     Named placeholders like `{{token}}` are stored as literal URL text by Meta and
+      #     cannot be substituted.
+      #   - At most one placeholder per URL button.
+      #   - A template may have at most three buttons.
+      #   - Static URL buttons (no placeholder) and `quick_reply` buttons are not included
+      #     here.
+      #
+      #   @return [Hash{Symbol=>String}, nil]
+      optional :template_button_variables,
+               Zavudev::Internal::Type::HashOf[String],
+               api_name: :templateButtonVariables
+
       # @!attribute template_id
       #   Template ID for template messages.
       #
@@ -94,21 +154,37 @@ module Zavudev
       optional :template_id, String, api_name: :templateId
 
       # @!attribute template_variables
-      #   Variables for template rendering. Keys are variable positions (1, 2, 3...).
+      #   Variables for body placeholders. Keys are positions (1, 2, 3, ...) matching the
+      #   order placeholders appear in the template body.
       #
       #   @return [Hash{Symbol=>String}, nil]
       optional :template_variables, Zavudev::Internal::Type::HashOf[String], api_name: :templateVariables
 
-      # @!method initialize(buttons: nil, contacts: nil, emoji: nil, filename: nil, latitude: nil, list_button: nil, location_address: nil, location_name: nil, longitude: nil, media_id: nil, media_url: nil, mime_type: nil, react_to_message_id: nil, sections: nil, template_id: nil, template_variables: nil)
+      # @!method initialize(buttons: nil, contacts: nil, cta_display_text: nil, cta_header_media_url: nil, cta_header_text: nil, cta_header_type: nil, cta_url: nil, emoji: nil, filename: nil, footer_text: nil, latitude: nil, list_button: nil, location_address: nil, location_name: nil, longitude: nil, media_id: nil, media_url: nil, mime_type: nil, react_to_message_id: nil, sections: nil, template_button_variables: nil, template_id: nil, template_variables: nil)
+      #   Some parameter documentations has been truncated, see
+      #   {Zavudev::Models::MessageContent} for more details.
+      #
       #   Content for non-text message types (WhatsApp and Telegram).
       #
       #   @param buttons [Array<Zavudev::Models::MessageContent::Button>] Interactive buttons (max 3).
       #
       #   @param contacts [Array<Zavudev::Models::MessageContent::Contact>] Contact cards for contact messages.
       #
+      #   @param cta_display_text [String] Button label for cta_url messages.
+      #
+      #   @param cta_header_media_url [String] Public HTTPS URL of the header media when ctaHeaderType is 'image', 'video', or
+      #
+      #   @param cta_header_text [String] Header text when ctaHeaderType is 'text'.
+      #
+      #   @param cta_header_type [Symbol, Zavudev::Models::MessageContent::CtaHeaderType] Optional header type for cta_url messages.
+      #
+      #   @param cta_url [String] Destination URL opened in the device's default browser when the button is tapped
+      #
       #   @param emoji [String] Emoji for reaction messages.
       #
       #   @param filename [String] Filename for documents.
+      #
+      #   @param footer_text [String] Optional footer text for cta_url messages.
       #
       #   @param latitude [Float] Latitude for location messages.
       #
@@ -130,9 +206,11 @@ module Zavudev
       #
       #   @param sections [Array<Zavudev::Models::MessageContent::Section>] Sections for list messages.
       #
+      #   @param template_button_variables [Hash{Symbol=>String}] Variables for dynamic button placeholders (URL buttons and OTP buttons). Keys ar
+      #
       #   @param template_id [String] Template ID for template messages.
       #
-      #   @param template_variables [Hash{Symbol=>String}] Variables for template rendering. Keys are variable positions (1, 2, 3...).
+      #   @param template_variables [Hash{Symbol=>String}] Variables for body placeholders. Keys are positions (1, 2, 3, ...) matching the
 
       class Button < Zavudev::Internal::Type::BaseModel
         # @!attribute id
@@ -164,6 +242,21 @@ module Zavudev
         # @!method initialize(name: nil, phones: nil)
         #   @param name [String]
         #   @param phones [Array<String>]
+      end
+
+      # Optional header type for cta_url messages.
+      #
+      # @see Zavudev::Models::MessageContent#cta_header_type
+      module CtaHeaderType
+        extend Zavudev::Internal::Type::Enum
+
+        TEXT = :text
+        IMAGE = :image
+        VIDEO = :video
+        DOCUMENT = :document
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       class Section < Zavudev::Internal::Type::BaseModel

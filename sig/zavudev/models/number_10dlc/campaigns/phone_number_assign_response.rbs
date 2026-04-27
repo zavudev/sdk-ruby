@@ -1,0 +1,24 @@
+module Zavudev
+  module Models
+    module Number10dlc
+      module Campaigns
+        type phone_number_assign_response =
+          {
+            assignment: Zavudev::Number10dlc::Campaigns::TenDlcPhoneNumberAssignment
+          }
+
+        class PhoneNumberAssignResponse < Zavudev::Internal::Type::BaseModel
+          attr_accessor assignment: Zavudev::Number10dlc::Campaigns::TenDlcPhoneNumberAssignment
+
+          def initialize: (
+            assignment: Zavudev::Number10dlc::Campaigns::TenDlcPhoneNumberAssignment
+          ) -> void
+
+          def to_hash: -> {
+            assignment: Zavudev::Number10dlc::Campaigns::TenDlcPhoneNumberAssignment
+          }
+        end
+      end
+    end
+  end
+end

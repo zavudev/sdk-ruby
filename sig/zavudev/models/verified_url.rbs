@@ -1,0 +1,80 @@
+module Zavudev
+  module Models
+    type verified_url =
+      {
+        id: String,
+        created_at: Time,
+        domain: String,
+        status: Zavudev::Models::VerifiedURL::status,
+        url: String,
+        approval_type: Zavudev::Models::VerifiedURL::approval_type,
+        updated_at: Time
+      }
+
+    class VerifiedURL < Zavudev::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor domain: String
+
+      attr_accessor status: Zavudev::Models::VerifiedURL::status
+
+      attr_accessor url: String
+
+      attr_reader approval_type: Zavudev::Models::VerifiedURL::approval_type?
+
+      def approval_type=: (
+        Zavudev::Models::VerifiedURL::approval_type
+      ) -> Zavudev::Models::VerifiedURL::approval_type
+
+      attr_reader updated_at: Time?
+
+      def updated_at=: (Time) -> Time
+
+      def initialize: (
+        id: String,
+        created_at: Time,
+        domain: String,
+        status: Zavudev::Models::VerifiedURL::status,
+        url: String,
+        ?approval_type: Zavudev::Models::VerifiedURL::approval_type,
+        ?updated_at: Time
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time,
+        domain: String,
+        status: Zavudev::Models::VerifiedURL::status,
+        url: String,
+        approval_type: Zavudev::Models::VerifiedURL::approval_type,
+        updated_at: Time
+      }
+
+      type status = :pending | :approved | :rejected | :malicious
+
+      module Status
+        extend Zavudev::Internal::Type::Enum
+
+        PENDING: :pending
+        APPROVED: :approved
+        REJECTED: :rejected
+        MALICIOUS: :malicious
+
+        def self?.values: -> ::Array[Zavudev::Models::VerifiedURL::status]
+      end
+
+      type approval_type = :manual | :auto_web_risk
+
+      module ApprovalType
+        extend Zavudev::Internal::Type::Enum
+
+        MANUAL: :manual
+        AUTO_WEB_RISK: :auto_web_risk
+
+        def self?.values: -> ::Array[Zavudev::Models::VerifiedURL::approval_type]
+      end
+    end
+  end
+end

@@ -12,6 +12,7 @@ module Zavudev
         error_message: String,
         message_id: String,
         processed_at: Time,
+        template_button_variables: ::Hash[Symbol, String],
         template_variables: ::Hash[Symbol, String]
       }
 
@@ -44,6 +45,12 @@ module Zavudev
 
       def processed_at=: (Time) -> Time
 
+      attr_reader template_button_variables: ::Hash[Symbol, String]?
+
+      def template_button_variables=: (
+        ::Hash[Symbol, String]
+      ) -> ::Hash[Symbol, String]
+
       attr_reader template_variables: ::Hash[Symbol, String]?
 
       def template_variables=: (
@@ -61,6 +68,7 @@ module Zavudev
         ?error_message: String,
         ?message_id: String,
         ?processed_at: Time,
+        ?template_button_variables: ::Hash[Symbol, String],
         ?template_variables: ::Hash[Symbol, String]
       ) -> void
 
@@ -75,6 +83,7 @@ module Zavudev
         error_message: String,
         message_id: String,
         processed_at: Time,
+        template_button_variables: ::Hash[Symbol, String],
         template_variables: ::Hash[Symbol, String]
       }
 

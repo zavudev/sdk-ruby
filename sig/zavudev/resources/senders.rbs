@@ -3,6 +3,8 @@ module Zavudev
     class Senders
       attr_reader agent: Zavudev::Resources::Senders::Agent
 
+      attr_reader whatsapp_sync: Zavudev::Resources::Senders::WhatsappSync
+
       def create: (
         name: String,
         phone_number: String,

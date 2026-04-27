@@ -1,0 +1,97 @@
+module Zavudev
+  module Models
+    type contact_create_params =
+      {
+        channels: ::Array[Zavudev::ContactCreateParams::Channel],
+        display_name: String,
+        metadata: ::Hash[Symbol, String]
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class ContactCreateParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor channels: ::Array[Zavudev::ContactCreateParams::Channel]
+
+      attr_reader display_name: String?
+
+      def display_name=: (String) -> String
+
+      attr_reader metadata: ::Hash[Symbol, String]?
+
+      def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+      def initialize: (
+        channels: ::Array[Zavudev::ContactCreateParams::Channel],
+        ?display_name: String,
+        ?metadata: ::Hash[Symbol, String],
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        channels: ::Array[Zavudev::ContactCreateParams::Channel],
+        display_name: String,
+        metadata: ::Hash[Symbol, String],
+        request_options: Zavudev::RequestOptions
+      }
+
+      type channel =
+        {
+          channel: Zavudev::Models::ContactCreateParams::Channel::channel,
+          identifier: String,
+          country_code: String,
+          is_primary: bool,
+          label: String
+        }
+
+      class Channel < Zavudev::Internal::Type::BaseModel
+        attr_accessor channel: Zavudev::Models::ContactCreateParams::Channel::channel
+
+        attr_accessor identifier: String
+
+        attr_reader country_code: String?
+
+        def country_code=: (String) -> String
+
+        attr_reader is_primary: bool?
+
+        def is_primary=: (bool) -> bool
+
+        attr_reader label: String?
+
+        def label=: (String) -> String
+
+        def initialize: (
+          channel: Zavudev::Models::ContactCreateParams::Channel::channel,
+          identifier: String,
+          ?country_code: String,
+          ?is_primary: bool,
+          ?label: String
+        ) -> void
+
+        def to_hash: -> {
+          channel: Zavudev::Models::ContactCreateParams::Channel::channel,
+          identifier: String,
+          country_code: String,
+          is_primary: bool,
+          label: String
+        }
+
+        type channel = :sms | :whatsapp | :email | :telegram | :voice
+
+        module Channel
+          extend Zavudev::Internal::Type::Enum
+
+          SMS: :sms
+          WHATSAPP: :whatsapp
+          EMAIL: :email
+          TELEGRAM: :telegram
+          VOICE: :voice
+
+          def self?.values: -> ::Array[Zavudev::Models::ContactCreateParams::Channel::channel]
+        end
+      end
+    end
+  end
+end

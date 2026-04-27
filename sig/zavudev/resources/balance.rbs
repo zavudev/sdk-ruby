@@ -1,0 +1,11 @@
+module Zavudev
+  module Resources
+    class Balance
+      def retrieve: (
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::BalanceRetrieveResponse
+
+      def initialize: (client: Zavudev::Client) -> void
+    end
+  end
+end

@@ -1,0 +1,102 @@
+module Zavudev
+  module Models
+    type data_export =
+      {
+        id: String,
+        created_at: Time,
+        data_types: ::Array[Zavudev::Models::DataExport::data_type],
+        expires_at: Time,
+        status: Zavudev::Models::DataExport::status,
+        completed_at: Time?,
+        date_from: Time?,
+        date_to: Time?,
+        download_url: String?,
+        error_message: String?,
+        file_size: Integer?
+      }
+
+    class DataExport < Zavudev::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor data_types: ::Array[Zavudev::Models::DataExport::data_type]
+
+      attr_accessor expires_at: Time
+
+      attr_accessor status: Zavudev::Models::DataExport::status
+
+      attr_accessor completed_at: Time?
+
+      attr_accessor date_from: Time?
+
+      attr_accessor date_to: Time?
+
+      attr_accessor download_url: String?
+
+      attr_accessor error_message: String?
+
+      attr_accessor file_size: Integer?
+
+      def initialize: (
+        id: String,
+        created_at: Time,
+        data_types: ::Array[Zavudev::Models::DataExport::data_type],
+        expires_at: Time,
+        status: Zavudev::Models::DataExport::status,
+        ?completed_at: Time?,
+        ?date_from: Time?,
+        ?date_to: Time?,
+        ?download_url: String?,
+        ?error_message: String?,
+        ?file_size: Integer?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time,
+        data_types: ::Array[Zavudev::Models::DataExport::data_type],
+        expires_at: Time,
+        status: Zavudev::Models::DataExport::status,
+        completed_at: Time?,
+        date_from: Time?,
+        date_to: Time?,
+        download_url: String?,
+        error_message: String?,
+        file_size: Integer?
+      }
+
+      type data_type =
+        :messages
+        | :conversations
+        | :webhookDeliveries
+        | :agentExecutions
+        | :activities
+
+      module DataType
+        extend Zavudev::Internal::Type::Enum
+
+        MESSAGES: :messages
+        CONVERSATIONS: :conversations
+        WEBHOOK_DELIVERIES: :webhookDeliveries
+        AGENT_EXECUTIONS: :agentExecutions
+        ACTIVITIES: :activities
+
+        def self?.values: -> ::Array[Zavudev::Models::DataExport::data_type]
+      end
+
+      type status = :pending | :processing | :completed | :failed
+
+      module Status
+        extend Zavudev::Internal::Type::Enum
+
+        PENDING: :pending
+        PROCESSING: :processing
+        COMPLETED: :completed
+        FAILED: :failed
+
+        def self?.values: -> ::Array[Zavudev::Models::DataExport::status]
+      end
+    end
+  end
+end

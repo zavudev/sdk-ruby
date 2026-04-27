@@ -1,0 +1,29 @@
+module Zavudev
+  module Models
+    module Number10dlc
+      module Campaigns
+        type phone_number_list_response =
+          {
+            items: ::Array[Zavudev::Number10dlc::Campaigns::TenDlcPhoneNumberAssignment],
+            next_cursor: String?
+          }
+
+        class PhoneNumberListResponse < Zavudev::Internal::Type::BaseModel
+          attr_accessor items: ::Array[Zavudev::Number10dlc::Campaigns::TenDlcPhoneNumberAssignment]
+
+          attr_accessor next_cursor: String?
+
+          def initialize: (
+            items: ::Array[Zavudev::Number10dlc::Campaigns::TenDlcPhoneNumberAssignment],
+            ?next_cursor: String?
+          ) -> void
+
+          def to_hash: -> {
+            items: ::Array[Zavudev::Number10dlc::Campaigns::TenDlcPhoneNumberAssignment],
+            next_cursor: String?
+          }
+        end
+      end
+    end
+  end
+end

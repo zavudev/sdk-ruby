@@ -1,0 +1,25 @@
+module Zavudev
+  module Models
+    module Senders
+      type whatsapp_sync_start_contacts_sync_params =
+        { sender_id: String } & Zavudev::Internal::Type::request_parameters
+
+      class WhatsappSyncStartContactsSyncParams < Zavudev::Internal::Type::BaseModel
+        extend Zavudev::Internal::Type::RequestParameters::Converter
+        include Zavudev::Internal::Type::RequestParameters
+
+        attr_accessor sender_id: String
+
+        def initialize: (
+          sender_id: String,
+          ?request_options: Zavudev::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          sender_id: String,
+          request_options: Zavudev::RequestOptions
+        }
+      end
+    end
+  end
+end

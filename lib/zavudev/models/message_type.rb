@@ -17,6 +17,7 @@ module Zavudev
       CONTACT = :contact
       BUTTONS = :buttons
       LIST = :list
+      CTA_URL = :cta_url
       REACTION = :reaction
       TEMPLATE = :template
 

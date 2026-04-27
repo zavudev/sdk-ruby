@@ -1,0 +1,23 @@
+module Zavudev
+  module Models
+    type broadcast_retry_review_params =
+      { broadcast_id: String } & Zavudev::Internal::Type::request_parameters
+
+    class BroadcastRetryReviewParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor broadcast_id: String
+
+      def initialize: (
+        broadcast_id: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        broadcast_id: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

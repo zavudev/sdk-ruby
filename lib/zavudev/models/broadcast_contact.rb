@@ -59,12 +59,19 @@ module Zavudev
       #   @return [Time, nil]
       optional :processed_at, Time, api_name: :processedAt
 
+      # @!attribute template_button_variables
+      #
+      #   @return [Hash{Symbol=>String}, nil]
+      optional :template_button_variables,
+               Zavudev::Internal::Type::HashOf[String],
+               api_name: :templateButtonVariables
+
       # @!attribute template_variables
       #
       #   @return [Hash{Symbol=>String}, nil]
       optional :template_variables, Zavudev::Internal::Type::HashOf[String], api_name: :templateVariables
 
-      # @!method initialize(id:, created_at:, recipient:, recipient_type:, status:, cost: nil, error_code: nil, error_message: nil, message_id: nil, processed_at: nil, template_variables: nil)
+      # @!method initialize(id:, created_at:, recipient:, recipient_type:, status:, cost: nil, error_code: nil, error_message: nil, message_id: nil, processed_at: nil, template_button_variables: nil, template_variables: nil)
       #   @param id [String]
       #
       #   @param created_at [Time]
@@ -84,6 +91,8 @@ module Zavudev
       #   @param message_id [String] Associated message ID after processing.
       #
       #   @param processed_at [Time]
+      #
+      #   @param template_button_variables [Hash{Symbol=>String}]
       #
       #   @param template_variables [Hash{Symbol=>String}]
 
