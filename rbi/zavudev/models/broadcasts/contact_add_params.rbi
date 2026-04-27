@@ -66,7 +66,18 @@ module Zavudev
           sig { returns(String) }
           attr_accessor :recipient
 
-          # Per-contact template variables to personalize the message.
+          # Per-contact button variables for dynamic URL/OTP buttons. Keys are the button
+          # index (0, 1, 2).
+          sig { returns(T.nilable(T::Hash[Symbol, String])) }
+          attr_reader :template_button_variables
+
+          sig do
+            params(template_button_variables: T::Hash[Symbol, String]).void
+          end
+          attr_writer :template_button_variables
+
+          # Per-contact body variables. Keys are positions (1, 2, ...) matching the order
+          # placeholders appear in the template body.
           sig { returns(T.nilable(T::Hash[Symbol, String])) }
           attr_reader :template_variables
 
@@ -76,20 +87,29 @@ module Zavudev
           sig do
             params(
               recipient: String,
+              template_button_variables: T::Hash[Symbol, String],
               template_variables: T::Hash[Symbol, String]
             ).returns(T.attached_class)
           end
           def self.new(
             # Phone number (E.164) or email address.
             recipient:,
-            # Per-contact template variables to personalize the message.
+            # Per-contact button variables for dynamic URL/OTP buttons. Keys are the button
+            # index (0, 1, 2).
+            template_button_variables: nil,
+            # Per-contact body variables. Keys are positions (1, 2, ...) matching the order
+            # placeholders appear in the template body.
             template_variables: nil
           )
           end
 
           sig do
             override.returns(
-              { recipient: String, template_variables: T::Hash[Symbol, String] }
+              {
+                recipient: String,
+                template_button_variables: T::Hash[Symbol, String],
+                template_variables: T::Hash[Symbol, String]
+              }
             )
           end
           def to_hash

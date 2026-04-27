@@ -126,6 +126,23 @@ module Zavudev
       #   @return [Array<Zavudev::Models::MessageContent::Section>, nil]
       optional :sections, -> { Zavudev::Internal::Type::ArrayOf[Zavudev::MessageContent::Section] }
 
+      # @!attribute template_button_variables
+      #   Variables for dynamic button placeholders (URL buttons and OTP buttons). Keys
+      #   are the button index (0, 1, 2) in the template's `buttons` array. Values
+      #   substitute the single placeholder allowed inside that button's URL.
+      #
+      #   **WhatsApp constraints:**
+      #
+      #   - Each URL button supports at most one placeholder, numeric (`{{1}}`) or named
+      #     (`{{order_id}}`).
+      #   - A template may have at most three buttons.
+      #   - Static URL buttons (no placeholder) are not included here.
+      #
+      #   @return [Hash{Symbol=>String}, nil]
+      optional :template_button_variables,
+               Zavudev::Internal::Type::HashOf[String],
+               api_name: :templateButtonVariables
+
       # @!attribute template_id
       #   Template ID for template messages.
       #
@@ -133,12 +150,13 @@ module Zavudev
       optional :template_id, String, api_name: :templateId
 
       # @!attribute template_variables
-      #   Variables for template rendering. Keys are variable positions (1, 2, 3...).
+      #   Variables for body placeholders. Keys are positions (1, 2, 3, ...) matching the
+      #   order placeholders appear in the template body.
       #
       #   @return [Hash{Symbol=>String}, nil]
       optional :template_variables, Zavudev::Internal::Type::HashOf[String], api_name: :templateVariables
 
-      # @!method initialize(buttons: nil, contacts: nil, cta_display_text: nil, cta_header_media_url: nil, cta_header_text: nil, cta_header_type: nil, cta_url: nil, emoji: nil, filename: nil, footer_text: nil, latitude: nil, list_button: nil, location_address: nil, location_name: nil, longitude: nil, media_id: nil, media_url: nil, mime_type: nil, react_to_message_id: nil, sections: nil, template_id: nil, template_variables: nil)
+      # @!method initialize(buttons: nil, contacts: nil, cta_display_text: nil, cta_header_media_url: nil, cta_header_text: nil, cta_header_type: nil, cta_url: nil, emoji: nil, filename: nil, footer_text: nil, latitude: nil, list_button: nil, location_address: nil, location_name: nil, longitude: nil, media_id: nil, media_url: nil, mime_type: nil, react_to_message_id: nil, sections: nil, template_button_variables: nil, template_id: nil, template_variables: nil)
       #   Some parameter documentations has been truncated, see
       #   {Zavudev::Models::MessageContent} for more details.
       #
@@ -184,9 +202,11 @@ module Zavudev
       #
       #   @param sections [Array<Zavudev::Models::MessageContent::Section>] Sections for list messages.
       #
+      #   @param template_button_variables [Hash{Symbol=>String}] Variables for dynamic button placeholders (URL buttons and OTP buttons). Keys ar
+      #
       #   @param template_id [String] Template ID for template messages.
       #
-      #   @param template_variables [Hash{Symbol=>String}] Variables for template rendering. Keys are variable positions (1, 2, 3...).
+      #   @param template_variables [Hash{Symbol=>String}] Variables for body placeholders. Keys are positions (1, 2, 3, ...) matching the
 
       class Button < Zavudev::Internal::Type::BaseModel
         # @!attribute id

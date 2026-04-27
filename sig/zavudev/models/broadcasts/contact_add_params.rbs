@@ -29,10 +29,20 @@ module Zavudev
         }
 
         type contact =
-          { recipient: String, template_variables: ::Hash[Symbol, String] }
+          {
+            recipient: String,
+            template_button_variables: ::Hash[Symbol, String],
+            template_variables: ::Hash[Symbol, String]
+          }
 
         class Contact < Zavudev::Internal::Type::BaseModel
           attr_accessor recipient: String
+
+          attr_reader template_button_variables: ::Hash[Symbol, String]?
+
+          def template_button_variables=: (
+            ::Hash[Symbol, String]
+          ) -> ::Hash[Symbol, String]
 
           attr_reader template_variables: ::Hash[Symbol, String]?
 
@@ -42,11 +52,13 @@ module Zavudev
 
           def initialize: (
             recipient: String,
+            ?template_button_variables: ::Hash[Symbol, String],
             ?template_variables: ::Hash[Symbol, String]
           ) -> void
 
           def to_hash: -> {
             recipient: String,
+            template_button_variables: ::Hash[Symbol, String],
             template_variables: ::Hash[Symbol, String]
           }
         end

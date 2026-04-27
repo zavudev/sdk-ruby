@@ -22,6 +22,7 @@ module Zavudev
         mime_type: String,
         react_to_message_id: String,
         sections: ::Array[Zavudev::MessageContent::Section],
+        template_button_variables: ::Hash[Symbol, String],
         template_id: String,
         template_variables: ::Hash[Symbol, String]
       }
@@ -115,6 +116,12 @@ module Zavudev
         ::Array[Zavudev::MessageContent::Section]
       ) -> ::Array[Zavudev::MessageContent::Section]
 
+      attr_reader template_button_variables: ::Hash[Symbol, String]?
+
+      def template_button_variables=: (
+        ::Hash[Symbol, String]
+      ) -> ::Hash[Symbol, String]
+
       attr_reader template_id: String?
 
       def template_id=: (String) -> String
@@ -146,6 +153,7 @@ module Zavudev
         ?mime_type: String,
         ?react_to_message_id: String,
         ?sections: ::Array[Zavudev::MessageContent::Section],
+        ?template_button_variables: ::Hash[Symbol, String],
         ?template_id: String,
         ?template_variables: ::Hash[Symbol, String]
       ) -> void
@@ -171,6 +179,7 @@ module Zavudev
         mime_type: String,
         react_to_message_id: String,
         sections: ::Array[Zavudev::MessageContent::Section],
+        template_button_variables: ::Hash[Symbol, String],
         template_id: String,
         template_variables: ::Hash[Symbol, String]
       }
