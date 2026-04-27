@@ -132,6 +132,14 @@ module Zavudev
         #   @return [Symbol, Zavudev::Models::TemplateCreateParams::Button::Type]
         required :type, enum: -> { Zavudev::TemplateCreateParams::Button::Type }
 
+        # @!attribute example
+        #   Sample value Meta uses to review templates with a dynamic URL button.
+        #   Substituted into `{{1}}` of the URL when the template is submitted to Meta. Only
+        #   meaningful when `url` contains `{{1}}`; ignored for static URLs.
+        #
+        #   @return [String, nil]
+        optional :example, String
+
         # @!attribute otp_type
         #   Required when type is 'otp'. COPY_CODE shows copy button, ONE_TAP enables
         #   Android autofill.
@@ -157,17 +165,22 @@ module Zavudev
         optional :signature_hash, String, api_name: :signatureHash
 
         # @!attribute url
+        #   Button destination. Use `{{1}}` exactly once for a dynamic URL (e.g.
+        #   `https://example.com/orders/{{1}}`); WhatsApp only accepts the strict `{{1}}`
+        #   form. Static URLs must not contain any `{{...}}` placeholder.
         #
         #   @return [String, nil]
         optional :url, String
 
-        # @!method initialize(text:, type:, otp_type: nil, package_name: nil, phone_number: nil, signature_hash: nil, url: nil)
+        # @!method initialize(text:, type:, example: nil, otp_type: nil, package_name: nil, phone_number: nil, signature_hash: nil, url: nil)
         #   Some parameter documentations has been truncated, see
         #   {Zavudev::Models::TemplateCreateParams::Button} for more details.
         #
         #   @param text [String]
         #
         #   @param type [Symbol, Zavudev::Models::TemplateCreateParams::Button::Type]
+        #
+        #   @param example [String] Sample value Meta uses to review templates with a dynamic URL button. Substitute
         #
         #   @param otp_type [Symbol, Zavudev::Models::TemplateCreateParams::Button::OtpType] Required when type is 'otp'. COPY_CODE shows copy button, ONE_TAP enables Androi
         #
@@ -177,7 +190,7 @@ module Zavudev
         #
         #   @param signature_hash [String] Android app signature hash. Required for ONE_TAP buttons.
         #
-        #   @param url [String]
+        #   @param url [String] Button destination. Use `{{1}}` exactly once for a dynamic URL (e.g. `https://ex
 
         # @see Zavudev::Models::TemplateCreateParams::Button#type
         module Type

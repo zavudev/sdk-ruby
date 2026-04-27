@@ -160,6 +160,13 @@ module Zavudev
       #   @param whatsapp [Zavudev::Models::Template::Whatsapp] WhatsApp-specific template information.
 
       class Button < Zavudev::Internal::Type::BaseModel
+        # @!attribute example
+        #   Sample value used to substitute `{{1}}` in the URL when submitting the template
+        #   to Meta for review. Only present for dynamic URL buttons.
+        #
+        #   @return [String, nil]
+        optional :example, String
+
         # @!attribute otp_type
         #   OTP button type. Required when type is 'otp'.
         #
@@ -198,7 +205,12 @@ module Zavudev
         #   @return [String, nil]
         optional :url, String
 
-        # @!method initialize(otp_type: nil, package_name: nil, phone_number: nil, signature_hash: nil, text: nil, type: nil, url: nil)
+        # @!method initialize(example: nil, otp_type: nil, package_name: nil, phone_number: nil, signature_hash: nil, text: nil, type: nil, url: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Zavudev::Models::Template::Button} for more details.
+        #
+        #   @param example [String] Sample value used to substitute `{{1}}` in the URL when submitting the template
+        #
         #   @param otp_type [Symbol, Zavudev::Models::Template::Button::OtpType] OTP button type. Required when type is 'otp'.
         #
         #   @param package_name [String] Android package name. Required for ONE_TAP buttons.

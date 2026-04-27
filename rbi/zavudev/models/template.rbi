@@ -217,6 +217,14 @@ module Zavudev
             T.any(Zavudev::Template::Button, Zavudev::Internal::AnyHash)
           end
 
+        # Sample value used to substitute `{{1}}` in the URL when submitting the template
+        # to Meta for review. Only present for dynamic URL buttons.
+        sig { returns(T.nilable(String)) }
+        attr_reader :example
+
+        sig { params(example: String).void }
+        attr_writer :example
+
         # OTP button type. Required when type is 'otp'.
         sig do
           returns(T.nilable(Zavudev::Template::Button::OtpType::TaggedSymbol))
@@ -270,6 +278,7 @@ module Zavudev
 
         sig do
           params(
+            example: String,
             otp_type: Zavudev::Template::Button::OtpType::OrSymbol,
             package_name: String,
             phone_number: String,
@@ -280,6 +289,9 @@ module Zavudev
           ).returns(T.attached_class)
         end
         def self.new(
+          # Sample value used to substitute `{{1}}` in the URL when submitting the template
+          # to Meta for review. Only present for dynamic URL buttons.
+          example: nil,
           # OTP button type. Required when type is 'otp'.
           otp_type: nil,
           # Android package name. Required for ONE_TAP buttons.
@@ -296,6 +308,7 @@ module Zavudev
         sig do
           override.returns(
             {
+              example: String,
               otp_type: Zavudev::Template::Button::OtpType::TaggedSymbol,
               package_name: String,
               phone_number: String,

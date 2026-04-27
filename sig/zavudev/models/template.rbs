@@ -142,6 +142,7 @@ module Zavudev
 
       type button =
         {
+          example: String,
           otp_type: Zavudev::Models::Template::Button::otp_type,
           package_name: String,
           phone_number: String,
@@ -152,6 +153,10 @@ module Zavudev
         }
 
       class Button < Zavudev::Internal::Type::BaseModel
+        attr_reader example: String?
+
+        def example=: (String) -> String
+
         attr_reader otp_type: Zavudev::Models::Template::Button::otp_type?
 
         def otp_type=: (
@@ -185,6 +190,7 @@ module Zavudev
         def url=: (String) -> String
 
         def initialize: (
+          ?example: String,
           ?otp_type: Zavudev::Models::Template::Button::otp_type,
           ?package_name: String,
           ?phone_number: String,
@@ -195,6 +201,7 @@ module Zavudev
         ) -> void
 
         def to_hash: -> {
+          example: String,
           otp_type: Zavudev::Models::Template::Button::otp_type,
           package_name: String,
           phone_number: String,
