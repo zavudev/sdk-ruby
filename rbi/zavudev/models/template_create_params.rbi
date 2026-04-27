@@ -199,6 +199,15 @@ module Zavudev
         sig { returns(Zavudev::TemplateCreateParams::Button::Type::OrSymbol) }
         attr_accessor :type
 
+        # Sample value Meta uses to review templates with a dynamic URL button.
+        # Substituted into `{{1}}` of the URL when the template is submitted to Meta. Only
+        # meaningful when `url` contains `{{1}}`; ignored for static URLs.
+        sig { returns(T.nilable(String)) }
+        attr_reader :example
+
+        sig { params(example: String).void }
+        attr_writer :example
+
         # Required when type is 'otp'. COPY_CODE shows copy button, ONE_TAP enables
         # Android autofill.
         sig do
@@ -235,6 +244,9 @@ module Zavudev
         sig { params(signature_hash: String).void }
         attr_writer :signature_hash
 
+        # Button destination. Use `{{1}}` exactly once for a dynamic URL (e.g.
+        # `https://example.com/orders/{{1}}`); WhatsApp only accepts the strict `{{1}}`
+        # form. Static URLs must not contain any `{{...}}` placeholder.
         sig { returns(T.nilable(String)) }
         attr_reader :url
 
@@ -245,6 +257,7 @@ module Zavudev
           params(
             text: String,
             type: Zavudev::TemplateCreateParams::Button::Type::OrSymbol,
+            example: String,
             otp_type: Zavudev::TemplateCreateParams::Button::OtpType::OrSymbol,
             package_name: String,
             phone_number: String,
@@ -255,6 +268,10 @@ module Zavudev
         def self.new(
           text:,
           type:,
+          # Sample value Meta uses to review templates with a dynamic URL button.
+          # Substituted into `{{1}}` of the URL when the template is submitted to Meta. Only
+          # meaningful when `url` contains `{{1}}`; ignored for static URLs.
+          example: nil,
           # Required when type is 'otp'. COPY_CODE shows copy button, ONE_TAP enables
           # Android autofill.
           otp_type: nil,
@@ -263,6 +280,9 @@ module Zavudev
           phone_number: nil,
           # Android app signature hash. Required for ONE_TAP buttons.
           signature_hash: nil,
+          # Button destination. Use `{{1}}` exactly once for a dynamic URL (e.g.
+          # `https://example.com/orders/{{1}}`); WhatsApp only accepts the strict `{{1}}`
+          # form. Static URLs must not contain any `{{...}}` placeholder.
           url: nil
         )
         end
@@ -272,6 +292,7 @@ module Zavudev
             {
               text: String,
               type: Zavudev::TemplateCreateParams::Button::Type::OrSymbol,
+              example: String,
               otp_type:
                 Zavudev::TemplateCreateParams::Button::OtpType::OrSymbol,
               package_name: String,
