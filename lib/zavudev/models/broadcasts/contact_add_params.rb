@@ -34,16 +34,31 @@ module Zavudev
           #   @return [String]
           required :recipient, String
 
+          # @!attribute template_button_variables
+          #   Per-contact button variables for dynamic URL/OTP buttons. Keys are the button
+          #   index (0, 1, 2).
+          #
+          #   @return [Hash{Symbol=>String}, nil]
+          optional :template_button_variables,
+                   Zavudev::Internal::Type::HashOf[String],
+                   api_name: :templateButtonVariables
+
           # @!attribute template_variables
-          #   Per-contact template variables to personalize the message.
+          #   Per-contact body variables. Keys are positions (1, 2, ...) matching the order
+          #   placeholders appear in the template body.
           #
           #   @return [Hash{Symbol=>String}, nil]
           optional :template_variables, Zavudev::Internal::Type::HashOf[String], api_name: :templateVariables
 
-          # @!method initialize(recipient:, template_variables: nil)
+          # @!method initialize(recipient:, template_button_variables: nil, template_variables: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Zavudev::Models::Broadcasts::ContactAddParams::Contact} for more details.
+          #
           #   @param recipient [String] Phone number (E.164) or email address.
           #
-          #   @param template_variables [Hash{Symbol=>String}] Per-contact template variables to personalize the message.
+          #   @param template_button_variables [Hash{Symbol=>String}] Per-contact button variables for dynamic URL/OTP buttons. Keys are the button in
+          #
+          #   @param template_variables [Hash{Symbol=>String}] Per-contact body variables. Keys are positions (1, 2, ...) matching the order pl
         end
       end
     end

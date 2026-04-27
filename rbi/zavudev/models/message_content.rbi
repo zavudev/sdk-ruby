@@ -167,6 +167,22 @@ module Zavudev
       end
       attr_writer :sections
 
+      # Variables for dynamic button placeholders (URL buttons and OTP buttons). Keys
+      # are the button index (0, 1, 2) in the template's `buttons` array. Values
+      # substitute the single placeholder allowed inside that button's URL.
+      #
+      # **WhatsApp constraints:**
+      #
+      # - Each URL button supports at most one placeholder, numeric (`{{1}}`) or named
+      #   (`{{order_id}}`).
+      # - A template may have at most three buttons.
+      # - Static URL buttons (no placeholder) are not included here.
+      sig { returns(T.nilable(T::Hash[Symbol, String])) }
+      attr_reader :template_button_variables
+
+      sig { params(template_button_variables: T::Hash[Symbol, String]).void }
+      attr_writer :template_button_variables
+
       # Template ID for template messages.
       sig { returns(T.nilable(String)) }
       attr_reader :template_id
@@ -174,7 +190,8 @@ module Zavudev
       sig { params(template_id: String).void }
       attr_writer :template_id
 
-      # Variables for template rendering. Keys are variable positions (1, 2, 3...).
+      # Variables for body placeholders. Keys are positions (1, 2, 3, ...) matching the
+      # order placeholders appear in the template body.
       sig { returns(T.nilable(T::Hash[Symbol, String])) }
       attr_reader :template_variables
 
@@ -204,6 +221,7 @@ module Zavudev
           mime_type: String,
           react_to_message_id: String,
           sections: T::Array[Zavudev::MessageContent::Section::OrHash],
+          template_button_variables: T::Hash[Symbol, String],
           template_id: String,
           template_variables: T::Hash[Symbol, String]
         ).returns(T.attached_class)
@@ -252,9 +270,21 @@ module Zavudev
         react_to_message_id: nil,
         # Sections for list messages.
         sections: nil,
+        # Variables for dynamic button placeholders (URL buttons and OTP buttons). Keys
+        # are the button index (0, 1, 2) in the template's `buttons` array. Values
+        # substitute the single placeholder allowed inside that button's URL.
+        #
+        # **WhatsApp constraints:**
+        #
+        # - Each URL button supports at most one placeholder, numeric (`{{1}}`) or named
+        #   (`{{order_id}}`).
+        # - A template may have at most three buttons.
+        # - Static URL buttons (no placeholder) are not included here.
+        template_button_variables: nil,
         # Template ID for template messages.
         template_id: nil,
-        # Variables for template rendering. Keys are variable positions (1, 2, 3...).
+        # Variables for body placeholders. Keys are positions (1, 2, 3, ...) matching the
+        # order placeholders appear in the template body.
         template_variables: nil
       )
       end
@@ -282,6 +312,7 @@ module Zavudev
             mime_type: String,
             react_to_message_id: String,
             sections: T::Array[Zavudev::MessageContent::Section],
+            template_button_variables: T::Hash[Symbol, String],
             template_id: String,
             template_variables: T::Hash[Symbol, String]
           }
