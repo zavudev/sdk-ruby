@@ -11,7 +11,8 @@ module Zavudev
       #
       # Create a new sub-account (project) with its own API key. All charges are billed
       # to the parent team's balance. Use creditLimit to set a spending cap. The
-      # sub-account's API key is returned only in the creation response.
+      # sub-account's API key is returned only in the creation response. Requires a
+      # parent project API key; sub-account API keys receive HTTP 403.
       #
       # @overload create(name:, credit_limit: nil, external_id: nil, metadata: nil, request_options: {})
       #
@@ -39,7 +40,8 @@ module Zavudev
         )
       end
 
-      # Get sub-account
+      # Get sub-account. Requires a parent project API key; sub-account API keys receive
+      # HTTP 403.
       #
       # @overload retrieve(id, request_options: {})
       #
@@ -59,7 +61,8 @@ module Zavudev
         )
       end
 
-      # Update sub-account
+      # Update sub-account. Requires a parent project API key; sub-account API keys
+      # receive HTTP 403.
       #
       # @overload update(id, credit_limit: nil, external_id: nil, metadata: nil, name: nil, status: nil, request_options: {})
       #
@@ -91,7 +94,8 @@ module Zavudev
         )
       end
 
-      # List sub-accounts for this team.
+      # List sub-accounts for this team. Requires a parent project API key; sub-account
+      # API keys receive HTTP 403.
       #
       # @overload list(cursor: nil, limit: nil, request_options: {})
       #
@@ -116,7 +120,8 @@ module Zavudev
       end
 
       # Deactivate a sub-account. Remaining balance is returned to the parent team and
-      # all API keys are revoked.
+      # all API keys are revoked. Requires a parent project API key; sub-account API
+      # keys receive HTTP 403.
       #
       # @overload deactivate(id, request_options: {})
       #
@@ -137,7 +142,8 @@ module Zavudev
       end
 
       # Get spending information for a sub-account. Returns the parent team's balance,
-      # the sub-account's total spending, and its credit limit (spending cap).
+      # the sub-account's total spending, and its credit limit (spending cap). Requires
+      # a parent project API key; sub-account API keys receive HTTP 403.
       #
       # @overload get_balance(id, request_options: {})
       #

@@ -4,7 +4,8 @@ module Zavudev
   module Resources
     class SubAccounts
       class APIKeys
-        # Create sub-account API key
+        # Create sub-account API key. Requires a parent project API key; sub-account API
+        # keys receive HTTP 403.
         #
         # @overload create(id, name:, environment: nil, permissions: nil, request_options: {})
         #
@@ -32,7 +33,8 @@ module Zavudev
           )
         end
 
-        # List sub-account API keys
+        # List sub-account API keys. Requires a parent project API key; sub-account API
+        # keys receive HTTP 403.
         #
         # @overload list(id, request_options: {})
         #
@@ -52,7 +54,8 @@ module Zavudev
           )
         end
 
-        # Revoke sub-account API key
+        # Revoke sub-account API key. Requires a parent project API key; sub-account API
+        # keys receive HTTP 403.
         #
         # @overload revoke(key_id, id:, request_options: {})
         #
