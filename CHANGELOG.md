@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.9.0 (2026-05-01)
+
+Full Changelog: [v0.8.0...v0.9.0](https://github.com/zavudev/sdk-ruby/compare/v0.8.0...v0.9.0)
+
+### Features
+
+* **api:** api update ([d62e533](https://github.com/zavudev/sdk-ruby/commit/d62e533c799998d1b0edb38f21a2eda84afa2d1a))
+* support setting headers via env ([b901283](https://github.com/zavudev/sdk-ruby/commit/b9012834867f0411077528590553bdc10b5f0502))
+
 ## 0.8.0 (2026-04-27)
 
 Full Changelog: [v0.7.0...v0.8.0](https://github.com/zavudev/sdk-ruby/compare/v0.7.0...v0.8.0)

@@ -8,7 +8,8 @@ module Zavudev
 
       # Create a new sub-account (project) with its own API key. All charges are billed
       # to the parent team's balance. Use creditLimit to set a spending cap. The
-      # sub-account's API key is returned only in the creation response.
+      # sub-account's API key is returned only in the creation response. Requires a
+      # parent project API key; sub-account API keys receive HTTP 403.
       sig do
         params(
           name: String,
@@ -31,7 +32,8 @@ module Zavudev
       )
       end
 
-      # Get sub-account
+      # Get sub-account. Requires a parent project API key; sub-account API keys receive
+      # HTTP 403.
       sig do
         params(
           id: String,
@@ -45,7 +47,8 @@ module Zavudev
       )
       end
 
-      # Update sub-account
+      # Update sub-account. Requires a parent project API key; sub-account API keys
+      # receive HTTP 403.
       sig do
         params(
           id: String,
@@ -69,7 +72,8 @@ module Zavudev
       )
       end
 
-      # List sub-accounts for this team.
+      # List sub-accounts for this team. Requires a parent project API key; sub-account
+      # API keys receive HTTP 403.
       sig do
         params(
           cursor: String,
@@ -81,7 +85,8 @@ module Zavudev
       end
 
       # Deactivate a sub-account. Remaining balance is returned to the parent team and
-      # all API keys are revoked.
+      # all API keys are revoked. Requires a parent project API key; sub-account API
+      # keys receive HTTP 403.
       sig do
         params(
           id: String,
@@ -96,7 +101,8 @@ module Zavudev
       end
 
       # Get spending information for a sub-account. Returns the parent team's balance,
-      # the sub-account's total spending, and its credit limit (spending cap).
+      # the sub-account's total spending, and its credit limit (spending cap). Requires
+      # a parent project API key; sub-account API keys receive HTTP 403.
       sig do
         params(
           id: String,
