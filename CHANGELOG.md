@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.9.1 (2026-05-15)
+
+Full Changelog: [v0.9.0...v0.9.1](https://github.com/zavudev/sdk-ruby/compare/v0.9.0...v0.9.1)
+
+### Bug Fixes
+
+* **client:** elide content type header on requests without body ([f6979ca](https://github.com/zavudev/sdk-ruby/commit/f6979ca85fb09bc9bdbf76749966b7d5d55bb04d))
+
 ## 0.9.0 (2026-05-01)
 
 Full Changelog: [v0.8.0...v0.9.0](https://github.com/zavudev/sdk-ruby/compare/v0.8.0...v0.9.0)
