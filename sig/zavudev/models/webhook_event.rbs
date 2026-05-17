@@ -12,6 +12,8 @@ module Zavudev
       | :"conversation.new"
       | :"template.status_changed"
       | :"invitation.status_changed"
+      | :"domain.verified"
+      | :"domain.failed"
 
     module WebhookEvent
       extend Zavudev::Internal::Type::Enum
@@ -27,6 +29,8 @@ module Zavudev
       CONVERSATION_NEW: :"conversation.new"
       TEMPLATE_STATUS_CHANGED: :"template.status_changed"
       INVITATION_STATUS_CHANGED: :"invitation.status_changed"
+      DOMAIN_VERIFIED: :"domain.verified"
+      DOMAIN_FAILED: :"domain.failed"
 
       def self?.values: -> ::Array[Zavudev::Models::webhook_event]
     end

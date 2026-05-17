@@ -35,6 +35,13 @@ module Zavudev
     #
     # - `invitation.status_changed`: A partner invitation status changed (pending,
     #   in_progress, completed, cancelled)
+    #
+    # **Custom domain events:**
+    #
+    # - `domain.verified`: A custom email domain passed verification (DKIM, and
+    #   SPF/DMARC/MAIL FROM if enhanced records are enabled)
+    # - `domain.failed`: A custom email domain failed verification or is partially
+    #   verified
     module WebhookEvent
       extend Zavudev::Internal::Type::Enum
 
@@ -61,6 +68,10 @@ module Zavudev
         T.let(:"template.status_changed", Zavudev::WebhookEvent::TaggedSymbol)
       INVITATION_STATUS_CHANGED =
         T.let(:"invitation.status_changed", Zavudev::WebhookEvent::TaggedSymbol)
+      DOMAIN_VERIFIED =
+        T.let(:"domain.verified", Zavudev::WebhookEvent::TaggedSymbol)
+      DOMAIN_FAILED =
+        T.let(:"domain.failed", Zavudev::WebhookEvent::TaggedSymbol)
 
       sig { override.returns(T::Array[Zavudev::WebhookEvent::TaggedSymbol]) }
       def self.values
