@@ -1,0 +1,75 @@
+module Zavudev
+  module Models
+    type me_retrieve_response =
+      {
+        api_key: Zavudev::Models::MeRetrieveResponse::APIKey,
+        is_test_mode: bool,
+        project: Zavudev::Models::MeRetrieveResponse::Project,
+        team: Zavudev::Models::MeRetrieveResponse::Team
+      }
+
+    class MeRetrieveResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor api_key: Zavudev::Models::MeRetrieveResponse::APIKey
+
+      attr_accessor is_test_mode: bool
+
+      attr_accessor project: Zavudev::Models::MeRetrieveResponse::Project
+
+      attr_accessor team: Zavudev::Models::MeRetrieveResponse::Team
+
+      def initialize: (
+        api_key: Zavudev::Models::MeRetrieveResponse::APIKey,
+        is_test_mode: bool,
+        project: Zavudev::Models::MeRetrieveResponse::Project,
+        team: Zavudev::Models::MeRetrieveResponse::Team
+      ) -> void
+
+      def to_hash: -> {
+        api_key: Zavudev::Models::MeRetrieveResponse::APIKey,
+        is_test_mode: bool,
+        project: Zavudev::Models::MeRetrieveResponse::Project,
+        team: Zavudev::Models::MeRetrieveResponse::Team
+      }
+
+      type api_key = { id: String }
+
+      class APIKey < Zavudev::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type project = { id: String, is_sub_account: bool, name: String? }
+
+      class Project < Zavudev::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor is_sub_account: bool
+
+        attr_accessor name: String?
+
+        def initialize: (
+          id: String,
+          is_sub_account: bool,
+          name: String?
+        ) -> void
+
+        def to_hash: -> { id: String, is_sub_account: bool, name: String? }
+      end
+
+      type team = { id: String, name: String? }
+
+      class Team < Zavudev::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        def initialize: (id: String, name: String?) -> void
+
+        def to_hash: -> { id: String, name: String? }
+      end
+    end
+  end
+end

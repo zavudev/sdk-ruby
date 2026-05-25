@@ -1,0 +1,22 @@
+module Zavudev
+  module Models
+    type function_delete_response =
+      { deleted: bool, name: String, slug: String }
+
+    class FunctionDeleteResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor deleted: bool
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader slug: String?
+
+      def slug=: (String) -> String
+
+      def initialize: (deleted: bool, ?name: String, ?slug: String) -> void
+
+      def to_hash: -> { deleted: bool, name: String, slug: String }
+    end
+  end
+end

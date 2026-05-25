@@ -1,0 +1,23 @@
+module Zavudev
+  module Models
+    type function_get_deployment_params =
+      { deployment_id: String } & Zavudev::Internal::Type::request_parameters
+
+    class FunctionGetDeploymentParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor deployment_id: String
+
+      def initialize: (
+        deployment_id: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        deployment_id: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

@@ -155,6 +155,37 @@ module Zavudev
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Zavudev::Models::MessageShowTypingParams} for more details.
+      #
+      # Mark an inbound WhatsApp message as read and display a typing indicator to the
+      # user while you prepare a response. The indicator is automatically dismissed when
+      # you send a reply, or after 25 seconds — whichever comes first. Only valid for
+      # inbound WhatsApp messages. Use this when a reply will take more than a couple of
+      # seconds (LLM agent, tool call, lookup) to improve the recipient's experience.
+      #
+      # @overload show_typing(message_id, zavu_sender: nil, request_options: {})
+      #
+      # @param message_id [String]
+      #
+      # @param zavu_sender [String] Optional sender profile ID. If omitted, the project's default sender will be use
+      #
+      # @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Zavudev::Models::MessageShowTypingResponse]
+      #
+      # @see Zavudev::Models::MessageShowTypingParams
+      def show_typing(message_id, params = {})
+        parsed, options = Zavudev::MessageShowTypingParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: ["v1/messages/%1$s/typing", message_id],
+          headers: parsed.transform_keys(zavu_sender: "zavu-sender"),
+          model: Zavudev::Models::MessageShowTypingResponse,
+          options: options
+        )
+      end
+
       # @api private
       #
       # @param client [Zavudev::Client]

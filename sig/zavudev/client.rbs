@@ -44,6 +44,10 @@ module Zavudev
 
     attr_reader number_10dlc: Zavudev::Resources::Number10dlc
 
+    attr_reader me: Zavudev::Resources::Me
+
+    attr_reader functions: Zavudev::Resources::Functions
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

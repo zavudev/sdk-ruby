@@ -1,0 +1,40 @@
+module Zavudev
+  module Models
+    type function_deploy_params =
+      {
+        function_id: String,
+        dependencies: ::Hash[Symbol, String],
+        source_code: String
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class FunctionDeployParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor function_id: String
+
+      attr_reader dependencies: ::Hash[Symbol, String]?
+
+      def dependencies=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+      attr_reader source_code: String?
+
+      def source_code=: (String) -> String
+
+      def initialize: (
+        function_id: String,
+        ?dependencies: ::Hash[Symbol, String],
+        ?source_code: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        function_id: String,
+        dependencies: ::Hash[Symbol, String],
+        source_code: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end
