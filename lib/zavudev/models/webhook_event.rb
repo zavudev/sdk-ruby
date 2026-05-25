@@ -35,6 +35,13 @@ module Zavudev
     #
     # - `invitation.status_changed`: A partner invitation status changed (pending,
     #   in_progress, completed, cancelled)
+    #
+    # **Custom domain events:**
+    #
+    # - `domain.verified`: A custom email domain passed verification (DKIM, and
+    #   SPF/DMARC/MAIL FROM if enhanced records are enabled)
+    # - `domain.failed`: A custom email domain failed verification or is partially
+    #   verified
     module WebhookEvent
       extend Zavudev::Internal::Type::Enum
 
@@ -49,6 +56,8 @@ module Zavudev
       CONVERSATION_NEW = :"conversation.new"
       TEMPLATE_STATUS_CHANGED = :"template.status_changed"
       INVITATION_STATUS_CHANGED = :"invitation.status_changed"
+      DOMAIN_VERIFIED = :"domain.verified"
+      DOMAIN_FAILED = :"domain.failed"
 
       # @!method self.values
       #   @return [Array<Symbol>]
