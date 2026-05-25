@@ -1,0 +1,37 @@
+module Zavudev
+  module Models
+    type function_tail_logs_response =
+      {
+        events: ::Array[Zavudev::Models::FunctionTailLogsResponse::Event],
+        next_token: String?
+      }
+
+    class FunctionTailLogsResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor events: ::Array[Zavudev::Models::FunctionTailLogsResponse::Event]
+
+      attr_accessor next_token: String?
+
+      def initialize: (
+        events: ::Array[Zavudev::Models::FunctionTailLogsResponse::Event],
+        ?next_token: String?
+      ) -> void
+
+      def to_hash: -> {
+        events: ::Array[Zavudev::Models::FunctionTailLogsResponse::Event],
+        next_token: String?
+      }
+
+      type event = { message: String, timestamp: Time }
+
+      class Event < Zavudev::Internal::Type::BaseModel
+        attr_accessor message: String
+
+        attr_accessor timestamp: Time
+
+        def initialize: (message: String, timestamp: Time) -> void
+
+        def to_hash: -> { message: String, timestamp: Time }
+      end
+    end
+  end
+end

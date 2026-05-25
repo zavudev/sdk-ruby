@@ -1,0 +1,107 @@
+module Zavudev
+  module Models
+    type function_create_params =
+      {
+        name: String,
+        slug: String,
+        dependencies: ::Hash[Symbol, String],
+        description: String,
+        http_enabled: bool,
+        memory_mb: Zavudev::Models::FunctionCreateParams::memory_mb,
+        runtime: Zavudev::Models::FunctionCreateParams::runtime,
+        source_code: String,
+        timeout_sec: Integer
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class FunctionCreateParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor name: String
+
+      attr_accessor slug: String
+
+      attr_reader dependencies: ::Hash[Symbol, String]?
+
+      def dependencies=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+      attr_reader description: String?
+
+      def description=: (String) -> String
+
+      attr_reader http_enabled: bool?
+
+      def http_enabled=: (bool) -> bool
+
+      attr_reader memory_mb: Zavudev::Models::FunctionCreateParams::memory_mb?
+
+      def memory_mb=: (
+        Zavudev::Models::FunctionCreateParams::memory_mb
+      ) -> Zavudev::Models::FunctionCreateParams::memory_mb
+
+      attr_reader runtime: Zavudev::Models::FunctionCreateParams::runtime?
+
+      def runtime=: (
+        Zavudev::Models::FunctionCreateParams::runtime
+      ) -> Zavudev::Models::FunctionCreateParams::runtime
+
+      attr_reader source_code: String?
+
+      def source_code=: (String) -> String
+
+      attr_reader timeout_sec: Integer?
+
+      def timeout_sec=: (Integer) -> Integer
+
+      def initialize: (
+        name: String,
+        slug: String,
+        ?dependencies: ::Hash[Symbol, String],
+        ?description: String,
+        ?http_enabled: bool,
+        ?memory_mb: Zavudev::Models::FunctionCreateParams::memory_mb,
+        ?runtime: Zavudev::Models::FunctionCreateParams::runtime,
+        ?source_code: String,
+        ?timeout_sec: Integer,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        name: String,
+        slug: String,
+        dependencies: ::Hash[Symbol, String],
+        description: String,
+        http_enabled: bool,
+        memory_mb: Zavudev::Models::FunctionCreateParams::memory_mb,
+        runtime: Zavudev::Models::FunctionCreateParams::runtime,
+        source_code: String,
+        timeout_sec: Integer,
+        request_options: Zavudev::RequestOptions
+      }
+
+      type memory_mb = 128 | 256 | 512 | 1024
+
+      module MemoryMB
+        extend Zavudev::Internal::Type::Enum
+
+        MEMORY_MB_128: 128
+        MEMORY_MB_256: 256
+        MEMORY_MB_512: 512
+        MEMORY_MB_1024: 1024
+
+        def self?.values: -> ::Array[Zavudev::Models::FunctionCreateParams::memory_mb]
+      end
+
+      type runtime = :nodejs24
+
+      module Runtime
+        extend Zavudev::Internal::Type::Enum
+
+        NODEJS24: :nodejs24
+
+        def self?.values: -> ::Array[Zavudev::Models::FunctionCreateParams::runtime]
+      end
+    end
+  end
+end

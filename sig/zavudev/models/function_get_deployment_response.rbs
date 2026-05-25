@@ -1,0 +1,98 @@
+module Zavudev
+  module Models
+    type function_get_deployment_response =
+      { deployment: Zavudev::Models::FunctionGetDeploymentResponse::Deployment }
+
+    class FunctionGetDeploymentResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor deployment: Zavudev::Models::FunctionGetDeploymentResponse::Deployment
+
+      def initialize: (
+        deployment: Zavudev::Models::FunctionGetDeploymentResponse::Deployment
+      ) -> void
+
+      def to_hash: -> {
+        deployment: Zavudev::Models::FunctionGetDeploymentResponse::Deployment
+      }
+
+      type deployment =
+        {
+          id: String,
+          created_at: Time,
+          function_id: String,
+          status: Zavudev::Models::FunctionGetDeploymentResponse::Deployment::status,
+          version: Integer,
+          bundle_bytes: Integer?,
+          deployed_at: Time?,
+          error_message: String?,
+          source_code_bytes: Integer?
+        }
+
+      class Deployment < Zavudev::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor function_id: String
+
+        attr_accessor status: Zavudev::Models::FunctionGetDeploymentResponse::Deployment::status
+
+        attr_accessor version: Integer
+
+        attr_accessor bundle_bytes: Integer?
+
+        attr_accessor deployed_at: Time?
+
+        attr_accessor error_message: String?
+
+        attr_accessor source_code_bytes: Integer?
+
+        def initialize: (
+          id: String,
+          created_at: Time,
+          function_id: String,
+          status: Zavudev::Models::FunctionGetDeploymentResponse::Deployment::status,
+          version: Integer,
+          ?bundle_bytes: Integer?,
+          ?deployed_at: Time?,
+          ?error_message: String?,
+          ?source_code_bytes: Integer?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          created_at: Time,
+          function_id: String,
+          status: Zavudev::Models::FunctionGetDeploymentResponse::Deployment::status,
+          version: Integer,
+          bundle_bytes: Integer?,
+          deployed_at: Time?,
+          error_message: String?,
+          source_code_bytes: Integer?
+        }
+
+        type status =
+          :pending
+          | :bundling
+          | :uploading
+          | :publishing
+          | :active
+          | :failed
+          | :superseded
+
+        module Status
+          extend Zavudev::Internal::Type::Enum
+
+          PENDING: :pending
+          BUNDLING: :bundling
+          UPLOADING: :uploading
+          PUBLISHING: :publishing
+          ACTIVE: :active
+          FAILED: :failed
+          SUPERSEDED: :superseded
+
+          def self?.values: -> ::Array[Zavudev::Models::FunctionGetDeploymentResponse::Deployment::status]
+        end
+      end
+    end
+  end
+end

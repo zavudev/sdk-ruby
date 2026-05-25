@@ -1,0 +1,126 @@
+module Zavudev
+  module Models
+    type function_update_response =
+      { function: Zavudev::Models::FunctionUpdateResponse::Function }
+
+    class FunctionUpdateResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor function: Zavudev::Models::FunctionUpdateResponse::Function
+
+      def initialize: (
+        function: Zavudev::Models::FunctionUpdateResponse::Function
+      ) -> void
+
+      def to_hash: -> {
+        function: Zavudev::Models::FunctionUpdateResponse::Function
+      }
+
+      type function =
+        {
+          id: String,
+          created_at: Time,
+          dependencies: ::Hash[Symbol, String],
+          http_enabled: bool,
+          memory_mb: Integer,
+          name: String,
+          runtime: Zavudev::Models::FunctionUpdateResponse::Function::runtime,
+          slug: String,
+          status: Zavudev::Models::FunctionUpdateResponse::Function::status,
+          timeout_sec: Integer,
+          updated_at: Time,
+          active_deployment_id: String?,
+          description: String?,
+          public_url: String?
+        }
+
+      class Function < Zavudev::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor dependencies: ::Hash[Symbol, String]
+
+        attr_accessor http_enabled: bool
+
+        attr_accessor memory_mb: Integer
+
+        attr_accessor name: String
+
+        attr_accessor runtime: Zavudev::Models::FunctionUpdateResponse::Function::runtime
+
+        attr_accessor slug: String
+
+        attr_accessor status: Zavudev::Models::FunctionUpdateResponse::Function::status
+
+        attr_accessor timeout_sec: Integer
+
+        attr_accessor updated_at: Time
+
+        attr_accessor active_deployment_id: String?
+
+        attr_accessor description: String?
+
+        attr_accessor public_url: String?
+
+        def initialize: (
+          id: String,
+          created_at: Time,
+          dependencies: ::Hash[Symbol, String],
+          http_enabled: bool,
+          memory_mb: Integer,
+          name: String,
+          runtime: Zavudev::Models::FunctionUpdateResponse::Function::runtime,
+          slug: String,
+          status: Zavudev::Models::FunctionUpdateResponse::Function::status,
+          timeout_sec: Integer,
+          updated_at: Time,
+          ?active_deployment_id: String?,
+          ?description: String?,
+          ?public_url: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          created_at: Time,
+          dependencies: ::Hash[Symbol, String],
+          http_enabled: bool,
+          memory_mb: Integer,
+          name: String,
+          runtime: Zavudev::Models::FunctionUpdateResponse::Function::runtime,
+          slug: String,
+          status: Zavudev::Models::FunctionUpdateResponse::Function::status,
+          timeout_sec: Integer,
+          updated_at: Time,
+          active_deployment_id: String?,
+          description: String?,
+          public_url: String?
+        }
+
+        type runtime = :nodejs24
+
+        module Runtime
+          extend Zavudev::Internal::Type::Enum
+
+          NODEJS24: :nodejs24
+
+          def self?.values: -> ::Array[Zavudev::Models::FunctionUpdateResponse::Function::runtime]
+        end
+
+        type status =
+          :draft | :bundling | :deploying | :active | :failed | :disabled
+
+        module Status
+          extend Zavudev::Internal::Type::Enum
+
+          DRAFT: :draft
+          BUNDLING: :bundling
+          DEPLOYING: :deploying
+          ACTIVE: :active
+          FAILED: :failed
+          DISABLED: :disabled
+
+          def self?.values: -> ::Array[Zavudev::Models::FunctionUpdateResponse::Function::status]
+        end
+      end
+    end
+  end
+end

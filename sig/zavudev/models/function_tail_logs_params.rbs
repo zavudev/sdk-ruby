@@ -1,0 +1,61 @@
+module Zavudev
+  module Models
+    type function_tail_logs_params =
+      {
+        function_id: String,
+        end_time: Integer,
+        filter_pattern: String,
+        limit: Integer,
+        next_token: String,
+        start_time: Integer
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class FunctionTailLogsParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor function_id: String
+
+      attr_reader end_time: Integer?
+
+      def end_time=: (Integer) -> Integer
+
+      attr_reader filter_pattern: String?
+
+      def filter_pattern=: (String) -> String
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_reader next_token: String?
+
+      def next_token=: (String) -> String
+
+      attr_reader start_time: Integer?
+
+      def start_time=: (Integer) -> Integer
+
+      def initialize: (
+        function_id: String,
+        ?end_time: Integer,
+        ?filter_pattern: String,
+        ?limit: Integer,
+        ?next_token: String,
+        ?start_time: Integer,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        function_id: String,
+        end_time: Integer,
+        filter_pattern: String,
+        limit: Integer,
+        next_token: String,
+        start_time: Integer,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

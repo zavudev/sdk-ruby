@@ -1,0 +1,14 @@
+module Zavudev
+  module Models
+    type me_retrieve_params = {  } & Zavudev::Internal::Type::request_parameters
+
+    class MeRetrieveParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      def initialize: (?request_options: Zavudev::request_opts) -> void
+
+      def to_hash: -> { request_options: Zavudev::RequestOptions }
+    end
+  end
+end

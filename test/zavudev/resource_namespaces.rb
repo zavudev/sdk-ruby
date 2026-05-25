@@ -17,6 +17,9 @@ module Zavudev
       module Contacts
       end
 
+      module Functions
+      end
+
       module KnowledgeBases
       end
 
