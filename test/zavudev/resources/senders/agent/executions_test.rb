@@ -3,6 +3,22 @@
 require_relative "../../../test_helper"
 
 class Zavudev::Test::Resources::Senders::Agent::ExecutionsTest < Zavudev::Test::ResourceTest
+  def test_retrieve_required_params
+    skip("Mock server tests are disabled")
+
+    response = @zavudev.senders.agent.executions.retrieve("executionId", sender_id: "senderId")
+
+    assert_pattern do
+      response => Zavudev::Models::Senders::Agent::ExecutionRetrieveResponse
+    end
+
+    assert_pattern do
+      response => {
+        execution: Zavudev::Senders::AgentExecution
+      }
+    end
+  end
+
   def test_list
     skip("Mock server tests are disabled")
 

@@ -67,6 +67,21 @@ module Zavudev
       def list(cursor: nil, limit: nil, phone_number: nil, request_options: {})
       end
 
+      # Permanently delete a contact and its communication channels. Implements
+      # right-to-erasure obligations under GDPR Art. 17, Ley 19.628 (Chile) Art. 12,
+      # CCPA § 1798.105, and LGPD Art. 18.VI. The contact, its channels, and any
+      # associated agent flow sessions and conversation threads are removed. Past
+      # message records and broadcast delivery logs are retained for billing/audit but
+      # no longer reference the deleted contact.
+      sig do
+        params(
+          contact_id: String,
+          request_options: Zavudev::RequestOptions::OrHash
+        ).void
+      end
+      def delete(contact_id, request_options: {})
+      end
+
       # Dismiss the merge suggestion for a contact.
       sig do
         params(

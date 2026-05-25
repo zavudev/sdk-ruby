@@ -1,0 +1,18 @@
+module Zavudev
+  module Models
+    module Senders
+      module Agent
+        type execution_retrieve_response =
+          { execution: Zavudev::Senders::AgentExecution }
+
+        class ExecutionRetrieveResponse < Zavudev::Internal::Type::BaseModel
+          attr_accessor execution: Zavudev::Senders::AgentExecution
+
+          def initialize: (execution: Zavudev::Senders::AgentExecution) -> void
+
+          def to_hash: -> { execution: Zavudev::Senders::AgentExecution }
+        end
+      end
+    end
+  end
+end

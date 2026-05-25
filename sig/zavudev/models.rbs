@@ -63,6 +63,8 @@ module Zavudev
 
   class ContactCreateParams = Zavudev::Models::ContactCreateParams
 
+  class ContactDeleteParams = Zavudev::Models::ContactDeleteParams
+
   class ContactDismissMergeSuggestionParams = Zavudev::Models::ContactDismissMergeSuggestionParams
 
   class ContactListParams = Zavudev::Models::ContactListParams
@@ -85,6 +87,22 @@ module Zavudev
 
   class ExportRetrieveParams = Zavudev::Models::ExportRetrieveParams
 
+  class FunctionCreateParams = Zavudev::Models::FunctionCreateParams
+
+  class FunctionDeleteParams = Zavudev::Models::FunctionDeleteParams
+
+  class FunctionDeployParams = Zavudev::Models::FunctionDeployParams
+
+  class FunctionGetDeploymentParams = Zavudev::Models::FunctionGetDeploymentParams
+
+  class FunctionRetrieveParams = Zavudev::Models::FunctionRetrieveParams
+
+  module Functions = Zavudev::Models::Functions
+
+  class FunctionTailLogsParams = Zavudev::Models::FunctionTailLogsParams
+
+  class FunctionUpdateParams = Zavudev::Models::FunctionUpdateParams
+
   class IntrospectValidatePhoneParams = Zavudev::Models::IntrospectValidatePhoneParams
 
   class Invitation = Zavudev::Models::Invitation
@@ -99,6 +117,8 @@ module Zavudev
 
   module LineType = Zavudev::Models::LineType
 
+  class MeRetrieveParams = Zavudev::Models::MeRetrieveParams
+
   class Message = Zavudev::Models::Message
 
   class MessageContent = Zavudev::Models::MessageContent
@@ -112,6 +132,8 @@ module Zavudev
   class MessageRetrieveParams = Zavudev::Models::MessageRetrieveParams
 
   class MessageSendParams = Zavudev::Models::MessageSendParams
+
+  class MessageShowTypingParams = Zavudev::Models::MessageShowTypingParams
 
   module MessageStatus = Zavudev::Models::MessageStatus
 

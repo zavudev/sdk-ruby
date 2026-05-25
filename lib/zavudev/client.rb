@@ -69,6 +69,12 @@ module Zavudev
     # @return [Zavudev::Resources::Number10dlc]
     attr_reader :number_10dlc
 
+    # @return [Zavudev::Resources::Me]
+    attr_reader :me
+
+    # @return [Zavudev::Resources::Functions]
+    attr_reader :functions
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -147,6 +153,8 @@ module Zavudev
       @usage = Zavudev::Resources::Usage.new(client: self)
       @sub_accounts = Zavudev::Resources::SubAccounts.new(client: self)
       @number_10dlc = Zavudev::Resources::Number10dlc.new(client: self)
+      @me = Zavudev::Resources::Me.new(client: self)
+      @functions = Zavudev::Resources::Functions.new(client: self)
     end
   end
 end

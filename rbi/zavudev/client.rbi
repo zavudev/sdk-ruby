@@ -64,6 +64,12 @@ module Zavudev
     sig { returns(Zavudev::Resources::Number10dlc) }
     attr_reader :number_10dlc
 
+    sig { returns(Zavudev::Resources::Me) }
+    attr_reader :me
+
+    sig { returns(Zavudev::Resources::Functions) }
+    attr_reader :functions
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

@@ -1,0 +1,13 @@
+module Zavudev
+  module Models
+    type message_show_typing_response = { success: bool }
+
+    class MessageShowTypingResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor success: bool
+
+      def initialize: (success: bool) -> void
+
+      def to_hash: -> { success: bool }
+    end
+  end
+end

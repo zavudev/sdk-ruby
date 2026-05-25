@@ -29,6 +29,11 @@ module Zavudev
         ?request_options: Zavudev::request_opts
       ) -> Zavudev::Internal::Cursor[Zavudev::Contact]
 
+      def delete: (
+        String contact_id,
+        ?request_options: Zavudev::request_opts
+      ) -> nil
+
       def dismiss_merge_suggestion: (
         String contact_id,
         ?request_options: Zavudev::request_opts

@@ -1,0 +1,61 @@
+module Zavudev
+  module Resources
+    class Functions
+      attr_reader secrets: Zavudev::Resources::Functions::Secrets
+
+      def create: (
+        name: String,
+        slug: String,
+        ?dependencies: ::Hash[Symbol, String],
+        ?description: String,
+        ?http_enabled: bool,
+        ?memory_mb: Zavudev::Models::FunctionCreateParams::memory_mb,
+        ?runtime: Zavudev::Models::FunctionCreateParams::runtime,
+        ?source_code: String,
+        ?timeout_sec: Integer,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::FunctionCreateResponse
+
+      def retrieve: (
+        String function_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::FunctionRetrieveResponse
+
+      def update: (
+        String function_id,
+        ?dependencies: ::Hash[Symbol, String],
+        ?source_code: String,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::FunctionUpdateResponse
+
+      def delete: (
+        String function_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::FunctionDeleteResponse
+
+      def deploy: (
+        String function_id,
+        ?dependencies: ::Hash[Symbol, String],
+        ?source_code: String,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::FunctionDeployResponse
+
+      def get_deployment: (
+        String deployment_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::FunctionGetDeploymentResponse
+
+      def tail_logs: (
+        String function_id,
+        ?end_time: Integer,
+        ?filter_pattern: String,
+        ?limit: Integer,
+        ?next_token: String,
+        ?start_time: Integer,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::FunctionTailLogsResponse
+
+      def initialize: (client: Zavudev::Client) -> void
+    end
+  end
+end

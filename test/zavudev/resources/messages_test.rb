@@ -90,4 +90,20 @@ class Zavudev::Test::Resources::MessagesTest < Zavudev::Test::ResourceTest
       }
     end
   end
+
+  def test_show_typing
+    skip("Mock server tests are disabled")
+
+    response = @zavudev.messages.show_typing("messageId")
+
+    assert_pattern do
+      response => Zavudev::Models::MessageShowTypingResponse
+    end
+
+    assert_pattern do
+      response => {
+        success: Zavudev::Internal::Type::Boolean
+      }
+    end
+  end
 end
