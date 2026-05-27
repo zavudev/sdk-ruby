@@ -154,8 +154,11 @@ module Zavudev
       optional :template_id, String, api_name: :templateId
 
       # @!attribute template_variables
-      #   Variables for body placeholders. Keys are positions (1, 2, 3, ...) matching the
-      #   order placeholders appear in the template body.
+      #   Variables for body placeholders. Keys are either positions (`1`, `2`, ...) or
+      #   the template's named variables (e.g. `customer_name`). Named keys are matched to
+      #   placeholders by their order of first appearance in the template body and
+      #   normalized to positional automatically. Do not mix positional and named keys in
+      #   the same request.
       #
       #   @return [Hash{Symbol=>String}, nil]
       optional :template_variables, Zavudev::Internal::Type::HashOf[String], api_name: :templateVariables
@@ -210,7 +213,7 @@ module Zavudev
       #
       #   @param template_id [String] Template ID for template messages.
       #
-      #   @param template_variables [Hash{Symbol=>String}] Variables for body placeholders. Keys are positions (1, 2, 3, ...) matching the
+      #   @param template_variables [Hash{Symbol=>String}] Variables for body placeholders. Keys are either positions (`1`, `2`, ...) or th
 
       class Button < Zavudev::Internal::Type::BaseModel
         # @!attribute id

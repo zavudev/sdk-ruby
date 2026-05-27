@@ -43,8 +43,10 @@ module Zavudev
       optional :template_id, String, api_name: :templateId
 
       # @!attribute template_variables
-      #   Default body variables (can be overridden per contact). Keys are positions (1,
-      #   2, ...).
+      #   Default body variables (can be overridden per contact). Keys are either
+      #   positions (`1`, `2`, ...) or the template's named variables (e.g.
+      #   `customer_name`), matched to placeholders by order of first appearance and
+      #   normalized to positional automatically. Do not mix positional and named keys.
       #
       #   @return [Hash{Symbol=>String}, nil]
       optional :template_variables, Zavudev::Internal::Type::HashOf[String], api_name: :templateVariables
@@ -67,7 +69,7 @@ module Zavudev
       #
       #   @param template_id [String] Template ID for template messages.
       #
-      #   @param template_variables [Hash{Symbol=>String}] Default body variables (can be overridden per contact). Keys are positions (1, 2
+      #   @param template_variables [Hash{Symbol=>String}] Default body variables (can be overridden per contact). Keys are either position
     end
   end
 end

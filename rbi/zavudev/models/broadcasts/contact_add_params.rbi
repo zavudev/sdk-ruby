@@ -76,8 +76,10 @@ module Zavudev
           end
           attr_writer :template_button_variables
 
-          # Per-contact body variables. Keys are positions (1, 2, ...) matching the order
-          # placeholders appear in the template body.
+          # Per-contact body variables. Keys are either positions (`1`, `2`, ...) or the
+          # template's named variables (e.g. `customer_name`), matched to placeholders by
+          # order of first appearance and normalized to positional automatically. Do not mix
+          # positional and named keys.
           sig { returns(T.nilable(T::Hash[Symbol, String])) }
           attr_reader :template_variables
 
@@ -97,8 +99,10 @@ module Zavudev
             # Per-contact button variables for dynamic URL/OTP buttons. Keys are the button
             # index (0, 1, 2).
             template_button_variables: nil,
-            # Per-contact body variables. Keys are positions (1, 2, ...) matching the order
-            # placeholders appear in the template body.
+            # Per-contact body variables. Keys are either positions (`1`, `2`, ...) or the
+            # template's named variables (e.g. `customer_name`), matched to placeholders by
+            # order of first appearance and normalized to positional automatically. Do not mix
+            # positional and named keys.
             template_variables: nil
           )
           end
