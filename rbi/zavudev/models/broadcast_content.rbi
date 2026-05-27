@@ -51,8 +51,10 @@ module Zavudev
       sig { params(template_id: String).void }
       attr_writer :template_id
 
-      # Default body variables (can be overridden per contact). Keys are positions (1,
-      # 2, ...).
+      # Default body variables (can be overridden per contact). Keys are either
+      # positions (`1`, `2`, ...) or the template's named variables (e.g.
+      # `customer_name`), matched to placeholders by order of first appearance and
+      # normalized to positional automatically. Do not mix positional and named keys.
       sig { returns(T.nilable(T::Hash[Symbol, String])) }
       attr_reader :template_variables
 
@@ -85,8 +87,10 @@ module Zavudev
         template_button_variables: nil,
         # Template ID for template messages.
         template_id: nil,
-        # Default body variables (can be overridden per contact). Keys are positions (1,
-        # 2, ...).
+        # Default body variables (can be overridden per contact). Keys are either
+        # positions (`1`, `2`, ...) or the template's named variables (e.g.
+        # `customer_name`), matched to placeholders by order of first appearance and
+        # normalized to positional automatically. Do not mix positional and named keys.
         template_variables: nil
       )
       end

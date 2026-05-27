@@ -44,8 +44,10 @@ module Zavudev
                    api_name: :templateButtonVariables
 
           # @!attribute template_variables
-          #   Per-contact body variables. Keys are positions (1, 2, ...) matching the order
-          #   placeholders appear in the template body.
+          #   Per-contact body variables. Keys are either positions (`1`, `2`, ...) or the
+          #   template's named variables (e.g. `customer_name`), matched to placeholders by
+          #   order of first appearance and normalized to positional automatically. Do not mix
+          #   positional and named keys.
           #
           #   @return [Hash{Symbol=>String}, nil]
           optional :template_variables, Zavudev::Internal::Type::HashOf[String], api_name: :templateVariables
@@ -58,7 +60,7 @@ module Zavudev
           #
           #   @param template_button_variables [Hash{Symbol=>String}] Per-contact button variables for dynamic URL/OTP buttons. Keys are the button in
           #
-          #   @param template_variables [Hash{Symbol=>String}] Per-contact body variables. Keys are positions (1, 2, ...) matching the order pl
+          #   @param template_variables [Hash{Symbol=>String}] Per-contact body variables. Keys are either positions (`1`, `2`, ...) or the tem
         end
       end
     end

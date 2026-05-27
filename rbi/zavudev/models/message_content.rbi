@@ -194,8 +194,11 @@ module Zavudev
       sig { params(template_id: String).void }
       attr_writer :template_id
 
-      # Variables for body placeholders. Keys are positions (1, 2, 3, ...) matching the
-      # order placeholders appear in the template body.
+      # Variables for body placeholders. Keys are either positions (`1`, `2`, ...) or
+      # the template's named variables (e.g. `customer_name`). Named keys are matched to
+      # placeholders by their order of first appearance in the template body and
+      # normalized to positional automatically. Do not mix positional and named keys in
+      # the same request.
       sig { returns(T.nilable(T::Hash[Symbol, String])) }
       attr_reader :template_variables
 
@@ -291,8 +294,11 @@ module Zavudev
         template_button_variables: nil,
         # Template ID for template messages.
         template_id: nil,
-        # Variables for body placeholders. Keys are positions (1, 2, 3, ...) matching the
-        # order placeholders appear in the template body.
+        # Variables for body placeholders. Keys are either positions (`1`, `2`, ...) or
+        # the template's named variables (e.g. `customer_name`). Named keys are matched to
+        # placeholders by their order of first appearance in the template body and
+        # normalized to positional automatically. Do not mix positional and named keys in
+        # the same request.
         template_variables: nil
       )
       end
