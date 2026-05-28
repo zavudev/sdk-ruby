@@ -44,6 +44,15 @@ module Zavudev
       sig { params(template_button_variables: T::Hash[Symbol, String]).void }
       attr_writer :template_button_variables
 
+      # Default value for a text-header variable, keyed by `1` (can be overridden per
+      # contact). If omitted, Zavu resolves the header from `templateVariables` by the
+      # header placeholder's name.
+      sig { returns(T.nilable(T::Hash[Symbol, String])) }
+      attr_reader :template_header_variables
+
+      sig { params(template_header_variables: T::Hash[Symbol, String]).void }
+      attr_writer :template_header_variables
+
       # Template ID for template messages.
       sig { returns(T.nilable(String)) }
       attr_reader :template_id
@@ -51,10 +60,10 @@ module Zavudev
       sig { params(template_id: String).void }
       attr_writer :template_id
 
-      # Default body variables (can be overridden per contact). Keys are either
-      # positions (`1`, `2`, ...) or the template's named variables (e.g.
-      # `customer_name`), matched to placeholders by order of first appearance and
-      # normalized to positional automatically. Do not mix positional and named keys.
+      # Default body variables (can be overridden per contact). Key them to match the
+      # template body: by position (`1`, `2`, ...) for positional templates, or by name
+      # (e.g. `customer_name`) for named templates. Zavu detects the template's format
+      # and sends the correct payload to Meta. Do not mix positional and named keys.
       sig { returns(T.nilable(T::Hash[Symbol, String])) }
       attr_reader :template_variables
 
@@ -69,6 +78,7 @@ module Zavudev
           media_url: String,
           mime_type: String,
           template_button_variables: T::Hash[Symbol, String],
+          template_header_variables: T::Hash[Symbol, String],
           template_id: String,
           template_variables: T::Hash[Symbol, String]
         ).returns(T.attached_class)
@@ -85,12 +95,16 @@ module Zavudev
         # Default button variables for dynamic URL/OTP buttons. Keys are the button index
         # (0, 1, 2). Per-contact values override these.
         template_button_variables: nil,
+        # Default value for a text-header variable, keyed by `1` (can be overridden per
+        # contact). If omitted, Zavu resolves the header from `templateVariables` by the
+        # header placeholder's name.
+        template_header_variables: nil,
         # Template ID for template messages.
         template_id: nil,
-        # Default body variables (can be overridden per contact). Keys are either
-        # positions (`1`, `2`, ...) or the template's named variables (e.g.
-        # `customer_name`), matched to placeholders by order of first appearance and
-        # normalized to positional automatically. Do not mix positional and named keys.
+        # Default body variables (can be overridden per contact). Key them to match the
+        # template body: by position (`1`, `2`, ...) for positional templates, or by name
+        # (e.g. `customer_name`) for named templates. Zavu detects the template's format
+        # and sends the correct payload to Meta. Do not mix positional and named keys.
         template_variables: nil
       )
       end
@@ -103,6 +117,7 @@ module Zavudev
             media_url: String,
             mime_type: String,
             template_button_variables: T::Hash[Symbol, String],
+            template_header_variables: T::Hash[Symbol, String],
             template_id: String,
             template_variables: T::Hash[Symbol, String]
           }

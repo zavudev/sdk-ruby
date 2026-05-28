@@ -7,6 +7,7 @@ module Zavudev
         media_url: String,
         mime_type: String,
         template_button_variables: ::Hash[Symbol, String],
+        template_header_variables: ::Hash[Symbol, String],
         template_id: String,
         template_variables: ::Hash[Symbol, String]
       }
@@ -34,6 +35,12 @@ module Zavudev
         ::Hash[Symbol, String]
       ) -> ::Hash[Symbol, String]
 
+      attr_reader template_header_variables: ::Hash[Symbol, String]?
+
+      def template_header_variables=: (
+        ::Hash[Symbol, String]
+      ) -> ::Hash[Symbol, String]
+
       attr_reader template_id: String?
 
       def template_id=: (String) -> String
@@ -50,6 +57,7 @@ module Zavudev
         ?media_url: String,
         ?mime_type: String,
         ?template_button_variables: ::Hash[Symbol, String],
+        ?template_header_variables: ::Hash[Symbol, String],
         ?template_id: String,
         ?template_variables: ::Hash[Symbol, String]
       ) -> void
@@ -60,6 +68,7 @@ module Zavudev
         media_url: String,
         mime_type: String,
         template_button_variables: ::Hash[Symbol, String],
+        template_header_variables: ::Hash[Symbol, String],
         template_id: String,
         template_variables: ::Hash[Symbol, String]
       }

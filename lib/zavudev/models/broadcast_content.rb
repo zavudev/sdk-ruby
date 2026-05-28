@@ -36,6 +36,16 @@ module Zavudev
                Zavudev::Internal::Type::HashOf[String],
                api_name: :templateButtonVariables
 
+      # @!attribute template_header_variables
+      #   Default value for a text-header variable, keyed by `1` (can be overridden per
+      #   contact). If omitted, Zavu resolves the header from `templateVariables` by the
+      #   header placeholder's name.
+      #
+      #   @return [Hash{Symbol=>String}, nil]
+      optional :template_header_variables,
+               Zavudev::Internal::Type::HashOf[String],
+               api_name: :templateHeaderVariables
+
       # @!attribute template_id
       #   Template ID for template messages.
       #
@@ -43,15 +53,15 @@ module Zavudev
       optional :template_id, String, api_name: :templateId
 
       # @!attribute template_variables
-      #   Default body variables (can be overridden per contact). Keys are either
-      #   positions (`1`, `2`, ...) or the template's named variables (e.g.
-      #   `customer_name`), matched to placeholders by order of first appearance and
-      #   normalized to positional automatically. Do not mix positional and named keys.
+      #   Default body variables (can be overridden per contact). Key them to match the
+      #   template body: by position (`1`, `2`, ...) for positional templates, or by name
+      #   (e.g. `customer_name`) for named templates. Zavu detects the template's format
+      #   and sends the correct payload to Meta. Do not mix positional and named keys.
       #
       #   @return [Hash{Symbol=>String}, nil]
       optional :template_variables, Zavudev::Internal::Type::HashOf[String], api_name: :templateVariables
 
-      # @!method initialize(filename: nil, media_id: nil, media_url: nil, mime_type: nil, template_button_variables: nil, template_id: nil, template_variables: nil)
+      # @!method initialize(filename: nil, media_id: nil, media_url: nil, mime_type: nil, template_button_variables: nil, template_header_variables: nil, template_id: nil, template_variables: nil)
       #   Some parameter documentations has been truncated, see
       #   {Zavudev::Models::BroadcastContent} for more details.
       #
@@ -67,9 +77,11 @@ module Zavudev
       #
       #   @param template_button_variables [Hash{Symbol=>String}] Default button variables for dynamic URL/OTP buttons. Keys are the button index
       #
+      #   @param template_header_variables [Hash{Symbol=>String}] Default value for a text-header variable, keyed by `1` (can be overridden per co
+      #
       #   @param template_id [String] Template ID for template messages.
       #
-      #   @param template_variables [Hash{Symbol=>String}] Default body variables (can be overridden per contact). Keys are either position
+      #   @param template_variables [Hash{Symbol=>String}] Default body variables (can be overridden per contact). Key them to match the te
     end
   end
 end
