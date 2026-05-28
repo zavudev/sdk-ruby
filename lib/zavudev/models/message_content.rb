@@ -147,6 +147,17 @@ module Zavudev
                Zavudev::Internal::Type::HashOf[String],
                api_name: :templateButtonVariables
 
+      # @!attribute template_header_variables
+      #   Value for a text-header variable, keyed by `1` (WhatsApp text headers allow at
+      #   most one variable). Optional override. If omitted, Zavu resolves the header from
+      #   `templateVariables` using the header placeholder's name (e.g. `novios`). Static
+      #   text headers need no value.
+      #
+      #   @return [Hash{Symbol=>String}, nil]
+      optional :template_header_variables,
+               Zavudev::Internal::Type::HashOf[String],
+               api_name: :templateHeaderVariables
+
       # @!attribute template_id
       #   Template ID for template messages.
       #
@@ -154,16 +165,16 @@ module Zavudev
       optional :template_id, String, api_name: :templateId
 
       # @!attribute template_variables
-      #   Variables for body placeholders. Keys are either positions (`1`, `2`, ...) or
-      #   the template's named variables (e.g. `customer_name`). Named keys are matched to
-      #   placeholders by their order of first appearance in the template body and
-      #   normalized to positional automatically. Do not mix positional and named keys in
-      #   the same request.
+      #   Variables for body placeholders. Key them to match the template body: by
+      #   position (`1`, `2`, ...) for positional templates, or by name (e.g.
+      #   `customer_name`) for named templates. Zavu detects the template's format and
+      #   sends the correct payload to Meta. Named keys also resolve a named text-header
+      #   variable. Do not mix positional and named keys in the same request.
       #
       #   @return [Hash{Symbol=>String}, nil]
       optional :template_variables, Zavudev::Internal::Type::HashOf[String], api_name: :templateVariables
 
-      # @!method initialize(buttons: nil, contacts: nil, cta_display_text: nil, cta_header_media_url: nil, cta_header_text: nil, cta_header_type: nil, cta_url: nil, emoji: nil, filename: nil, footer_text: nil, latitude: nil, list_button: nil, location_address: nil, location_name: nil, longitude: nil, media_id: nil, media_url: nil, mime_type: nil, react_to_message_id: nil, sections: nil, template_button_variables: nil, template_id: nil, template_variables: nil)
+      # @!method initialize(buttons: nil, contacts: nil, cta_display_text: nil, cta_header_media_url: nil, cta_header_text: nil, cta_header_type: nil, cta_url: nil, emoji: nil, filename: nil, footer_text: nil, latitude: nil, list_button: nil, location_address: nil, location_name: nil, longitude: nil, media_id: nil, media_url: nil, mime_type: nil, react_to_message_id: nil, sections: nil, template_button_variables: nil, template_header_variables: nil, template_id: nil, template_variables: nil)
       #   Some parameter documentations has been truncated, see
       #   {Zavudev::Models::MessageContent} for more details.
       #
@@ -211,9 +222,11 @@ module Zavudev
       #
       #   @param template_button_variables [Hash{Symbol=>String}] Variables for dynamic button placeholders (URL buttons and OTP buttons). Keys ar
       #
+      #   @param template_header_variables [Hash{Symbol=>String}] Value for a text-header variable, keyed by `1` (WhatsApp text headers allow at m
+      #
       #   @param template_id [String] Template ID for template messages.
       #
-      #   @param template_variables [Hash{Symbol=>String}] Variables for body placeholders. Keys are either positions (`1`, `2`, ...) or th
+      #   @param template_variables [Hash{Symbol=>String}] Variables for body placeholders. Key them to match the template body: by positio
 
       class Button < Zavudev::Internal::Type::BaseModel
         # @!attribute id
