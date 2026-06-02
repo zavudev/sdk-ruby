@@ -76,8 +76,20 @@ module Zavudev
           end
           attr_writer :template_button_variables
 
-          # Per-contact body variables. Keys are positions (1, 2, ...) matching the order
-          # placeholders appear in the template body.
+          # Per-contact value for a text-header variable, keyed by `1`. If omitted, Zavu
+          # resolves the header from `templateVariables` by the header placeholder's name.
+          sig { returns(T.nilable(T::Hash[Symbol, String])) }
+          attr_reader :template_header_variables
+
+          sig do
+            params(template_header_variables: T::Hash[Symbol, String]).void
+          end
+          attr_writer :template_header_variables
+
+          # Per-contact body variables. Key them to match the template body: by position
+          # (`1`, `2`, ...) for positional templates, or by name (e.g. `customer_name`) for
+          # named templates. Zavu detects the template's format and sends the correct
+          # payload to Meta. Do not mix positional and named keys.
           sig { returns(T.nilable(T::Hash[Symbol, String])) }
           attr_reader :template_variables
 
@@ -88,6 +100,7 @@ module Zavudev
             params(
               recipient: String,
               template_button_variables: T::Hash[Symbol, String],
+              template_header_variables: T::Hash[Symbol, String],
               template_variables: T::Hash[Symbol, String]
             ).returns(T.attached_class)
           end
@@ -97,8 +110,13 @@ module Zavudev
             # Per-contact button variables for dynamic URL/OTP buttons. Keys are the button
             # index (0, 1, 2).
             template_button_variables: nil,
-            # Per-contact body variables. Keys are positions (1, 2, ...) matching the order
-            # placeholders appear in the template body.
+            # Per-contact value for a text-header variable, keyed by `1`. If omitted, Zavu
+            # resolves the header from `templateVariables` by the header placeholder's name.
+            template_header_variables: nil,
+            # Per-contact body variables. Key them to match the template body: by position
+            # (`1`, `2`, ...) for positional templates, or by name (e.g. `customer_name`) for
+            # named templates. Zavu detects the template's format and sends the correct
+            # payload to Meta. Do not mix positional and named keys.
             template_variables: nil
           )
           end
@@ -108,6 +126,7 @@ module Zavudev
               {
                 recipient: String,
                 template_button_variables: T::Hash[Symbol, String],
+                template_header_variables: T::Hash[Symbol, String],
                 template_variables: T::Hash[Symbol, String]
               }
             )

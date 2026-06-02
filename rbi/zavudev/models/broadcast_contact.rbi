@@ -59,6 +59,12 @@ module Zavudev
       attr_writer :template_button_variables
 
       sig { returns(T.nilable(T::Hash[Symbol, String])) }
+      attr_reader :template_header_variables
+
+      sig { params(template_header_variables: T::Hash[Symbol, String]).void }
+      attr_writer :template_header_variables
+
+      sig { returns(T.nilable(T::Hash[Symbol, String])) }
       attr_reader :template_variables
 
       sig { params(template_variables: T::Hash[Symbol, String]).void }
@@ -77,6 +83,7 @@ module Zavudev
           message_id: String,
           processed_at: Time,
           template_button_variables: T::Hash[Symbol, String],
+          template_header_variables: T::Hash[Symbol, String],
           template_variables: T::Hash[Symbol, String]
         ).returns(T.attached_class)
       end
@@ -94,6 +101,7 @@ module Zavudev
         message_id: nil,
         processed_at: nil,
         template_button_variables: nil,
+        template_header_variables: nil,
         template_variables: nil
       )
       end
@@ -113,6 +121,7 @@ module Zavudev
             message_id: String,
             processed_at: Time,
             template_button_variables: T::Hash[Symbol, String],
+            template_header_variables: T::Hash[Symbol, String],
             template_variables: T::Hash[Symbol, String]
           }
         )

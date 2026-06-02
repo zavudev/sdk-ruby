@@ -43,14 +43,25 @@ module Zavudev
                    Zavudev::Internal::Type::HashOf[String],
                    api_name: :templateButtonVariables
 
+          # @!attribute template_header_variables
+          #   Per-contact value for a text-header variable, keyed by `1`. If omitted, Zavu
+          #   resolves the header from `templateVariables` by the header placeholder's name.
+          #
+          #   @return [Hash{Symbol=>String}, nil]
+          optional :template_header_variables,
+                   Zavudev::Internal::Type::HashOf[String],
+                   api_name: :templateHeaderVariables
+
           # @!attribute template_variables
-          #   Per-contact body variables. Keys are positions (1, 2, ...) matching the order
-          #   placeholders appear in the template body.
+          #   Per-contact body variables. Key them to match the template body: by position
+          #   (`1`, `2`, ...) for positional templates, or by name (e.g. `customer_name`) for
+          #   named templates. Zavu detects the template's format and sends the correct
+          #   payload to Meta. Do not mix positional and named keys.
           #
           #   @return [Hash{Symbol=>String}, nil]
           optional :template_variables, Zavudev::Internal::Type::HashOf[String], api_name: :templateVariables
 
-          # @!method initialize(recipient:, template_button_variables: nil, template_variables: nil)
+          # @!method initialize(recipient:, template_button_variables: nil, template_header_variables: nil, template_variables: nil)
           #   Some parameter documentations has been truncated, see
           #   {Zavudev::Models::Broadcasts::ContactAddParams::Contact} for more details.
           #
@@ -58,7 +69,9 @@ module Zavudev
           #
           #   @param template_button_variables [Hash{Symbol=>String}] Per-contact button variables for dynamic URL/OTP buttons. Keys are the button in
           #
-          #   @param template_variables [Hash{Symbol=>String}] Per-contact body variables. Keys are positions (1, 2, ...) matching the order pl
+          #   @param template_header_variables [Hash{Symbol=>String}] Per-contact value for a text-header variable, keyed by `1`. If omitted, Zavu res
+          #
+          #   @param template_variables [Hash{Symbol=>String}] Per-contact body variables. Key them to match the template body: by position (`1
         end
       end
     end

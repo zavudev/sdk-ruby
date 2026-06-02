@@ -32,6 +32,7 @@ class Zavudev::Test::Resources::Broadcasts::ContactsTest < Zavudev::Test::Resour
         message_id: String | nil,
         processed_at: Time | nil,
         template_button_variables: ^(Zavudev::Internal::Type::HashOf[String]) | nil,
+        template_header_variables: ^(Zavudev::Internal::Type::HashOf[String]) | nil,
         template_variables: ^(Zavudev::Internal::Type::HashOf[String]) | nil
       }
     end
