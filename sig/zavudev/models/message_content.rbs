@@ -21,6 +21,11 @@ module Zavudev
         media_url: String,
         mime_type: String,
         react_to_message_id: String,
+        reply_to_from: String,
+        reply_to_message_id: String,
+        reply_to_message_type: String,
+        reply_to_provider_message_id: String,
+        reply_to_text: String,
         sections: ::Array[Zavudev::MessageContent::Section],
         template_button_variables: ::Hash[Symbol, String],
         template_header_variables: ::Hash[Symbol, String],
@@ -111,6 +116,26 @@ module Zavudev
 
       def react_to_message_id=: (String) -> String
 
+      attr_reader reply_to_from: String?
+
+      def reply_to_from=: (String) -> String
+
+      attr_reader reply_to_message_id: String?
+
+      def reply_to_message_id=: (String) -> String
+
+      attr_reader reply_to_message_type: String?
+
+      def reply_to_message_type=: (String) -> String
+
+      attr_reader reply_to_provider_message_id: String?
+
+      def reply_to_provider_message_id=: (String) -> String
+
+      attr_reader reply_to_text: String?
+
+      def reply_to_text=: (String) -> String
+
       attr_reader sections: ::Array[Zavudev::MessageContent::Section]?
 
       def sections=: (
@@ -159,6 +184,11 @@ module Zavudev
         ?media_url: String,
         ?mime_type: String,
         ?react_to_message_id: String,
+        ?reply_to_from: String,
+        ?reply_to_message_id: String,
+        ?reply_to_message_type: String,
+        ?reply_to_provider_message_id: String,
+        ?reply_to_text: String,
         ?sections: ::Array[Zavudev::MessageContent::Section],
         ?template_button_variables: ::Hash[Symbol, String],
         ?template_header_variables: ::Hash[Symbol, String],
@@ -186,6 +216,11 @@ module Zavudev
         media_url: String,
         mime_type: String,
         react_to_message_id: String,
+        reply_to_from: String,
+        reply_to_message_id: String,
+        reply_to_message_type: String,
+        reply_to_provider_message_id: String,
+        reply_to_text: String,
         sections: ::Array[Zavudev::MessageContent::Section],
         template_button_variables: ::Hash[Symbol, String],
         template_header_variables: ::Hash[Symbol, String],
