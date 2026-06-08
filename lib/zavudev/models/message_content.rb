@@ -120,6 +120,41 @@ module Zavudev
       #   @return [String, nil]
       optional :react_to_message_id, String, api_name: :reactToMessageId
 
+      # @!attribute reply_to_from
+      #   Sender of the quoted message (phone number in E.164 format).
+      #
+      #   @return [String, nil]
+      optional :reply_to_from, String, api_name: :replyToFrom
+
+      # @!attribute reply_to_message_id
+      #   Zavu message ID of the quoted message this message replies to. Present on
+      #   inbound messages that quote an earlier message. Omitted when the quoted message
+      #   is not found in Zavu (e.g. an old or unknown message) — use
+      #   replyToProviderMessageId in that case.
+      #
+      #   @return [String, nil]
+      optional :reply_to_message_id, String, api_name: :replyToMessageId
+
+      # @!attribute reply_to_message_type
+      #   Type of the quoted message (text, image, video, etc.).
+      #
+      #   @return [String, nil]
+      optional :reply_to_message_type, String, api_name: :replyToMessageType
+
+      # @!attribute reply_to_provider_message_id
+      #   Provider message ID (WhatsApp WAMID) of the quoted message. Present whenever an
+      #   inbound message is a reply, even if the quoted message is not stored in Zavu.
+      #
+      #   @return [String, nil]
+      optional :reply_to_provider_message_id, String, api_name: :replyToProviderMessageId
+
+      # @!attribute reply_to_text
+      #   Truncated snippet of the quoted message's text, for display. Empty when the
+      #   quoted message has no text (e.g. media).
+      #
+      #   @return [String, nil]
+      optional :reply_to_text, String, api_name: :replyToText
+
       # @!attribute sections
       #   Sections for list messages.
       #
@@ -174,7 +209,7 @@ module Zavudev
       #   @return [Hash{Symbol=>String}, nil]
       optional :template_variables, Zavudev::Internal::Type::HashOf[String], api_name: :templateVariables
 
-      # @!method initialize(buttons: nil, contacts: nil, cta_display_text: nil, cta_header_media_url: nil, cta_header_text: nil, cta_header_type: nil, cta_url: nil, emoji: nil, filename: nil, footer_text: nil, latitude: nil, list_button: nil, location_address: nil, location_name: nil, longitude: nil, media_id: nil, media_url: nil, mime_type: nil, react_to_message_id: nil, sections: nil, template_button_variables: nil, template_header_variables: nil, template_id: nil, template_variables: nil)
+      # @!method initialize(buttons: nil, contacts: nil, cta_display_text: nil, cta_header_media_url: nil, cta_header_text: nil, cta_header_type: nil, cta_url: nil, emoji: nil, filename: nil, footer_text: nil, latitude: nil, list_button: nil, location_address: nil, location_name: nil, longitude: nil, media_id: nil, media_url: nil, mime_type: nil, react_to_message_id: nil, reply_to_from: nil, reply_to_message_id: nil, reply_to_message_type: nil, reply_to_provider_message_id: nil, reply_to_text: nil, sections: nil, template_button_variables: nil, template_header_variables: nil, template_id: nil, template_variables: nil)
       #   Some parameter documentations has been truncated, see
       #   {Zavudev::Models::MessageContent} for more details.
       #
@@ -217,6 +252,16 @@ module Zavudev
       #   @param mime_type [String] MIME type of the media.
       #
       #   @param react_to_message_id [String] Message ID to react to.
+      #
+      #   @param reply_to_from [String] Sender of the quoted message (phone number in E.164 format).
+      #
+      #   @param reply_to_message_id [String] Zavu message ID of the quoted message this message replies to. Present on inboun
+      #
+      #   @param reply_to_message_type [String] Type of the quoted message (text, image, video, etc.).
+      #
+      #   @param reply_to_provider_message_id [String] Provider message ID (WhatsApp WAMID) of the quoted message. Present whenever an
+      #
+      #   @param reply_to_text [String] Truncated snippet of the quoted message's text, for display. Empty when the quot
       #
       #   @param sections [Array<Zavudev::Models::MessageContent::Section>] Sections for list messages.
       #

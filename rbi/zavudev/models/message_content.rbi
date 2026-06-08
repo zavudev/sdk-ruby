@@ -156,6 +156,46 @@ module Zavudev
       sig { params(react_to_message_id: String).void }
       attr_writer :react_to_message_id
 
+      # Sender of the quoted message (phone number in E.164 format).
+      sig { returns(T.nilable(String)) }
+      attr_reader :reply_to_from
+
+      sig { params(reply_to_from: String).void }
+      attr_writer :reply_to_from
+
+      # Zavu message ID of the quoted message this message replies to. Present on
+      # inbound messages that quote an earlier message. Omitted when the quoted message
+      # is not found in Zavu (e.g. an old or unknown message) — use
+      # replyToProviderMessageId in that case.
+      sig { returns(T.nilable(String)) }
+      attr_reader :reply_to_message_id
+
+      sig { params(reply_to_message_id: String).void }
+      attr_writer :reply_to_message_id
+
+      # Type of the quoted message (text, image, video, etc.).
+      sig { returns(T.nilable(String)) }
+      attr_reader :reply_to_message_type
+
+      sig { params(reply_to_message_type: String).void }
+      attr_writer :reply_to_message_type
+
+      # Provider message ID (WhatsApp WAMID) of the quoted message. Present whenever an
+      # inbound message is a reply, even if the quoted message is not stored in Zavu.
+      sig { returns(T.nilable(String)) }
+      attr_reader :reply_to_provider_message_id
+
+      sig { params(reply_to_provider_message_id: String).void }
+      attr_writer :reply_to_provider_message_id
+
+      # Truncated snippet of the quoted message's text, for display. Empty when the
+      # quoted message has no text (e.g. media).
+      sig { returns(T.nilable(String)) }
+      attr_reader :reply_to_text
+
+      sig { params(reply_to_text: String).void }
+      attr_writer :reply_to_text
+
       # Sections for list messages.
       sig { returns(T.nilable(T::Array[Zavudev::MessageContent::Section])) }
       attr_reader :sections
@@ -237,6 +277,11 @@ module Zavudev
           media_url: String,
           mime_type: String,
           react_to_message_id: String,
+          reply_to_from: String,
+          reply_to_message_id: String,
+          reply_to_message_type: String,
+          reply_to_provider_message_id: String,
+          reply_to_text: String,
           sections: T::Array[Zavudev::MessageContent::Section::OrHash],
           template_button_variables: T::Hash[Symbol, String],
           template_header_variables: T::Hash[Symbol, String],
@@ -286,6 +331,21 @@ module Zavudev
         mime_type: nil,
         # Message ID to react to.
         react_to_message_id: nil,
+        # Sender of the quoted message (phone number in E.164 format).
+        reply_to_from: nil,
+        # Zavu message ID of the quoted message this message replies to. Present on
+        # inbound messages that quote an earlier message. Omitted when the quoted message
+        # is not found in Zavu (e.g. an old or unknown message) — use
+        # replyToProviderMessageId in that case.
+        reply_to_message_id: nil,
+        # Type of the quoted message (text, image, video, etc.).
+        reply_to_message_type: nil,
+        # Provider message ID (WhatsApp WAMID) of the quoted message. Present whenever an
+        # inbound message is a reply, even if the quoted message is not stored in Zavu.
+        reply_to_provider_message_id: nil,
+        # Truncated snippet of the quoted message's text, for display. Empty when the
+        # quoted message has no text (e.g. media).
+        reply_to_text: nil,
         # Sections for list messages.
         sections: nil,
         # Variables for dynamic button placeholders (URL buttons and OTP buttons). Keys
@@ -341,6 +401,11 @@ module Zavudev
             media_url: String,
             mime_type: String,
             react_to_message_id: String,
+            reply_to_from: String,
+            reply_to_message_id: String,
+            reply_to_message_type: String,
+            reply_to_provider_message_id: String,
+            reply_to_text: String,
             sections: T::Array[Zavudev::MessageContent::Section],
             template_button_variables: T::Hash[Symbol, String],
             template_header_variables: T::Hash[Symbol, String],
