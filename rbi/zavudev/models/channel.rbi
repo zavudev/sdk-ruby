@@ -16,6 +16,7 @@ module Zavudev
       TELEGRAM = T.let(:telegram, Zavudev::Channel::TaggedSymbol)
       EMAIL = T.let(:email, Zavudev::Channel::TaggedSymbol)
       INSTAGRAM = T.let(:instagram, Zavudev::Channel::TaggedSymbol)
+      MESSENGER = T.let(:messenger, Zavudev::Channel::TaggedSymbol)
       VOICE = T.let(:voice, Zavudev::Channel::TaggedSymbol)
 
       sig { override.returns(T::Array[Zavudev::Channel::TaggedSymbol]) }

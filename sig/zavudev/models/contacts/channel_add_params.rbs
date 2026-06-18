@@ -54,7 +54,8 @@ module Zavudev
           request_options: Zavudev::RequestOptions
         }
 
-        type channel = :sms | :whatsapp | :email | :telegram | :voice
+        type channel =
+          :sms | :whatsapp | :email | :telegram | :messenger | :voice
 
         module Channel
           extend Zavudev::Internal::Type::Enum
@@ -63,6 +64,7 @@ module Zavudev
           WHATSAPP: :whatsapp
           EMAIL: :email
           TELEGRAM: :telegram
+          MESSENGER: :messenger
           VOICE: :voice
 
           def self?.values: -> ::Array[Zavudev::Models::Contacts::ChannelAddParams::channel]

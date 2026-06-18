@@ -178,6 +178,8 @@ module Zavudev
         EMAIL = T.let(:email, Zavudev::Contact::DefaultChannel::TaggedSymbol)
         INSTAGRAM =
           T.let(:instagram, Zavudev::Contact::DefaultChannel::TaggedSymbol)
+        MESSENGER =
+          T.let(:messenger, Zavudev::Contact::DefaultChannel::TaggedSymbol)
         VOICE = T.let(:voice, Zavudev::Contact::DefaultChannel::TaggedSymbol)
 
         sig do

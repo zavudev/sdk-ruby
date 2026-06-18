@@ -88,6 +88,7 @@ module Zavudev
           WHATSAPP = :whatsapp
           EMAIL = :email
           TELEGRAM = :telegram
+          MESSENGER = :messenger
           VOICE = :voice
 
           # @!method self.values

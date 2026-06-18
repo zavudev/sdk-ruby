@@ -120,6 +120,11 @@ module Zavudev
               :telegram,
               Zavudev::Contacts::ChannelAddParams::Channel::TaggedSymbol
             )
+          MESSENGER =
+            T.let(
+              :messenger,
+              Zavudev::Contacts::ChannelAddParams::Channel::TaggedSymbol
+            )
           VOICE =
             T.let(
               :voice,

@@ -95,6 +95,11 @@ module Zavudev
             :instagram,
             Zavudev::ContactUpdateParams::DefaultChannel::TaggedSymbol
           )
+        MESSENGER =
+          T.let(
+            :messenger,
+            Zavudev::ContactUpdateParams::DefaultChannel::TaggedSymbol
+          )
         VOICE =
           T.let(
             :voice,
