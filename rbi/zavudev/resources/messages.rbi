@@ -95,7 +95,7 @@ module Zavudev
       end
       def send_(
         # Body param: Recipient phone number in E.164 format, email address, or numeric
-        # chat ID (for Telegram/Instagram).
+        # chat ID (for Telegram/Instagram/Messenger).
         to:,
         # Body param: Email attachments. Only supported when channel is 'email'. Maximum
         # 40MB total size.

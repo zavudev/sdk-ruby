@@ -12,7 +12,7 @@ module Zavudev
         end
 
       # Recipient phone number in E.164 format, email address, or numeric chat ID (for
-      # Telegram/Instagram).
+      # Telegram/Instagram/Messenger).
       sig { returns(String) }
       attr_accessor :to
 
@@ -139,7 +139,7 @@ module Zavudev
       end
       def self.new(
         # Recipient phone number in E.164 format, email address, or numeric chat ID (for
-        # Telegram/Instagram).
+        # Telegram/Instagram/Messenger).
         to:,
         # Email attachments. Only supported when channel is 'email'. Maximum 40MB total
         # size.

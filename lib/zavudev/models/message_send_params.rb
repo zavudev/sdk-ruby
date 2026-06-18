@@ -9,7 +9,7 @@ module Zavudev
 
       # @!attribute to
       #   Recipient phone number in E.164 format, email address, or numeric chat ID (for
-      #   Telegram/Instagram).
+      #   Telegram/Instagram/Messenger).
       #
       #   @return [String]
       required :to, String

@@ -13,6 +13,7 @@ module Zavudev
       TELEGRAM = :telegram
       EMAIL = :email
       INSTAGRAM = :instagram
+      MESSENGER = :messenger
       VOICE = :voice
 
       # @!method self.values
