@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.14.0 (2026-06-24)
+
+Full Changelog: [v0.13.0...v0.14.0](https://github.com/zavudev/sdk-ruby/compare/v0.13.0...v0.14.0)
+
+### Features
+
+* **api:** api update ([6a691cd](https://github.com/zavudev/sdk-ruby/commit/6a691cd596deb8fa5cb32118684e8f811798cc50))
+* **api:** api update ([91a78af](https://github.com/zavudev/sdk-ruby/commit/91a78af6beed7c6a17abb0928965532976d5eac5))
+
+
+### Bug Fixes
+
+* **client:** send content-type header for requests with an omitted optional body ([73b6654](https://github.com/zavudev/sdk-ruby/commit/73b66544a2756aaf64f189c9eb47ba66cd09f305))
+
 ## 0.13.0 (2026-06-07)
 
 Full Changelog: [v0.12.0...v0.13.0](https://github.com/zavudev/sdk-ruby/compare/v0.12.0...v0.13.0)
