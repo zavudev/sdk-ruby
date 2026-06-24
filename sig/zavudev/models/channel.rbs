@@ -8,6 +8,7 @@ module Zavudev
       | :telegram
       | :email
       | :instagram
+      | :messenger
       | :voice
 
     module Channel
@@ -20,6 +21,7 @@ module Zavudev
       TELEGRAM: :telegram
       EMAIL: :email
       INSTAGRAM: :instagram
+      MESSENGER: :messenger
       VOICE: :voice
 
       def self?.values: -> ::Array[Zavudev::Models::channel]

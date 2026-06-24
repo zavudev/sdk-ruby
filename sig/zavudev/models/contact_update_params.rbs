@@ -35,7 +35,7 @@ module Zavudev
       }
 
       type default_channel =
-        :sms | :whatsapp | :telegram | :email | :instagram | :voice
+        :sms | :whatsapp | :telegram | :email | :instagram | :messenger | :voice
 
       module DefaultChannel
         extend Zavudev::Internal::Type::Enum
@@ -45,6 +45,7 @@ module Zavudev
         TELEGRAM: :telegram
         EMAIL: :email
         INSTAGRAM: :instagram
+        MESSENGER: :messenger
         VOICE: :voice
 
         def self?.values: -> ::Array[Zavudev::Models::ContactUpdateParams::default_channel]

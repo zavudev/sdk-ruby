@@ -146,6 +146,8 @@ module Zavudev
         EMAIL = T.let(:email, Zavudev::ContactChannel::Channel::TaggedSymbol)
         TELEGRAM =
           T.let(:telegram, Zavudev::ContactChannel::Channel::TaggedSymbol)
+        MESSENGER =
+          T.let(:messenger, Zavudev::ContactChannel::Channel::TaggedSymbol)
         VOICE = T.let(:voice, Zavudev::ContactChannel::Channel::TaggedSymbol)
 
         sig do
