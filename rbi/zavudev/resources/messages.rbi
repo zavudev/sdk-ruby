@@ -94,8 +94,11 @@ module Zavudev
         ).returns(Zavudev::MessageResponse)
       end
       def send_(
-        # Body param: Recipient phone number in E.164 format, email address, or numeric
-        # chat ID (for Telegram/Instagram/Messenger).
+        # Body param: Recipient phone number in E.164 format, email address, WhatsApp
+        # business-scoped user ID (BSUID, e.g. `US.13491208655302741918`), or numeric chat
+        # ID (for Telegram/Instagram/Messenger). A BSUID is routed to WhatsApp and sent
+        # via the `recipient` field; use it to message a contact who adopted a username
+        # and whose phone number is hidden.
         to:,
         # Body param: Email attachments. Only supported when channel is 'email'. Maximum
         # 40MB total size.

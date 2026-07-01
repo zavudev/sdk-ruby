@@ -11,8 +11,11 @@ module Zavudev
           T.any(Zavudev::MessageSendParams, Zavudev::Internal::AnyHash)
         end
 
-      # Recipient phone number in E.164 format, email address, or numeric chat ID (for
-      # Telegram/Instagram/Messenger).
+      # Recipient phone number in E.164 format, email address, WhatsApp business-scoped
+      # user ID (BSUID, e.g. `US.13491208655302741918`), or numeric chat ID (for
+      # Telegram/Instagram/Messenger). A BSUID is routed to WhatsApp and sent via the
+      # `recipient` field; use it to message a contact who adopted a username and whose
+      # phone number is hidden.
       sig { returns(String) }
       attr_accessor :to
 
@@ -138,8 +141,11 @@ module Zavudev
         ).returns(T.attached_class)
       end
       def self.new(
-        # Recipient phone number in E.164 format, email address, or numeric chat ID (for
-        # Telegram/Instagram/Messenger).
+        # Recipient phone number in E.164 format, email address, WhatsApp business-scoped
+        # user ID (BSUID, e.g. `US.13491208655302741918`), or numeric chat ID (for
+        # Telegram/Instagram/Messenger). A BSUID is routed to WhatsApp and sent via the
+        # `recipient` field; use it to message a contact who adopted a username and whose
+        # phone number is hidden.
         to:,
         # Email attachments. Only supported when channel is 'email'. Maximum 40MB total
         # size.
