@@ -6,11 +6,20 @@ module Zavudev
       # Some parameter documentations has been truncated, see
       # {Zavudev::Models::InvitationCreateParams} for more details.
       #
-      # Create a partner invitation link for a client to connect their WhatsApp Business
-      # account. The client will complete Meta's embedded signup flow and the resulting
-      # sender will be created in your project.
+      # Create a partner invitation link for a client to connect WhatsApp. The client
+      # opens the returned `url` and connects. Set `connectionType` to choose how they
+      # connect:
       #
-      # @overload create(allowed_phone_countries: nil, client_email: nil, client_name: nil, client_phone: nil, expires_in_days: nil, phone_number_id: nil, request_options: {})
+      # - `whatsapp_waba` (default): the client completes Meta's embedded signup,
+      #   linking an official WhatsApp Business Account.
+      # - `whatsapp_alt`: the client links their number by scanning a QR code. Requires
+      #   the WhatsApp Alternative feature to be enabled for your team (otherwise
+      #   returns 400).
+      #
+      # Either way, the resulting sender is created in your project when the client
+      # completes the flow, and the invitation transitions to `completed`.
+      #
+      # @overload create(allowed_phone_countries: nil, client_email: nil, client_name: nil, client_phone: nil, connection_type: nil, expires_in_days: nil, phone_number_id: nil, request_options: {})
       #
       # @param allowed_phone_countries [Array<String>] ISO country codes for allowed phone numbers.
       #
@@ -19,6 +28,8 @@ module Zavudev
       # @param client_name [String] Name of the client being invited.
       #
       # @param client_phone [String] Phone number of the client in E.164 format.
+      #
+      # @param connection_type [Symbol, Zavudev::Models::InvitationCreateParams::ConnectionType] How the client connects WhatsApp. `whatsapp_waba` (default) runs Meta's embedded
       #
       # @param expires_in_days [Integer] Number of days until the invitation expires.
       #

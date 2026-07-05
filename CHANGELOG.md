@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.15.0 (2026-07-05)
+
+Full Changelog: [v0.14.0...v0.15.0](https://github.com/zavudev/sdk-ruby/compare/v0.14.0...v0.15.0)
+
+### Features
+
+* **api:** api update ([0afbaaf](https://github.com/zavudev/sdk-ruby/commit/0afbaaf775796e6901f790329e5ead6b623fbae6))
+* **api:** api update ([ae16782](https://github.com/zavudev/sdk-ruby/commit/ae16782c53d59b8eb136ed27e9df09b1d889fd2c))
+
+
+### Chores
+
+* **internal:** bound formatter parallelism to CPU count ([40b3e99](https://github.com/zavudev/sdk-ruby/commit/40b3e99d17ef2297beb30ff8af97fd0b43fb0d75))
+
 ## 0.14.0 (2026-06-24)
 
 Full Changelog: [v0.13.0...v0.14.0](https://github.com/zavudev/sdk-ruby/compare/v0.13.0...v0.14.0)
