@@ -3,15 +3,26 @@
 module Zavudev
   module Resources
     class Invitations
-      # Create a partner invitation link for a client to connect their WhatsApp Business
-      # account. The client will complete Meta's embedded signup flow and the resulting
-      # sender will be created in your project.
+      # Create a partner invitation link for a client to connect WhatsApp. The client
+      # opens the returned `url` and connects. Set `connectionType` to choose how they
+      # connect:
+      #
+      # - `whatsapp_waba` (default): the client completes Meta's embedded signup,
+      #   linking an official WhatsApp Business Account.
+      # - `whatsapp_alt`: the client links their number by scanning a QR code. Requires
+      #   the WhatsApp Alternative feature to be enabled for your team (otherwise
+      #   returns 400).
+      #
+      # Either way, the resulting sender is created in your project when the client
+      # completes the flow, and the invitation transitions to `completed`.
       sig do
         params(
           allowed_phone_countries: T::Array[String],
           client_email: String,
           client_name: String,
           client_phone: String,
+          connection_type:
+            Zavudev::InvitationCreateParams::ConnectionType::OrSymbol,
           expires_in_days: Integer,
           phone_number_id: String,
           request_options: Zavudev::RequestOptions::OrHash
@@ -26,6 +37,11 @@ module Zavudev
         client_name: nil,
         # Phone number of the client in E.164 format.
         client_phone: nil,
+        # How the client connects WhatsApp. `whatsapp_waba` (default) runs Meta's embedded
+        # signup to link an official WhatsApp Business Account. `whatsapp_alt` links the
+        # number by scanning a QR code — available only to teams with the WhatsApp
+        # Alternative feature enabled.
+        connection_type: nil,
         # Number of days until the invitation expires.
         expires_in_days: nil,
         # ID of a Zavu phone number to pre-assign for WhatsApp registration. If provided,

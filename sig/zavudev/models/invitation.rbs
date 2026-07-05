@@ -13,6 +13,7 @@ module Zavudev
         client_name: String?,
         client_phone: String?,
         completed_at: Time?,
+        connection_type: Zavudev::Models::Invitation::connection_type,
         phone_number_id: String?,
         sender_id: String?,
         started_at: Time?,
@@ -42,6 +43,12 @@ module Zavudev
 
       attr_accessor completed_at: Time?
 
+      attr_reader connection_type: Zavudev::Models::Invitation::connection_type?
+
+      def connection_type=: (
+        Zavudev::Models::Invitation::connection_type
+      ) -> Zavudev::Models::Invitation::connection_type
+
       attr_accessor phone_number_id: String?
 
       attr_accessor sender_id: String?
@@ -62,6 +69,7 @@ module Zavudev
         ?client_name: String?,
         ?client_phone: String?,
         ?completed_at: Time?,
+        ?connection_type: Zavudev::Models::Invitation::connection_type,
         ?phone_number_id: String?,
         ?sender_id: String?,
         ?started_at: Time?,
@@ -80,6 +88,7 @@ module Zavudev
         client_name: String?,
         client_phone: String?,
         completed_at: Time?,
+        connection_type: Zavudev::Models::Invitation::connection_type,
         phone_number_id: String?,
         sender_id: String?,
         started_at: Time?,
@@ -98,6 +107,17 @@ module Zavudev
         CANCELLED: :cancelled
 
         def self?.values: -> ::Array[Zavudev::Models::Invitation::status]
+      end
+
+      type connection_type = :whatsapp_waba | :whatsapp_alt
+
+      module ConnectionType
+        extend Zavudev::Internal::Type::Enum
+
+        WHATSAPP_WABA: :whatsapp_waba
+        WHATSAPP_ALT: :whatsapp_alt
+
+        def self?.values: -> ::Array[Zavudev::Models::Invitation::connection_type]
       end
     end
   end

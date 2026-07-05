@@ -64,6 +64,7 @@ class Zavudev::Test::Resources::InvitationsTest < Zavudev::Test::ResourceTest
         client_name: String | nil,
         client_phone: String | nil,
         completed_at: Time | nil,
+        connection_type: Zavudev::Invitation::ConnectionType | nil,
         phone_number_id: String | nil,
         sender_id: String | nil,
         started_at: Time | nil,

@@ -39,6 +39,25 @@ module Zavudev
       sig { params(client_phone: String).void }
       attr_writer :client_phone
 
+      # How the client connects WhatsApp. `whatsapp_waba` (default) runs Meta's embedded
+      # signup to link an official WhatsApp Business Account. `whatsapp_alt` links the
+      # number by scanning a QR code — available only to teams with the WhatsApp
+      # Alternative feature enabled.
+      sig do
+        returns(
+          T.nilable(Zavudev::InvitationCreateParams::ConnectionType::OrSymbol)
+        )
+      end
+      attr_reader :connection_type
+
+      sig do
+        params(
+          connection_type:
+            Zavudev::InvitationCreateParams::ConnectionType::OrSymbol
+        ).void
+      end
+      attr_writer :connection_type
+
       # Number of days until the invitation expires.
       sig { returns(T.nilable(Integer)) }
       attr_reader :expires_in_days
@@ -60,6 +79,8 @@ module Zavudev
           client_email: String,
           client_name: String,
           client_phone: String,
+          connection_type:
+            Zavudev::InvitationCreateParams::ConnectionType::OrSymbol,
           expires_in_days: Integer,
           phone_number_id: String,
           request_options: Zavudev::RequestOptions::OrHash
@@ -74,6 +95,11 @@ module Zavudev
         client_name: nil,
         # Phone number of the client in E.164 format.
         client_phone: nil,
+        # How the client connects WhatsApp. `whatsapp_waba` (default) runs Meta's embedded
+        # signup to link an official WhatsApp Business Account. `whatsapp_alt` links the
+        # number by scanning a QR code — available only to teams with the WhatsApp
+        # Alternative feature enabled.
+        connection_type: nil,
         # Number of days until the invitation expires.
         expires_in_days: nil,
         # ID of a Zavu phone number to pre-assign for WhatsApp registration. If provided,
@@ -90,6 +116,8 @@ module Zavudev
             client_email: String,
             client_name: String,
             client_phone: String,
+            connection_type:
+              Zavudev::InvitationCreateParams::ConnectionType::OrSymbol,
             expires_in_days: Integer,
             phone_number_id: String,
             request_options: Zavudev::RequestOptions
@@ -97,6 +125,41 @@ module Zavudev
         )
       end
       def to_hash
+      end
+
+      # How the client connects WhatsApp. `whatsapp_waba` (default) runs Meta's embedded
+      # signup to link an official WhatsApp Business Account. `whatsapp_alt` links the
+      # number by scanning a QR code — available only to teams with the WhatsApp
+      # Alternative feature enabled.
+      module ConnectionType
+        extend Zavudev::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, Zavudev::InvitationCreateParams::ConnectionType)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        WHATSAPP_WABA =
+          T.let(
+            :whatsapp_waba,
+            Zavudev::InvitationCreateParams::ConnectionType::TaggedSymbol
+          )
+        WHATSAPP_ALT =
+          T.let(
+            :whatsapp_alt,
+            Zavudev::InvitationCreateParams::ConnectionType::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              Zavudev::InvitationCreateParams::ConnectionType::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
       end
     end
   end
