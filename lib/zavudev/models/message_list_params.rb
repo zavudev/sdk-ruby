@@ -8,7 +8,10 @@ module Zavudev
       include Zavudev::Internal::Type::RequestParameters
 
       # @!attribute channel
-      #   Delivery channel. Use 'auto' for intelligent routing.
+      #   Delivery channel. Use 'auto' for intelligent routing. `whatsapp_alt` is the
+      #   QR-linked WhatsApp channel and is only accepted for teams with the WhatsApp
+      #   Alternative feature enabled; the sender must have a connected whatsapp_alt
+      #   session.
       #
       #   @return [Symbol, Zavudev::Models::Channel, nil]
       optional :channel, enum: -> { Zavudev::Channel }
@@ -34,7 +37,10 @@ module Zavudev
       optional :to, String
 
       # @!method initialize(channel: nil, cursor: nil, limit: nil, status: nil, to: nil, request_options: {})
-      #   @param channel [Symbol, Zavudev::Models::Channel] Delivery channel. Use 'auto' for intelligent routing.
+      #   Some parameter documentations has been truncated, see
+      #   {Zavudev::Models::MessageListParams} for more details.
+      #
+      #   @param channel [Symbol, Zavudev::Models::Channel] Delivery channel. Use 'auto' for intelligent routing. `whatsapp_alt` is the QR-l
       #
       #   @param cursor [String]
       #

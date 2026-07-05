@@ -22,11 +22,14 @@ module Zavudev
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Zavudev::Models::MessageListParams} for more details.
+      #
       # List messages previously sent by this project.
       #
       # @overload list(channel: nil, cursor: nil, limit: nil, status: nil, to: nil, request_options: {})
       #
-      # @param channel [Symbol, Zavudev::Models::Channel] Delivery channel. Use 'auto' for intelligent routing.
+      # @param channel [Symbol, Zavudev::Models::Channel] Delivery channel. Use 'auto' for intelligent routing. `whatsapp_alt` is the QR-l
       #
       # @param cursor [String]
       #

@@ -25,7 +25,10 @@ module Zavudev
         ).returns(Zavudev::Internal::Cursor[Zavudev::Message])
       end
       def list(
-        # Delivery channel. Use 'auto' for intelligent routing.
+        # Delivery channel. Use 'auto' for intelligent routing. `whatsapp_alt` is the
+        # QR-linked WhatsApp channel and is only accepted for teams with the WhatsApp
+        # Alternative feature enabled; the sender must have a connected whatsapp_alt
+        # session.
         channel: nil,
         cursor: nil,
         limit: nil,
