@@ -62,6 +62,13 @@ module Zavudev
       #   @return [Time, nil]
       optional :completed_at, Time, api_name: :completedAt, nil?: true
 
+      # @!attribute connection_type
+      #   How the client connects WhatsApp: `whatsapp_waba` (official Cloud API via
+      #   embedded signup) or `whatsapp_alt` (QR-linked).
+      #
+      #   @return [Symbol, Zavudev::Models::Invitation::ConnectionType, nil]
+      optional :connection_type, enum: -> { Zavudev::Invitation::ConnectionType }, api_name: :connectionType
+
       # @!attribute phone_number_id
       #   ID of a pre-assigned Zavu phone number for WhatsApp registration.
       #
@@ -84,7 +91,10 @@ module Zavudev
       #   @return [Time, nil]
       optional :viewed_at, Time, api_name: :viewedAt, nil?: true
 
-      # @!method initialize(id:, token:, created_at:, expires_at:, status:, updated_at:, url:, client_email: nil, client_name: nil, client_phone: nil, completed_at: nil, phone_number_id: nil, sender_id: nil, started_at: nil, viewed_at: nil)
+      # @!method initialize(id:, token:, created_at:, expires_at:, status:, updated_at:, url:, client_email: nil, client_name: nil, client_phone: nil, completed_at: nil, connection_type: nil, phone_number_id: nil, sender_id: nil, started_at: nil, viewed_at: nil)
+      #   Some parameter documentations has been truncated, see
+      #   {Zavudev::Models::Invitation} for more details.
+      #
       #   @param id [String]
       #
       #   @param token [String] Unique invitation token.
@@ -107,6 +117,8 @@ module Zavudev
       #
       #   @param completed_at [Time, nil]
       #
+      #   @param connection_type [Symbol, Zavudev::Models::Invitation::ConnectionType] How the client connects WhatsApp: `whatsapp_waba` (official Cloud API via embedd
+      #
       #   @param phone_number_id [String, nil] ID of a pre-assigned Zavu phone number for WhatsApp registration.
       #
       #   @param sender_id [String, nil] ID of the sender created when invitation is completed.
@@ -126,6 +138,20 @@ module Zavudev
         COMPLETED = :completed
         EXPIRED = :expired
         CANCELLED = :cancelled
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # How the client connects WhatsApp: `whatsapp_waba` (official Cloud API via
+      # embedded signup) or `whatsapp_alt` (QR-linked).
+      #
+      # @see Zavudev::Models::Invitation#connection_type
+      module ConnectionType
+        extend Zavudev::Internal::Type::Enum
+
+        WHATSAPP_WABA = :whatsapp_waba
+        WHATSAPP_ALT = :whatsapp_alt
 
         # @!method self.values
         #   @return [Array<Symbol>]
