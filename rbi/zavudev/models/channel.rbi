@@ -2,7 +2,10 @@
 
 module Zavudev
   module Models
-    # Delivery channel. Use 'auto' for intelligent routing.
+    # Delivery channel. Use 'auto' for intelligent routing. `whatsapp_alt` is the
+    # QR-linked WhatsApp channel and is only accepted for teams with the WhatsApp
+    # Alternative feature enabled; the sender must have a connected whatsapp_alt
+    # session.
     module Channel
       extend Zavudev::Internal::Type::Enum
 
@@ -13,6 +16,7 @@ module Zavudev
       SMS = T.let(:sms, Zavudev::Channel::TaggedSymbol)
       SMS_ONEWAY = T.let(:sms_oneway, Zavudev::Channel::TaggedSymbol)
       WHATSAPP = T.let(:whatsapp, Zavudev::Channel::TaggedSymbol)
+      WHATSAPP_ALT = T.let(:whatsapp_alt, Zavudev::Channel::TaggedSymbol)
       TELEGRAM = T.let(:telegram, Zavudev::Channel::TaggedSymbol)
       EMAIL = T.let(:email, Zavudev::Channel::TaggedSymbol)
       INSTAGRAM = T.let(:instagram, Zavudev::Channel::TaggedSymbol)
