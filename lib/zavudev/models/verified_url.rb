@@ -67,6 +67,7 @@ module Zavudev
         PENDING = :pending
         APPROVED = :approved
         REJECTED = :rejected
+        ESCALATED = :escalated
         MALICIOUS = :malicious
 
         # @!method self.values

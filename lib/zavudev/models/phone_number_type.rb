@@ -6,7 +6,7 @@ module Zavudev
       extend Zavudev::Internal::Type::Enum
 
       LOCAL = :local
-      MOBILE = :mobile
+      NATIONAL = :national
       TOLL_FREE = :tollFree
 
       # @!method self.values

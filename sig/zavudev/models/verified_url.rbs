@@ -52,7 +52,7 @@ module Zavudev
         updated_at: Time
       }
 
-      type status = :pending | :approved | :rejected | :malicious
+      type status = :pending | :approved | :rejected | :escalated | :malicious
 
       module Status
         extend Zavudev::Internal::Type::Enum
@@ -60,6 +60,7 @@ module Zavudev
         PENDING: :pending
         APPROVED: :approved
         REJECTED: :rejected
+        ESCALATED: :escalated
         MALICIOUS: :malicious
 
         def self?.values: -> ::Array[Zavudev::Models::VerifiedURL::status]

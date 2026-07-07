@@ -37,15 +37,16 @@ module Zavudev
       sig { params(content: Zavudev::MessageContent::OrHash).void }
       attr_writer :content
 
-      # MAU cost in USD (charged for first contact of the month).
+      # Zavu platform charge in USD for this message. Messaging is billed against your
+      # plan's monthly limits plus usage-based overage.
       sig { returns(T.nilable(Float)) }
       attr_accessor :cost
 
-      # Provider cost in USD (Telnyx, SES, etc.).
+      # Carrier and delivery cost in USD.
       sig { returns(T.nilable(Float)) }
       attr_accessor :cost_provider
 
-      # Total cost in USD (MAU + provider cost).
+      # Total cost in USD (platform charge + delivery cost).
       sig { returns(T.nilable(Float)) }
       attr_accessor :cost_total
 
@@ -130,11 +131,12 @@ module Zavudev
         to:,
         # Content for non-text message types (WhatsApp and Telegram).
         content: nil,
-        # MAU cost in USD (charged for first contact of the month).
+        # Zavu platform charge in USD for this message. Messaging is billed against your
+        # plan's monthly limits plus usage-based overage.
         cost: nil,
-        # Provider cost in USD (Telnyx, SES, etc.).
+        # Carrier and delivery cost in USD.
         cost_provider: nil,
-        # Total cost in USD (MAU + provider cost).
+        # Total cost in USD (platform charge + delivery cost).
         cost_total: nil,
         error_code: nil,
         error_message: nil,

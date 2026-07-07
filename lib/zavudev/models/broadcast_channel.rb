@@ -12,9 +12,6 @@ module Zavudev
       WHATSAPP = :whatsapp
       TELEGRAM = :telegram
       EMAIL = :email
-      INSTAGRAM = :instagram
-      MESSENGER = :messenger
-      VOICE = :voice
 
       # @!method self.values
       #   @return [Array<Symbol>]
