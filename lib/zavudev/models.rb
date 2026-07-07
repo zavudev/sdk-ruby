@@ -119,14 +119,6 @@ module Zavudev
 
   ContactUpdateParams = Zavudev::Models::ContactUpdateParams
 
-  DataExport = Zavudev::Models::DataExport
-
-  ExportCreateParams = Zavudev::Models::ExportCreateParams
-
-  ExportListParams = Zavudev::Models::ExportListParams
-
-  ExportRetrieveParams = Zavudev::Models::ExportRetrieveParams
-
   FunctionCreateParams = Zavudev::Models::FunctionCreateParams
 
   FunctionDeleteParams = Zavudev::Models::FunctionDeleteParams
@@ -207,8 +199,6 @@ module Zavudev
 
   PhoneNumberUpdateParams = Zavudev::Models::PhoneNumberUpdateParams
 
-  PlanRetrieveParams = Zavudev::Models::PlanRetrieveParams
-
   RegulatoryDocument = Zavudev::Models::RegulatoryDocument
 
   RegulatoryDocumentCreateParams = Zavudev::Models::RegulatoryDocumentCreateParams
@@ -286,8 +276,6 @@ module Zavudev
   URLRetrieveDetailsParams = Zavudev::Models::URLRetrieveDetailsParams
 
   URLSubmitForVerificationParams = Zavudev::Models::URLSubmitForVerificationParams
-
-  UsageRetrieveParams = Zavudev::Models::UsageRetrieveParams
 
   VerifiedURL = Zavudev::Models::VerifiedURL
 

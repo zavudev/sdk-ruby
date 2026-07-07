@@ -16,19 +16,20 @@ module Zavudev
       # List messages previously sent by this project.
       sig do
         params(
-          channel: Zavudev::Channel::OrSymbol,
+          channel: Zavudev::MessageListParams::Channel::OrSymbol,
           cursor: String,
           limit: Integer,
-          status: Zavudev::MessageStatus::OrSymbol,
+          status: Zavudev::MessageListParams::Status::OrSymbol,
           to: String,
           request_options: Zavudev::RequestOptions::OrHash
         ).returns(Zavudev::Internal::Cursor[Zavudev::Message])
       end
       def list(
-        # Delivery channel. Use 'auto' for intelligent routing.
+        # Filter by delivery channel.
         channel: nil,
         cursor: nil,
         limit: nil,
+        # Filter by status. Not all stored statuses are filterable.
         status: nil,
         to: nil,
         request_options: {}

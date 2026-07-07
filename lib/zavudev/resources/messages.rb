@@ -26,13 +26,13 @@ module Zavudev
       #
       # @overload list(channel: nil, cursor: nil, limit: nil, status: nil, to: nil, request_options: {})
       #
-      # @param channel [Symbol, Zavudev::Models::Channel] Delivery channel. Use 'auto' for intelligent routing.
+      # @param channel [Symbol, Zavudev::Models::MessageListParams::Channel] Filter by delivery channel.
       #
       # @param cursor [String]
       #
       # @param limit [Integer]
       #
-      # @param status [Symbol, Zavudev::Models::MessageStatus]
+      # @param status [Symbol, Zavudev::Models::MessageListParams::Status] Filter by status. Not all stored statuses are filterable.
       #
       # @param to [String]
       #

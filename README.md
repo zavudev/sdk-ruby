@@ -26,7 +26,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "zavudev", "~> 0.15.0"
+gem "zavudev", "~> 0.16.0"
 ```
 
 <!-- x-release-please-end -->
@@ -235,11 +235,11 @@ zavudev.messages.send_(**params)
 Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
 
 ```ruby
-# :auto
-puts(Zavudev::Channel::AUTO)
+# :sms
+puts(Zavudev::MessageListParams::Channel::SMS)
 
-# Revealed type: `T.all(Zavudev::Channel, Symbol)`
-T.reveal_type(Zavudev::Channel::AUTO)
+# Revealed type: `T.all(Zavudev::MessageListParams::Channel, Symbol)`
+T.reveal_type(Zavudev::MessageListParams::Channel::SMS)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
@@ -247,13 +247,13 @@ Enum parameters have a "relaxed" type, so you can either pass in enum constants 
 ```ruby
 # Using the enum constants preserves the tagged type information:
 zavudev.messages.list(
-  channel: Zavudev::Channel::AUTO,
+  channel: Zavudev::MessageListParams::Channel::SMS,
   # …
 )
 
 # Literal values are also permissible:
 zavudev.messages.list(
-  channel: :auto,
+  channel: :sms,
   # …
 )
 ```
