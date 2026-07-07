@@ -7,10 +7,10 @@ module Zavudev
       ) -> Zavudev::MessageResponse
 
       def list: (
-        ?channel: Zavudev::Models::channel,
+        ?channel: Zavudev::Models::MessageListParams::channel,
         ?cursor: String,
         ?limit: Integer,
-        ?status: Zavudev::Models::message_status,
+        ?status: Zavudev::Models::MessageListParams::status,
         ?to: String,
         ?request_options: Zavudev::request_opts
       ) -> Zavudev::Internal::Cursor[Zavudev::Message]

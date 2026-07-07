@@ -2,10 +2,10 @@ module Zavudev
   module Models
     type message_list_params =
       {
-        channel: Zavudev::Models::channel,
+        channel: Zavudev::Models::MessageListParams::channel,
         cursor: String,
         limit: Integer,
-        status: Zavudev::Models::message_status,
+        status: Zavudev::Models::MessageListParams::status,
         to: String
       }
       & Zavudev::Internal::Type::request_parameters
@@ -14,9 +14,11 @@ module Zavudev
       extend Zavudev::Internal::Type::RequestParameters::Converter
       include Zavudev::Internal::Type::RequestParameters
 
-      attr_reader channel: Zavudev::Models::channel?
+      attr_reader channel: Zavudev::Models::MessageListParams::channel?
 
-      def channel=: (Zavudev::Models::channel) -> Zavudev::Models::channel
+      def channel=: (
+        Zavudev::Models::MessageListParams::channel
+      ) -> Zavudev::Models::MessageListParams::channel
 
       attr_reader cursor: String?
 
@@ -26,33 +28,74 @@ module Zavudev
 
       def limit=: (Integer) -> Integer
 
-      attr_reader status: Zavudev::Models::message_status?
+      attr_reader status: Zavudev::Models::MessageListParams::status?
 
       def status=: (
-        Zavudev::Models::message_status
-      ) -> Zavudev::Models::message_status
+        Zavudev::Models::MessageListParams::status
+      ) -> Zavudev::Models::MessageListParams::status
 
       attr_reader to: String?
 
       def to=: (String) -> String
 
       def initialize: (
-        ?channel: Zavudev::Models::channel,
+        ?channel: Zavudev::Models::MessageListParams::channel,
         ?cursor: String,
         ?limit: Integer,
-        ?status: Zavudev::Models::message_status,
+        ?status: Zavudev::Models::MessageListParams::status,
         ?to: String,
         ?request_options: Zavudev::request_opts
       ) -> void
 
       def to_hash: -> {
-        channel: Zavudev::Models::channel,
+        channel: Zavudev::Models::MessageListParams::channel,
         cursor: String,
         limit: Integer,
-        status: Zavudev::Models::message_status,
+        status: Zavudev::Models::MessageListParams::status,
         to: String,
         request_options: Zavudev::RequestOptions
       }
+
+      type channel =
+        :sms
+        | :sms_oneway
+        | :whatsapp
+        | :email
+        | :telegram
+        | :instagram
+        | :messenger
+        | :voice
+
+      module Channel
+        extend Zavudev::Internal::Type::Enum
+
+        SMS: :sms
+        SMS_ONEWAY: :sms_oneway
+        WHATSAPP: :whatsapp
+        EMAIL: :email
+        TELEGRAM: :telegram
+        INSTAGRAM: :instagram
+        MESSENGER: :messenger
+        VOICE: :voice
+
+        def self?.values: -> ::Array[Zavudev::Models::MessageListParams::channel]
+      end
+
+      type status =
+        :queued | :sending | :sent | :delivered | :failed | :received
+
+      module Status
+        extend Zavudev::Internal::Type::Enum
+
+        QUEUED: :queued
+        SENDING: :sending
+        SENT: :sent
+        DELIVERED: :delivered
+        FAILED: :failed
+        RECEIVED: :received
+
+        def self?.values: -> ::Array[Zavudev::Models::MessageListParams::status]
+      end
     end
   end
 end

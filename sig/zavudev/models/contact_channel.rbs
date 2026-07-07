@@ -85,7 +85,8 @@ module Zavudev
         updated_at: Time
       }
 
-      type channel = :sms | :whatsapp | :email | :telegram | :messenger | :voice
+      type channel =
+        :sms | :whatsapp | :email | :telegram | :instagram | :messenger | :voice
 
       module Channel
         extend Zavudev::Internal::Type::Enum
@@ -94,6 +95,7 @@ module Zavudev
         WHATSAPP: :whatsapp
         EMAIL: :email
         TELEGRAM: :telegram
+        INSTAGRAM: :instagram
         MESSENGER: :messenger
         VOICE: :voice
 

@@ -94,6 +94,8 @@ module Zavudev
         PENDING = T.let(:pending, Zavudev::VerifiedURL::Status::TaggedSymbol)
         APPROVED = T.let(:approved, Zavudev::VerifiedURL::Status::TaggedSymbol)
         REJECTED = T.let(:rejected, Zavudev::VerifiedURL::Status::TaggedSymbol)
+        ESCALATED =
+          T.let(:escalated, Zavudev::VerifiedURL::Status::TaggedSymbol)
         MALICIOUS =
           T.let(:malicious, Zavudev::VerifiedURL::Status::TaggedSymbol)
 

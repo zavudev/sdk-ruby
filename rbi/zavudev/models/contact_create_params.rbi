@@ -169,6 +169,11 @@ module Zavudev
               :telegram,
               Zavudev::ContactCreateParams::Channel::Channel::TaggedSymbol
             )
+          INSTAGRAM =
+            T.let(
+              :instagram,
+              Zavudev::ContactCreateParams::Channel::Channel::TaggedSymbol
+            )
           MESSENGER =
             T.let(
               :messenger,

@@ -78,6 +78,11 @@ module Zavudev
           T.let(:approved, Zavudev::URLListVerifiedParams::Status::TaggedSymbol)
         REJECTED =
           T.let(:rejected, Zavudev::URLListVerifiedParams::Status::TaggedSymbol)
+        ESCALATED =
+          T.let(
+            :escalated,
+            Zavudev::URLListVerifiedParams::Status::TaggedSymbol
+          )
         MALICIOUS =
           T.let(
             :malicious,

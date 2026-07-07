@@ -88,6 +88,7 @@ module Zavudev
           WHATSAPP = :whatsapp
           EMAIL = :email
           TELEGRAM = :telegram
+          INSTAGRAM = :instagram
           MESSENGER = :messenger
           VOICE = :voice
 
