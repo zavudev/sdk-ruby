@@ -3,6 +3,7 @@ module Zavudev
     type sender_update_params =
       {
         sender_id: String,
+        email_catch_all_enabled: bool,
         email_receiving_enabled: bool,
         name: String,
         set_as_default: bool,
@@ -17,6 +18,10 @@ module Zavudev
       include Zavudev::Internal::Type::RequestParameters
 
       attr_accessor sender_id: String
+
+      attr_reader email_catch_all_enabled: bool?
+
+      def email_catch_all_enabled=: (bool) -> bool
 
       attr_reader email_receiving_enabled: bool?
 
@@ -44,6 +49,7 @@ module Zavudev
 
       def initialize: (
         sender_id: String,
+        ?email_catch_all_enabled: bool,
         ?email_receiving_enabled: bool,
         ?name: String,
         ?set_as_default: bool,
@@ -55,6 +61,7 @@ module Zavudev
 
       def to_hash: -> {
         sender_id: String,
+        email_catch_all_enabled: bool,
         email_receiving_enabled: bool,
         name: String,
         set_as_default: bool,

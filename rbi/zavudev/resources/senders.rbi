@@ -46,6 +46,7 @@ module Zavudev
       sig do
         params(
           sender_id: String,
+          email_catch_all_enabled: T::Boolean,
           email_receiving_enabled: T::Boolean,
           name: String,
           set_as_default: T::Boolean,
@@ -57,6 +58,10 @@ module Zavudev
       end
       def update(
         sender_id,
+        # Enable or disable domain catch-all. When enabled (with emailReceivingEnabled
+        # true), this sender receives email for any address at its domain. Ignored
+        # (treated as false) if receiving is not enabled.
+        email_catch_all_enabled: nil,
         # Enable or disable inbound email receiving for this sender.
         email_receiving_enabled: nil,
         name: nil,
