@@ -43,20 +43,11 @@ module Zavudev
     sig { returns(Zavudev::Resources::Invitations) }
     attr_reader :invitations
 
-    sig { returns(Zavudev::Resources::Exports) }
-    attr_reader :exports
-
     sig { returns(Zavudev::Resources::URLs) }
     attr_reader :urls
 
     sig { returns(Zavudev::Resources::Balance) }
     attr_reader :balance
-
-    sig { returns(Zavudev::Resources::Plan) }
-    attr_reader :plan
-
-    sig { returns(Zavudev::Resources::Usage) }
-    attr_reader :usage
 
     sig { returns(Zavudev::Resources::SubAccounts) }
     attr_reader :sub_accounts
