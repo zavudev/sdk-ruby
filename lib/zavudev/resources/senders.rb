@@ -58,11 +58,16 @@ module Zavudev
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Zavudev::Models::SenderUpdateParams} for more details.
+      #
       # Update sender
       #
-      # @overload update(sender_id, email_receiving_enabled: nil, name: nil, set_as_default: nil, webhook_active: nil, webhook_events: nil, webhook_url: nil, request_options: {})
+      # @overload update(sender_id, email_catch_all_enabled: nil, email_receiving_enabled: nil, name: nil, set_as_default: nil, webhook_active: nil, webhook_events: nil, webhook_url: nil, request_options: {})
       #
       # @param sender_id [String]
+      #
+      # @param email_catch_all_enabled [Boolean] Enable or disable domain catch-all. When enabled (with emailReceivingEnabled tru
       #
       # @param email_receiving_enabled [Boolean] Enable or disable inbound email receiving for this sender.
       #

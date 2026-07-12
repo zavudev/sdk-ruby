@@ -12,6 +12,14 @@ module Zavudev
       #   @return [String]
       required :sender_id, String
 
+      # @!attribute email_catch_all_enabled
+      #   Enable or disable domain catch-all. When enabled (with emailReceivingEnabled
+      #   true), this sender receives email for any address at its domain. Ignored
+      #   (treated as false) if receiving is not enabled.
+      #
+      #   @return [Boolean, nil]
+      optional :email_catch_all_enabled, Zavudev::Internal::Type::Boolean, api_name: :emailCatchAllEnabled
+
       # @!attribute email_receiving_enabled
       #   Enable or disable inbound email receiving for this sender.
       #
@@ -48,8 +56,13 @@ module Zavudev
       #   @return [String, nil]
       optional :webhook_url, String, api_name: :webhookUrl, nil?: true
 
-      # @!method initialize(sender_id:, email_receiving_enabled: nil, name: nil, set_as_default: nil, webhook_active: nil, webhook_events: nil, webhook_url: nil, request_options: {})
+      # @!method initialize(sender_id:, email_catch_all_enabled: nil, email_receiving_enabled: nil, name: nil, set_as_default: nil, webhook_active: nil, webhook_events: nil, webhook_url: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {Zavudev::Models::SenderUpdateParams} for more details.
+      #
       #   @param sender_id [String]
+      #
+      #   @param email_catch_all_enabled [Boolean] Enable or disable domain catch-all. When enabled (with emailReceivingEnabled tru
       #
       #   @param email_receiving_enabled [Boolean] Enable or disable inbound email receiving for this sender.
       #

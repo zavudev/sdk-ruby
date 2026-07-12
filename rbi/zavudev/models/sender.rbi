@@ -22,6 +22,16 @@ module Zavudev
       sig { params(created_at: Time).void }
       attr_writer :created_at
 
+      # Whether catch-all receiving is enabled. When true (and emailReceivingEnabled is
+      # true), this sender receives email addressed to any local part at its domain, not
+      # just its own address. The original recipient is delivered in the message.inbound
+      # webhook's data.to.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_reader :email_catch_all_enabled
+
+      sig { params(email_catch_all_enabled: T::Boolean).void }
+      attr_writer :email_catch_all_enabled
+
       # Whether inbound email receiving is enabled for this sender.
       sig { returns(T.nilable(T::Boolean)) }
       attr_reader :email_receiving_enabled
@@ -62,6 +72,7 @@ module Zavudev
           name: String,
           phone_number: String,
           created_at: Time,
+          email_catch_all_enabled: T::Boolean,
           email_receiving_enabled: T::Boolean,
           is_default: T::Boolean,
           updated_at: Time,
@@ -75,6 +86,11 @@ module Zavudev
         # Phone number in E.164 format.
         phone_number:,
         created_at: nil,
+        # Whether catch-all receiving is enabled. When true (and emailReceivingEnabled is
+        # true), this sender receives email addressed to any local part at its domain, not
+        # just its own address. The original recipient is delivered in the message.inbound
+        # webhook's data.to.
+        email_catch_all_enabled: nil,
         # Whether inbound email receiving is enabled for this sender.
         email_receiving_enabled: nil,
         # Whether this sender is the project's default.
@@ -94,6 +110,7 @@ module Zavudev
             name: String,
             phone_number: String,
             created_at: Time,
+            email_catch_all_enabled: T::Boolean,
             email_receiving_enabled: T::Boolean,
             is_default: T::Boolean,
             updated_at: Time,

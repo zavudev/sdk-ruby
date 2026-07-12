@@ -21,6 +21,7 @@ module Zavudev
 
       def update: (
         String sender_id,
+        ?email_catch_all_enabled: bool,
         ?email_receiving_enabled: bool,
         ?name: String,
         ?set_as_default: bool,

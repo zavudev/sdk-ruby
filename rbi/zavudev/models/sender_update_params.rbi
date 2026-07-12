@@ -14,6 +14,15 @@ module Zavudev
       sig { returns(String) }
       attr_accessor :sender_id
 
+      # Enable or disable domain catch-all. When enabled (with emailReceivingEnabled
+      # true), this sender receives email for any address at its domain. Ignored
+      # (treated as false) if receiving is not enabled.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_reader :email_catch_all_enabled
+
+      sig { params(email_catch_all_enabled: T::Boolean).void }
+      attr_writer :email_catch_all_enabled
+
       # Enable or disable inbound email receiving for this sender.
       sig { returns(T.nilable(T::Boolean)) }
       attr_reader :email_receiving_enabled
@@ -56,6 +65,7 @@ module Zavudev
       sig do
         params(
           sender_id: String,
+          email_catch_all_enabled: T::Boolean,
           email_receiving_enabled: T::Boolean,
           name: String,
           set_as_default: T::Boolean,
@@ -67,6 +77,10 @@ module Zavudev
       end
       def self.new(
         sender_id:,
+        # Enable or disable domain catch-all. When enabled (with emailReceivingEnabled
+        # true), this sender receives email for any address at its domain. Ignored
+        # (treated as false) if receiving is not enabled.
+        email_catch_all_enabled: nil,
         # Enable or disable inbound email receiving for this sender.
         email_receiving_enabled: nil,
         name: nil,
@@ -85,6 +99,7 @@ module Zavudev
         override.returns(
           {
             sender_id: String,
+            email_catch_all_enabled: T::Boolean,
             email_receiving_enabled: T::Boolean,
             name: String,
             set_as_default: T::Boolean,
