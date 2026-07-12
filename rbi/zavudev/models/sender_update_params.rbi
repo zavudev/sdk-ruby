@@ -14,6 +14,38 @@ module Zavudev
       sig { returns(String) }
       attr_accessor :sender_id
 
+      # Attach or change the sender's email from-address (e.g. noreply@yourdomain.com).
+      # The domain must be a verified email domain in your project.
+      sig { returns(T.nilable(String)) }
+      attr_reader :email_address
+
+      sig { params(email_address: String).void }
+      attr_writer :email_address
+
+      # Enable or disable domain catch-all. When enabled (with emailReceivingEnabled
+      # true), this sender receives email for any address at its domain. Ignored
+      # (treated as false) if receiving is not enabled.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_reader :email_catch_all_enabled
+
+      sig { params(email_catch_all_enabled: T::Boolean).void }
+      attr_writer :email_catch_all_enabled
+
+      # ID of the verified email domain to attach. Optional — resolved from
+      # `emailAddress`'s domain when omitted.
+      sig { returns(T.nilable(String)) }
+      attr_reader :email_domain_id
+
+      sig { params(email_domain_id: String).void }
+      attr_writer :email_domain_id
+
+      # Display name shown in the recipient's inbox for the email channel.
+      sig { returns(T.nilable(String)) }
+      attr_reader :email_from_name
+
+      sig { params(email_from_name: String).void }
+      attr_writer :email_from_name
+
       # Enable or disable inbound email receiving for this sender.
       sig { returns(T.nilable(T::Boolean)) }
       attr_reader :email_receiving_enabled
@@ -56,6 +88,10 @@ module Zavudev
       sig do
         params(
           sender_id: String,
+          email_address: String,
+          email_catch_all_enabled: T::Boolean,
+          email_domain_id: String,
+          email_from_name: String,
           email_receiving_enabled: T::Boolean,
           name: String,
           set_as_default: T::Boolean,
@@ -67,6 +103,18 @@ module Zavudev
       end
       def self.new(
         sender_id:,
+        # Attach or change the sender's email from-address (e.g. noreply@yourdomain.com).
+        # The domain must be a verified email domain in your project.
+        email_address: nil,
+        # Enable or disable domain catch-all. When enabled (with emailReceivingEnabled
+        # true), this sender receives email for any address at its domain. Ignored
+        # (treated as false) if receiving is not enabled.
+        email_catch_all_enabled: nil,
+        # ID of the verified email domain to attach. Optional — resolved from
+        # `emailAddress`'s domain when omitted.
+        email_domain_id: nil,
+        # Display name shown in the recipient's inbox for the email channel.
+        email_from_name: nil,
         # Enable or disable inbound email receiving for this sender.
         email_receiving_enabled: nil,
         name: nil,
@@ -85,6 +133,10 @@ module Zavudev
         override.returns(
           {
             sender_id: String,
+            email_address: String,
+            email_catch_all_enabled: T::Boolean,
+            email_domain_id: String,
+            email_from_name: String,
             email_receiving_enabled: T::Boolean,
             name: String,
             set_as_default: T::Boolean,

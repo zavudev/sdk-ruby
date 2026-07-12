@@ -6,7 +6,7 @@ class Zavudev::Test::Resources::SendersTest < Zavudev::Test::ResourceTest
   def test_create_required_params
     skip("Mock server tests are disabled")
 
-    response = @zavudev.senders.create(name: "name", phone_number: "phoneNumber")
+    response = @zavudev.senders.create(name: "name")
 
     assert_pattern do
       response => Zavudev::Sender
@@ -18,6 +18,8 @@ class Zavudev::Test::Resources::SendersTest < Zavudev::Test::ResourceTest
         name: String,
         phone_number: String,
         created_at: Time | nil,
+        email_address: String | nil,
+        email_catch_all_enabled: Zavudev::Internal::Type::Boolean | nil,
         email_receiving_enabled: Zavudev::Internal::Type::Boolean | nil,
         is_default: Zavudev::Internal::Type::Boolean | nil,
         updated_at: Time | nil,
@@ -42,6 +44,8 @@ class Zavudev::Test::Resources::SendersTest < Zavudev::Test::ResourceTest
         name: String,
         phone_number: String,
         created_at: Time | nil,
+        email_address: String | nil,
+        email_catch_all_enabled: Zavudev::Internal::Type::Boolean | nil,
         email_receiving_enabled: Zavudev::Internal::Type::Boolean | nil,
         is_default: Zavudev::Internal::Type::Boolean | nil,
         updated_at: Time | nil,
@@ -66,6 +70,8 @@ class Zavudev::Test::Resources::SendersTest < Zavudev::Test::ResourceTest
         name: String,
         phone_number: String,
         created_at: Time | nil,
+        email_address: String | nil,
+        email_catch_all_enabled: Zavudev::Internal::Type::Boolean | nil,
         email_receiving_enabled: Zavudev::Internal::Type::Boolean | nil,
         is_default: Zavudev::Internal::Type::Boolean | nil,
         updated_at: Time | nil,
@@ -97,6 +103,8 @@ class Zavudev::Test::Resources::SendersTest < Zavudev::Test::ResourceTest
         name: String,
         phone_number: String,
         created_at: Time | nil,
+        email_address: String | nil,
+        email_catch_all_enabled: Zavudev::Internal::Type::Boolean | nil,
         email_receiving_enabled: Zavudev::Internal::Type::Boolean | nil,
         is_default: Zavudev::Internal::Type::Boolean | nil,
         updated_at: Time | nil,

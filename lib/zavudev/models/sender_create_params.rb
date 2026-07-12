@@ -12,10 +12,40 @@ module Zavudev
       #   @return [String]
       required :name, String
 
-      # @!attribute phone_number
+      # @!attribute email_address
+      #   From-address for the email channel (e.g. noreply@yourdomain.com). The address's
+      #   domain must be a verified email domain in your project. Setting this attaches
+      #   the email channel to the sender.
       #
-      #   @return [String]
-      required :phone_number, String, api_name: :phoneNumber
+      #   @return [String, nil]
+      optional :email_address, String, api_name: :emailAddress
+
+      # @!attribute email_domain_id
+      #   ID of the verified email domain to attach. Optional — resolved from
+      #   `emailAddress`'s domain when omitted.
+      #
+      #   @return [String, nil]
+      optional :email_domain_id, String, api_name: :emailDomainId
+
+      # @!attribute email_from_name
+      #   Display name shown in the recipient's inbox for the email channel.
+      #
+      #   @return [String, nil]
+      optional :email_from_name, String, api_name: :emailFromName
+
+      # @!attribute email_receiving_enabled
+      #   Enable inbound email receiving on this sender. Requires a verified MX record on
+      #   the domain; ignored otherwise.
+      #
+      #   @return [Boolean, nil]
+      optional :email_receiving_enabled, Zavudev::Internal::Type::Boolean, api_name: :emailReceivingEnabled
+
+      # @!attribute phone_number
+      #   Phone number in E.164 format. Required for phone-based channels (SMS, WhatsApp).
+      #   Omit for an email-only sender.
+      #
+      #   @return [String, nil]
+      optional :phone_number, String, api_name: :phoneNumber
 
       # @!attribute set_as_default
       #
@@ -36,10 +66,21 @@ module Zavudev
       #   @return [String, nil]
       optional :webhook_url, String, api_name: :webhookUrl
 
-      # @!method initialize(name:, phone_number:, set_as_default: nil, webhook_events: nil, webhook_url: nil, request_options: {})
+      # @!method initialize(name:, email_address: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, phone_number: nil, set_as_default: nil, webhook_events: nil, webhook_url: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {Zavudev::Models::SenderCreateParams} for more details.
+      #
       #   @param name [String]
       #
-      #   @param phone_number [String]
+      #   @param email_address [String] From-address for the email channel (e.g. noreply@yourdomain.com). The address's
+      #
+      #   @param email_domain_id [String] ID of the verified email domain to attach. Optional — resolved from `emailAddres
+      #
+      #   @param email_from_name [String] Display name shown in the recipient's inbox for the email channel.
+      #
+      #   @param email_receiving_enabled [Boolean] Enable inbound email receiving on this sender. Requires a verified MX record on
+      #
+      #   @param phone_number [String] Phone number in E.164 format. Required for phone-based channels (SMS, WhatsApp).
       #
       #   @param set_as_default [Boolean]
       #

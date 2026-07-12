@@ -12,6 +12,34 @@ module Zavudev
       #   @return [String]
       required :sender_id, String
 
+      # @!attribute email_address
+      #   Attach or change the sender's email from-address (e.g. noreply@yourdomain.com).
+      #   The domain must be a verified email domain in your project.
+      #
+      #   @return [String, nil]
+      optional :email_address, String, api_name: :emailAddress
+
+      # @!attribute email_catch_all_enabled
+      #   Enable or disable domain catch-all. When enabled (with emailReceivingEnabled
+      #   true), this sender receives email for any address at its domain. Ignored
+      #   (treated as false) if receiving is not enabled.
+      #
+      #   @return [Boolean, nil]
+      optional :email_catch_all_enabled, Zavudev::Internal::Type::Boolean, api_name: :emailCatchAllEnabled
+
+      # @!attribute email_domain_id
+      #   ID of the verified email domain to attach. Optional — resolved from
+      #   `emailAddress`'s domain when omitted.
+      #
+      #   @return [String, nil]
+      optional :email_domain_id, String, api_name: :emailDomainId
+
+      # @!attribute email_from_name
+      #   Display name shown in the recipient's inbox for the email channel.
+      #
+      #   @return [String, nil]
+      optional :email_from_name, String, api_name: :emailFromName
+
       # @!attribute email_receiving_enabled
       #   Enable or disable inbound email receiving for this sender.
       #
@@ -48,8 +76,19 @@ module Zavudev
       #   @return [String, nil]
       optional :webhook_url, String, api_name: :webhookUrl, nil?: true
 
-      # @!method initialize(sender_id:, email_receiving_enabled: nil, name: nil, set_as_default: nil, webhook_active: nil, webhook_events: nil, webhook_url: nil, request_options: {})
+      # @!method initialize(sender_id:, email_address: nil, email_catch_all_enabled: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, name: nil, set_as_default: nil, webhook_active: nil, webhook_events: nil, webhook_url: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {Zavudev::Models::SenderUpdateParams} for more details.
+      #
       #   @param sender_id [String]
+      #
+      #   @param email_address [String] Attach or change the sender's email from-address (e.g. noreply@yourdomain.com).
+      #
+      #   @param email_catch_all_enabled [Boolean] Enable or disable domain catch-all. When enabled (with emailReceivingEnabled tru
+      #
+      #   @param email_domain_id [String] ID of the verified email domain to attach. Optional — resolved from `emailAddres
+      #
+      #   @param email_from_name [String] Display name shown in the recipient's inbox for the email channel.
       #
       #   @param email_receiving_enabled [Boolean] Enable or disable inbound email receiving for this sender.
       #

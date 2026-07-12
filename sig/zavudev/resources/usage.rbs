@@ -1,7 +1,0 @@
-module Zavudev
-  module Resources
-    class Usage
-      def initialize: (client: Zavudev::Client) -> void
-    end
-  end
-end

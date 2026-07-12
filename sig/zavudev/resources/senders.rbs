@@ -7,7 +7,11 @@ module Zavudev
 
       def create: (
         name: String,
-        phone_number: String,
+        ?email_address: String,
+        ?email_domain_id: String,
+        ?email_from_name: String,
+        ?email_receiving_enabled: bool,
+        ?phone_number: String,
         ?set_as_default: bool,
         ?webhook_events: ::Array[Zavudev::Models::webhook_event],
         ?webhook_url: String,
@@ -21,6 +25,10 @@ module Zavudev
 
       def update: (
         String sender_id,
+        ?email_address: String,
+        ?email_catch_all_enabled: bool,
+        ?email_domain_id: String,
+        ?email_from_name: String,
         ?email_receiving_enabled: bool,
         ?name: String,
         ?set_as_default: bool,

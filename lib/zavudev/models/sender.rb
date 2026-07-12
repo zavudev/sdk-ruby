@@ -25,6 +25,21 @@ module Zavudev
       #   @return [Time, nil]
       optional :created_at, Time, api_name: :createdAt
 
+      # @!attribute email_address
+      #   From-address for the email channel, if configured.
+      #
+      #   @return [String, nil]
+      optional :email_address, String, api_name: :emailAddress
+
+      # @!attribute email_catch_all_enabled
+      #   Whether catch-all receiving is enabled. When true (and emailReceivingEnabled is
+      #   true), this sender receives email addressed to any local part at its domain, not
+      #   just its own address. The original recipient is delivered in the message.inbound
+      #   webhook's data.to.
+      #
+      #   @return [Boolean, nil]
+      optional :email_catch_all_enabled, Zavudev::Internal::Type::Boolean, api_name: :emailCatchAllEnabled
+
       # @!attribute email_receiving_enabled
       #   Whether inbound email receiving is enabled for this sender.
       #
@@ -54,7 +69,10 @@ module Zavudev
       #   @return [Zavudev::Models::Sender::Whatsapp, nil]
       optional :whatsapp, -> { Zavudev::Sender::Whatsapp }
 
-      # @!method initialize(id:, name:, phone_number:, created_at: nil, email_receiving_enabled: nil, is_default: nil, updated_at: nil, webhook: nil, whatsapp: nil)
+      # @!method initialize(id:, name:, phone_number:, created_at: nil, email_address: nil, email_catch_all_enabled: nil, email_receiving_enabled: nil, is_default: nil, updated_at: nil, webhook: nil, whatsapp: nil)
+      #   Some parameter documentations has been truncated, see {Zavudev::Models::Sender}
+      #   for more details.
+      #
       #   @param id [String]
       #
       #   @param name [String]
@@ -62,6 +80,10 @@ module Zavudev
       #   @param phone_number [String] Phone number in E.164 format.
       #
       #   @param created_at [Time]
+      #
+      #   @param email_address [String] From-address for the email channel, if configured.
+      #
+      #   @param email_catch_all_enabled [Boolean] Whether catch-all receiving is enabled. When true (and emailReceivingEnabled is
       #
       #   @param email_receiving_enabled [Boolean] Whether inbound email receiving is enabled for this sender.
       #

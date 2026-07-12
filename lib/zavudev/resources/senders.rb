@@ -9,13 +9,24 @@ module Zavudev
       # @return [Zavudev::Resources::Senders::WhatsappSync]
       attr_reader :whatsapp_sync
 
+      # Some parameter documentations has been truncated, see
+      # {Zavudev::Models::SenderCreateParams} for more details.
+      #
       # Create sender
       #
-      # @overload create(name:, phone_number:, set_as_default: nil, webhook_events: nil, webhook_url: nil, request_options: {})
+      # @overload create(name:, email_address: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, phone_number: nil, set_as_default: nil, webhook_events: nil, webhook_url: nil, request_options: {})
       #
       # @param name [String]
       #
-      # @param phone_number [String]
+      # @param email_address [String] From-address for the email channel (e.g. noreply@yourdomain.com). The address's
+      #
+      # @param email_domain_id [String] ID of the verified email domain to attach. Optional — resolved from `emailAddres
+      #
+      # @param email_from_name [String] Display name shown in the recipient's inbox for the email channel.
+      #
+      # @param email_receiving_enabled [Boolean] Enable inbound email receiving on this sender. Requires a verified MX record on
+      #
+      # @param phone_number [String] Phone number in E.164 format. Required for phone-based channels (SMS, WhatsApp).
       #
       # @param set_as_default [Boolean]
       #
@@ -58,11 +69,22 @@ module Zavudev
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Zavudev::Models::SenderUpdateParams} for more details.
+      #
       # Update sender
       #
-      # @overload update(sender_id, email_receiving_enabled: nil, name: nil, set_as_default: nil, webhook_active: nil, webhook_events: nil, webhook_url: nil, request_options: {})
+      # @overload update(sender_id, email_address: nil, email_catch_all_enabled: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, name: nil, set_as_default: nil, webhook_active: nil, webhook_events: nil, webhook_url: nil, request_options: {})
       #
       # @param sender_id [String]
+      #
+      # @param email_address [String] Attach or change the sender's email from-address (e.g. noreply@yourdomain.com).
+      #
+      # @param email_catch_all_enabled [Boolean] Enable or disable domain catch-all. When enabled (with emailReceivingEnabled tru
+      #
+      # @param email_domain_id [String] ID of the verified email domain to attach. Optional — resolved from `emailAddres
+      #
+      # @param email_from_name [String] Display name shown in the recipient's inbox for the email channel.
       #
       # @param email_receiving_enabled [Boolean] Enable or disable inbound email receiving for this sender.
       #

@@ -14,8 +14,45 @@ module Zavudev
       sig { returns(String) }
       attr_accessor :name
 
-      sig { returns(String) }
-      attr_accessor :phone_number
+      # From-address for the email channel (e.g. noreply@yourdomain.com). The address's
+      # domain must be a verified email domain in your project. Setting this attaches
+      # the email channel to the sender.
+      sig { returns(T.nilable(String)) }
+      attr_reader :email_address
+
+      sig { params(email_address: String).void }
+      attr_writer :email_address
+
+      # ID of the verified email domain to attach. Optional — resolved from
+      # `emailAddress`'s domain when omitted.
+      sig { returns(T.nilable(String)) }
+      attr_reader :email_domain_id
+
+      sig { params(email_domain_id: String).void }
+      attr_writer :email_domain_id
+
+      # Display name shown in the recipient's inbox for the email channel.
+      sig { returns(T.nilable(String)) }
+      attr_reader :email_from_name
+
+      sig { params(email_from_name: String).void }
+      attr_writer :email_from_name
+
+      # Enable inbound email receiving on this sender. Requires a verified MX record on
+      # the domain; ignored otherwise.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_reader :email_receiving_enabled
+
+      sig { params(email_receiving_enabled: T::Boolean).void }
+      attr_writer :email_receiving_enabled
+
+      # Phone number in E.164 format. Required for phone-based channels (SMS, WhatsApp).
+      # Omit for an email-only sender.
+      sig { returns(T.nilable(String)) }
+      attr_reader :phone_number
+
+      sig { params(phone_number: String).void }
+      attr_writer :phone_number
 
       sig { returns(T.nilable(T::Boolean)) }
       attr_reader :set_as_default
@@ -42,6 +79,10 @@ module Zavudev
       sig do
         params(
           name: String,
+          email_address: String,
+          email_domain_id: String,
+          email_from_name: String,
+          email_receiving_enabled: T::Boolean,
           phone_number: String,
           set_as_default: T::Boolean,
           webhook_events: T::Array[Zavudev::WebhookEvent::OrSymbol],
@@ -51,7 +92,21 @@ module Zavudev
       end
       def self.new(
         name:,
-        phone_number:,
+        # From-address for the email channel (e.g. noreply@yourdomain.com). The address's
+        # domain must be a verified email domain in your project. Setting this attaches
+        # the email channel to the sender.
+        email_address: nil,
+        # ID of the verified email domain to attach. Optional — resolved from
+        # `emailAddress`'s domain when omitted.
+        email_domain_id: nil,
+        # Display name shown in the recipient's inbox for the email channel.
+        email_from_name: nil,
+        # Enable inbound email receiving on this sender. Requires a verified MX record on
+        # the domain; ignored otherwise.
+        email_receiving_enabled: nil,
+        # Phone number in E.164 format. Required for phone-based channels (SMS, WhatsApp).
+        # Omit for an email-only sender.
+        phone_number: nil,
         set_as_default: nil,
         # Events to subscribe to.
         webhook_events: nil,
@@ -65,6 +120,10 @@ module Zavudev
         override.returns(
           {
             name: String,
+            email_address: String,
+            email_domain_id: String,
+            email_from_name: String,
+            email_receiving_enabled: T::Boolean,
             phone_number: String,
             set_as_default: T::Boolean,
             webhook_events: T::Array[Zavudev::WebhookEvent::OrSymbol],

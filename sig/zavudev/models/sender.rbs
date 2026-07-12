@@ -6,6 +6,8 @@ module Zavudev
         name: String,
         phone_number: String,
         created_at: Time,
+        email_address: String,
+        email_catch_all_enabled: bool,
         email_receiving_enabled: bool,
         is_default: bool,
         updated_at: Time,
@@ -23,6 +25,14 @@ module Zavudev
       attr_reader created_at: Time?
 
       def created_at=: (Time) -> Time
+
+      attr_reader email_address: String?
+
+      def email_address=: (String) -> String
+
+      attr_reader email_catch_all_enabled: bool?
+
+      def email_catch_all_enabled=: (bool) -> bool
 
       attr_reader email_receiving_enabled: bool?
 
@@ -49,6 +59,8 @@ module Zavudev
         name: String,
         phone_number: String,
         ?created_at: Time,
+        ?email_address: String,
+        ?email_catch_all_enabled: bool,
         ?email_receiving_enabled: bool,
         ?is_default: bool,
         ?updated_at: Time,
@@ -61,6 +73,8 @@ module Zavudev
         name: String,
         phone_number: String,
         created_at: Time,
+        email_address: String,
+        email_catch_all_enabled: bool,
         email_receiving_enabled: bool,
         is_default: bool,
         updated_at: Time,
