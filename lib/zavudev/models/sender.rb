@@ -25,6 +25,12 @@ module Zavudev
       #   @return [Time, nil]
       optional :created_at, Time, api_name: :createdAt
 
+      # @!attribute email_address
+      #   From-address for the email channel, if configured.
+      #
+      #   @return [String, nil]
+      optional :email_address, String, api_name: :emailAddress
+
       # @!attribute email_catch_all_enabled
       #   Whether catch-all receiving is enabled. When true (and emailReceivingEnabled is
       #   true), this sender receives email addressed to any local part at its domain, not
@@ -63,7 +69,7 @@ module Zavudev
       #   @return [Zavudev::Models::Sender::Whatsapp, nil]
       optional :whatsapp, -> { Zavudev::Sender::Whatsapp }
 
-      # @!method initialize(id:, name:, phone_number:, created_at: nil, email_catch_all_enabled: nil, email_receiving_enabled: nil, is_default: nil, updated_at: nil, webhook: nil, whatsapp: nil)
+      # @!method initialize(id:, name:, phone_number:, created_at: nil, email_address: nil, email_catch_all_enabled: nil, email_receiving_enabled: nil, is_default: nil, updated_at: nil, webhook: nil, whatsapp: nil)
       #   Some parameter documentations has been truncated, see {Zavudev::Models::Sender}
       #   for more details.
       #
@@ -74,6 +80,8 @@ module Zavudev
       #   @param phone_number [String] Phone number in E.164 format.
       #
       #   @param created_at [Time]
+      #
+      #   @param email_address [String] From-address for the email channel, if configured.
       #
       #   @param email_catch_all_enabled [Boolean] Whether catch-all receiving is enabled. When true (and emailReceivingEnabled is
       #

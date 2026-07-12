@@ -13,6 +13,10 @@ module Zavudev
       sig do
         params(
           name: String,
+          email_address: String,
+          email_domain_id: String,
+          email_from_name: String,
+          email_receiving_enabled: T::Boolean,
           phone_number: String,
           set_as_default: T::Boolean,
           webhook_events: T::Array[Zavudev::WebhookEvent::OrSymbol],
@@ -22,7 +26,21 @@ module Zavudev
       end
       def create(
         name:,
-        phone_number:,
+        # From-address for the email channel (e.g. noreply@yourdomain.com). The address's
+        # domain must be a verified email domain in your project. Setting this attaches
+        # the email channel to the sender.
+        email_address: nil,
+        # ID of the verified email domain to attach. Optional — resolved from
+        # `emailAddress`'s domain when omitted.
+        email_domain_id: nil,
+        # Display name shown in the recipient's inbox for the email channel.
+        email_from_name: nil,
+        # Enable inbound email receiving on this sender. Requires a verified MX record on
+        # the domain; ignored otherwise.
+        email_receiving_enabled: nil,
+        # Phone number in E.164 format. Required for phone-based channels (SMS, WhatsApp).
+        # Omit for an email-only sender.
+        phone_number: nil,
         set_as_default: nil,
         # Events to subscribe to.
         webhook_events: nil,
@@ -46,7 +64,10 @@ module Zavudev
       sig do
         params(
           sender_id: String,
+          email_address: String,
           email_catch_all_enabled: T::Boolean,
+          email_domain_id: String,
+          email_from_name: String,
           email_receiving_enabled: T::Boolean,
           name: String,
           set_as_default: T::Boolean,
@@ -58,10 +79,18 @@ module Zavudev
       end
       def update(
         sender_id,
+        # Attach or change the sender's email from-address (e.g. noreply@yourdomain.com).
+        # The domain must be a verified email domain in your project.
+        email_address: nil,
         # Enable or disable domain catch-all. When enabled (with emailReceivingEnabled
         # true), this sender receives email for any address at its domain. Ignored
         # (treated as false) if receiving is not enabled.
         email_catch_all_enabled: nil,
+        # ID of the verified email domain to attach. Optional — resolved from
+        # `emailAddress`'s domain when omitted.
+        email_domain_id: nil,
+        # Display name shown in the recipient's inbox for the email channel.
+        email_from_name: nil,
         # Enable or disable inbound email receiving for this sender.
         email_receiving_enabled: nil,
         name: nil,
