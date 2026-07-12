@@ -22,6 +22,13 @@ module Zavudev
       sig { params(created_at: Time).void }
       attr_writer :created_at
 
+      # From-address for the email channel, if configured.
+      sig { returns(T.nilable(String)) }
+      attr_reader :email_address
+
+      sig { params(email_address: String).void }
+      attr_writer :email_address
+
       # Whether catch-all receiving is enabled. When true (and emailReceivingEnabled is
       # true), this sender receives email addressed to any local part at its domain, not
       # just its own address. The original recipient is delivered in the message.inbound
@@ -72,6 +79,7 @@ module Zavudev
           name: String,
           phone_number: String,
           created_at: Time,
+          email_address: String,
           email_catch_all_enabled: T::Boolean,
           email_receiving_enabled: T::Boolean,
           is_default: T::Boolean,
@@ -86,6 +94,8 @@ module Zavudev
         # Phone number in E.164 format.
         phone_number:,
         created_at: nil,
+        # From-address for the email channel, if configured.
+        email_address: nil,
         # Whether catch-all receiving is enabled. When true (and emailReceivingEnabled is
         # true), this sender receives email addressed to any local part at its domain, not
         # just its own address. The original recipient is delivered in the message.inbound
@@ -110,6 +120,7 @@ module Zavudev
             name: String,
             phone_number: String,
             created_at: Time,
+            email_address: String,
             email_catch_all_enabled: T::Boolean,
             email_receiving_enabled: T::Boolean,
             is_default: T::Boolean,
