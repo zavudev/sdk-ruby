@@ -30,15 +30,9 @@ module Zavudev
 
     attr_reader invitations: Zavudev::Resources::Invitations
 
-    attr_reader exports: Zavudev::Resources::Exports
-
     attr_reader urls: Zavudev::Resources::URLs
 
     attr_reader balance: Zavudev::Resources::Balance
-
-    attr_reader plan: Zavudev::Resources::Plan
-
-    attr_reader usage: Zavudev::Resources::Usage
 
     attr_reader sub_accounts: Zavudev::Resources::SubAccounts
 
