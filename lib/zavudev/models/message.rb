@@ -46,6 +46,15 @@ module Zavudev
       #   @return [Zavudev::Models::MessageContent, nil]
       optional :content, -> { Zavudev::MessageContent }
 
+      # @!attribute conversation_id
+      #   ID of the conversation (inbox thread) this message belongs to. Use it to build a
+      #   direct dashboard link:
+      #   `https://dashboard.zavu.dev/{locale}/inbox?conv={conversationId}`. Omitted only
+      #   on legacy messages created before conversation threading.
+      #
+      #   @return [String, nil]
+      optional :conversation_id, String, api_name: :conversationId
+
       # @!attribute cost
       #   Zavu platform charge in USD for this message. Messaging is billed against your
       #   plan's monthly limits plus usage-based overage.
@@ -107,7 +116,7 @@ module Zavudev
       #   @return [Time, nil]
       optional :updated_at, Time, api_name: :updatedAt
 
-      # @!method initialize(id:, channel:, created_at:, message_type:, status:, to:, content: nil, cost: nil, cost_provider: nil, cost_total: nil, error_code: nil, error_message: nil, from: nil, metadata: nil, provider_message_id: nil, sender_id: nil, text: nil, updated_at: nil)
+      # @!method initialize(id:, channel:, created_at:, message_type:, status:, to:, content: nil, conversation_id: nil, cost: nil, cost_provider: nil, cost_total: nil, error_code: nil, error_message: nil, from: nil, metadata: nil, provider_message_id: nil, sender_id: nil, text: nil, updated_at: nil)
       #   Some parameter documentations has been truncated, see {Zavudev::Models::Message}
       #   for more details.
       #
@@ -124,6 +133,8 @@ module Zavudev
       #   @param to [String]
       #
       #   @param content [Zavudev::Models::MessageContent] Content for non-text message types (WhatsApp and Telegram).
+      #
+      #   @param conversation_id [String] ID of the conversation (inbox thread) this message belongs to. Use it to build a
       #
       #   @param cost [Float, nil] Zavu platform charge in USD for this message. Messaging is billed against your p
       #

@@ -37,6 +37,16 @@ module Zavudev
       sig { params(content: Zavudev::MessageContent::OrHash).void }
       attr_writer :content
 
+      # ID of the conversation (inbox thread) this message belongs to. Use it to build a
+      # direct dashboard link:
+      # `https://dashboard.zavu.dev/{locale}/inbox?conv={conversationId}`. Omitted only
+      # on legacy messages created before conversation threading.
+      sig { returns(T.nilable(String)) }
+      attr_reader :conversation_id
+
+      sig { params(conversation_id: String).void }
+      attr_writer :conversation_id
+
       # Zavu platform charge in USD for this message. Messaging is billed against your
       # plan's monthly limits plus usage-based overage.
       sig { returns(T.nilable(Float)) }
@@ -103,6 +113,7 @@ module Zavudev
           status: Zavudev::MessageStatus::OrSymbol,
           to: String,
           content: Zavudev::MessageContent::OrHash,
+          conversation_id: String,
           cost: T.nilable(Float),
           cost_provider: T.nilable(Float),
           cost_total: T.nilable(Float),
@@ -131,6 +142,11 @@ module Zavudev
         to:,
         # Content for non-text message types (WhatsApp and Telegram).
         content: nil,
+        # ID of the conversation (inbox thread) this message belongs to. Use it to build a
+        # direct dashboard link:
+        # `https://dashboard.zavu.dev/{locale}/inbox?conv={conversationId}`. Omitted only
+        # on legacy messages created before conversation threading.
+        conversation_id: nil,
         # Zavu platform charge in USD for this message. Messaging is billed against your
         # plan's monthly limits plus usage-based overage.
         cost: nil,
@@ -161,6 +177,7 @@ module Zavudev
             status: Zavudev::MessageStatus::TaggedSymbol,
             to: String,
             content: Zavudev::MessageContent,
+            conversation_id: String,
             cost: T.nilable(Float),
             cost_provider: T.nilable(Float),
             cost_total: T.nilable(Float),
