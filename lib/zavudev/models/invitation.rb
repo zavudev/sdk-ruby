@@ -64,7 +64,7 @@ module Zavudev
 
       # @!attribute connection_type
       #   How the client connects WhatsApp: `whatsapp_waba` (official Cloud API via
-      #   embedded signup) or `whatsapp_alt` (QR-linked).
+      #   embedded signup).
       #
       #   @return [Symbol, Zavudev::Models::Invitation::ConnectionType, nil]
       optional :connection_type, enum: -> { Zavudev::Invitation::ConnectionType }, api_name: :connectionType
@@ -144,14 +144,13 @@ module Zavudev
       end
 
       # How the client connects WhatsApp: `whatsapp_waba` (official Cloud API via
-      # embedded signup) or `whatsapp_alt` (QR-linked).
+      # embedded signup).
       #
       # @see Zavudev::Models::Invitation#connection_type
       module ConnectionType
         extend Zavudev::Internal::Type::Enum
 
         WHATSAPP_WABA = :whatsapp_waba
-        WHATSAPP_ALT = :whatsapp_alt
 
         # @!method self.values
         #   @return [Array<Symbol>]

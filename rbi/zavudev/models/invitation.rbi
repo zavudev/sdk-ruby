@@ -43,7 +43,7 @@ module Zavudev
       attr_accessor :completed_at
 
       # How the client connects WhatsApp: `whatsapp_waba` (official Cloud API via
-      # embedded signup) or `whatsapp_alt` (QR-linked).
+      # embedded signup).
       sig do
         returns(T.nilable(Zavudev::Invitation::ConnectionType::TaggedSymbol))
       end
@@ -106,7 +106,7 @@ module Zavudev
         client_phone: nil,
         completed_at: nil,
         # How the client connects WhatsApp: `whatsapp_waba` (official Cloud API via
-        # embedded signup) or `whatsapp_alt` (QR-linked).
+        # embedded signup).
         connection_type: nil,
         # ID of a pre-assigned Zavu phone number for WhatsApp registration.
         phone_number_id: nil,
@@ -165,7 +165,7 @@ module Zavudev
       end
 
       # How the client connects WhatsApp: `whatsapp_waba` (official Cloud API via
-      # embedded signup) or `whatsapp_alt` (QR-linked).
+      # embedded signup).
       module ConnectionType
         extend Zavudev::Internal::Type::Enum
 
@@ -176,11 +176,6 @@ module Zavudev
         WHATSAPP_WABA =
           T.let(
             :whatsapp_waba,
-            Zavudev::Invitation::ConnectionType::TaggedSymbol
-          )
-        WHATSAPP_ALT =
-          T.let(
-            :whatsapp_alt,
             Zavudev::Invitation::ConnectionType::TaggedSymbol
           )
 

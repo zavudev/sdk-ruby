@@ -32,12 +32,6 @@ module Zavudev
     #   from the contact — WhatsApp, Telegram, Instagram, Messenger; `null` for SMS
     #   and email). Compare it against the top-level `timestamp` (when Zavu dispatched
     #   the webhook) to detect and ignore delayed deliveries.
-    # - `message.status`: A contact posted a WhatsApp status/story (currently WhatsApp
-    #   Alternative only). It is NOT a conversation message and never enters the inbox
-    #   — it is delivered only if you subscribe to `message.status`. `data` carries
-    #   `from` (the author in E.164), `messageType` (`text`, `image`, `video`,
-    #   `audio`), `text` (caption/text when present), `mimetype` (for media stories),
-    #   and `providerTimestamp`. Media bytes are not included.
     # - `message.unsupported`: Received a message type that is not supported
     #
     # **Broadcast events:**
@@ -81,8 +75,6 @@ module Zavudev
         T.let(:"message.failed", Zavudev::WebhookEvent::TaggedSymbol)
       MESSAGE_INBOUND =
         T.let(:"message.inbound", Zavudev::WebhookEvent::TaggedSymbol)
-      MESSAGE_STATUS =
-        T.let(:"message.status", Zavudev::WebhookEvent::TaggedSymbol)
       MESSAGE_UNSUPPORTED =
         T.let(:"message.unsupported", Zavudev::WebhookEvent::TaggedSymbol)
       BROADCAST_STATUS_CHANGED =
