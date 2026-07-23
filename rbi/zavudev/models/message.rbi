@@ -9,10 +9,7 @@ module Zavudev
       sig { returns(String) }
       attr_accessor :id
 
-      # Delivery channel. Use 'auto' for intelligent routing. `whatsapp_alt` is the
-      # QR-linked WhatsApp channel and is only accepted for teams with the WhatsApp
-      # Alternative feature enabled; the sender must have a connected whatsapp_alt
-      # session.
+      # Delivery channel. Use 'auto' for intelligent routing.
       sig { returns(Zavudev::Channel::TaggedSymbol) }
       attr_accessor :channel
 
@@ -129,10 +126,7 @@ module Zavudev
       end
       def self.new(
         id:,
-        # Delivery channel. Use 'auto' for intelligent routing. `whatsapp_alt` is the
-        # QR-linked WhatsApp channel and is only accepted for teams with the WhatsApp
-        # Alternative feature enabled; the sender must have a connected whatsapp_alt
-        # session.
+        # Delivery channel. Use 'auto' for intelligent routing.
         channel:,
         created_at:,
         # Type of message. Non-text types are supported by WhatsApp and Telegram (varies
