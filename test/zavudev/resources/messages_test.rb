@@ -44,6 +44,7 @@ class Zavudev::Test::Resources::MessagesTest < Zavudev::Test::ResourceTest
         status: Zavudev::MessageStatus,
         to: String,
         content: Zavudev::MessageContent | nil,
+        conversation_id: String | nil,
         cost: Float | nil,
         cost_provider: Float | nil,
         cost_total: Float | nil,

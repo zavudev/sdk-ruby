@@ -9,6 +9,7 @@ module Zavudev
         status: Zavudev::Models::message_status,
         to: String,
         content: Zavudev::MessageContent,
+        conversation_id: String,
         cost: Float?,
         cost_provider: Float?,
         cost_total: Float?,
@@ -38,6 +39,10 @@ module Zavudev
       attr_reader content: Zavudev::MessageContent?
 
       def content=: (Zavudev::MessageContent) -> Zavudev::MessageContent
+
+      attr_reader conversation_id: String?
+
+      def conversation_id=: (String) -> String
 
       attr_accessor cost: Float?
 
@@ -81,6 +86,7 @@ module Zavudev
         status: Zavudev::Models::message_status,
         to: String,
         ?content: Zavudev::MessageContent,
+        ?conversation_id: String,
         ?cost: Float?,
         ?cost_provider: Float?,
         ?cost_total: Float?,
@@ -102,6 +108,7 @@ module Zavudev
         status: Zavudev::Models::message_status,
         to: String,
         content: Zavudev::MessageContent,
+        conversation_id: String,
         cost: Float?,
         cost_provider: Float?,
         cost_total: Float?,

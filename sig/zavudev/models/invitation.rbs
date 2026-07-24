@@ -109,13 +109,12 @@ module Zavudev
         def self?.values: -> ::Array[Zavudev::Models::Invitation::status]
       end
 
-      type connection_type = :whatsapp_waba | :whatsapp_alt
+      type connection_type = :whatsapp_waba
 
       module ConnectionType
         extend Zavudev::Internal::Type::Enum
 
         WHATSAPP_WABA: :whatsapp_waba
-        WHATSAPP_ALT: :whatsapp_alt
 
         def self?.values: -> ::Array[Zavudev::Models::Invitation::connection_type]
       end

@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.19.0 (2026-07-23)
+
+Full Changelog: [v0.18.0...v0.19.0](https://github.com/zavudev/sdk-ruby/compare/v0.18.0...v0.19.0)
+
+### Features
+
+* **api:** api update ([e230076](https://github.com/zavudev/sdk-ruby/commit/e230076406ec38c134526941aaf8c13c0538d3f6))
+* **api:** api update ([901e2c2](https://github.com/zavudev/sdk-ruby/commit/901e2c29b4d1dbd840571683072bebbb17793e34))
+* **api:** api update ([e3e62c2](https://github.com/zavudev/sdk-ruby/commit/e3e62c2e9e5e9b7f1c7ffc15a0fb6553b290d7b3))
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([e3cd9e9](https://github.com/zavudev/sdk-ruby/commit/e3cd9e94605059e0af8bef2b856805ef59bcdf30))
+
 ## 0.18.0 (2026-07-15)
 
 Full Changelog: [v0.17.0...v0.18.0](https://github.com/zavudev/sdk-ruby/compare/v0.17.0...v0.18.0)

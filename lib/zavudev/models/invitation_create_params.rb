@@ -35,9 +35,7 @@ module Zavudev
 
       # @!attribute connection_type
       #   How the client connects WhatsApp. `whatsapp_waba` (default) runs Meta's embedded
-      #   signup to link an official WhatsApp Business Account. `whatsapp_alt` links the
-      #   number by scanning a QR code — available only to teams with the WhatsApp
-      #   Alternative feature enabled.
+      #   signup to link an official WhatsApp Business Account.
       #
       #   @return [Symbol, Zavudev::Models::InvitationCreateParams::ConnectionType, nil]
       optional :connection_type,
@@ -78,14 +76,11 @@ module Zavudev
       #   @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}]
 
       # How the client connects WhatsApp. `whatsapp_waba` (default) runs Meta's embedded
-      # signup to link an official WhatsApp Business Account. `whatsapp_alt` links the
-      # number by scanning a QR code — available only to teams with the WhatsApp
-      # Alternative feature enabled.
+      # signup to link an official WhatsApp Business Account.
       module ConnectionType
         extend Zavudev::Internal::Type::Enum
 
         WHATSAPP_WABA = :whatsapp_waba
-        WHATSAPP_ALT = :whatsapp_alt
 
         # @!method self.values
         #   @return [Array<Symbol>]

@@ -4,17 +4,10 @@ module Zavudev
   module Resources
     class Invitations
       # Create a partner invitation link for a client to connect WhatsApp. The client
-      # opens the returned `url` and connects. Set `connectionType` to choose how they
-      # connect:
-      #
-      # - `whatsapp_waba` (default): the client completes Meta's embedded signup,
-      #   linking an official WhatsApp Business Account.
-      # - `whatsapp_alt`: the client links their number by scanning a QR code. Requires
-      #   the WhatsApp Alternative feature to be enabled for your team (otherwise
-      #   returns 400).
-      #
-      # Either way, the resulting sender is created in your project when the client
-      # completes the flow, and the invitation transitions to `completed`.
+      # opens the returned `url` and completes Meta's embedded signup, linking an
+      # official WhatsApp Business Account. The resulting sender is created in your
+      # project when the client completes the flow, and the invitation transitions to
+      # `completed`.
       sig do
         params(
           allowed_phone_countries: T::Array[String],
@@ -38,9 +31,7 @@ module Zavudev
         # Phone number of the client in E.164 format.
         client_phone: nil,
         # How the client connects WhatsApp. `whatsapp_waba` (default) runs Meta's embedded
-        # signup to link an official WhatsApp Business Account. `whatsapp_alt` links the
-        # number by scanning a QR code — available only to teams with the WhatsApp
-        # Alternative feature enabled.
+        # signup to link an official WhatsApp Business Account.
         connection_type: nil,
         # Number of days until the invitation expires.
         expires_in_days: nil,
