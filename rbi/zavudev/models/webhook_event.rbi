@@ -55,7 +55,12 @@ module Zavudev
     #
     # **Voice Agent events:** For every voice event, `data` carries `callId`,
     # `direction`, `from`, `to`, `status`, `durationSeconds`, `endReason`, and
-    # `transcriptAvailable`.
+    # `transcriptAvailable`. The terminal events (`call.completed`, `call.failed`)
+    # additionally carry `cost` — what the call was billed, in USD, combining
+    # telephony and the managed voice pipeline — and `currency`. They are dispatched
+    # after the call is charged, so `cost` is populated rather than zero; telephony
+    # can still be settling on an outbound call, in which case
+    # `GET /v1/calls/{callId}` holds the reconciled figure.
     #
     # - `call.initiated`: An outbound call was created and is dialing, or an inbound
     #   call was received. `data.status` = `ringing`
@@ -86,6 +91,8 @@ module Zavudev
       MESSAGE_DELIVERED =
         T.let(:"message.delivered", Zavudev::WebhookEvent::TaggedSymbol)
       MESSAGE_READ = T.let(:"message.read", Zavudev::WebhookEvent::TaggedSymbol)
+      MESSAGE_STATUS =
+        T.let(:"message.status", Zavudev::WebhookEvent::TaggedSymbol)
       MESSAGE_FAILED =
         T.let(:"message.failed", Zavudev::WebhookEvent::TaggedSymbol)
       MESSAGE_INBOUND =
