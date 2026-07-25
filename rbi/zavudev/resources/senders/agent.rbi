@@ -31,6 +31,7 @@ module Zavudev
             temperature: Float,
             trigger_on_channels: T::Array[String],
             trigger_on_message_types: T::Array[String],
+            voice: Zavudev::Senders::AgentCreateParams::Voice::OrHash,
             request_options: Zavudev::RequestOptions::OrHash
           ).returns(Zavudev::Senders::AgentResponse)
         end
@@ -49,6 +50,10 @@ module Zavudev
           temperature: nil,
           trigger_on_channels: nil,
           trigger_on_message_types: nil,
+          # Voice Agent configuration. Enable this to let the agent answer and place phone
+          # calls with Zavu's managed voice pipeline. Requires the Voice Agents feature to
+          # be enabled for your team.
+          voice: nil,
           request_options: {}
         )
         end
@@ -79,6 +84,7 @@ module Zavudev
             temperature: T.nilable(Float),
             trigger_on_channels: T::Array[String],
             trigger_on_message_types: T::Array[String],
+            voice: Zavudev::Senders::AgentUpdateParams::Voice::OrHash,
             request_options: Zavudev::RequestOptions::OrHash
           ).returns(Zavudev::Senders::AgentResponse)
         end
@@ -97,6 +103,10 @@ module Zavudev
           temperature: nil,
           trigger_on_channels: nil,
           trigger_on_message_types: nil,
+          # Voice Agent configuration. Patch this object to enable voice, change the
+          # greeting, or adjust call limits. Requires the Voice Agents feature to be enabled
+          # for your team.
+          voice: nil,
           request_options: {}
         )
         end

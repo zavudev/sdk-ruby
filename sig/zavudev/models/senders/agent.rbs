@@ -15,10 +15,12 @@ module Zavudev
           context_window_messages: Integer,
           include_contact_metadata: bool,
           max_tokens: Integer?,
+          sender_ids: ::Array[String],
           stats: Zavudev::Senders::SendersAgent::Stats,
           temperature: Float?,
           trigger_on_channels: ::Array[String],
-          trigger_on_message_types: ::Array[String]
+          trigger_on_message_types: ::Array[String],
+          voice: Zavudev::Senders::SendersAgent::Voice
         }
 
       class SendersAgent < Zavudev::Internal::Type::BaseModel
@@ -50,6 +52,10 @@ module Zavudev
 
         attr_accessor max_tokens: Integer?
 
+        attr_reader sender_ids: ::Array[String]?
+
+        def sender_ids=: (::Array[String]) -> ::Array[String]
+
         attr_reader stats: Zavudev::Senders::SendersAgent::Stats?
 
         def stats=: (
@@ -66,6 +72,12 @@ module Zavudev
 
         def trigger_on_message_types=: (::Array[String]) -> ::Array[String]
 
+        attr_reader voice: Zavudev::Senders::SendersAgent::Voice?
+
+        def voice=: (
+          Zavudev::Senders::SendersAgent::Voice
+        ) -> Zavudev::Senders::SendersAgent::Voice
+
         def initialize: (
           id: String,
           created_at: Time,
@@ -79,10 +91,12 @@ module Zavudev
           ?context_window_messages: Integer,
           ?include_contact_metadata: bool,
           ?max_tokens: Integer?,
+          ?sender_ids: ::Array[String],
           ?stats: Zavudev::Senders::SendersAgent::Stats,
           ?temperature: Float?,
           ?trigger_on_channels: ::Array[String],
-          ?trigger_on_message_types: ::Array[String]
+          ?trigger_on_message_types: ::Array[String],
+          ?voice: Zavudev::Senders::SendersAgent::Voice
         ) -> void
 
         def to_hash: -> {
@@ -98,10 +112,12 @@ module Zavudev
           context_window_messages: Integer,
           include_contact_metadata: bool,
           max_tokens: Integer?,
+          sender_ids: ::Array[String],
           stats: Zavudev::Senders::SendersAgent::Stats,
           temperature: Float?,
           trigger_on_channels: ::Array[String],
-          trigger_on_message_types: ::Array[String]
+          trigger_on_message_types: ::Array[String],
+          voice: Zavudev::Senders::SendersAgent::Voice
         }
 
         type stats =
@@ -135,6 +151,148 @@ module Zavudev
             total_invocations: Integer,
             total_tokens_used: Integer
           }
+        end
+
+        type voice =
+          {
+            enabled: bool,
+            greeting: String,
+            greetings: ::Hash[Symbol, String],
+            interruptible: bool,
+            language: String,
+            max_call_duration_minutes: Integer,
+            max_idle_seconds: Integer,
+            model: String,
+            record_calls: bool,
+            stt_model: String,
+            stt_provider: String,
+            transfer_phone_number: String,
+            tts_provider: String,
+            tts_voice_id: String,
+            voicemail_action: Zavudev::Models::Senders::SendersAgent::Voice::voicemail_action,
+            voicemail_message: String,
+            voice_speed: Float
+          }
+
+        class Voice < Zavudev::Internal::Type::BaseModel
+          attr_accessor enabled: bool
+
+          attr_reader greeting: String?
+
+          def greeting=: (String) -> String
+
+          attr_reader greetings: ::Hash[Symbol, String]?
+
+          def greetings=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+          attr_reader interruptible: bool?
+
+          def interruptible=: (bool) -> bool
+
+          attr_reader language: String?
+
+          def language=: (String) -> String
+
+          attr_reader max_call_duration_minutes: Integer?
+
+          def max_call_duration_minutes=: (Integer) -> Integer
+
+          attr_reader max_idle_seconds: Integer?
+
+          def max_idle_seconds=: (Integer) -> Integer
+
+          attr_reader model: String?
+
+          def model=: (String) -> String
+
+          attr_reader record_calls: bool?
+
+          def record_calls=: (bool) -> bool
+
+          attr_reader stt_model: String?
+
+          def stt_model=: (String) -> String
+
+          attr_reader stt_provider: String?
+
+          def stt_provider=: (String) -> String
+
+          attr_reader transfer_phone_number: String?
+
+          def transfer_phone_number=: (String) -> String
+
+          attr_reader tts_provider: String?
+
+          def tts_provider=: (String) -> String
+
+          attr_reader tts_voice_id: String?
+
+          def tts_voice_id=: (String) -> String
+
+          attr_reader voicemail_action: Zavudev::Models::Senders::SendersAgent::Voice::voicemail_action?
+
+          def voicemail_action=: (
+            Zavudev::Models::Senders::SendersAgent::Voice::voicemail_action
+          ) -> Zavudev::Models::Senders::SendersAgent::Voice::voicemail_action
+
+          attr_reader voicemail_message: String?
+
+          def voicemail_message=: (String) -> String
+
+          attr_reader voice_speed: Float?
+
+          def voice_speed=: (Float) -> Float
+
+          def initialize: (
+            enabled: bool,
+            ?greeting: String,
+            ?greetings: ::Hash[Symbol, String],
+            ?interruptible: bool,
+            ?language: String,
+            ?max_call_duration_minutes: Integer,
+            ?max_idle_seconds: Integer,
+            ?model: String,
+            ?record_calls: bool,
+            ?stt_model: String,
+            ?stt_provider: String,
+            ?transfer_phone_number: String,
+            ?tts_provider: String,
+            ?tts_voice_id: String,
+            ?voicemail_action: Zavudev::Models::Senders::SendersAgent::Voice::voicemail_action,
+            ?voicemail_message: String,
+            ?voice_speed: Float
+          ) -> void
+
+          def to_hash: -> {
+            enabled: bool,
+            greeting: String,
+            greetings: ::Hash[Symbol, String],
+            interruptible: bool,
+            language: String,
+            max_call_duration_minutes: Integer,
+            max_idle_seconds: Integer,
+            model: String,
+            record_calls: bool,
+            stt_model: String,
+            stt_provider: String,
+            transfer_phone_number: String,
+            tts_provider: String,
+            tts_voice_id: String,
+            voicemail_action: Zavudev::Models::Senders::SendersAgent::Voice::voicemail_action,
+            voicemail_message: String,
+            voice_speed: Float
+          }
+
+          type voicemail_action = :hangup | :leave_message
+
+          module VoicemailAction
+            extend Zavudev::Internal::Type::Enum
+
+            HANGUP: :hangup
+            LEAVE_MESSAGE: :leave_message
+
+            def self?.values: -> ::Array[Zavudev::Models::Senders::SendersAgent::Voice::voicemail_action]
+          end
         end
       end
     end

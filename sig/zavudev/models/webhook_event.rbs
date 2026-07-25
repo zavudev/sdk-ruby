@@ -12,6 +12,10 @@ module Zavudev
       | :"conversation.new"
       | :"template.status_changed"
       | :"invitation.status_changed"
+      | :"call.initiated"
+      | :"call.answered"
+      | :"call.completed"
+      | :"call.failed"
       | :"domain.verified"
       | :"domain.failed"
 
@@ -29,6 +33,10 @@ module Zavudev
       CONVERSATION_NEW: :"conversation.new"
       TEMPLATE_STATUS_CHANGED: :"template.status_changed"
       INVITATION_STATUS_CHANGED: :"invitation.status_changed"
+      CALL_INITIATED: :"call.initiated"
+      CALL_ANSWERED: :"call.answered"
+      CALL_COMPLETED: :"call.completed"
+      CALL_FAILED: :"call.failed"
       DOMAIN_VERIFIED: :"domain.verified"
       DOMAIN_FAILED: :"domain.failed"
 
