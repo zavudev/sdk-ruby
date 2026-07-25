@@ -23,6 +23,7 @@ module Zavudev
           ?temperature: Float,
           ?trigger_on_channels: ::Array[String],
           ?trigger_on_message_types: ::Array[String],
+          ?voice: Zavudev::Senders::AgentCreateParams::Voice,
           ?request_options: Zavudev::request_opts
         ) -> Zavudev::Senders::AgentResponse
 
@@ -45,6 +46,7 @@ module Zavudev
           ?temperature: Float?,
           ?trigger_on_channels: ::Array[String],
           ?trigger_on_message_types: ::Array[String],
+          ?voice: Zavudev::Senders::AgentUpdateParams::Voice,
           ?request_options: Zavudev::request_opts
         ) -> Zavudev::Senders::AgentResponse
 
