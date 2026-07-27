@@ -18,6 +18,12 @@ module Zavudev
 
       # Type of message. Non-text types are supported by WhatsApp and Telegram (varies
       # by type).
+      #
+      # `location_request` asks the recipient to share their location and is
+      # WhatsApp-only. It takes no `content` object — the prompt goes in `text` (max
+      # 1024 characters) and the button label is fixed by WhatsApp. The recipient's
+      # answer arrives as an inbound `location` message whose `content.replyToMessageId`
+      # is the ID of the request.
       sig { returns(Zavudev::MessageType::TaggedSymbol) }
       attr_accessor :message_type
 
@@ -131,6 +137,12 @@ module Zavudev
         created_at:,
         # Type of message. Non-text types are supported by WhatsApp and Telegram (varies
         # by type).
+        #
+        # `location_request` asks the recipient to share their location and is
+        # WhatsApp-only. It takes no `content` object — the prompt goes in `text` (max
+        # 1024 characters) and the button label is fixed by WhatsApp. The recipient's
+        # answer arrives as an inbound `location` message whose `content.replyToMessageId`
+        # is the ID of the request.
         message_type:,
         status:,
         to:,
