@@ -122,6 +122,12 @@ module Zavudev
         end
 
         # Get statistics for an AI agent including invocations, tokens, and costs.
+        #
+        # Covers the messaging channels only. Voice calls are not counted here: a call is
+        # a multi-turn conversation rather than one inbound message and one reply, so it
+        # is recorded as a call, not an execution. An agent that only answers phone calls
+        # reports zeros on every field. Use `GET /v1/calls` for voice activity, duration,
+        # and cost.
         sig do
           params(
             sender_id: String,
