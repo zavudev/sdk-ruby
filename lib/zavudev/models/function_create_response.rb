@@ -94,7 +94,9 @@ module Zavudev
         optional :description, String, nil?: true
 
         # @!attribute public_url
-        #   HTTPS endpoint when httpEnabled is true.
+        #   HTTPS endpoint, present only while httpEnabled is true. Null otherwise,
+        #   including for a function that was previously exposed — the stored URL stops
+        #   serving the moment HTTP is turned off, so it is never returned.
         #
         #   @return [String, nil]
         optional :public_url, String, api_name: :publicUrl, nil?: true
@@ -132,7 +134,7 @@ module Zavudev
         #
         #   @param description [String, nil]
         #
-        #   @param public_url [String, nil] HTTPS endpoint when httpEnabled is true.
+        #   @param public_url [String, nil] HTTPS endpoint, present only while httpEnabled is true. Null otherwise, includin
 
         # Runtime the function is deployed on.
         #
