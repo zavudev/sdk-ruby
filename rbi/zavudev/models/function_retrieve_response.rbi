@@ -108,7 +108,9 @@ module Zavudev
         sig { returns(T.nilable(String)) }
         attr_accessor :description
 
-        # HTTPS endpoint when httpEnabled is true.
+        # HTTPS endpoint, present only while httpEnabled is true. Null otherwise,
+        # including for a function that was previously exposed — the stored URL stops
+        # serving the moment HTTP is turned off, so it is never returned.
         sig { returns(T.nilable(String)) }
         attr_accessor :public_url
 
@@ -157,7 +159,9 @@ module Zavudev
           # ID of the deployment currently serving traffic.
           active_deployment_id: nil,
           description: nil,
-          # HTTPS endpoint when httpEnabled is true.
+          # HTTPS endpoint, present only while httpEnabled is true. Null otherwise,
+          # including for a function that was previously exposed — the stored URL stops
+          # serving the moment HTTP is turned off, so it is never returned.
           public_url: nil
         )
         end
