@@ -59,13 +59,16 @@ module Zavudev
       )
       end
 
-      # Update the draft source code and/or dependency map without triggering a build.
-      # Visible in the dashboard immediately, but the live (deployed) function does not
-      # change until `POST /v1/functions/{functionId}/deploy` runs.
+      # Update an existing function. `sourceCode` / `dependencies` edit the draft
+      # without triggering a build — they go live on the next
+      # `POST /v1/functions/{functionId}/deploy`. `httpEnabled` is applied to the
+      # deployed function immediately, so turning the public endpoint on or off does not
+      # require a redeploy.
       sig do
         params(
           function_id: String,
           dependencies: T::Hash[Symbol, String],
+          http_enabled: T::Boolean,
           source_code: String,
           request_options: Zavudev::RequestOptions::OrHash
         ).returns(Zavudev::Models::FunctionUpdateResponse)
@@ -75,7 +78,11 @@ module Zavudev
         function_id,
         # New dependency map (replaces existing dependencies).
         dependencies: nil,
-        # New source code to publish (replaces the draft).
+        # Expose the function on its public HTTPS URL, or take it down. Applies to the
+        # already-deployed function without redeploying; the URL is returned as
+        # `publicUrl`.
+        http_enabled: nil,
+        # New source code for the draft (replaces it).
         source_code: nil,
         request_options: {}
       )
