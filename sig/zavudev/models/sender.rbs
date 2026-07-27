@@ -5,6 +5,7 @@ module Zavudev
         id: String,
         name: String,
         phone_number: String,
+        channels: ::Array[String],
         created_at: Time,
         email_address: String,
         email_catch_all_enabled: bool,
@@ -21,6 +22,10 @@ module Zavudev
       attr_accessor name: String
 
       attr_accessor phone_number: String
+
+      attr_reader channels: ::Array[String]?
+
+      def channels=: (::Array[String]) -> ::Array[String]
 
       attr_reader created_at: Time?
 
@@ -58,6 +63,7 @@ module Zavudev
         id: String,
         name: String,
         phone_number: String,
+        ?channels: ::Array[String],
         ?created_at: Time,
         ?email_address: String,
         ?email_catch_all_enabled: bool,
@@ -72,6 +78,7 @@ module Zavudev
         id: String,
         name: String,
         phone_number: String,
+        channels: ::Array[String],
         created_at: Time,
         email_address: String,
         email_catch_all_enabled: bool,

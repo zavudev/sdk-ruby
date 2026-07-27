@@ -20,6 +20,15 @@ module Zavudev
       #   @return [String]
       required :phone_number, String, api_name: :phoneNumber
 
+      # @!attribute channels
+      #   Channels this sender can actually send on right now, computed from its
+      #   configuration. Empty means the sender cannot send or receive anything yet: a
+      #   phoneNumber alone does not enable SMS or voice. Check this rather than inferring
+      #   capability from phoneNumber or emailAddress.
+      #
+      #   @return [Array<String>, nil]
+      optional :channels, Zavudev::Internal::Type::ArrayOf[String]
+
       # @!attribute created_at
       #
       #   @return [Time, nil]
@@ -69,7 +78,7 @@ module Zavudev
       #   @return [Zavudev::Models::Sender::Whatsapp, nil]
       optional :whatsapp, -> { Zavudev::Sender::Whatsapp }
 
-      # @!method initialize(id:, name:, phone_number:, created_at: nil, email_address: nil, email_catch_all_enabled: nil, email_receiving_enabled: nil, is_default: nil, updated_at: nil, webhook: nil, whatsapp: nil)
+      # @!method initialize(id:, name:, phone_number:, channels: nil, created_at: nil, email_address: nil, email_catch_all_enabled: nil, email_receiving_enabled: nil, is_default: nil, updated_at: nil, webhook: nil, whatsapp: nil)
       #   Some parameter documentations has been truncated, see {Zavudev::Models::Sender}
       #   for more details.
       #
@@ -78,6 +87,8 @@ module Zavudev
       #   @param name [String]
       #
       #   @param phone_number [String] Phone number in E.164 format.
+      #
+      #   @param channels [Array<String>] Channels this sender can actually send on right now, computed from its configura
       #
       #   @param created_at [Time]
       #
