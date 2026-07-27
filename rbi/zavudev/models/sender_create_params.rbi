@@ -46,8 +46,20 @@ module Zavudev
       sig { params(email_receiving_enabled: T::Boolean).void }
       attr_writer :email_receiving_enabled
 
-      # Phone number in E.164 format. Required for phone-based channels (SMS, WhatsApp).
-      # Omit for an email-only sender.
+      # Let this sender place and answer phone calls. Requires `phoneNumber`; enabling
+      # it without one returns 400. Check the `channels` array on the response to
+      # confirm `voice` is on.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_reader :enable_voice
+
+      sig { params(enable_voice: T::Boolean).void }
+      attr_writer :enable_voice
+
+      # Phone number in E.164 format, and it must be a number your project already owns
+      # (see `GET /v1/phone-numbers`). The number is routed to the sender as part of
+      # this call, which is what turns the SMS channel on. Passing a number the project
+      # does not own, or one already attached to another sender, returns 400 rather than
+      # creating a sender that cannot send. Omit for an email-only sender.
       sig { returns(T.nilable(String)) }
       attr_reader :phone_number
 
@@ -83,6 +95,7 @@ module Zavudev
           email_domain_id: String,
           email_from_name: String,
           email_receiving_enabled: T::Boolean,
+          enable_voice: T::Boolean,
           phone_number: String,
           set_as_default: T::Boolean,
           webhook_events: T::Array[Zavudev::WebhookEvent::OrSymbol],
@@ -104,8 +117,15 @@ module Zavudev
         # Enable inbound email receiving on this sender. Requires a verified MX record on
         # the domain; ignored otherwise.
         email_receiving_enabled: nil,
-        # Phone number in E.164 format. Required for phone-based channels (SMS, WhatsApp).
-        # Omit for an email-only sender.
+        # Let this sender place and answer phone calls. Requires `phoneNumber`; enabling
+        # it without one returns 400. Check the `channels` array on the response to
+        # confirm `voice` is on.
+        enable_voice: nil,
+        # Phone number in E.164 format, and it must be a number your project already owns
+        # (see `GET /v1/phone-numbers`). The number is routed to the sender as part of
+        # this call, which is what turns the SMS channel on. Passing a number the project
+        # does not own, or one already attached to another sender, returns 400 rather than
+        # creating a sender that cannot send. Omit for an email-only sender.
         phone_number: nil,
         set_as_default: nil,
         # Events to subscribe to.
@@ -124,6 +144,7 @@ module Zavudev
             email_domain_id: String,
             email_from_name: String,
             email_receiving_enabled: T::Boolean,
+            enable_voice: T::Boolean,
             phone_number: String,
             set_as_default: T::Boolean,
             webhook_events: T::Array[Zavudev::WebhookEvent::OrSymbol],

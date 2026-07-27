@@ -40,9 +40,20 @@ module Zavudev
       #   @return [Boolean, nil]
       optional :email_receiving_enabled, Zavudev::Internal::Type::Boolean, api_name: :emailReceivingEnabled
 
+      # @!attribute enable_voice
+      #   Let this sender place and answer phone calls. Requires `phoneNumber`; enabling
+      #   it without one returns 400. Check the `channels` array on the response to
+      #   confirm `voice` is on.
+      #
+      #   @return [Boolean, nil]
+      optional :enable_voice, Zavudev::Internal::Type::Boolean, api_name: :enableVoice
+
       # @!attribute phone_number
-      #   Phone number in E.164 format. Required for phone-based channels (SMS, WhatsApp).
-      #   Omit for an email-only sender.
+      #   Phone number in E.164 format, and it must be a number your project already owns
+      #   (see `GET /v1/phone-numbers`). The number is routed to the sender as part of
+      #   this call, which is what turns the SMS channel on. Passing a number the project
+      #   does not own, or one already attached to another sender, returns 400 rather than
+      #   creating a sender that cannot send. Omit for an email-only sender.
       #
       #   @return [String, nil]
       optional :phone_number, String, api_name: :phoneNumber
@@ -66,7 +77,7 @@ module Zavudev
       #   @return [String, nil]
       optional :webhook_url, String, api_name: :webhookUrl
 
-      # @!method initialize(name:, email_address: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, phone_number: nil, set_as_default: nil, webhook_events: nil, webhook_url: nil, request_options: {})
+      # @!method initialize(name:, email_address: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, enable_voice: nil, phone_number: nil, set_as_default: nil, webhook_events: nil, webhook_url: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Zavudev::Models::SenderCreateParams} for more details.
       #
@@ -80,7 +91,9 @@ module Zavudev
       #
       #   @param email_receiving_enabled [Boolean] Enable inbound email receiving on this sender. Requires a verified MX record on
       #
-      #   @param phone_number [String] Phone number in E.164 format. Required for phone-based channels (SMS, WhatsApp).
+      #   @param enable_voice [Boolean] Let this sender place and answer phone calls. Requires `phoneNumber`; enabling i
+      #
+      #   @param phone_number [String] Phone number in E.164 format, and it must be a number your project already owns
       #
       #   @param set_as_default [Boolean]
       #

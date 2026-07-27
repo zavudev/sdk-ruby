@@ -46,6 +46,14 @@ module Zavudev
       #   @return [Boolean, nil]
       optional :email_receiving_enabled, Zavudev::Internal::Type::Boolean, api_name: :emailReceivingEnabled
 
+      # @!attribute enable_voice
+      #   Turn the voice channel on or off. The sender must already have a phone number
+      #   provisioned for calls; enabling it otherwise returns 400 instead of storing a
+      #   flag that changes nothing. Confirm with the `channels` array on the response.
+      #
+      #   @return [Boolean, nil]
+      optional :enable_voice, Zavudev::Internal::Type::Boolean, api_name: :enableVoice
+
       # @!attribute name
       #
       #   @return [String, nil]
@@ -76,7 +84,7 @@ module Zavudev
       #   @return [String, nil]
       optional :webhook_url, String, api_name: :webhookUrl, nil?: true
 
-      # @!method initialize(sender_id:, email_address: nil, email_catch_all_enabled: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, name: nil, set_as_default: nil, webhook_active: nil, webhook_events: nil, webhook_url: nil, request_options: {})
+      # @!method initialize(sender_id:, email_address: nil, email_catch_all_enabled: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, enable_voice: nil, name: nil, set_as_default: nil, webhook_active: nil, webhook_events: nil, webhook_url: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Zavudev::Models::SenderUpdateParams} for more details.
       #
@@ -91,6 +99,8 @@ module Zavudev
       #   @param email_from_name [String] Display name shown in the recipient's inbox for the email channel.
       #
       #   @param email_receiving_enabled [Boolean] Enable or disable inbound email receiving for this sender.
+      #
+      #   @param enable_voice [Boolean] Turn the voice channel on or off. The sender must already have a phone number pr
       #
       #   @param name [String]
       #

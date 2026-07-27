@@ -13,6 +13,13 @@ module Zavudev
       #   @return [String]
       required :country_code, String
 
+      # @!attribute capabilities
+      #   Comma-separated capabilities the number must have: `sms`, `voice`, `mms`.
+      #   Numbers missing any of them are dropped.
+      #
+      #   @return [String, nil]
+      optional :capabilities, String
+
       # @!attribute contains
       #   Search for numbers containing this string.
       #
@@ -31,8 +38,13 @@ module Zavudev
       #   @return [Symbol, Zavudev::Models::PhoneNumberType, nil]
       optional :type, enum: -> { Zavudev::PhoneNumberType }
 
-      # @!method initialize(country_code:, contains: nil, limit: nil, type: nil, request_options: {})
+      # @!method initialize(country_code:, capabilities: nil, contains: nil, limit: nil, type: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {Zavudev::Models::PhoneNumberSearchAvailableParams} for more details.
+      #
       #   @param country_code [String] Two-letter ISO country code.
+      #
+      #   @param capabilities [String] Comma-separated capabilities the number must have: `sms`, `voice`, `mms`. Number
       #
       #   @param contains [String] Search for numbers containing this string.
       #

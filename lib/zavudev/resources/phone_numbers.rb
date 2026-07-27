@@ -147,11 +147,16 @@ module Zavudev
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Zavudev::Models::PhoneNumberSearchAvailableParams} for more details.
+      #
       # Search for available phone numbers to purchase by country and type.
       #
-      # @overload search_available(country_code:, contains: nil, limit: nil, type: nil, request_options: {})
+      # @overload search_available(country_code:, capabilities: nil, contains: nil, limit: nil, type: nil, request_options: {})
       #
       # @param country_code [String] Two-letter ISO country code.
+      #
+      # @param capabilities [String] Comma-separated capabilities the number must have: `sms`, `voice`, `mms`. Number
       #
       # @param contains [String] Search for numbers containing this string.
       #

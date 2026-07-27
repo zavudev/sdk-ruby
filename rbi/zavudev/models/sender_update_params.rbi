@@ -53,6 +53,15 @@ module Zavudev
       sig { params(email_receiving_enabled: T::Boolean).void }
       attr_writer :email_receiving_enabled
 
+      # Turn the voice channel on or off. The sender must already have a phone number
+      # provisioned for calls; enabling it otherwise returns 400 instead of storing a
+      # flag that changes nothing. Confirm with the `channels` array on the response.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_reader :enable_voice
+
+      sig { params(enable_voice: T::Boolean).void }
+      attr_writer :enable_voice
+
       sig { returns(T.nilable(String)) }
       attr_reader :name
 
@@ -93,6 +102,7 @@ module Zavudev
           email_domain_id: String,
           email_from_name: String,
           email_receiving_enabled: T::Boolean,
+          enable_voice: T::Boolean,
           name: String,
           set_as_default: T::Boolean,
           webhook_active: T::Boolean,
@@ -117,6 +127,10 @@ module Zavudev
         email_from_name: nil,
         # Enable or disable inbound email receiving for this sender.
         email_receiving_enabled: nil,
+        # Turn the voice channel on or off. The sender must already have a phone number
+        # provisioned for calls; enabling it otherwise returns 400 instead of storing a
+        # flag that changes nothing. Confirm with the `channels` array on the response.
+        enable_voice: nil,
         name: nil,
         set_as_default: nil,
         # Whether the webhook is active.
@@ -138,6 +152,7 @@ module Zavudev
             email_domain_id: String,
             email_from_name: String,
             email_receiving_enabled: T::Boolean,
+            enable_voice: T::Boolean,
             name: String,
             set_as_default: T::Boolean,
             webhook_active: T::Boolean,
