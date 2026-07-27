@@ -39,6 +39,7 @@ module Zavudev
 
       def search_available: (
         country_code: String,
+        ?capabilities: String,
         ?contains: String,
         ?limit: Integer,
         ?type: Zavudev::Models::phone_number_type,

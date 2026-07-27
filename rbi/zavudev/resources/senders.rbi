@@ -17,6 +17,7 @@ module Zavudev
           email_domain_id: String,
           email_from_name: String,
           email_receiving_enabled: T::Boolean,
+          enable_voice: T::Boolean,
           phone_number: String,
           set_as_default: T::Boolean,
           webhook_events: T::Array[Zavudev::WebhookEvent::OrSymbol],
@@ -38,8 +39,15 @@ module Zavudev
         # Enable inbound email receiving on this sender. Requires a verified MX record on
         # the domain; ignored otherwise.
         email_receiving_enabled: nil,
-        # Phone number in E.164 format. Required for phone-based channels (SMS, WhatsApp).
-        # Omit for an email-only sender.
+        # Let this sender place and answer phone calls. Requires `phoneNumber`; enabling
+        # it without one returns 400. Check the `channels` array on the response to
+        # confirm `voice` is on.
+        enable_voice: nil,
+        # Phone number in E.164 format, and it must be a number your project already owns
+        # (see `GET /v1/phone-numbers`). The number is routed to the sender as part of
+        # this call, which is what turns the SMS channel on. Passing a number the project
+        # does not own, or one already attached to another sender, returns 400 rather than
+        # creating a sender that cannot send. Omit for an email-only sender.
         phone_number: nil,
         set_as_default: nil,
         # Events to subscribe to.
@@ -69,6 +77,7 @@ module Zavudev
           email_domain_id: String,
           email_from_name: String,
           email_receiving_enabled: T::Boolean,
+          enable_voice: T::Boolean,
           name: String,
           set_as_default: T::Boolean,
           webhook_active: T::Boolean,
@@ -93,6 +102,10 @@ module Zavudev
         email_from_name: nil,
         # Enable or disable inbound email receiving for this sender.
         email_receiving_enabled: nil,
+        # Turn the voice channel on or off. The sender must already have a phone number
+        # provisioned for calls; enabling it otherwise returns 400 instead of storing a
+        # flag that changes nothing. Confirm with the `channels` array on the response.
+        enable_voice: nil,
         name: nil,
         set_as_default: nil,
         # Whether the webhook is active.

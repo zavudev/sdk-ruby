@@ -102,6 +102,7 @@ module Zavudev
       sig do
         params(
           country_code: String,
+          capabilities: String,
           contains: String,
           limit: Integer,
           type: Zavudev::PhoneNumberType::OrSymbol,
@@ -111,6 +112,9 @@ module Zavudev
       def search_available(
         # Two-letter ISO country code.
         country_code:,
+        # Comma-separated capabilities the number must have: `sms`, `voice`, `mms`.
+        # Numbers missing any of them are dropped.
+        capabilities: nil,
         # Search for numbers containing this string.
         contains: nil,
         # Maximum number of results to return.
