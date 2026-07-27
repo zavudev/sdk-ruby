@@ -18,18 +18,31 @@ module Zavudev
       #   @return [Hash{Symbol=>String}, nil]
       optional :dependencies, Zavudev::Internal::Type::HashOf[String]
 
+      # @!attribute http_enabled
+      #   Expose the function on its public HTTPS URL, or take it down. Applies to the
+      #   already-deployed function without redeploying; the URL is returned as
+      #   `publicUrl`.
+      #
+      #   @return [Boolean, nil]
+      optional :http_enabled, Zavudev::Internal::Type::Boolean, api_name: :httpEnabled
+
       # @!attribute source_code
-      #   New source code to publish (replaces the draft).
+      #   New source code for the draft (replaces it).
       #
       #   @return [String, nil]
       optional :source_code, String, api_name: :sourceCode
 
-      # @!method initialize(function_id:, dependencies: nil, source_code: nil, request_options: {})
+      # @!method initialize(function_id:, dependencies: nil, http_enabled: nil, source_code: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {Zavudev::Models::FunctionUpdateParams} for more details.
+      #
       #   @param function_id [String]
       #
       #   @param dependencies [Hash{Symbol=>String}] New dependency map (replaces existing dependencies).
       #
-      #   @param source_code [String] New source code to publish (replaces the draft).
+      #   @param http_enabled [Boolean] Expose the function on its public HTTPS URL, or take it down. Applies to the alr
+      #
+      #   @param source_code [String] New source code for the draft (replaces it).
       #
       #   @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}]
     end

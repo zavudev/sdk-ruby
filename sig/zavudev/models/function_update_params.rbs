@@ -4,6 +4,7 @@ module Zavudev
       {
         function_id: String,
         dependencies: ::Hash[Symbol, String],
+        http_enabled: bool,
         source_code: String
       }
       & Zavudev::Internal::Type::request_parameters
@@ -18,6 +19,10 @@ module Zavudev
 
       def dependencies=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
 
+      attr_reader http_enabled: bool?
+
+      def http_enabled=: (bool) -> bool
+
       attr_reader source_code: String?
 
       def source_code=: (String) -> String
@@ -25,6 +30,7 @@ module Zavudev
       def initialize: (
         function_id: String,
         ?dependencies: ::Hash[Symbol, String],
+        ?http_enabled: bool,
         ?source_code: String,
         ?request_options: Zavudev::request_opts
       ) -> void
@@ -32,6 +38,7 @@ module Zavudev
       def to_hash: -> {
         function_id: String,
         dependencies: ::Hash[Symbol, String],
+        http_enabled: bool,
         source_code: String,
         request_options: Zavudev::RequestOptions
       }

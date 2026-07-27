@@ -24,6 +24,7 @@ module Zavudev
       def update: (
         String function_id,
         ?dependencies: ::Hash[Symbol, String],
+        ?http_enabled: bool,
         ?source_code: String,
         ?request_options: Zavudev::request_opts
       ) -> Zavudev::Models::FunctionUpdateResponse

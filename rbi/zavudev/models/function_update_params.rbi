@@ -21,7 +21,16 @@ module Zavudev
       sig { params(dependencies: T::Hash[Symbol, String]).void }
       attr_writer :dependencies
 
-      # New source code to publish (replaces the draft).
+      # Expose the function on its public HTTPS URL, or take it down. Applies to the
+      # already-deployed function without redeploying; the URL is returned as
+      # `publicUrl`.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_reader :http_enabled
+
+      sig { params(http_enabled: T::Boolean).void }
+      attr_writer :http_enabled
+
+      # New source code for the draft (replaces it).
       sig { returns(T.nilable(String)) }
       attr_reader :source_code
 
@@ -32,6 +41,7 @@ module Zavudev
         params(
           function_id: String,
           dependencies: T::Hash[Symbol, String],
+          http_enabled: T::Boolean,
           source_code: String,
           request_options: Zavudev::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -40,7 +50,11 @@ module Zavudev
         function_id:,
         # New dependency map (replaces existing dependencies).
         dependencies: nil,
-        # New source code to publish (replaces the draft).
+        # Expose the function on its public HTTPS URL, or take it down. Applies to the
+        # already-deployed function without redeploying; the URL is returned as
+        # `publicUrl`.
+        http_enabled: nil,
+        # New source code for the draft (replaces it).
         source_code: nil,
         request_options: {}
       )
@@ -51,6 +65,7 @@ module Zavudev
           {
             function_id: String,
             dependencies: T::Hash[Symbol, String],
+            http_enabled: T::Boolean,
             source_code: String,
             request_options: Zavudev::RequestOptions
           }
