@@ -44,6 +44,13 @@ module Zavudev
         sig { params(inbound_message_id: String).void }
         attr_writer :inbound_message_id
 
+        # Knowledge-base chunks retrieved for this answer. Zero on an agent that has
+        # documents attached means the reply was not grounded in them, which is otherwise
+        # indistinguishable from a correct answer in this record. Absent on executions
+        # recorded before this field existed, which is not the same as zero.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :knowledge_chunks_used
+
         sig { returns(T.nilable(String)) }
         attr_accessor :response_message_id
 
@@ -62,6 +69,7 @@ module Zavudev
             status: Zavudev::Senders::AgentExecutionStatus::OrSymbol,
             error_message: T.nilable(String),
             inbound_message_id: String,
+            knowledge_chunks_used: T.nilable(Integer),
             response_message_id: T.nilable(String),
             response_text: T.nilable(String)
           ).returns(T.attached_class)
@@ -79,6 +87,11 @@ module Zavudev
           status:,
           error_message: nil,
           inbound_message_id: nil,
+          # Knowledge-base chunks retrieved for this answer. Zero on an agent that has
+          # documents attached means the reply was not grounded in them, which is otherwise
+          # indistinguishable from a correct answer in this record. Absent on executions
+          # recorded before this field existed, which is not the same as zero.
+          knowledge_chunks_used: nil,
           response_message_id: nil,
           response_text: nil
         )
@@ -97,6 +110,7 @@ module Zavudev
               status: Zavudev::Senders::AgentExecutionStatus::TaggedSymbol,
               error_message: T.nilable(String),
               inbound_message_id: String,
+              knowledge_chunks_used: T.nilable(Integer),
               response_message_id: T.nilable(String),
               response_text: T.nilable(String)
             }

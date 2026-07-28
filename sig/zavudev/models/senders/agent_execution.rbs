@@ -13,6 +13,7 @@ module Zavudev
           status: Zavudev::Models::Senders::agent_execution_status,
           error_message: String?,
           inbound_message_id: String,
+          knowledge_chunks_used: Integer?,
           response_message_id: String?,
           response_text: String?
         }
@@ -40,6 +41,8 @@ module Zavudev
 
         def inbound_message_id=: (String) -> String
 
+        attr_accessor knowledge_chunks_used: Integer?
+
         attr_accessor response_message_id: String?
 
         attr_accessor response_text: String?
@@ -55,6 +58,7 @@ module Zavudev
           status: Zavudev::Models::Senders::agent_execution_status,
           ?error_message: String?,
           ?inbound_message_id: String,
+          ?knowledge_chunks_used: Integer?,
           ?response_message_id: String?,
           ?response_text: String?
         ) -> void
@@ -70,6 +74,7 @@ module Zavudev
           status: Zavudev::Models::Senders::agent_execution_status,
           error_message: String?,
           inbound_message_id: String,
+          knowledge_chunks_used: Integer?,
           response_message_id: String?,
           response_text: String?
         }

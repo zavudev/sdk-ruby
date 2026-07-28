@@ -47,6 +47,7 @@ class Zavudev::Test::Resources::Senders::Agent::ExecutionsTest < Zavudev::Test::
         status: Zavudev::Senders::AgentExecutionStatus,
         error_message: String | nil,
         inbound_message_id: String | nil,
+        knowledge_chunks_used: Integer | nil,
         response_message_id: String | nil,
         response_text: String | nil
       }
