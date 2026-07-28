@@ -56,6 +56,15 @@ module Zavudev
         #   @return [String, nil]
         optional :inbound_message_id, String, api_name: :inboundMessageId
 
+        # @!attribute knowledge_chunks_used
+        #   Knowledge-base chunks retrieved for this answer. Zero on an agent that has
+        #   documents attached means the reply was not grounded in them, which is otherwise
+        #   indistinguishable from a correct answer in this record. Absent on executions
+        #   recorded before this field existed, which is not the same as zero.
+        #
+        #   @return [Integer, nil]
+        optional :knowledge_chunks_used, Integer, api_name: :knowledgeChunksUsed, nil?: true
+
         # @!attribute response_message_id
         #
         #   @return [String, nil]
@@ -66,7 +75,10 @@ module Zavudev
         #   @return [String, nil]
         optional :response_text, String, api_name: :responseText, nil?: true
 
-        # @!method initialize(id:, agent_id:, cost:, created_at:, input_tokens:, latency_ms:, output_tokens:, status:, error_message: nil, inbound_message_id: nil, response_message_id: nil, response_text: nil)
+        # @!method initialize(id:, agent_id:, cost:, created_at:, input_tokens:, latency_ms:, output_tokens:, status:, error_message: nil, inbound_message_id: nil, knowledge_chunks_used: nil, response_message_id: nil, response_text: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Zavudev::Models::Senders::AgentExecution} for more details.
+        #
         #   @param id [String]
         #
         #   @param agent_id [String]
@@ -86,6 +98,8 @@ module Zavudev
         #   @param error_message [String, nil]
         #
         #   @param inbound_message_id [String]
+        #
+        #   @param knowledge_chunks_used [Integer, nil] Knowledge-base chunks retrieved for this answer. Zero on an agent that has docum
         #
         #   @param response_message_id [String, nil]
         #
