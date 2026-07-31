@@ -68,12 +68,13 @@ module Zavudev
         request_options: Zavudev::RequestOptions
       }
 
-      type connection_type = :whatsapp_waba
+      type connection_type = :whatsapp_waba | :messenger
 
       module ConnectionType
         extend Zavudev::Internal::Type::Enum
 
         WHATSAPP_WABA: :whatsapp_waba
+        MESSENGER: :messenger
 
         def self?.values: -> ::Array[Zavudev::Models::InvitationCreateParams::connection_type]
       end

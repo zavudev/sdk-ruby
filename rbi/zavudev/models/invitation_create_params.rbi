@@ -11,7 +11,8 @@ module Zavudev
           T.any(Zavudev::InvitationCreateParams, Zavudev::Internal::AnyHash)
         end
 
-      # ISO country codes for allowed phone numbers.
+      # ISO country codes for allowed phone numbers. Only valid when `connectionType` is
+      # `whatsapp_waba` — sending it with `messenger` returns 400.
       sig { returns(T.nilable(T::Array[String])) }
       attr_reader :allowed_phone_countries
 
@@ -39,8 +40,19 @@ module Zavudev
       sig { params(client_phone: String).void }
       attr_writer :client_phone
 
-      # How the client connects WhatsApp. `whatsapp_waba` (default) runs Meta's embedded
-      # signup to link an official WhatsApp Business Account.
+      # Which Meta channel the client connects, and how.
+      #
+      # - `whatsapp_waba` (default): Meta's embedded signup links an official WhatsApp
+      #   Business Account. Accepts `phoneNumberId` and `allowedPhoneCountries`.
+      # - `messenger`: the client authorizes with Facebook and picks a Facebook Page
+      #   they administer. The Page's Messenger inbox — including Marketplace chats — is
+      #   routed to Zavu. They must be an admin of at least one Page. A Page can only be
+      #   connected to one Zavu project at a time: if the client picks a Page that
+      #   another project already connected, the newer connection wins and the older one
+      #   is disconnected.
+      #
+      # One invitation connects one channel. To onboard a client on several channels,
+      # create one invitation per channel; each completes into its own sender.
       sig do
         returns(
           T.nilable(Zavudev::InvitationCreateParams::ConnectionType::OrSymbol)
@@ -64,7 +76,9 @@ module Zavudev
       attr_writer :expires_in_days
 
       # ID of a Zavu phone number to pre-assign for WhatsApp registration. If provided,
-      # the client will use this number instead of their own.
+      # the client will use this number instead of their own. Only valid when
+      # `connectionType` is `whatsapp_waba` — sending it with `messenger` returns 400,
+      # since a Facebook Page has no phone number.
       sig { returns(T.nilable(String)) }
       attr_reader :phone_number_id
 
@@ -85,7 +99,8 @@ module Zavudev
         ).returns(T.attached_class)
       end
       def self.new(
-        # ISO country codes for allowed phone numbers.
+        # ISO country codes for allowed phone numbers. Only valid when `connectionType` is
+        # `whatsapp_waba` — sending it with `messenger` returns 400.
         allowed_phone_countries: nil,
         # Email of the client being invited.
         client_email: nil,
@@ -93,13 +108,26 @@ module Zavudev
         client_name: nil,
         # Phone number of the client in E.164 format.
         client_phone: nil,
-        # How the client connects WhatsApp. `whatsapp_waba` (default) runs Meta's embedded
-        # signup to link an official WhatsApp Business Account.
+        # Which Meta channel the client connects, and how.
+        #
+        # - `whatsapp_waba` (default): Meta's embedded signup links an official WhatsApp
+        #   Business Account. Accepts `phoneNumberId` and `allowedPhoneCountries`.
+        # - `messenger`: the client authorizes with Facebook and picks a Facebook Page
+        #   they administer. The Page's Messenger inbox — including Marketplace chats — is
+        #   routed to Zavu. They must be an admin of at least one Page. A Page can only be
+        #   connected to one Zavu project at a time: if the client picks a Page that
+        #   another project already connected, the newer connection wins and the older one
+        #   is disconnected.
+        #
+        # One invitation connects one channel. To onboard a client on several channels,
+        # create one invitation per channel; each completes into its own sender.
         connection_type: nil,
         # Number of days until the invitation expires.
         expires_in_days: nil,
         # ID of a Zavu phone number to pre-assign for WhatsApp registration. If provided,
-        # the client will use this number instead of their own.
+        # the client will use this number instead of their own. Only valid when
+        # `connectionType` is `whatsapp_waba` — sending it with `messenger` returns 400,
+        # since a Facebook Page has no phone number.
         phone_number_id: nil,
         request_options: {}
       )
@@ -123,8 +151,19 @@ module Zavudev
       def to_hash
       end
 
-      # How the client connects WhatsApp. `whatsapp_waba` (default) runs Meta's embedded
-      # signup to link an official WhatsApp Business Account.
+      # Which Meta channel the client connects, and how.
+      #
+      # - `whatsapp_waba` (default): Meta's embedded signup links an official WhatsApp
+      #   Business Account. Accepts `phoneNumberId` and `allowedPhoneCountries`.
+      # - `messenger`: the client authorizes with Facebook and picks a Facebook Page
+      #   they administer. The Page's Messenger inbox — including Marketplace chats — is
+      #   routed to Zavu. They must be an admin of at least one Page. A Page can only be
+      #   connected to one Zavu project at a time: if the client picks a Page that
+      #   another project already connected, the newer connection wins and the older one
+      #   is disconnected.
+      #
+      # One invitation connects one channel. To onboard a client on several channels,
+      # create one invitation per channel; each completes into its own sender.
       module ConnectionType
         extend Zavudev::Internal::Type::Enum
 
@@ -137,6 +176,11 @@ module Zavudev
         WHATSAPP_WABA =
           T.let(
             :whatsapp_waba,
+            Zavudev::InvitationCreateParams::ConnectionType::TaggedSymbol
+          )
+        MESSENGER =
+          T.let(
+            :messenger,
             Zavudev::InvitationCreateParams::ConnectionType::TaggedSymbol
           )
 
