@@ -40,7 +40,8 @@ module Zavudev
         request_options: Zavudev::RequestOptions
       }
 
-      type status = :pending | :in_progress | :completed | :expired | :cancelled
+      type status =
+        :pending | :in_progress | :completed | :expired | :cancelled | :failed
 
       module Status
         extend Zavudev::Internal::Type::Enum
@@ -50,6 +51,7 @@ module Zavudev
         COMPLETED: :completed
         EXPIRED: :expired
         CANCELLED: :cancelled
+        FAILED: :failed
 
         def self?.values: -> ::Array[Zavudev::Models::InvitationListParams::status]
       end

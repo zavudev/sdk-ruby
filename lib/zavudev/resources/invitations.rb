@@ -6,15 +6,25 @@ module Zavudev
       # Some parameter documentations has been truncated, see
       # {Zavudev::Models::InvitationCreateParams} for more details.
       #
-      # Create a partner invitation link for a client to connect WhatsApp. The client
-      # opens the returned `url` and completes Meta's embedded signup, linking an
-      # official WhatsApp Business Account. The resulting sender is created in your
-      # project when the client completes the flow, and the invitation transitions to
+      # Create a partner invitation link for a client to connect a Meta channel. The
+      # client opens the returned `url` and authorizes with Meta; the resulting sender
+      # is created in your project when they finish, and the invitation transitions to
       # `completed`.
+      #
+      # `connectionType` picks the channel:
+      #
+      # - `whatsapp_waba` (default): Meta's embedded signup links an official WhatsApp
+      #   Business Account.
+      # - `messenger`: the client picks a Facebook Page they administer; its Messenger
+      #   inbox (including Marketplace chats) is routed to Zavu.
+      #
+      # One invitation connects one channel — create one per channel to onboard a client
+      # on several. `phoneNumberId` and `allowedPhoneCountries` apply to `whatsapp_waba`
+      # only.
       #
       # @overload create(allowed_phone_countries: nil, client_email: nil, client_name: nil, client_phone: nil, connection_type: nil, expires_in_days: nil, phone_number_id: nil, request_options: {})
       #
-      # @param allowed_phone_countries [Array<String>] ISO country codes for allowed phone numbers.
+      # @param allowed_phone_countries [Array<String>] ISO country codes for allowed phone numbers. Only valid when `connectionType` is
       #
       # @param client_email [String] Email of the client being invited.
       #
@@ -22,7 +32,7 @@ module Zavudev
       #
       # @param client_phone [String] Phone number of the client in E.164 format.
       #
-      # @param connection_type [Symbol, Zavudev::Models::InvitationCreateParams::ConnectionType] How the client connects WhatsApp. `whatsapp_waba` (default) runs Meta's embedded
+      # @param connection_type [Symbol, Zavudev::Models::InvitationCreateParams::ConnectionType] Which Meta channel the client connects, and how.
       #
       # @param expires_in_days [Integer] Number of days until the invitation expires.
       #
@@ -63,6 +73,9 @@ module Zavudev
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Zavudev::Models::InvitationListParams} for more details.
+      #
       # List partner invitations for this project.
       #
       # @overload list(cursor: nil, limit: nil, status: nil, request_options: {})

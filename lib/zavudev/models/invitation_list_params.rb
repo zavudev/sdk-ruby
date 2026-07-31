@@ -20,10 +20,18 @@ module Zavudev
       # @!attribute status
       #   Current status of the partner invitation.
       #
+      #   `failed` means the client started the connection and it did not finish (they
+      #   cancelled Meta's dialog, denied a permission, or abandoned the tab). A failed
+      #   invitation is still usable: the same link can be retried, and it moves back to
+      #   `in_progress` when the client tries again.
+      #
       #   @return [Symbol, Zavudev::Models::InvitationListParams::Status, nil]
       optional :status, enum: -> { Zavudev::InvitationListParams::Status }
 
       # @!method initialize(cursor: nil, limit: nil, status: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {Zavudev::Models::InvitationListParams} for more details.
+      #
       #   @param cursor [String]
       #
       #   @param limit [Integer]
@@ -33,6 +41,11 @@ module Zavudev
       #   @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}]
 
       # Current status of the partner invitation.
+      #
+      # `failed` means the client started the connection and it did not finish (they
+      # cancelled Meta's dialog, denied a permission, or abandoned the tab). A failed
+      # invitation is still usable: the same link can be retried, and it moves back to
+      # `in_progress` when the client tries again.
       module Status
         extend Zavudev::Internal::Type::Enum
 
@@ -41,6 +54,7 @@ module Zavudev
         COMPLETED = :completed
         EXPIRED = :expired
         CANCELLED = :cancelled
+        FAILED = :failed
 
         # @!method self.values
         #   @return [Array<Symbol>]

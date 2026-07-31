@@ -24,6 +24,11 @@ module Zavudev
       attr_writer :limit
 
       # Current status of the partner invitation.
+      #
+      # `failed` means the client started the connection and it did not finish (they
+      # cancelled Meta's dialog, denied a permission, or abandoned the tab). A failed
+      # invitation is still usable: the same link can be retried, and it moves back to
+      # `in_progress` when the client tries again.
       sig do
         returns(T.nilable(Zavudev::InvitationListParams::Status::OrSymbol))
       end
@@ -46,6 +51,11 @@ module Zavudev
         cursor: nil,
         limit: nil,
         # Current status of the partner invitation.
+        #
+        # `failed` means the client started the connection and it did not finish (they
+        # cancelled Meta's dialog, denied a permission, or abandoned the tab). A failed
+        # invitation is still usable: the same link can be retried, and it moves back to
+        # `in_progress` when the client tries again.
         status: nil,
         request_options: {}
       )
@@ -65,6 +75,11 @@ module Zavudev
       end
 
       # Current status of the partner invitation.
+      #
+      # `failed` means the client started the connection and it did not finish (they
+      # cancelled Meta's dialog, denied a permission, or abandoned the tab). A failed
+      # invitation is still usable: the same link can be retried, and it moves back to
+      # `in_progress` when the client tries again.
       module Status
         extend Zavudev::Internal::Type::Enum
 
@@ -85,6 +100,8 @@ module Zavudev
           T.let(:expired, Zavudev::InvitationListParams::Status::TaggedSymbol)
         CANCELLED =
           T.let(:cancelled, Zavudev::InvitationListParams::Status::TaggedSymbol)
+        FAILED =
+          T.let(:failed, Zavudev::InvitationListParams::Status::TaggedSymbol)
 
         sig do
           override.returns(
