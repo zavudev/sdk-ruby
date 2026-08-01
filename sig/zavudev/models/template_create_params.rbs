@@ -117,19 +117,17 @@ module Zavudev
 
       type button =
         {
-          text: String,
           type: Zavudev::Models::TemplateCreateParams::Button::type_,
           example: String,
           otp_type: Zavudev::Models::TemplateCreateParams::Button::otp_type,
           package_name: String,
           phone_number: String,
           signature_hash: String,
+          text: String,
           url: String
         }
 
       class Button < Zavudev::Internal::Type::BaseModel
-        attr_accessor text: String
-
         attr_accessor type: Zavudev::Models::TemplateCreateParams::Button::type_
 
         attr_reader example: String?
@@ -154,33 +152,37 @@ module Zavudev
 
         def signature_hash=: (String) -> String
 
+        attr_reader text: String?
+
+        def text=: (String) -> String
+
         attr_reader url: String?
 
         def url=: (String) -> String
 
         def initialize: (
-          text: String,
           type: Zavudev::Models::TemplateCreateParams::Button::type_,
           ?example: String,
           ?otp_type: Zavudev::Models::TemplateCreateParams::Button::otp_type,
           ?package_name: String,
           ?phone_number: String,
           ?signature_hash: String,
+          ?text: String,
           ?url: String
         ) -> void
 
         def to_hash: -> {
-          text: String,
           type: Zavudev::Models::TemplateCreateParams::Button::type_,
           example: String,
           otp_type: Zavudev::Models::TemplateCreateParams::Button::otp_type,
           package_name: String,
           phone_number: String,
           signature_hash: String,
+          text: String,
           url: String
         }
 
-        type type_ = :quick_reply | :url | :phone | :otp
+        type type_ = :quick_reply | :url | :phone | :otp | :request_contact_info
 
         module Type
           extend Zavudev::Internal::Type::Enum
@@ -189,6 +191,7 @@ module Zavudev
           URL: :url
           PHONE: :phone
           OTP: :otp
+          REQUEST_CONTACT_INFO: :request_contact_info
 
           def self?.values: -> ::Array[Zavudev::Models::TemplateCreateParams::Button::type_]
         end
