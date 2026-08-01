@@ -222,7 +222,7 @@ module Zavudev
           def self?.values: -> ::Array[Zavudev::Models::Template::Button::otp_type]
         end
 
-        type type_ = :quick_reply | :url | :phone | :otp
+        type type_ = :quick_reply | :url | :phone | :otp | :request_contact_info
 
         module Type
           extend Zavudev::Internal::Type::Enum
@@ -231,6 +231,7 @@ module Zavudev
           URL: :url
           PHONE: :phone
           OTP: :otp
+          REQUEST_CONTACT_INFO: :request_contact_info
 
           def self?.values: -> ::Array[Zavudev::Models::Template::Button::type_]
         end

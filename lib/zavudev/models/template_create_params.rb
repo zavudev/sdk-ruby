@@ -122,12 +122,10 @@ module Zavudev
       #   @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}]
 
       class Button < Zavudev::Internal::Type::BaseModel
-        # @!attribute text
-        #
-        #   @return [String]
-        required :text, String
-
         # @!attribute type
+        #   `request_contact_info` renders a fixed **Share Contact Info** button that asks
+        #   the recipient to share their phone number — useful when a contact adopted a
+        #   WhatsApp username and you only know their BSUID. It takes no other fields.
         #
         #   @return [Symbol, Zavudev::Models::TemplateCreateParams::Button::Type]
         required :type, enum: -> { Zavudev::TemplateCreateParams::Button::Type }
@@ -164,6 +162,13 @@ module Zavudev
         #   @return [String, nil]
         optional :signature_hash, String, api_name: :signatureHash
 
+        # @!attribute text
+        #   Button label. Required for every type except `request_contact_info`, whose label
+        #   is fixed by WhatsApp.
+        #
+        #   @return [String, nil]
+        optional :text, String
+
         # @!attribute url
         #   Button destination. Use `{{1}}` exactly once for a dynamic URL (e.g.
         #   `https://example.com/orders/{{1}}`); WhatsApp only accepts the strict `{{1}}`
@@ -172,13 +177,11 @@ module Zavudev
         #   @return [String, nil]
         optional :url, String
 
-        # @!method initialize(text:, type:, example: nil, otp_type: nil, package_name: nil, phone_number: nil, signature_hash: nil, url: nil)
+        # @!method initialize(type:, example: nil, otp_type: nil, package_name: nil, phone_number: nil, signature_hash: nil, text: nil, url: nil)
         #   Some parameter documentations has been truncated, see
         #   {Zavudev::Models::TemplateCreateParams::Button} for more details.
         #
-        #   @param text [String]
-        #
-        #   @param type [Symbol, Zavudev::Models::TemplateCreateParams::Button::Type]
+        #   @param type [Symbol, Zavudev::Models::TemplateCreateParams::Button::Type] `request_contact_info` renders a fixed **Share Contact Info** button that asks t
         #
         #   @param example [String] Sample value Meta uses to review templates with a dynamic URL button. Substitute
         #
@@ -190,8 +193,14 @@ module Zavudev
         #
         #   @param signature_hash [String] Android app signature hash. Required for ONE_TAP buttons.
         #
+        #   @param text [String] Button label. Required for every type except `request_contact_info`, whose label
+        #
         #   @param url [String] Button destination. Use `{{1}}` exactly once for a dynamic URL (e.g. `https://ex
 
+        # `request_contact_info` renders a fixed **Share Contact Info** button that asks
+        # the recipient to share their phone number — useful when a contact adopted a
+        # WhatsApp username and you only know their BSUID. It takes no other fields.
+        #
         # @see Zavudev::Models::TemplateCreateParams::Button#type
         module Type
           extend Zavudev::Internal::Type::Enum
@@ -200,6 +209,7 @@ module Zavudev
           URL = :url
           PHONE = :phone
           OTP = :otp
+          REQUEST_CONTACT_INFO = :request_contact_info
 
           # @!method self.values
           #   @return [Array<Symbol>]

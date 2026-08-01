@@ -362,6 +362,11 @@ module Zavudev
           URL = T.let(:url, Zavudev::Template::Button::Type::TaggedSymbol)
           PHONE = T.let(:phone, Zavudev::Template::Button::Type::TaggedSymbol)
           OTP = T.let(:otp, Zavudev::Template::Button::Type::TaggedSymbol)
+          REQUEST_CONTACT_INFO =
+            T.let(
+              :request_contact_info,
+              Zavudev::Template::Button::Type::TaggedSymbol
+            )
 
           sig do
             override.returns(
