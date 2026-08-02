@@ -159,7 +159,11 @@ module Zavudev
         end
 
         # Submit a draft brand to The Campaign Registry (TCR) for vetting. The brand must
-        # be in draft status. A $35 registration fee is charged from your balance.
+        # be in draft status. TCR's one-time $4 brand registration fee is charged from
+        # your balance at submission (passed through at cost) and refunded if the carrier
+        # rejects the registration. A team that already paid this fee through the
+        # compliance flow is not charged again. Campaign registration is billed separately
+        # when a campaign is submitted.
         sig do
           params(
             brand_id: String,
