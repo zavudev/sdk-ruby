@@ -51,8 +51,9 @@ module Zavudev
       )
       end
 
-      # Purchase an available phone number. The first US phone number is free for each
-      # team.
+      # Purchase an available phone number. Requires a paid plan: the Free plan cannot
+      # purchase phone numbers and receives `402` with code `paid_plan_required`. Paid
+      # plans include the first US number at no charge.
       sig do
         params(
           phone_number: String,

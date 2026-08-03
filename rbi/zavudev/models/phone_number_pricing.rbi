@@ -8,7 +8,8 @@ module Zavudev
           T.any(Zavudev::PhoneNumberPricing, Zavudev::Internal::AnyHash)
         end
 
-      # Whether this number qualifies for the free first US number offer.
+      # Whether this number qualifies as the plan-included first US number on paid
+      # plans.
       sig { returns(T.nilable(T::Boolean)) }
       attr_reader :is_free_eligible
 
@@ -37,7 +38,8 @@ module Zavudev
         ).returns(T.attached_class)
       end
       def self.new(
-        # Whether this number qualifies for the free first US number offer.
+        # Whether this number qualifies as the plan-included first US number on paid
+        # plans.
         is_free_eligible: nil,
         # Monthly price in USD.
         monthly_price: nil,
