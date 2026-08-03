@@ -4,7 +4,8 @@ module Zavudev
   module Models
     class PhoneNumberPricing < Zavudev::Internal::Type::BaseModel
       # @!attribute is_free_eligible
-      #   Whether this number qualifies for the free first US number offer.
+      #   Whether this number qualifies as the plan-included first US number on paid
+      #   plans.
       #
       #   @return [Boolean, nil]
       optional :is_free_eligible, Zavudev::Internal::Type::Boolean, api_name: :isFreeEligible
@@ -22,7 +23,10 @@ module Zavudev
       optional :upfront_price, Float, api_name: :upfrontPrice
 
       # @!method initialize(is_free_eligible: nil, monthly_price: nil, upfront_price: nil)
-      #   @param is_free_eligible [Boolean] Whether this number qualifies for the free first US number offer.
+      #   Some parameter documentations has been truncated, see
+      #   {Zavudev::Models::PhoneNumberPricing} for more details.
+      #
+      #   @param is_free_eligible [Boolean] Whether this number qualifies as the plan-included first US number on paid plans
       #
       #   @param monthly_price [Float] Monthly price in USD.
       #
