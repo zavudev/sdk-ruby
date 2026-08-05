@@ -53,11 +53,18 @@ module Zavudev
       optional :source_code, String, api_name: :sourceCode
 
       # @!attribute timeout_sec
+      #   Per-invocation timeout in seconds. Event and cron invocations are asynchronous,
+      #   so a long timeout only bounds cost; a tool called during a live conversation
+      #   holds up the reply, and a function exposed over HTTP is additionally bounded by
+      #   the platform's HTTP response limit.
       #
       #   @return [Integer, nil]
       optional :timeout_sec, Integer, api_name: :timeoutSec
 
       # @!method initialize(name:, slug:, dependencies: nil, description: nil, http_enabled: nil, memory_mb: nil, runtime: nil, source_code: nil, timeout_sec: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {Zavudev::Models::FunctionCreateParams} for more details.
+      #
       #   @param name [String]
       #
       #   @param slug [String] URL-safe identifier (lowercase, digits, hyphens). Must be unique per project.
@@ -74,7 +81,7 @@ module Zavudev
       #
       #   @param source_code [String] TypeScript source code for the function entry point (max ~900KB).
       #
-      #   @param timeout_sec [Integer]
+      #   @param timeout_sec [Integer] Per-invocation timeout in seconds. Event and cron invocations are asynchronous,
       #
       #   @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}]
 

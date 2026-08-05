@@ -57,6 +57,13 @@ module Zavudev
         sig { returns(T.nilable(String)) }
         attr_accessor :response_text
 
+        # Tools the agent called while producing this reply. Zero on an agent that has
+        # tools configured means it answered without calling any — the case where a reply
+        # says it will look something up and nothing ever reaches your endpoint. Absent on
+        # executions recorded before this field existed, which is not the same as zero.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :tool_calls
+
         sig do
           params(
             id: String,
@@ -71,7 +78,8 @@ module Zavudev
             inbound_message_id: String,
             knowledge_chunks_used: T.nilable(Integer),
             response_message_id: T.nilable(String),
-            response_text: T.nilable(String)
+            response_text: T.nilable(String),
+            tool_calls: T.nilable(Integer)
           ).returns(T.attached_class)
         end
         def self.new(
@@ -93,7 +101,12 @@ module Zavudev
           # recorded before this field existed, which is not the same as zero.
           knowledge_chunks_used: nil,
           response_message_id: nil,
-          response_text: nil
+          response_text: nil,
+          # Tools the agent called while producing this reply. Zero on an agent that has
+          # tools configured means it answered without calling any — the case where a reply
+          # says it will look something up and nothing ever reaches your endpoint. Absent on
+          # executions recorded before this field existed, which is not the same as zero.
+          tool_calls: nil
         )
         end
 
@@ -112,7 +125,8 @@ module Zavudev
               inbound_message_id: String,
               knowledge_chunks_used: T.nilable(Integer),
               response_message_id: T.nilable(String),
-              response_text: T.nilable(String)
+              response_text: T.nilable(String),
+              tool_calls: T.nilable(Integer)
             }
           )
         end
