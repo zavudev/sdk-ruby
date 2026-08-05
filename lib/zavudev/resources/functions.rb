@@ -6,6 +6,9 @@ module Zavudev
       # @return [Zavudev::Resources::Functions::Secrets]
       attr_reader :secrets
 
+      # Some parameter documentations has been truncated, see
+      # {Zavudev::Models::FunctionCreateParams} for more details.
+      #
       # Create a new Zavu Function. The function starts in `draft` status. A dedicated
       # API key is auto-provisioned and injected as the `ZAVU_API_KEY` secret so the
       # function can call back into the Zavu API without manual setup.
@@ -31,7 +34,7 @@ module Zavudev
       #
       # @param source_code [String] TypeScript source code for the function entry point (max ~900KB).
       #
-      # @param timeout_sec [Integer]
+      # @param timeout_sec [Integer] Per-invocation timeout in seconds. Event and cron invocations are asynchronous,
       #
       # @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}, nil]
       #

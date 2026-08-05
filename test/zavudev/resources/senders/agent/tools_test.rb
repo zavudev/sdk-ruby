@@ -111,7 +111,7 @@ class Zavudev::Test::Resources::Senders::Agent::ToolsTest < Zavudev::Test::Resou
 
     assert_pattern do
       response => {
-        scheduled: Zavudev::Internal::Type::Boolean
+        run: Zavudev::Models::Senders::Agent::ToolTestResponse::Run
       }
     end
   end
