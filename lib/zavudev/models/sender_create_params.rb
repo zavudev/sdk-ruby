@@ -40,6 +40,15 @@ module Zavudev
       #   @return [Boolean, nil]
       optional :email_receiving_enabled, Zavudev::Internal::Type::Boolean, api_name: :emailReceivingEnabled
 
+      # @!attribute enable_sms_oneway
+      #   Enable the one-way SMS channel (`sms_oneway`). Needs nothing else — no phone
+      #   number, no credential — so it is the fastest way to get a sender that can send.
+      #   Recipients cannot reply. Confirm with `sms_oneway` in the `channels` array on
+      #   the response.
+      #
+      #   @return [Boolean, nil]
+      optional :enable_sms_oneway, Zavudev::Internal::Type::Boolean, api_name: :enableSmsOneway
+
       # @!attribute enable_voice
       #   Let this sender place and answer phone calls. Requires `phoneNumber`; enabling
       #   it without one returns 400. Check the `channels` array on the response to
@@ -77,7 +86,7 @@ module Zavudev
       #   @return [String, nil]
       optional :webhook_url, String, api_name: :webhookUrl
 
-      # @!method initialize(name:, email_address: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, enable_voice: nil, phone_number: nil, set_as_default: nil, webhook_events: nil, webhook_url: nil, request_options: {})
+      # @!method initialize(name:, email_address: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, enable_sms_oneway: nil, enable_voice: nil, phone_number: nil, set_as_default: nil, webhook_events: nil, webhook_url: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Zavudev::Models::SenderCreateParams} for more details.
       #
@@ -90,6 +99,8 @@ module Zavudev
       #   @param email_from_name [String] Display name shown in the recipient's inbox for the email channel.
       #
       #   @param email_receiving_enabled [Boolean] Enable inbound email receiving on this sender. Requires a verified MX record on
+      #
+      #   @param enable_sms_oneway [Boolean] Enable the one-way SMS channel (`sms_oneway`). Needs nothing else — no phone num
       #
       #   @param enable_voice [Boolean] Let this sender place and answer phone calls. Requires `phoneNumber`; enabling i
       #

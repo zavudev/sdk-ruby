@@ -14,7 +14,7 @@ module Zavudev
       #
       # Create sender
       #
-      # @overload create(name:, email_address: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, enable_voice: nil, phone_number: nil, set_as_default: nil, webhook_events: nil, webhook_url: nil, request_options: {})
+      # @overload create(name:, email_address: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, enable_sms_oneway: nil, enable_voice: nil, phone_number: nil, set_as_default: nil, webhook_events: nil, webhook_url: nil, request_options: {})
       #
       # @param name [String]
       #
@@ -25,6 +25,8 @@ module Zavudev
       # @param email_from_name [String] Display name shown in the recipient's inbox for the email channel.
       #
       # @param email_receiving_enabled [Boolean] Enable inbound email receiving on this sender. Requires a verified MX record on
+      #
+      # @param enable_sms_oneway [Boolean] Enable the one-way SMS channel (`sms_oneway`). Needs nothing else — no phone num
       #
       # @param enable_voice [Boolean] Let this sender place and answer phone calls. Requires `phoneNumber`; enabling i
       #
@@ -76,7 +78,7 @@ module Zavudev
       #
       # Update sender
       #
-      # @overload update(sender_id, email_address: nil, email_catch_all_enabled: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, enable_voice: nil, name: nil, set_as_default: nil, webhook_active: nil, webhook_events: nil, webhook_url: nil, request_options: {})
+      # @overload update(sender_id, email_address: nil, email_catch_all_enabled: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, enable_sms_oneway: nil, enable_voice: nil, name: nil, set_as_default: nil, webhook_active: nil, webhook_events: nil, webhook_url: nil, request_options: {})
       #
       # @param sender_id [String]
       #
@@ -89,6 +91,8 @@ module Zavudev
       # @param email_from_name [String] Display name shown in the recipient's inbox for the email channel.
       #
       # @param email_receiving_enabled [Boolean] Enable or disable inbound email receiving for this sender.
+      #
+      # @param enable_sms_oneway [Boolean] Turn the one-way SMS channel on or off. Enabling needs nothing else and takes ef
       #
       # @param enable_voice [Boolean] Turn the voice channel on or off. The sender must already have a phone number pr
       #

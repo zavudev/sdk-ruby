@@ -8,6 +8,7 @@ module Zavudev
         email_domain_id: String,
         email_from_name: String,
         email_receiving_enabled: bool,
+        enable_sms_oneway: bool,
         enable_voice: bool,
         name: String,
         set_as_default: bool,
@@ -43,6 +44,10 @@ module Zavudev
 
       def email_receiving_enabled=: (bool) -> bool
 
+      attr_reader enable_sms_oneway: bool?
+
+      def enable_sms_oneway=: (bool) -> bool
+
       attr_reader enable_voice: bool?
 
       def enable_voice=: (bool) -> bool
@@ -74,6 +79,7 @@ module Zavudev
         ?email_domain_id: String,
         ?email_from_name: String,
         ?email_receiving_enabled: bool,
+        ?enable_sms_oneway: bool,
         ?enable_voice: bool,
         ?name: String,
         ?set_as_default: bool,
@@ -90,6 +96,7 @@ module Zavudev
         email_domain_id: String,
         email_from_name: String,
         email_receiving_enabled: bool,
+        enable_sms_oneway: bool,
         enable_voice: bool,
         name: String,
         set_as_default: bool,
