@@ -46,6 +46,16 @@ module Zavudev
       sig { params(email_receiving_enabled: T::Boolean).void }
       attr_writer :email_receiving_enabled
 
+      # Enable the one-way SMS channel (`sms_oneway`). Needs nothing else — no phone
+      # number, no credential — so it is the fastest way to get a sender that can send.
+      # Recipients cannot reply. Confirm with `sms_oneway` in the `channels` array on
+      # the response.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_reader :enable_sms_oneway
+
+      sig { params(enable_sms_oneway: T::Boolean).void }
+      attr_writer :enable_sms_oneway
+
       # Let this sender place and answer phone calls. Requires `phoneNumber`; enabling
       # it without one returns 400. Check the `channels` array on the response to
       # confirm `voice` is on.
@@ -95,6 +105,7 @@ module Zavudev
           email_domain_id: String,
           email_from_name: String,
           email_receiving_enabled: T::Boolean,
+          enable_sms_oneway: T::Boolean,
           enable_voice: T::Boolean,
           phone_number: String,
           set_as_default: T::Boolean,
@@ -117,6 +128,11 @@ module Zavudev
         # Enable inbound email receiving on this sender. Requires a verified MX record on
         # the domain; ignored otherwise.
         email_receiving_enabled: nil,
+        # Enable the one-way SMS channel (`sms_oneway`). Needs nothing else — no phone
+        # number, no credential — so it is the fastest way to get a sender that can send.
+        # Recipients cannot reply. Confirm with `sms_oneway` in the `channels` array on
+        # the response.
+        enable_sms_oneway: nil,
         # Let this sender place and answer phone calls. Requires `phoneNumber`; enabling
         # it without one returns 400. Check the `channels` array on the response to
         # confirm `voice` is on.
@@ -144,6 +160,7 @@ module Zavudev
             email_domain_id: String,
             email_from_name: String,
             email_receiving_enabled: T::Boolean,
+            enable_sms_oneway: T::Boolean,
             enable_voice: T::Boolean,
             phone_number: String,
             set_as_default: T::Boolean,

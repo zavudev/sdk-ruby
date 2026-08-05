@@ -46,6 +46,14 @@ module Zavudev
       #   @return [Boolean, nil]
       optional :email_receiving_enabled, Zavudev::Internal::Type::Boolean, api_name: :emailReceivingEnabled
 
+      # @!attribute enable_sms_oneway
+      #   Turn the one-way SMS channel on or off. Enabling needs nothing else and takes
+      #   effect immediately; disabling removes the channel from the sender. Confirm with
+      #   the `channels` array on the response.
+      #
+      #   @return [Boolean, nil]
+      optional :enable_sms_oneway, Zavudev::Internal::Type::Boolean, api_name: :enableSmsOneway
+
       # @!attribute enable_voice
       #   Turn the voice channel on or off. The sender must already have a phone number
       #   provisioned for calls; enabling it otherwise returns 400 instead of storing a
@@ -84,7 +92,7 @@ module Zavudev
       #   @return [String, nil]
       optional :webhook_url, String, api_name: :webhookUrl, nil?: true
 
-      # @!method initialize(sender_id:, email_address: nil, email_catch_all_enabled: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, enable_voice: nil, name: nil, set_as_default: nil, webhook_active: nil, webhook_events: nil, webhook_url: nil, request_options: {})
+      # @!method initialize(sender_id:, email_address: nil, email_catch_all_enabled: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, enable_sms_oneway: nil, enable_voice: nil, name: nil, set_as_default: nil, webhook_active: nil, webhook_events: nil, webhook_url: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Zavudev::Models::SenderUpdateParams} for more details.
       #
@@ -99,6 +107,8 @@ module Zavudev
       #   @param email_from_name [String] Display name shown in the recipient's inbox for the email channel.
       #
       #   @param email_receiving_enabled [Boolean] Enable or disable inbound email receiving for this sender.
+      #
+      #   @param enable_sms_oneway [Boolean] Turn the one-way SMS channel on or off. Enabling needs nothing else and takes ef
       #
       #   @param enable_voice [Boolean] Turn the voice channel on or off. The sender must already have a phone number pr
       #
