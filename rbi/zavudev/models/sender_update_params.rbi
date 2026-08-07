@@ -99,6 +99,35 @@ module Zavudev
       end
       attr_writer :webhook_events
 
+      # Which `X-Zavu-Signature` scheme this receiver is sent.
+      #
+      # - `v1`: `v1=HMAC_SHA256(secret, body)`. The scheme used before this was
+      #   configurable. Existing webhooks stay on it until you move them.
+      # - `v2`: `v2=HMAC_SHA256(secret, "{t}.{body}")`. The current scheme, and the
+      #   default for new senders. It signs the timestamp together with the body.
+      # - `v1+v2`: both signatures, sharing one `t`. The migration setting: a receiver
+      #   reading either one works, so you can deploy and confirm your new verifier
+      #   before switching over.
+      #
+      # Moving from `v1` straight to `v2` returns `400`. Set `v1+v2` first. See
+      # https://docs.zavu.dev/guides/receiving-messages/signature-migration
+      sig do
+        returns(
+          T.nilable(
+            Zavudev::SenderUpdateParams::WebhookSignatureVersion::OrSymbol
+          )
+        )
+      end
+      attr_reader :webhook_signature_version
+
+      sig do
+        params(
+          webhook_signature_version:
+            Zavudev::SenderUpdateParams::WebhookSignatureVersion::OrSymbol
+        ).void
+      end
+      attr_writer :webhook_signature_version
+
       # HTTPS URL for webhook events. Set to null to remove webhook.
       sig { returns(T.nilable(String)) }
       attr_accessor :webhook_url
@@ -117,6 +146,8 @@ module Zavudev
           set_as_default: T::Boolean,
           webhook_active: T::Boolean,
           webhook_events: T::Array[Zavudev::WebhookEvent::OrSymbol],
+          webhook_signature_version:
+            Zavudev::SenderUpdateParams::WebhookSignatureVersion::OrSymbol,
           webhook_url: T.nilable(String),
           request_options: Zavudev::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -151,6 +182,19 @@ module Zavudev
         webhook_active: nil,
         # Events to subscribe to.
         webhook_events: nil,
+        # Which `X-Zavu-Signature` scheme this receiver is sent.
+        #
+        # - `v1`: `v1=HMAC_SHA256(secret, body)`. The scheme used before this was
+        #   configurable. Existing webhooks stay on it until you move them.
+        # - `v2`: `v2=HMAC_SHA256(secret, "{t}.{body}")`. The current scheme, and the
+        #   default for new senders. It signs the timestamp together with the body.
+        # - `v1+v2`: both signatures, sharing one `t`. The migration setting: a receiver
+        #   reading either one works, so you can deploy and confirm your new verifier
+        #   before switching over.
+        #
+        # Moving from `v1` straight to `v2` returns `400`. Set `v1+v2` first. See
+        # https://docs.zavu.dev/guides/receiving-messages/signature-migration
+        webhook_signature_version: nil,
         # HTTPS URL for webhook events. Set to null to remove webhook.
         webhook_url: nil,
         request_options: {}
@@ -172,12 +216,62 @@ module Zavudev
             set_as_default: T::Boolean,
             webhook_active: T::Boolean,
             webhook_events: T::Array[Zavudev::WebhookEvent::OrSymbol],
+            webhook_signature_version:
+              Zavudev::SenderUpdateParams::WebhookSignatureVersion::OrSymbol,
             webhook_url: T.nilable(String),
             request_options: Zavudev::RequestOptions
           }
         )
       end
       def to_hash
+      end
+
+      # Which `X-Zavu-Signature` scheme this receiver is sent.
+      #
+      # - `v1`: `v1=HMAC_SHA256(secret, body)`. The scheme used before this was
+      #   configurable. Existing webhooks stay on it until you move them.
+      # - `v2`: `v2=HMAC_SHA256(secret, "{t}.{body}")`. The current scheme, and the
+      #   default for new senders. It signs the timestamp together with the body.
+      # - `v1+v2`: both signatures, sharing one `t`. The migration setting: a receiver
+      #   reading either one works, so you can deploy and confirm your new verifier
+      #   before switching over.
+      #
+      # Moving from `v1` straight to `v2` returns `400`. Set `v1+v2` first. See
+      # https://docs.zavu.dev/guides/receiving-messages/signature-migration
+      module WebhookSignatureVersion
+        extend Zavudev::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, Zavudev::SenderUpdateParams::WebhookSignatureVersion)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        V1 =
+          T.let(
+            :v1,
+            Zavudev::SenderUpdateParams::WebhookSignatureVersion::TaggedSymbol
+          )
+        V1_V2 =
+          T.let(
+            :"v1+v2",
+            Zavudev::SenderUpdateParams::WebhookSignatureVersion::TaggedSymbol
+          )
+        V2 =
+          T.let(
+            :v2,
+            Zavudev::SenderUpdateParams::WebhookSignatureVersion::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              Zavudev::SenderUpdateParams::WebhookSignatureVersion::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
       end
     end
   end

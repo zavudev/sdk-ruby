@@ -14,7 +14,7 @@ module Zavudev
       #
       # Create sender
       #
-      # @overload create(name:, email_address: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, enable_sms_oneway: nil, enable_voice: nil, phone_number: nil, set_as_default: nil, webhook_events: nil, webhook_url: nil, request_options: {})
+      # @overload create(name:, email_address: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, enable_sms_oneway: nil, enable_voice: nil, phone_number: nil, set_as_default: nil, webhook_events: nil, webhook_signature_version: nil, webhook_url: nil, request_options: {})
       #
       # @param name [String]
       #
@@ -35,6 +35,8 @@ module Zavudev
       # @param set_as_default [Boolean]
       #
       # @param webhook_events [Array<Symbol, Zavudev::Models::WebhookEvent>] Events to subscribe to.
+      #
+      # @param webhook_signature_version [Symbol, Zavudev::Models::SenderCreateParams::WebhookSignatureVersion] Which `X-Zavu-Signature` scheme this receiver is sent.
       #
       # @param webhook_url [String] HTTPS URL for webhook events.
       #
@@ -78,7 +80,7 @@ module Zavudev
       #
       # Update sender
       #
-      # @overload update(sender_id, email_address: nil, email_catch_all_enabled: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, enable_sms_oneway: nil, enable_voice: nil, name: nil, set_as_default: nil, webhook_active: nil, webhook_events: nil, webhook_url: nil, request_options: {})
+      # @overload update(sender_id, email_address: nil, email_catch_all_enabled: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, enable_sms_oneway: nil, enable_voice: nil, name: nil, set_as_default: nil, webhook_active: nil, webhook_events: nil, webhook_signature_version: nil, webhook_url: nil, request_options: {})
       #
       # @param sender_id [String]
       #
@@ -103,6 +105,8 @@ module Zavudev
       # @param webhook_active [Boolean] Whether the webhook is active.
       #
       # @param webhook_events [Array<Symbol, Zavudev::Models::WebhookEvent>] Events to subscribe to.
+      #
+      # @param webhook_signature_version [Symbol, Zavudev::Models::SenderUpdateParams::WebhookSignatureVersion] Which `X-Zavu-Signature` scheme this receiver is sent.
       #
       # @param webhook_url [String, nil] HTTPS URL for webhook events. Set to null to remove webhook.
       #

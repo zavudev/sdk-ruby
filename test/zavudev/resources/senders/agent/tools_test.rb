@@ -84,7 +84,8 @@ class Zavudev::Test::Resources::Senders::Agent::ToolsTest < Zavudev::Test::Resou
         name: String,
         parameters: Zavudev::Senders::Agent::ToolParameters,
         updated_at: Time,
-        webhook_url: String
+        webhook_url: String,
+        webhook_secret: String | nil
       }
     end
   end

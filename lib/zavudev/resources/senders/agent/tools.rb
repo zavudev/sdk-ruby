@@ -5,6 +5,9 @@ module Zavudev
     class Senders
       class Agent
         class Tools
+          # Some parameter documentations has been truncated, see
+          # {Zavudev::Models::Senders::Agent::ToolCreateParams} for more details.
+          #
           # Create a new tool for an agent. Tools allow the agent to call external webhooks.
           #
           # @overload create(sender_id, description:, name:, parameters:, webhook_url:, enabled: nil, webhook_secret: nil, request_options: {})
@@ -21,7 +24,7 @@ module Zavudev
           #
           # @param enabled [Boolean]
           #
-          # @param webhook_secret [String] Optional secret for webhook signature verification.
+          # @param webhook_secret [String] Signing secret for the webhook. Optional: Zavu generates one when omitted and re
           #
           # @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}, nil]
           #
