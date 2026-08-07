@@ -14,7 +14,8 @@ module Zavudev
             name: String,
             parameters: Zavudev::Senders::Agent::ToolParameters,
             updated_at: Time,
-            webhook_url: String
+            webhook_url: String,
+            webhook_secret: String
           }
 
         class AgentTool < Zavudev::Internal::Type::BaseModel
@@ -36,6 +37,10 @@ module Zavudev
 
           attr_accessor webhook_url: String
 
+          attr_reader webhook_secret: String?
+
+          def webhook_secret=: (String) -> String
+
           def initialize: (
             id: String,
             agent_id: String,
@@ -45,7 +50,8 @@ module Zavudev
             name: String,
             parameters: Zavudev::Senders::Agent::ToolParameters,
             updated_at: Time,
-            webhook_url: String
+            webhook_url: String,
+            ?webhook_secret: String
           ) -> void
 
           def to_hash: -> {
@@ -57,7 +63,8 @@ module Zavudev
             name: String,
             parameters: Zavudev::Senders::Agent::ToolParameters,
             updated_at: Time,
-            webhook_url: String
+            webhook_url: String,
+            webhook_secret: String
           }
         end
       end

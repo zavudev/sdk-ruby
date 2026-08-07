@@ -86,13 +86,32 @@ module Zavudev
                -> { Zavudev::Internal::Type::ArrayOf[enum: Zavudev::WebhookEvent] },
                api_name: :webhookEvents
 
+      # @!attribute webhook_signature_version
+      #   Which `X-Zavu-Signature` scheme this receiver is sent.
+      #
+      #   - `v1`: `v1=HMAC_SHA256(secret, body)`. The scheme used before this was
+      #     configurable. Existing webhooks stay on it until you move them.
+      #   - `v2`: `v2=HMAC_SHA256(secret, "{t}.{body}")`. The current scheme, and the
+      #     default for new senders. It signs the timestamp together with the body.
+      #   - `v1+v2`: both signatures, sharing one `t`. The migration setting: a receiver
+      #     reading either one works, so you can deploy and confirm your new verifier
+      #     before switching over.
+      #
+      #   Moving from `v1` straight to `v2` returns `400`. Set `v1+v2` first. See
+      #   https://docs.zavu.dev/guides/receiving-messages/signature-migration
+      #
+      #   @return [Symbol, Zavudev::Models::SenderUpdateParams::WebhookSignatureVersion, nil]
+      optional :webhook_signature_version,
+               enum: -> { Zavudev::SenderUpdateParams::WebhookSignatureVersion },
+               api_name: :webhookSignatureVersion
+
       # @!attribute webhook_url
       #   HTTPS URL for webhook events. Set to null to remove webhook.
       #
       #   @return [String, nil]
       optional :webhook_url, String, api_name: :webhookUrl, nil?: true
 
-      # @!method initialize(sender_id:, email_address: nil, email_catch_all_enabled: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, enable_sms_oneway: nil, enable_voice: nil, name: nil, set_as_default: nil, webhook_active: nil, webhook_events: nil, webhook_url: nil, request_options: {})
+      # @!method initialize(sender_id:, email_address: nil, email_catch_all_enabled: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, enable_sms_oneway: nil, enable_voice: nil, name: nil, set_as_default: nil, webhook_active: nil, webhook_events: nil, webhook_signature_version: nil, webhook_url: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Zavudev::Models::SenderUpdateParams} for more details.
       #
@@ -120,9 +139,34 @@ module Zavudev
       #
       #   @param webhook_events [Array<Symbol, Zavudev::Models::WebhookEvent>] Events to subscribe to.
       #
+      #   @param webhook_signature_version [Symbol, Zavudev::Models::SenderUpdateParams::WebhookSignatureVersion] Which `X-Zavu-Signature` scheme this receiver is sent.
+      #
       #   @param webhook_url [String, nil] HTTPS URL for webhook events. Set to null to remove webhook.
       #
       #   @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}]
+
+      # Which `X-Zavu-Signature` scheme this receiver is sent.
+      #
+      # - `v1`: `v1=HMAC_SHA256(secret, body)`. The scheme used before this was
+      #   configurable. Existing webhooks stay on it until you move them.
+      # - `v2`: `v2=HMAC_SHA256(secret, "{t}.{body}")`. The current scheme, and the
+      #   default for new senders. It signs the timestamp together with the body.
+      # - `v1+v2`: both signatures, sharing one `t`. The migration setting: a receiver
+      #   reading either one works, so you can deploy and confirm your new verifier
+      #   before switching over.
+      #
+      # Moving from `v1` straight to `v2` returns `400`. Set `v1+v2` first. See
+      # https://docs.zavu.dev/guides/receiving-messages/signature-migration
+      module WebhookSignatureVersion
+        extend Zavudev::Internal::Type::Enum
+
+        V1 = :v1
+        V1_V2 = :"v1+v2"
+        V2 = :v2
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
     end
   end
 end

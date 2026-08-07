@@ -16,6 +16,7 @@ module Zavudev
         ?phone_number: String,
         ?set_as_default: bool,
         ?webhook_events: ::Array[Zavudev::Models::webhook_event],
+        ?webhook_signature_version: Zavudev::Models::SenderCreateParams::webhook_signature_version,
         ?webhook_url: String,
         ?request_options: Zavudev::request_opts
       ) -> Zavudev::Sender
@@ -38,6 +39,7 @@ module Zavudev
         ?set_as_default: bool,
         ?webhook_active: bool,
         ?webhook_events: ::Array[Zavudev::Models::webhook_event],
+        ?webhook_signature_version: Zavudev::Models::SenderUpdateParams::webhook_signature_version,
         ?webhook_url: String?,
         ?request_options: Zavudev::request_opts
       ) -> Zavudev::Sender
