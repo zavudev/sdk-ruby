@@ -8,8 +8,9 @@ module Zavudev
           T.any(Zavudev::PhoneNumberPricing, Zavudev::Internal::AnyHash)
         end
 
-      # Whether this number qualifies as the plan-included first US number on paid
-      # plans.
+      # Whether this number qualifies as the plan-included US number on paid plans. The
+      # benefit is one per account: it is never offered again once claimed, not even
+      # after the number is released.
       sig { returns(T.nilable(T::Boolean)) }
       attr_reader :is_free_eligible
 
@@ -38,8 +39,9 @@ module Zavudev
         ).returns(T.attached_class)
       end
       def self.new(
-        # Whether this number qualifies as the plan-included first US number on paid
-        # plans.
+        # Whether this number qualifies as the plan-included US number on paid plans. The
+        # benefit is one per account: it is never offered again once claimed, not even
+        # after the number is released.
         is_free_eligible: nil,
         # Monthly price in USD.
         monthly_price: nil,
