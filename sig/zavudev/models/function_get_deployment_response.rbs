@@ -21,6 +21,7 @@ module Zavudev
           function_id: String,
           status: Zavudev::Models::FunctionGetDeploymentResponse::Deployment::status,
           version: Integer,
+          build_logs: String?,
           bundle_bytes: Integer?,
           deployed_at: Time?,
           error_message: String?,
@@ -38,6 +39,8 @@ module Zavudev
 
         attr_accessor version: Integer
 
+        attr_accessor build_logs: String?
+
         attr_accessor bundle_bytes: Integer?
 
         attr_accessor deployed_at: Time?
@@ -52,6 +55,7 @@ module Zavudev
           function_id: String,
           status: Zavudev::Models::FunctionGetDeploymentResponse::Deployment::status,
           version: Integer,
+          ?build_logs: String?,
           ?bundle_bytes: Integer?,
           ?deployed_at: Time?,
           ?error_message: String?,
@@ -64,6 +68,7 @@ module Zavudev
           function_id: String,
           status: Zavudev::Models::FunctionGetDeploymentResponse::Deployment::status,
           version: Integer,
+          build_logs: String?,
           bundle_bytes: Integer?,
           deployed_at: Time?,
           error_message: String?,
