@@ -74,6 +74,7 @@ module Zavudev
         sig { returns(Integer) }
         attr_accessor :version
 
+        # Size of the built bundle in bytes. Null until the build finishes.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :bundle_bytes
 
@@ -84,6 +85,7 @@ module Zavudev
         sig { returns(T.nilable(String)) }
         attr_accessor :error_message
 
+        # Total size of the deployed source tree in bytes.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :source_code_bytes
 
@@ -109,10 +111,12 @@ module Zavudev
           status:,
           # Monotonically increasing deployment version, starting at 1.
           version:,
+          # Size of the built bundle in bytes. Null until the build finishes.
           bundle_bytes: nil,
           deployed_at: nil,
           # Failure reason when status is 'failed'.
           error_message: nil,
+          # Total size of the deployed source tree in bytes.
           source_code_bytes: nil
         )
         end

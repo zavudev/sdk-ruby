@@ -42,6 +42,7 @@ module Zavudev
         required :version, Integer
 
         # @!attribute bundle_bytes
+        #   Size of the built bundle in bytes. Null until the build finishes.
         #
         #   @return [Integer, nil]
         optional :bundle_bytes, Integer, api_name: :bundleBytes, nil?: true
@@ -58,6 +59,7 @@ module Zavudev
         optional :error_message, String, api_name: :errorMessage, nil?: true
 
         # @!attribute source_code_bytes
+        #   Total size of the deployed source tree in bytes.
         #
         #   @return [Integer, nil]
         optional :source_code_bytes, Integer, api_name: :sourceCodeBytes, nil?: true
@@ -73,13 +75,13 @@ module Zavudev
         #
         #   @param version [Integer] Monotonically increasing deployment version, starting at 1.
         #
-        #   @param bundle_bytes [Integer, nil]
+        #   @param bundle_bytes [Integer, nil] Size of the built bundle in bytes. Null until the build finishes.
         #
         #   @param deployed_at [Time, nil]
         #
         #   @param error_message [String, nil] Failure reason when status is 'failed'.
         #
-        #   @param source_code_bytes [Integer, nil]
+        #   @param source_code_bytes [Integer, nil] Total size of the deployed source tree in bytes.
 
         # Stage of a function deployment.
         #
