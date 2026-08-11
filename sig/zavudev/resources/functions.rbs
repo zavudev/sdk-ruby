@@ -8,6 +8,8 @@ module Zavudev
         slug: String,
         ?dependencies: ::Hash[Symbol, String],
         ?description: String,
+        ?entrypoint: String,
+        ?files: ::Hash[Symbol, String],
         ?http_enabled: bool,
         ?memory_mb: Zavudev::Models::FunctionCreateParams::memory_mb,
         ?runtime: Zavudev::Models::FunctionCreateParams::runtime,
@@ -24,6 +26,8 @@ module Zavudev
       def update: (
         String function_id,
         ?dependencies: ::Hash[Symbol, String],
+        ?entrypoint: String,
+        ?files: ::Hash[Symbol, String],
         ?http_enabled: bool,
         ?source_code: String,
         ?request_options: Zavudev::request_opts
@@ -37,6 +41,8 @@ module Zavudev
       def deploy: (
         String function_id,
         ?dependencies: ::Hash[Symbol, String],
+        ?entrypoint: String,
+        ?files: ::Hash[Symbol, String],
         ?source_code: String,
         ?request_options: Zavudev::request_opts
       ) -> Zavudev::Models::FunctionDeployResponse

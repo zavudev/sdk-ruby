@@ -18,6 +18,8 @@ module Zavudev
           slug: String,
           dependencies: T::Hash[Symbol, String],
           description: String,
+          entrypoint: String,
+          files: T::Hash[Symbol, String],
           http_enabled: T::Boolean,
           memory_mb: Zavudev::FunctionCreateParams::MemoryMB::OrInteger,
           runtime: Zavudev::FunctionCreateParams::Runtime::OrSymbol,
@@ -33,12 +35,25 @@ module Zavudev
         # npm dependencies. Keys are package names, values are semver ranges.
         dependencies: nil,
         description: nil,
+        # Which file in `files` is the entry point. Defaults to `index.ts`.
+        entrypoint: nil,
+        # The project's source files, keyed by path relative to the project root (e.g.
+        # `index.ts`, `lib/orders.ts`). Imports between them are resolved when the
+        # function is built, so a function can be split across as many files as it needs.
+        #
+        # Paths must be relative and use forward slashes; `..`, `node_modules/` and
+        # `package.json` are rejected. npm packages are not uploaded here — declare them
+        # under `dependencies` and Zavu installs them. Limits: 200 files and 900,000 bytes
+        # for the whole tree.
+        files: nil,
         # Whether to expose a public HTTPS URL for this function.
         http_enabled: nil,
         memory_mb: nil,
         # Runtime the function is deployed on.
         runtime: nil,
-        # TypeScript source code for the function entry point (max ~900KB).
+        # Shortcut for a single-file function: exactly equivalent to sending `files` with
+        # one entry named after `entrypoint` (`index.ts` by default). Fully supported —
+        # use whichever fits. If both are sent, `files` wins.
         source_code: nil,
         # Per-invocation timeout in seconds. Event and cron invocations are asynchronous,
         # so a long timeout only bounds cost; a tool called during a live conversation
@@ -72,6 +87,8 @@ module Zavudev
         params(
           function_id: String,
           dependencies: T::Hash[Symbol, String],
+          entrypoint: String,
+          files: T::Hash[Symbol, String],
           http_enabled: T::Boolean,
           source_code: String,
           request_options: Zavudev::RequestOptions::OrHash
@@ -82,11 +99,24 @@ module Zavudev
         function_id,
         # New dependency map (replaces existing dependencies).
         dependencies: nil,
+        # Which file in `files` is the entry point. Defaults to `index.ts`.
+        entrypoint: nil,
+        # The project's source files, keyed by path relative to the project root (e.g.
+        # `index.ts`, `lib/orders.ts`). Imports between them are resolved when the
+        # function is built, so a function can be split across as many files as it needs.
+        #
+        # Paths must be relative and use forward slashes; `..`, `node_modules/` and
+        # `package.json` are rejected. npm packages are not uploaded here — declare them
+        # under `dependencies` and Zavu installs them. Limits: 200 files and 900,000 bytes
+        # for the whole tree.
+        files: nil,
         # Expose the function on its public HTTPS URL, or take it down. Applies to the
         # already-deployed function without redeploying; the URL is returned as
         # `publicUrl`.
         http_enabled: nil,
-        # New source code for the draft (replaces it).
+        # Shortcut for a single-file function: exactly equivalent to sending `files` with
+        # one entry named after `entrypoint` (`index.ts` by default). Fully supported —
+        # use whichever fits. If both are sent, `files` wins.
         source_code: nil,
         request_options: {}
       )
@@ -116,6 +146,8 @@ module Zavudev
         params(
           function_id: String,
           dependencies: T::Hash[Symbol, String],
+          entrypoint: String,
+          files: T::Hash[Symbol, String],
           source_code: String,
           request_options: Zavudev::RequestOptions::OrHash
         ).returns(Zavudev::Models::FunctionDeployResponse)
@@ -125,7 +157,20 @@ module Zavudev
         function_id,
         # New dependency map (replaces existing dependencies).
         dependencies: nil,
-        # New source code to publish (replaces the draft).
+        # Which file in `files` is the entry point. Defaults to `index.ts`.
+        entrypoint: nil,
+        # The project's source files, keyed by path relative to the project root (e.g.
+        # `index.ts`, `lib/orders.ts`). Imports between them are resolved when the
+        # function is built, so a function can be split across as many files as it needs.
+        #
+        # Paths must be relative and use forward slashes; `..`, `node_modules/` and
+        # `package.json` are rejected. npm packages are not uploaded here — declare them
+        # under `dependencies` and Zavu installs them. Limits: 200 files and 900,000 bytes
+        # for the whole tree.
+        files: nil,
+        # Shortcut for a single-file function: exactly equivalent to sending `files` with
+        # one entry named after `entrypoint` (`index.ts` by default). Fully supported —
+        # use whichever fits. If both are sent, `files` wins.
         source_code: nil,
         request_options: {}
       )
