@@ -1,5 +1,31 @@
 # Changelog
 
+## 0.20.0 (2026-08-11)
+
+Full Changelog: [v0.19.0...v0.20.0](https://github.com/zavudev/sdk-ruby/compare/v0.19.0...v0.20.0)
+
+### Features
+
+* **api:** api update ([bfbfdb3](https://github.com/zavudev/sdk-ruby/commit/bfbfdb30beabe539011761e0dbe5e6300bf84fc3))
+* **api:** api update ([3dd2f9a](https://github.com/zavudev/sdk-ruby/commit/3dd2f9ae33f97e322260043770b81046fbcfa86c))
+* **api:** api update ([047bf1a](https://github.com/zavudev/sdk-ruby/commit/047bf1add6b64c168649d72d649aa4f80d9b4783))
+* **api:** api update ([83ac772](https://github.com/zavudev/sdk-ruby/commit/83ac772861fac6e29983becf6ddfa399dbaa3561))
+* **api:** api update ([996f9ab](https://github.com/zavudev/sdk-ruby/commit/996f9ab52620b2ce5052530307e67e593da01f72))
+* **api:** api update ([3c61529](https://github.com/zavudev/sdk-ruby/commit/3c61529d5dac9a675e26719fc5e281805b4c7c6a))
+* **api:** api update ([258a1e6](https://github.com/zavudev/sdk-ruby/commit/258a1e6fff0b2264f4311fcb8bd7c9432256ea41))
+* **api:** api update ([e95c2eb](https://github.com/zavudev/sdk-ruby/commit/e95c2eba76c5a8f947c5e7fa72971908a1be90fe))
+* **api:** api update ([a7c2d4a](https://github.com/zavudev/sdk-ruby/commit/a7c2d4a72c856a10d30d4b59b9e88112459d3ce4))
+* **api:** api update ([4b5e9b6](https://github.com/zavudev/sdk-ruby/commit/4b5e9b6a2057514d9237fac1a37117126ad3fede))
+* **api:** api update ([37619ee](https://github.com/zavudev/sdk-ruby/commit/37619eeff5efc9cb775abc80f6e630cae4b06de1))
+* **api:** api update ([d361391](https://github.com/zavudev/sdk-ruby/commit/d361391e924c3f76eea26c2546495a96c88d86be))
+* **api:** api update ([62a0a2d](https://github.com/zavudev/sdk-ruby/commit/62a0a2d5729c99e9c51dcbe6f76467eb0f469c99))
+* **api:** api update ([554c6f2](https://github.com/zavudev/sdk-ruby/commit/554c6f26bbab79f4958f2478460c1801349d0f02))
+* **api:** api update ([b10ac2f](https://github.com/zavudev/sdk-ruby/commit/b10ac2ff0c6d73e830861515aca2456e042747ea))
+* **api:** api update ([ff8052b](https://github.com/zavudev/sdk-ruby/commit/ff8052b6c5e59819c7a51578209a51064d8c8427))
+* **api:** api update ([e44827f](https://github.com/zavudev/sdk-ruby/commit/e44827f9c758e460194e28a82c29ac57767dcdb9))
+* **api:** api update ([5167496](https://github.com/zavudev/sdk-ruby/commit/516749617b929620cf63104d3f972505c75222f6))
+* **api:** api update ([72b2d6a](https://github.com/zavudev/sdk-ruby/commit/72b2d6aedb40dde4995f5d4d2a7f98b2dd56e686))
+
 ## 0.19.0 (2026-07-23)
 
 Full Changelog: [v0.18.0...v0.19.0](https://github.com/zavudev/sdk-ruby/compare/v0.18.0...v0.19.0)
