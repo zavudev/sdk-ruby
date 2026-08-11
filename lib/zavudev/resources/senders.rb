@@ -14,7 +14,7 @@ module Zavudev
       #
       # Create sender
       #
-      # @overload create(name:, email_address: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, phone_number: nil, set_as_default: nil, webhook_events: nil, webhook_url: nil, request_options: {})
+      # @overload create(name:, email_address: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, enable_sms_oneway: nil, enable_voice: nil, phone_number: nil, set_as_default: nil, webhook_events: nil, webhook_signature_version: nil, webhook_url: nil, request_options: {})
       #
       # @param name [String]
       #
@@ -26,11 +26,17 @@ module Zavudev
       #
       # @param email_receiving_enabled [Boolean] Enable inbound email receiving on this sender. Requires a verified MX record on
       #
-      # @param phone_number [String] Phone number in E.164 format. Required for phone-based channels (SMS, WhatsApp).
+      # @param enable_sms_oneway [Boolean] Enable the one-way SMS channel (`sms_oneway`). Needs nothing else — no phone num
+      #
+      # @param enable_voice [Boolean] Let this sender place and answer phone calls. Requires `phoneNumber`; enabling i
+      #
+      # @param phone_number [String] Phone number in E.164 format, and it must be a number your project already owns
       #
       # @param set_as_default [Boolean]
       #
       # @param webhook_events [Array<Symbol, Zavudev::Models::WebhookEvent>] Events to subscribe to.
+      #
+      # @param webhook_signature_version [Symbol, Zavudev::Models::SenderCreateParams::WebhookSignatureVersion] Which `X-Zavu-Signature` scheme this receiver is sent.
       #
       # @param webhook_url [String] HTTPS URL for webhook events.
       #
@@ -74,7 +80,7 @@ module Zavudev
       #
       # Update sender
       #
-      # @overload update(sender_id, email_address: nil, email_catch_all_enabled: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, name: nil, set_as_default: nil, webhook_active: nil, webhook_events: nil, webhook_url: nil, request_options: {})
+      # @overload update(sender_id, email_address: nil, email_catch_all_enabled: nil, email_domain_id: nil, email_from_name: nil, email_receiving_enabled: nil, enable_sms_oneway: nil, enable_voice: nil, name: nil, set_as_default: nil, webhook_active: nil, webhook_events: nil, webhook_signature_version: nil, webhook_url: nil, request_options: {})
       #
       # @param sender_id [String]
       #
@@ -88,6 +94,10 @@ module Zavudev
       #
       # @param email_receiving_enabled [Boolean] Enable or disable inbound email receiving for this sender.
       #
+      # @param enable_sms_oneway [Boolean] Turn the one-way SMS channel on or off. Enabling needs nothing else and takes ef
+      #
+      # @param enable_voice [Boolean] Turn the voice channel on or off. The sender must already have a phone number pr
+      #
       # @param name [String]
       #
       # @param set_as_default [Boolean]
@@ -95,6 +105,8 @@ module Zavudev
       # @param webhook_active [Boolean] Whether the webhook is active.
       #
       # @param webhook_events [Array<Symbol, Zavudev::Models::WebhookEvent>] Events to subscribe to.
+      #
+      # @param webhook_signature_version [Symbol, Zavudev::Models::SenderUpdateParams::WebhookSignatureVersion] Which `X-Zavu-Signature` scheme this receiver is sent.
       #
       # @param webhook_url [String, nil] HTTPS URL for webhook events. Set to null to remove webhook.
       #

@@ -76,8 +76,12 @@ module Zavudev
         )
       end
 
-      # Purchase an available phone number. The first US phone number is free for each
-      # team.
+      # Purchase an available phone number. Requires a paid plan: the Free plan cannot
+      # purchase phone numbers and receives `402` with code `paid_plan_required`. Paid
+      # plans include one US number at no charge. The included number is one per account
+      # and is granted once: claiming it spends the benefit for good, so releasing that
+      # number does not make another one free, and numbers the account already bought do
+      # not consume it.
       #
       # @overload purchase(phone_number:, name: nil, request_options: {})
       #
@@ -147,11 +151,16 @@ module Zavudev
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Zavudev::Models::PhoneNumberSearchAvailableParams} for more details.
+      #
       # Search for available phone numbers to purchase by country and type.
       #
-      # @overload search_available(country_code:, contains: nil, limit: nil, type: nil, request_options: {})
+      # @overload search_available(country_code:, capabilities: nil, contains: nil, limit: nil, type: nil, request_options: {})
       #
       # @param country_code [String] Two-letter ISO country code.
+      #
+      # @param capabilities [String] Comma-separated capabilities the number must have: `sms`, `voice`, `mms`. Number
       #
       # @param contains [String] Search for numbers containing this string.
       #

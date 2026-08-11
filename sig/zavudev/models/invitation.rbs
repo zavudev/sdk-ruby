@@ -13,7 +13,10 @@ module Zavudev
         client_name: String?,
         client_phone: String?,
         completed_at: Time?,
+        connected_account: Zavudev::Invitation::ConnectedAccount?,
         connection_type: Zavudev::Models::Invitation::connection_type,
+        failed_at: Time?,
+        failure_reason: String?,
         phone_number_id: String?,
         sender_id: String?,
         started_at: Time?,
@@ -43,11 +46,17 @@ module Zavudev
 
       attr_accessor completed_at: Time?
 
+      attr_accessor connected_account: Zavudev::Invitation::ConnectedAccount?
+
       attr_reader connection_type: Zavudev::Models::Invitation::connection_type?
 
       def connection_type=: (
         Zavudev::Models::Invitation::connection_type
       ) -> Zavudev::Models::Invitation::connection_type
+
+      attr_accessor failed_at: Time?
+
+      attr_accessor failure_reason: String?
 
       attr_accessor phone_number_id: String?
 
@@ -69,7 +78,10 @@ module Zavudev
         ?client_name: String?,
         ?client_phone: String?,
         ?completed_at: Time?,
+        ?connected_account: Zavudev::Invitation::ConnectedAccount?,
         ?connection_type: Zavudev::Models::Invitation::connection_type,
+        ?failed_at: Time?,
+        ?failure_reason: String?,
         ?phone_number_id: String?,
         ?sender_id: String?,
         ?started_at: Time?,
@@ -88,14 +100,18 @@ module Zavudev
         client_name: String?,
         client_phone: String?,
         completed_at: Time?,
+        connected_account: Zavudev::Invitation::ConnectedAccount?,
         connection_type: Zavudev::Models::Invitation::connection_type,
+        failed_at: Time?,
+        failure_reason: String?,
         phone_number_id: String?,
         sender_id: String?,
         started_at: Time?,
         viewed_at: Time?
       }
 
-      type status = :pending | :in_progress | :completed | :expired | :cancelled
+      type status =
+        :pending | :in_progress | :completed | :expired | :cancelled | :failed
 
       module Status
         extend Zavudev::Internal::Type::Enum
@@ -105,16 +121,56 @@ module Zavudev
         COMPLETED: :completed
         EXPIRED: :expired
         CANCELLED: :cancelled
+        FAILED: :failed
 
         def self?.values: -> ::Array[Zavudev::Models::Invitation::status]
       end
 
-      type connection_type = :whatsapp_waba
+      type connected_account =
+        {
+          id: String,
+          channel: Zavudev::Models::Invitation::ConnectedAccount::channel,
+          name: String?
+        }
+
+      class ConnectedAccount < Zavudev::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor channel: Zavudev::Models::Invitation::ConnectedAccount::channel
+
+        attr_accessor name: String?
+
+        def initialize: (
+          id: String,
+          channel: Zavudev::Models::Invitation::ConnectedAccount::channel,
+          ?name: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          channel: Zavudev::Models::Invitation::ConnectedAccount::channel,
+          name: String?
+        }
+
+        type channel = :whatsapp | :messenger
+
+        module Channel
+          extend Zavudev::Internal::Type::Enum
+
+          WHATSAPP: :whatsapp
+          MESSENGER: :messenger
+
+          def self?.values: -> ::Array[Zavudev::Models::Invitation::ConnectedAccount::channel]
+        end
+      end
+
+      type connection_type = :whatsapp_waba | :messenger
 
       module ConnectionType
         extend Zavudev::Internal::Type::Enum
 
         WHATSAPP_WABA: :whatsapp_waba
+        MESSENGER: :messenger
 
         def self?.values: -> ::Array[Zavudev::Models::Invitation::connection_type]
       end

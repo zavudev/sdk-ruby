@@ -6,6 +6,8 @@ module Zavudev
         slug: String,
         dependencies: ::Hash[Symbol, String],
         description: String,
+        entrypoint: String,
+        files: ::Hash[Symbol, String],
         http_enabled: bool,
         memory_mb: Zavudev::Models::FunctionCreateParams::memory_mb,
         runtime: Zavudev::Models::FunctionCreateParams::runtime,
@@ -29,6 +31,14 @@ module Zavudev
       attr_reader description: String?
 
       def description=: (String) -> String
+
+      attr_reader entrypoint: String?
+
+      def entrypoint=: (String) -> String
+
+      attr_reader files: ::Hash[Symbol, String]?
+
+      def files=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
 
       attr_reader http_enabled: bool?
 
@@ -59,6 +69,8 @@ module Zavudev
         slug: String,
         ?dependencies: ::Hash[Symbol, String],
         ?description: String,
+        ?entrypoint: String,
+        ?files: ::Hash[Symbol, String],
         ?http_enabled: bool,
         ?memory_mb: Zavudev::Models::FunctionCreateParams::memory_mb,
         ?runtime: Zavudev::Models::FunctionCreateParams::runtime,
@@ -72,6 +84,8 @@ module Zavudev
         slug: String,
         dependencies: ::Hash[Symbol, String],
         description: String,
+        entrypoint: String,
+        files: ::Hash[Symbol, String],
         http_enabled: bool,
         memory_mb: Zavudev::Models::FunctionCreateParams::memory_mb,
         runtime: Zavudev::Models::FunctionCreateParams::runtime,

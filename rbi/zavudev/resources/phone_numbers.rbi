@@ -51,8 +51,12 @@ module Zavudev
       )
       end
 
-      # Purchase an available phone number. The first US phone number is free for each
-      # team.
+      # Purchase an available phone number. Requires a paid plan: the Free plan cannot
+      # purchase phone numbers and receives `402` with code `paid_plan_required`. Paid
+      # plans include one US number at no charge. The included number is one per account
+      # and is granted once: claiming it spends the benefit for good, so releasing that
+      # number does not make another one free, and numbers the account already bought do
+      # not consume it.
       sig do
         params(
           phone_number: String,
@@ -102,6 +106,7 @@ module Zavudev
       sig do
         params(
           country_code: String,
+          capabilities: String,
           contains: String,
           limit: Integer,
           type: Zavudev::PhoneNumberType::OrSymbol,
@@ -111,6 +116,9 @@ module Zavudev
       def search_available(
         # Two-letter ISO country code.
         country_code:,
+        # Comma-separated capabilities the number must have: `sms`, `voice`, `mms`.
+        # Numbers missing any of them are dropped.
+        capabilities: nil,
         # Search for numbers containing this string.
         contains: nil,
         # Maximum number of results to return.

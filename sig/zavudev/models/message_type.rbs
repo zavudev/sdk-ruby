@@ -12,6 +12,8 @@ module Zavudev
       | :buttons
       | :list
       | :cta_url
+      | :request_contact_info
+      | :location_request
       | :reaction
       | :template
 
@@ -29,6 +31,8 @@ module Zavudev
       BUTTONS: :buttons
       LIST: :list
       CTA_URL: :cta_url
+      REQUEST_CONTACT_INFO: :request_contact_info
+      LOCATION_REQUEST: :location_request
       REACTION: :reaction
       TEMPLATE: :template
 

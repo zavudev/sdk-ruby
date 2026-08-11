@@ -41,7 +41,18 @@ module Zavudev
         #   @return [Integer]
         required :version, Integer
 
+        # @!attribute build_logs
+        #   What the build printed: dependency installation, the bundler's output, and the
+        #   compiler's message when it failed. Returned when fetching a single deployment,
+        #   omitted from the list. Read this first when a deploy fails — `errorMessage` is
+        #   often the outer wrapper's summary, and the line that names the broken import or
+        #   the syntax error is here.
+        #
+        #   @return [String, nil]
+        optional :build_logs, String, api_name: :buildLogs, nil?: true
+
         # @!attribute bundle_bytes
+        #   Size of the built bundle in bytes. Null until the build finishes.
         #
         #   @return [Integer, nil]
         optional :bundle_bytes, Integer, api_name: :bundleBytes, nil?: true
@@ -58,11 +69,15 @@ module Zavudev
         optional :error_message, String, api_name: :errorMessage, nil?: true
 
         # @!attribute source_code_bytes
+        #   Total size of the deployed source tree in bytes.
         #
         #   @return [Integer, nil]
         optional :source_code_bytes, Integer, api_name: :sourceCodeBytes, nil?: true
 
-        # @!method initialize(id:, created_at:, function_id:, status:, version:, bundle_bytes: nil, deployed_at: nil, error_message: nil, source_code_bytes: nil)
+        # @!method initialize(id:, created_at:, function_id:, status:, version:, build_logs: nil, bundle_bytes: nil, deployed_at: nil, error_message: nil, source_code_bytes: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Zavudev::Models::FunctionGetDeploymentResponse::Deployment} for more details.
+        #
         #   @param id [String]
         #
         #   @param created_at [Time]
@@ -73,13 +88,15 @@ module Zavudev
         #
         #   @param version [Integer] Monotonically increasing deployment version, starting at 1.
         #
-        #   @param bundle_bytes [Integer, nil]
+        #   @param build_logs [String, nil] What the build printed: dependency installation, the bundler's output, and the c
+        #
+        #   @param bundle_bytes [Integer, nil] Size of the built bundle in bytes. Null until the build finishes.
         #
         #   @param deployed_at [Time, nil]
         #
         #   @param error_message [String, nil] Failure reason when status is 'failed'.
         #
-        #   @param source_code_bytes [Integer, nil]
+        #   @param source_code_bytes [Integer, nil] Total size of the deployed source tree in bytes.
 
         # Stage of a function deployment.
         #

@@ -18,6 +18,14 @@ module Zavudev
       sig { returns(String) }
       attr_accessor :country_code
 
+      # Comma-separated capabilities the number must have: `sms`, `voice`, `mms`.
+      # Numbers missing any of them are dropped.
+      sig { returns(T.nilable(String)) }
+      attr_reader :capabilities
+
+      sig { params(capabilities: String).void }
+      attr_writer :capabilities
+
       # Search for numbers containing this string.
       sig { returns(T.nilable(String)) }
       attr_reader :contains
@@ -42,6 +50,7 @@ module Zavudev
       sig do
         params(
           country_code: String,
+          capabilities: String,
           contains: String,
           limit: Integer,
           type: Zavudev::PhoneNumberType::OrSymbol,
@@ -51,6 +60,9 @@ module Zavudev
       def self.new(
         # Two-letter ISO country code.
         country_code:,
+        # Comma-separated capabilities the number must have: `sms`, `voice`, `mms`.
+        # Numbers missing any of them are dropped.
+        capabilities: nil,
         # Search for numbers containing this string.
         contains: nil,
         # Maximum number of results to return.
@@ -65,6 +77,7 @@ module Zavudev
         override.returns(
           {
             country_code: String,
+            capabilities: String,
             contains: String,
             limit: Integer,
             type: Zavudev::PhoneNumberType::OrSymbol,

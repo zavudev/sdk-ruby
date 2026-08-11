@@ -20,6 +20,11 @@ module Zavudev
       attr_accessor :expires_at
 
       # Current status of the partner invitation.
+      #
+      # `failed` means the client started the connection and it did not finish (they
+      # cancelled Meta's dialog, denied a permission, or abandoned the tab). A failed
+      # invitation is still usable: the same link can be retried, and it moves back to
+      # `in_progress` when the client tries again.
       sig { returns(Zavudev::Invitation::Status::TaggedSymbol) }
       attr_accessor :status
 
@@ -42,8 +47,23 @@ module Zavudev
       sig { returns(T.nilable(Time)) }
       attr_accessor :completed_at
 
-      # How the client connects WhatsApp: `whatsapp_waba` (official Cloud API via
-      # embedded signup).
+      # The account the client linked, populated once the invitation is `completed`.
+      # Null before that. Use it to show the partner what was connected without fetching
+      # the sender.
+      sig { returns(T.nilable(Zavudev::Invitation::ConnectedAccount)) }
+      attr_reader :connected_account
+
+      sig do
+        params(
+          connected_account:
+            T.nilable(Zavudev::Invitation::ConnectedAccount::OrHash)
+        ).void
+      end
+      attr_writer :connected_account
+
+      # Which Meta channel the client connects: `whatsapp_waba` (official WhatsApp Cloud
+      # API via embedded signup) or `messenger` (a Facebook Page's Messenger inbox,
+      # including Marketplace chats).
       sig do
         returns(T.nilable(Zavudev::Invitation::ConnectionType::TaggedSymbol))
       end
@@ -56,7 +76,19 @@ module Zavudev
       end
       attr_writer :connection_type
 
-      # ID of a pre-assigned Zavu phone number for WhatsApp registration.
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :failed_at
+
+      # Stable code for why the last attempt failed, present when `status` is `failed`.
+      # Values include `fb_cancelled` (client closed Meta's dialog), `fb_not_authorized`
+      # (permission denied), `signup_abandoned` (started but never finished),
+      # `meta_no_pages` (the client administers no Facebook Page), and `internal_error`.
+      # Treat unknown codes as a generic failure.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :failure_reason
+
+      # ID of a pre-assigned Zavu phone number for WhatsApp registration. Always null
+      # for `messenger` invitations.
       sig { returns(T.nilable(String)) }
       attr_accessor :phone_number_id
 
@@ -83,7 +115,11 @@ module Zavudev
           client_name: T.nilable(String),
           client_phone: T.nilable(String),
           completed_at: T.nilable(Time),
+          connected_account:
+            T.nilable(Zavudev::Invitation::ConnectedAccount::OrHash),
           connection_type: Zavudev::Invitation::ConnectionType::OrSymbol,
+          failed_at: T.nilable(Time),
+          failure_reason: T.nilable(String),
           phone_number_id: T.nilable(String),
           sender_id: T.nilable(String),
           started_at: T.nilable(Time),
@@ -97,6 +133,11 @@ module Zavudev
         created_at:,
         expires_at:,
         # Current status of the partner invitation.
+        #
+        # `failed` means the client started the connection and it did not finish (they
+        # cancelled Meta's dialog, denied a permission, or abandoned the tab). A failed
+        # invitation is still usable: the same link can be retried, and it moves back to
+        # `in_progress` when the client tries again.
         status:,
         updated_at:,
         # Full URL to share with the client.
@@ -105,10 +146,23 @@ module Zavudev
         client_name: nil,
         client_phone: nil,
         completed_at: nil,
-        # How the client connects WhatsApp: `whatsapp_waba` (official Cloud API via
-        # embedded signup).
+        # The account the client linked, populated once the invitation is `completed`.
+        # Null before that. Use it to show the partner what was connected without fetching
+        # the sender.
+        connected_account: nil,
+        # Which Meta channel the client connects: `whatsapp_waba` (official WhatsApp Cloud
+        # API via embedded signup) or `messenger` (a Facebook Page's Messenger inbox,
+        # including Marketplace chats).
         connection_type: nil,
-        # ID of a pre-assigned Zavu phone number for WhatsApp registration.
+        failed_at: nil,
+        # Stable code for why the last attempt failed, present when `status` is `failed`.
+        # Values include `fb_cancelled` (client closed Meta's dialog), `fb_not_authorized`
+        # (permission denied), `signup_abandoned` (started but never finished),
+        # `meta_no_pages` (the client administers no Facebook Page), and `internal_error`.
+        # Treat unknown codes as a generic failure.
+        failure_reason: nil,
+        # ID of a pre-assigned Zavu phone number for WhatsApp registration. Always null
+        # for `messenger` invitations.
         phone_number_id: nil,
         # ID of the sender created when invitation is completed.
         sender_id: nil,
@@ -131,7 +185,10 @@ module Zavudev
             client_name: T.nilable(String),
             client_phone: T.nilable(String),
             completed_at: T.nilable(Time),
+            connected_account: T.nilable(Zavudev::Invitation::ConnectedAccount),
             connection_type: Zavudev::Invitation::ConnectionType::TaggedSymbol,
+            failed_at: T.nilable(Time),
+            failure_reason: T.nilable(String),
             phone_number_id: T.nilable(String),
             sender_id: T.nilable(String),
             started_at: T.nilable(Time),
@@ -143,6 +200,11 @@ module Zavudev
       end
 
       # Current status of the partner invitation.
+      #
+      # `failed` means the client started the connection and it did not finish (they
+      # cancelled Meta's dialog, denied a permission, or abandoned the tab). A failed
+      # invitation is still usable: the same link can be retried, and it moves back to
+      # `in_progress` when the client tries again.
       module Status
         extend Zavudev::Internal::Type::Enum
 
@@ -156,6 +218,7 @@ module Zavudev
         COMPLETED = T.let(:completed, Zavudev::Invitation::Status::TaggedSymbol)
         EXPIRED = T.let(:expired, Zavudev::Invitation::Status::TaggedSymbol)
         CANCELLED = T.let(:cancelled, Zavudev::Invitation::Status::TaggedSymbol)
+        FAILED = T.let(:failed, Zavudev::Invitation::Status::TaggedSymbol)
 
         sig do
           override.returns(T::Array[Zavudev::Invitation::Status::TaggedSymbol])
@@ -164,8 +227,97 @@ module Zavudev
         end
       end
 
-      # How the client connects WhatsApp: `whatsapp_waba` (official Cloud API via
-      # embedded signup).
+      class ConnectedAccount < Zavudev::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Zavudev::Invitation::ConnectedAccount,
+              Zavudev::Internal::AnyHash
+            )
+          end
+
+        # Provider-side identifier: the WhatsApp phone number ID, or the Facebook Page ID.
+        sig { returns(String) }
+        attr_accessor :id
+
+        sig do
+          returns(Zavudev::Invitation::ConnectedAccount::Channel::TaggedSymbol)
+        end
+        attr_accessor :channel
+
+        # Display name of the connected account: the WhatsApp verified name, or the
+        # Facebook Page name.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :name
+
+        # The account the client linked, populated once the invitation is `completed`.
+        # Null before that. Use it to show the partner what was connected without fetching
+        # the sender.
+        sig do
+          params(
+            id: String,
+            channel: Zavudev::Invitation::ConnectedAccount::Channel::OrSymbol,
+            name: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Provider-side identifier: the WhatsApp phone number ID, or the Facebook Page ID.
+          id:,
+          channel:,
+          # Display name of the connected account: the WhatsApp verified name, or the
+          # Facebook Page name.
+          name: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              channel:
+                Zavudev::Invitation::ConnectedAccount::Channel::TaggedSymbol,
+              name: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
+        end
+
+        module Channel
+          extend Zavudev::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Zavudev::Invitation::ConnectedAccount::Channel)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          WHATSAPP =
+            T.let(
+              :whatsapp,
+              Zavudev::Invitation::ConnectedAccount::Channel::TaggedSymbol
+            )
+          MESSENGER =
+            T.let(
+              :messenger,
+              Zavudev::Invitation::ConnectedAccount::Channel::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Zavudev::Invitation::ConnectedAccount::Channel::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+      end
+
+      # Which Meta channel the client connects: `whatsapp_waba` (official WhatsApp Cloud
+      # API via embedded signup) or `messenger` (a Facebook Page's Messenger inbox,
+      # including Marketplace chats).
       module ConnectionType
         extend Zavudev::Internal::Type::Enum
 
@@ -178,6 +330,8 @@ module Zavudev
             :whatsapp_waba,
             Zavudev::Invitation::ConnectionType::TaggedSymbol
           )
+        MESSENGER =
+          T.let(:messenger, Zavudev::Invitation::ConnectionType::TaggedSymbol)
 
         sig do
           override.returns(

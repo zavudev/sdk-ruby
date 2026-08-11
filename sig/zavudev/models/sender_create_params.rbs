@@ -7,9 +7,12 @@ module Zavudev
         email_domain_id: String,
         email_from_name: String,
         email_receiving_enabled: bool,
+        enable_sms_oneway: bool,
+        enable_voice: bool,
         phone_number: String,
         set_as_default: bool,
         webhook_events: ::Array[Zavudev::Models::webhook_event],
+        webhook_signature_version: Zavudev::Models::SenderCreateParams::webhook_signature_version,
         webhook_url: String
       }
       & Zavudev::Internal::Type::request_parameters
@@ -36,6 +39,14 @@ module Zavudev
 
       def email_receiving_enabled=: (bool) -> bool
 
+      attr_reader enable_sms_oneway: bool?
+
+      def enable_sms_oneway=: (bool) -> bool
+
+      attr_reader enable_voice: bool?
+
+      def enable_voice=: (bool) -> bool
+
       attr_reader phone_number: String?
 
       def phone_number=: (String) -> String
@@ -50,6 +61,12 @@ module Zavudev
         ::Array[Zavudev::Models::webhook_event]
       ) -> ::Array[Zavudev::Models::webhook_event]
 
+      attr_reader webhook_signature_version: Zavudev::Models::SenderCreateParams::webhook_signature_version?
+
+      def webhook_signature_version=: (
+        Zavudev::Models::SenderCreateParams::webhook_signature_version
+      ) -> Zavudev::Models::SenderCreateParams::webhook_signature_version
+
       attr_reader webhook_url: String?
 
       def webhook_url=: (String) -> String
@@ -60,9 +77,12 @@ module Zavudev
         ?email_domain_id: String,
         ?email_from_name: String,
         ?email_receiving_enabled: bool,
+        ?enable_sms_oneway: bool,
+        ?enable_voice: bool,
         ?phone_number: String,
         ?set_as_default: bool,
         ?webhook_events: ::Array[Zavudev::Models::webhook_event],
+        ?webhook_signature_version: Zavudev::Models::SenderCreateParams::webhook_signature_version,
         ?webhook_url: String,
         ?request_options: Zavudev::request_opts
       ) -> void
@@ -73,12 +93,27 @@ module Zavudev
         email_domain_id: String,
         email_from_name: String,
         email_receiving_enabled: bool,
+        enable_sms_oneway: bool,
+        enable_voice: bool,
         phone_number: String,
         set_as_default: bool,
         webhook_events: ::Array[Zavudev::Models::webhook_event],
+        webhook_signature_version: Zavudev::Models::SenderCreateParams::webhook_signature_version,
         webhook_url: String,
         request_options: Zavudev::RequestOptions
       }
+
+      type webhook_signature_version = :v1 | :"v1+v2" | :v2
+
+      module WebhookSignatureVersion
+        extend Zavudev::Internal::Type::Enum
+
+        V1: :v1
+        V1_V2: :"v1+v2"
+        V2: :v2
+
+        def self?.values: -> ::Array[Zavudev::Models::SenderCreateParams::webhook_signature_version]
+      end
     end
   end
 end

@@ -6,6 +6,9 @@ module Zavudev
       # @return [Zavudev::Resources::Functions::Secrets]
       attr_reader :secrets
 
+      # Some parameter documentations has been truncated, see
+      # {Zavudev::Models::FunctionCreateParams} for more details.
+      #
       # Create a new Zavu Function. The function starts in `draft` status. A dedicated
       # API key is auto-provisioned and injected as the `ZAVU_API_KEY` secret so the
       # function can call back into the Zavu API without manual setup.
@@ -13,7 +16,7 @@ module Zavudev
       # Provide `sourceCode` to seed the draft. Call
       # `POST /v1/functions/{functionId}/deploy` afterwards to publish.
       #
-      # @overload create(name:, slug:, dependencies: nil, description: nil, http_enabled: nil, memory_mb: nil, runtime: nil, source_code: nil, timeout_sec: nil, request_options: {})
+      # @overload create(name:, slug:, dependencies: nil, description: nil, entrypoint: nil, files: nil, http_enabled: nil, memory_mb: nil, runtime: nil, source_code: nil, timeout_sec: nil, request_options: {})
       #
       # @param name [String]
       #
@@ -23,15 +26,19 @@ module Zavudev
       #
       # @param description [String]
       #
+      # @param entrypoint [String] Which file in `files` is the entry point. Defaults to `index.ts`.
+      #
+      # @param files [Hash{Symbol=>String}] The project's source files, keyed by path relative to the project root (e.g. `in
+      #
       # @param http_enabled [Boolean] Whether to expose a public HTTPS URL for this function.
       #
       # @param memory_mb [Integer, Zavudev::Models::FunctionCreateParams::MemoryMB]
       #
       # @param runtime [Symbol, Zavudev::Models::FunctionCreateParams::Runtime] Runtime the function is deployed on.
       #
-      # @param source_code [String] TypeScript source code for the function entry point (max ~900KB).
+      # @param source_code [String] Shortcut for a single-file function: exactly equivalent to sending `files` with
       #
-      # @param timeout_sec [Integer]
+      # @param timeout_sec [Integer] Per-invocation timeout in seconds. Event and cron invocations are asynchronous,
       #
       # @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -69,17 +76,28 @@ module Zavudev
         )
       end
 
-      # Update the draft source code and/or dependency map without triggering a build.
-      # Visible in the dashboard immediately, but the live (deployed) function does not
-      # change until `POST /v1/functions/{functionId}/deploy` runs.
+      # Some parameter documentations has been truncated, see
+      # {Zavudev::Models::FunctionUpdateParams} for more details.
       #
-      # @overload update(function_id, dependencies: nil, source_code: nil, request_options: {})
+      # Update an existing function. `sourceCode` / `dependencies` edit the draft
+      # without triggering a build — they go live on the next
+      # `POST /v1/functions/{functionId}/deploy`. `httpEnabled` is applied to the
+      # deployed function immediately, so turning the public endpoint on or off does not
+      # require a redeploy.
+      #
+      # @overload update(function_id, dependencies: nil, entrypoint: nil, files: nil, http_enabled: nil, source_code: nil, request_options: {})
       #
       # @param function_id [String] Zavu Function ID.
       #
       # @param dependencies [Hash{Symbol=>String}] New dependency map (replaces existing dependencies).
       #
-      # @param source_code [String] New source code to publish (replaces the draft).
+      # @param entrypoint [String] Which file in `files` is the entry point. Defaults to `index.ts`.
+      #
+      # @param files [Hash{Symbol=>String}] The project's source files, keyed by path relative to the project root (e.g. `in
+      #
+      # @param http_enabled [Boolean] Expose the function on its public HTTPS URL, or take it down. Applies to the alr
+      #
+      # @param source_code [String] Shortcut for a single-file function: exactly equivalent to sending `files` with
       #
       # @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -119,18 +137,25 @@ module Zavudev
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Zavudev::Models::FunctionDeployParams} for more details.
+      #
       # Publish the function. If `sourceCode` or `dependencies` are provided in the
       # body, they replace the current draft before deployment. Returns immediately with
       # a deployment ID — poll `GET /v1/functions/deployments/{deploymentId}` until
       # status is `active` or `failed`.
       #
-      # @overload deploy(function_id, dependencies: nil, source_code: nil, request_options: {})
+      # @overload deploy(function_id, dependencies: nil, entrypoint: nil, files: nil, source_code: nil, request_options: {})
       #
       # @param function_id [String] Zavu Function ID.
       #
       # @param dependencies [Hash{Symbol=>String}] New dependency map (replaces existing dependencies).
       #
-      # @param source_code [String] New source code to publish (replaces the draft).
+      # @param entrypoint [String] Which file in `files` is the entry point. Defaults to `index.ts`.
+      #
+      # @param files [Hash{Symbol=>String}] The project's source files, keyed by path relative to the project root (e.g. `in
+      #
+      # @param source_code [String] Shortcut for a single-file function: exactly equivalent to sending `files` with
       #
       # @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}, nil]
       #

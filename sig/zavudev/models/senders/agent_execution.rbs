@@ -13,8 +13,10 @@ module Zavudev
           status: Zavudev::Models::Senders::agent_execution_status,
           error_message: String?,
           inbound_message_id: String,
+          knowledge_chunks_used: Integer?,
           response_message_id: String?,
-          response_text: String?
+          response_text: String?,
+          tool_calls: Integer?
         }
 
       class AgentExecution < Zavudev::Internal::Type::BaseModel
@@ -40,9 +42,13 @@ module Zavudev
 
         def inbound_message_id=: (String) -> String
 
+        attr_accessor knowledge_chunks_used: Integer?
+
         attr_accessor response_message_id: String?
 
         attr_accessor response_text: String?
+
+        attr_accessor tool_calls: Integer?
 
         def initialize: (
           id: String,
@@ -55,8 +61,10 @@ module Zavudev
           status: Zavudev::Models::Senders::agent_execution_status,
           ?error_message: String?,
           ?inbound_message_id: String,
+          ?knowledge_chunks_used: Integer?,
           ?response_message_id: String?,
-          ?response_text: String?
+          ?response_text: String?,
+          ?tool_calls: Integer?
         ) -> void
 
         def to_hash: -> {
@@ -70,8 +78,10 @@ module Zavudev
           status: Zavudev::Models::Senders::agent_execution_status,
           error_message: String?,
           inbound_message_id: String,
+          knowledge_chunks_used: Integer?,
           response_message_id: String?,
-          response_text: String?
+          response_text: String?,
+          tool_calls: Integer?
         }
       end
     end

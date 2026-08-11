@@ -4,6 +4,7 @@ module Zavudev
       {
         active: bool,
         events: ::Array[Zavudev::Models::webhook_event],
+        signature_version: Zavudev::Models::SenderWebhook::signature_version,
         url: String,
         secret: String
       }
@@ -12,6 +13,8 @@ module Zavudev
       attr_accessor active: bool
 
       attr_accessor events: ::Array[Zavudev::Models::webhook_event]
+
+      attr_accessor signature_version: Zavudev::Models::SenderWebhook::signature_version
 
       attr_accessor url: String
 
@@ -22,6 +25,7 @@ module Zavudev
       def initialize: (
         active: bool,
         events: ::Array[Zavudev::Models::webhook_event],
+        signature_version: Zavudev::Models::SenderWebhook::signature_version,
         url: String,
         ?secret: String
       ) -> void
@@ -29,9 +33,22 @@ module Zavudev
       def to_hash: -> {
         active: bool,
         events: ::Array[Zavudev::Models::webhook_event],
+        signature_version: Zavudev::Models::SenderWebhook::signature_version,
         url: String,
         secret: String
       }
+
+      type signature_version = :v1 | :"v1+v2" | :v2
+
+      module SignatureVersion
+        extend Zavudev::Internal::Type::Enum
+
+        V1: :v1
+        V1_V2: :"v1+v2"
+        V2: :v2
+
+        def self?.values: -> ::Array[Zavudev::Models::SenderWebhook::signature_version]
+      end
     end
   end
 end

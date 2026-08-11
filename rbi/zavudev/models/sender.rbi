@@ -16,6 +16,16 @@ module Zavudev
       sig { returns(String) }
       attr_accessor :phone_number
 
+      # Channels this sender can actually send on right now, computed from its
+      # configuration. Empty means the sender cannot send or receive anything yet: a
+      # phoneNumber alone does not enable SMS or voice. Check this rather than inferring
+      # capability from phoneNumber or emailAddress.
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_reader :channels
+
+      sig { params(channels: T::Array[String]).void }
+      attr_writer :channels
+
       sig { returns(T.nilable(Time)) }
       attr_reader :created_at
 
@@ -78,6 +88,7 @@ module Zavudev
           id: String,
           name: String,
           phone_number: String,
+          channels: T::Array[String],
           created_at: Time,
           email_address: String,
           email_catch_all_enabled: T::Boolean,
@@ -93,6 +104,11 @@ module Zavudev
         name:,
         # Phone number in E.164 format.
         phone_number:,
+        # Channels this sender can actually send on right now, computed from its
+        # configuration. Empty means the sender cannot send or receive anything yet: a
+        # phoneNumber alone does not enable SMS or voice. Check this rather than inferring
+        # capability from phoneNumber or emailAddress.
+        channels: nil,
         created_at: nil,
         # From-address for the email channel, if configured.
         email_address: nil,
@@ -119,6 +135,7 @@ module Zavudev
             id: String,
             name: String,
             phone_number: String,
+            channels: T::Array[String],
             created_at: Time,
             email_address: String,
             email_catch_all_enabled: T::Boolean,

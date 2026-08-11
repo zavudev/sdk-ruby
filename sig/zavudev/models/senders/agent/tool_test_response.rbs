@@ -2,14 +2,78 @@ module Zavudev
   module Models
     module Senders
       module Agent
-        type tool_test_response = { scheduled: bool }
+        type tool_test_response =
+          { run: Zavudev::Models::Senders::Agent::ToolTestResponse::Run }
 
         class ToolTestResponse < Zavudev::Internal::Type::BaseModel
-          attr_accessor scheduled: bool
+          attr_accessor run: Zavudev::Models::Senders::Agent::ToolTestResponse::Run
 
-          def initialize: (scheduled: bool) -> void
+          def initialize: (
+            run: Zavudev::Models::Senders::Agent::ToolTestResponse::Run
+          ) -> void
 
-          def to_hash: -> { scheduled: bool }
+          def to_hash: -> {
+            run: Zavudev::Models::Senders::Agent::ToolTestResponse::Run
+          }
+
+          type run =
+            {
+              id: String,
+              created_at: Time,
+              duration_ms: Integer,
+              success: bool,
+              tool_id: String,
+              error: String?,
+              params: ::Hash[Symbol, top],
+              response: String?,
+              status_code: Integer?
+            }
+
+          class Run < Zavudev::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor created_at: Time
+
+            attr_accessor duration_ms: Integer
+
+            attr_accessor success: bool
+
+            attr_accessor tool_id: String
+
+            attr_accessor error: String?
+
+            attr_reader params: ::Hash[Symbol, top]?
+
+            def params=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+            attr_accessor response: String?
+
+            attr_accessor status_code: Integer?
+
+            def initialize: (
+              id: String,
+              created_at: Time,
+              duration_ms: Integer,
+              success: bool,
+              tool_id: String,
+              ?error: String?,
+              ?params: ::Hash[Symbol, top],
+              ?response: String?,
+              ?status_code: Integer?
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              created_at: Time,
+              duration_ms: Integer,
+              success: bool,
+              tool_id: String,
+              error: String?,
+              params: ::Hash[Symbol, top],
+              response: String?,
+              status_code: Integer?
+            }
+          end
         end
       end
     end

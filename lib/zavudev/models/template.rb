@@ -249,6 +249,7 @@ module Zavudev
           URL = :url
           PHONE = :phone
           OTP = :otp
+          REQUEST_CONTACT_INFO = :request_contact_info
 
           # @!method self.values
           #   @return [Array<Symbol>]

@@ -17,9 +17,13 @@ module Zavudev
           email_domain_id: String,
           email_from_name: String,
           email_receiving_enabled: T::Boolean,
+          enable_sms_oneway: T::Boolean,
+          enable_voice: T::Boolean,
           phone_number: String,
           set_as_default: T::Boolean,
           webhook_events: T::Array[Zavudev::WebhookEvent::OrSymbol],
+          webhook_signature_version:
+            Zavudev::SenderCreateParams::WebhookSignatureVersion::OrSymbol,
           webhook_url: String,
           request_options: Zavudev::RequestOptions::OrHash
         ).returns(Zavudev::Sender)
@@ -38,12 +42,37 @@ module Zavudev
         # Enable inbound email receiving on this sender. Requires a verified MX record on
         # the domain; ignored otherwise.
         email_receiving_enabled: nil,
-        # Phone number in E.164 format. Required for phone-based channels (SMS, WhatsApp).
-        # Omit for an email-only sender.
+        # Enable the one-way SMS channel (`sms_oneway`). Needs nothing else — no phone
+        # number, no credential — so it is the fastest way to get a sender that can send.
+        # Recipients cannot reply. Confirm with `sms_oneway` in the `channels` array on
+        # the response.
+        enable_sms_oneway: nil,
+        # Let this sender place and answer phone calls. Requires `phoneNumber`; enabling
+        # it without one returns 400. Check the `channels` array on the response to
+        # confirm `voice` is on.
+        enable_voice: nil,
+        # Phone number in E.164 format, and it must be a number your project already owns
+        # (see `GET /v1/phone-numbers`). The number is routed to the sender as part of
+        # this call, which is what turns the SMS channel on. Passing a number the project
+        # does not own, or one already attached to another sender, returns 400 rather than
+        # creating a sender that cannot send. Omit for an email-only sender.
         phone_number: nil,
         set_as_default: nil,
         # Events to subscribe to.
         webhook_events: nil,
+        # Which `X-Zavu-Signature` scheme this receiver is sent.
+        #
+        # - `v1`: `v1=HMAC_SHA256(secret, body)`. The scheme used before this was
+        #   configurable. Existing webhooks stay on it until you move them.
+        # - `v2`: `v2=HMAC_SHA256(secret, "{t}.{body}")`. The current scheme, and the
+        #   default for new senders. It signs the timestamp together with the body.
+        # - `v1+v2`: both signatures, sharing one `t`. The migration setting: a receiver
+        #   reading either one works, so you can deploy and confirm your new verifier
+        #   before switching over.
+        #
+        # Moving from `v1` straight to `v2` returns `400`. Set `v1+v2` first. See
+        # https://docs.zavu.dev/guides/receiving-messages/signature-migration
+        webhook_signature_version: nil,
         # HTTPS URL for webhook events.
         webhook_url: nil,
         request_options: {}
@@ -69,10 +98,14 @@ module Zavudev
           email_domain_id: String,
           email_from_name: String,
           email_receiving_enabled: T::Boolean,
+          enable_sms_oneway: T::Boolean,
+          enable_voice: T::Boolean,
           name: String,
           set_as_default: T::Boolean,
           webhook_active: T::Boolean,
           webhook_events: T::Array[Zavudev::WebhookEvent::OrSymbol],
+          webhook_signature_version:
+            Zavudev::SenderUpdateParams::WebhookSignatureVersion::OrSymbol,
           webhook_url: T.nilable(String),
           request_options: Zavudev::RequestOptions::OrHash
         ).returns(Zavudev::Sender)
@@ -93,12 +126,33 @@ module Zavudev
         email_from_name: nil,
         # Enable or disable inbound email receiving for this sender.
         email_receiving_enabled: nil,
+        # Turn the one-way SMS channel on or off. Enabling needs nothing else and takes
+        # effect immediately; disabling removes the channel from the sender. Confirm with
+        # the `channels` array on the response.
+        enable_sms_oneway: nil,
+        # Turn the voice channel on or off. The sender must already have a phone number
+        # provisioned for calls; enabling it otherwise returns 400 instead of storing a
+        # flag that changes nothing. Confirm with the `channels` array on the response.
+        enable_voice: nil,
         name: nil,
         set_as_default: nil,
         # Whether the webhook is active.
         webhook_active: nil,
         # Events to subscribe to.
         webhook_events: nil,
+        # Which `X-Zavu-Signature` scheme this receiver is sent.
+        #
+        # - `v1`: `v1=HMAC_SHA256(secret, body)`. The scheme used before this was
+        #   configurable. Existing webhooks stay on it until you move them.
+        # - `v2`: `v2=HMAC_SHA256(secret, "{t}.{body}")`. The current scheme, and the
+        #   default for new senders. It signs the timestamp together with the body.
+        # - `v1+v2`: both signatures, sharing one `t`. The migration setting: a receiver
+        #   reading either one works, so you can deploy and confirm your new verifier
+        #   before switching over.
+        #
+        # Moving from `v1` straight to `v2` returns `400`. Set `v1+v2` first. See
+        # https://docs.zavu.dev/guides/receiving-messages/signature-migration
+        webhook_signature_version: nil,
         # HTTPS URL for webhook events. Set to null to remove webhook.
         webhook_url: nil,
         request_options: {}

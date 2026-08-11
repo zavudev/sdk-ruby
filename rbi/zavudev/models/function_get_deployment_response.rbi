@@ -74,6 +74,15 @@ module Zavudev
         sig { returns(Integer) }
         attr_accessor :version
 
+        # What the build printed: dependency installation, the bundler's output, and the
+        # compiler's message when it failed. Returned when fetching a single deployment,
+        # omitted from the list. Read this first when a deploy fails — `errorMessage` is
+        # often the outer wrapper's summary, and the line that names the broken import or
+        # the syntax error is here.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :build_logs
+
+        # Size of the built bundle in bytes. Null until the build finishes.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :bundle_bytes
 
@@ -84,6 +93,7 @@ module Zavudev
         sig { returns(T.nilable(String)) }
         attr_accessor :error_message
 
+        # Total size of the deployed source tree in bytes.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :source_code_bytes
 
@@ -95,6 +105,7 @@ module Zavudev
             status:
               Zavudev::Models::FunctionGetDeploymentResponse::Deployment::Status::OrSymbol,
             version: Integer,
+            build_logs: T.nilable(String),
             bundle_bytes: T.nilable(Integer),
             deployed_at: T.nilable(Time),
             error_message: T.nilable(String),
@@ -109,10 +120,18 @@ module Zavudev
           status:,
           # Monotonically increasing deployment version, starting at 1.
           version:,
+          # What the build printed: dependency installation, the bundler's output, and the
+          # compiler's message when it failed. Returned when fetching a single deployment,
+          # omitted from the list. Read this first when a deploy fails — `errorMessage` is
+          # often the outer wrapper's summary, and the line that names the broken import or
+          # the syntax error is here.
+          build_logs: nil,
+          # Size of the built bundle in bytes. Null until the build finishes.
           bundle_bytes: nil,
           deployed_at: nil,
           # Failure reason when status is 'failed'.
           error_message: nil,
+          # Total size of the deployed source tree in bytes.
           source_code_bytes: nil
         )
         end
@@ -126,6 +145,7 @@ module Zavudev
               status:
                 Zavudev::Models::FunctionGetDeploymentResponse::Deployment::Status::TaggedSymbol,
               version: Integer,
+              build_logs: T.nilable(String),
               bundle_bytes: T.nilable(Integer),
               deployed_at: T.nilable(Time),
               error_message: T.nilable(String),

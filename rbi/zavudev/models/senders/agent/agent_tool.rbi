@@ -51,6 +51,19 @@ module Zavudev
           sig { returns(String) }
           attr_accessor :webhook_url
 
+          # Signing secret for this tool's webhook. **Returned only when the tool is
+          # created**, never on a later read.
+          #
+          # Zavu generates one if you do not supply it, and signs every call to this tool
+          # with it: `X-Zavu-Signature: <hex>`, the HMAC-SHA256 of the request body. Verify
+          # it before trusting the call. Lost it? Rotate with
+          # `POST /v1/senders/{senderId}/agent/tools/{toolId}/webhook/secret`.
+          sig { returns(T.nilable(String)) }
+          attr_reader :webhook_secret
+
+          sig { params(webhook_secret: String).void }
+          attr_writer :webhook_secret
+
           sig do
             params(
               id: String,
@@ -61,7 +74,8 @@ module Zavudev
               name: String,
               parameters: Zavudev::Senders::Agent::ToolParameters::OrHash,
               updated_at: Time,
-              webhook_url: String
+              webhook_url: String,
+              webhook_secret: String
             ).returns(T.attached_class)
           end
           def self.new(
@@ -75,7 +89,15 @@ module Zavudev
             parameters:,
             updated_at:,
             # HTTPS URL to call when the tool is executed.
-            webhook_url:
+            webhook_url:,
+            # Signing secret for this tool's webhook. **Returned only when the tool is
+            # created**, never on a later read.
+            #
+            # Zavu generates one if you do not supply it, and signs every call to this tool
+            # with it: `X-Zavu-Signature: <hex>`, the HMAC-SHA256 of the request body. Verify
+            # it before trusting the call. Lost it? Rotate with
+            # `POST /v1/senders/{senderId}/agent/tools/{toolId}/webhook/secret`.
+            webhook_secret: nil
           )
           end
 
@@ -90,7 +112,8 @@ module Zavudev
                 name: String,
                 parameters: Zavudev::Senders::Agent::ToolParameters,
                 updated_at: Time,
-                webhook_url: String
+                webhook_url: String,
+                webhook_secret: String
               }
             )
           end

@@ -193,9 +193,9 @@ module Zavudev
             )
           end
 
-        sig { returns(String) }
-        attr_accessor :text
-
+        # `request_contact_info` renders a fixed **Share Contact Info** button that asks
+        # the recipient to share their phone number — useful when a contact adopted a
+        # WhatsApp username and you only know their BSUID. It takes no other fields.
         sig { returns(Zavudev::TemplateCreateParams::Button::Type::OrSymbol) }
         attr_accessor :type
 
@@ -244,6 +244,14 @@ module Zavudev
         sig { params(signature_hash: String).void }
         attr_writer :signature_hash
 
+        # Button label. Required for every type except `request_contact_info`, whose label
+        # is fixed by WhatsApp.
+        sig { returns(T.nilable(String)) }
+        attr_reader :text
+
+        sig { params(text: String).void }
+        attr_writer :text
+
         # Button destination. Use `{{1}}` exactly once for a dynamic URL (e.g.
         # `https://example.com/orders/{{1}}`); WhatsApp only accepts the strict `{{1}}`
         # form. Static URLs must not contain any `{{...}}` placeholder.
@@ -255,18 +263,20 @@ module Zavudev
 
         sig do
           params(
-            text: String,
             type: Zavudev::TemplateCreateParams::Button::Type::OrSymbol,
             example: String,
             otp_type: Zavudev::TemplateCreateParams::Button::OtpType::OrSymbol,
             package_name: String,
             phone_number: String,
             signature_hash: String,
+            text: String,
             url: String
           ).returns(T.attached_class)
         end
         def self.new(
-          text:,
+          # `request_contact_info` renders a fixed **Share Contact Info** button that asks
+          # the recipient to share their phone number — useful when a contact adopted a
+          # WhatsApp username and you only know their BSUID. It takes no other fields.
           type:,
           # Sample value Meta uses to review templates with a dynamic URL button.
           # Substituted into `{{1}}` of the URL when the template is submitted to Meta. Only
@@ -280,6 +290,9 @@ module Zavudev
           phone_number: nil,
           # Android app signature hash. Required for ONE_TAP buttons.
           signature_hash: nil,
+          # Button label. Required for every type except `request_contact_info`, whose label
+          # is fixed by WhatsApp.
+          text: nil,
           # Button destination. Use `{{1}}` exactly once for a dynamic URL (e.g.
           # `https://example.com/orders/{{1}}`); WhatsApp only accepts the strict `{{1}}`
           # form. Static URLs must not contain any `{{...}}` placeholder.
@@ -290,7 +303,6 @@ module Zavudev
         sig do
           override.returns(
             {
-              text: String,
               type: Zavudev::TemplateCreateParams::Button::Type::OrSymbol,
               example: String,
               otp_type:
@@ -298,6 +310,7 @@ module Zavudev
               package_name: String,
               phone_number: String,
               signature_hash: String,
+              text: String,
               url: String
             }
           )
@@ -305,6 +318,9 @@ module Zavudev
         def to_hash
         end
 
+        # `request_contact_info` renders a fixed **Share Contact Info** button that asks
+        # the recipient to share their phone number — useful when a contact adopted a
+        # WhatsApp username and you only know their BSUID. It takes no other fields.
         module Type
           extend Zavudev::Internal::Type::Enum
 
@@ -332,6 +348,11 @@ module Zavudev
           OTP =
             T.let(
               :otp,
+              Zavudev::TemplateCreateParams::Button::Type::TaggedSymbol
+            )
+          REQUEST_CONTACT_INFO =
+            T.let(
+              :request_contact_info,
               Zavudev::TemplateCreateParams::Button::Type::TaggedSymbol
             )
 

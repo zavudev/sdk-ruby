@@ -51,7 +51,32 @@ module Zavudev
     # **Partner events:**
     #
     # - `invitation.status_changed`: A partner invitation status changed (pending,
-    #   in_progress, completed, cancelled)
+    #   in_progress, completed, cancelled, failed). `data` carries `invitationId`,
+    #   `clientName`, `clientEmail`, `connectionType` (`whatsapp_waba` or
+    #   `messenger`), `previousStatus`, and `currentStatus`. On `completed` it also
+    #   carries `senderId` and `connectedAccount` (`channel`, `id`, `name`) — the
+    #   WhatsApp number or Facebook Page that was linked. On `failed` it carries
+    #   `failureReason`; the invitation link stays usable, so a client can retry it.
+    #
+    # **Voice Agent events:** For every voice event, `data` carries `callId`,
+    # `direction`, `from`, `to`, `status`, `durationSeconds`, `endReason`, and
+    # `transcriptAvailable`. The terminal events (`call.completed`, `call.failed`)
+    # additionally carry `cost` — what the call was billed, in USD, combining
+    # telephony and the managed voice pipeline — and `currency`. They are dispatched
+    # after the call is charged, so `cost` is populated rather than zero; telephony
+    # can still be settling on an outbound call, in which case
+    # `GET /v1/calls/{callId}` holds the reconciled figure.
+    #
+    # - `call.initiated`: An outbound call was created and is dialing, or an inbound
+    #   call was received. `data.status` = `ringing`
+    # - `call.answered`: The call was answered and the voice agent is connected.
+    #   `data.status` = `in_progress`
+    # - `call.completed`: The call ended after a conversation. `data.status` =
+    #   `completed`; `durationSeconds` and `endReason` describe how it ended, and
+    #   `transcriptAvailable` indicates whether a transcript can be fetched.
+    # - `call.failed`: The call could not be completed (busy, no answer, canceled, or
+    #   an error). `data.status` is the terminal status and `endReason` explains the
+    #   cause.
     #
     # **Custom domain events:**
     #
@@ -71,6 +96,8 @@ module Zavudev
       MESSAGE_DELIVERED =
         T.let(:"message.delivered", Zavudev::WebhookEvent::TaggedSymbol)
       MESSAGE_READ = T.let(:"message.read", Zavudev::WebhookEvent::TaggedSymbol)
+      MESSAGE_STATUS =
+        T.let(:"message.status", Zavudev::WebhookEvent::TaggedSymbol)
       MESSAGE_FAILED =
         T.let(:"message.failed", Zavudev::WebhookEvent::TaggedSymbol)
       MESSAGE_INBOUND =
@@ -85,6 +112,13 @@ module Zavudev
         T.let(:"template.status_changed", Zavudev::WebhookEvent::TaggedSymbol)
       INVITATION_STATUS_CHANGED =
         T.let(:"invitation.status_changed", Zavudev::WebhookEvent::TaggedSymbol)
+      CALL_INITIATED =
+        T.let(:"call.initiated", Zavudev::WebhookEvent::TaggedSymbol)
+      CALL_ANSWERED =
+        T.let(:"call.answered", Zavudev::WebhookEvent::TaggedSymbol)
+      CALL_COMPLETED =
+        T.let(:"call.completed", Zavudev::WebhookEvent::TaggedSymbol)
+      CALL_FAILED = T.let(:"call.failed", Zavudev::WebhookEvent::TaggedSymbol)
       DOMAIN_VERIFIED =
         T.let(:"domain.verified", Zavudev::WebhookEvent::TaggedSymbol)
       DOMAIN_FAILED =

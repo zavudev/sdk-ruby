@@ -16,9 +16,12 @@ module Zavudev
         # @return [Zavudev::Resources::Senders::Agent::KnowledgeBases]
         attr_reader :knowledge_bases
 
+        # Some parameter documentations has been truncated, see
+        # {Zavudev::Models::Senders::AgentCreateParams} for more details.
+        #
         # Create an AI agent for a sender. Each sender can have at most one agent.
         #
-        # @overload create(sender_id, model:, name:, provider:, system_prompt:, api_key: nil, context_window_messages: nil, include_contact_metadata: nil, max_tokens: nil, temperature: nil, trigger_on_channels: nil, trigger_on_message_types: nil, request_options: {})
+        # @overload create(sender_id, model:, name:, provider:, system_prompt:, api_key: nil, context_window_messages: nil, include_contact_metadata: nil, max_tokens: nil, temperature: nil, trigger_on_channels: nil, trigger_on_message_types: nil, voice: nil, request_options: {})
         #
         # @param sender_id [String]
         #
@@ -43,6 +46,8 @@ module Zavudev
         # @param trigger_on_channels [Array<String>]
         #
         # @param trigger_on_message_types [Array<String>]
+        #
+        # @param voice [Zavudev::Models::Senders::AgentCreateParams::Voice] Voice Agent configuration. Enable this to let the agent answer and place phone c
         #
         # @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -79,9 +84,12 @@ module Zavudev
           )
         end
 
+        # Some parameter documentations has been truncated, see
+        # {Zavudev::Models::Senders::AgentUpdateParams} for more details.
+        #
         # Update an AI agent's configuration.
         #
-        # @overload update(sender_id, api_key: nil, context_window_messages: nil, enabled: nil, include_contact_metadata: nil, max_tokens: nil, model: nil, name: nil, provider: nil, system_prompt: nil, temperature: nil, trigger_on_channels: nil, trigger_on_message_types: nil, request_options: {})
+        # @overload update(sender_id, api_key: nil, context_window_messages: nil, enabled: nil, include_contact_metadata: nil, max_tokens: nil, model: nil, name: nil, provider: nil, system_prompt: nil, temperature: nil, trigger_on_channels: nil, trigger_on_message_types: nil, voice: nil, request_options: {})
         #
         # @param sender_id [String]
         #
@@ -108,6 +116,8 @@ module Zavudev
         # @param trigger_on_channels [Array<String>]
         #
         # @param trigger_on_message_types [Array<String>]
+        #
+        # @param voice [Zavudev::Models::Senders::AgentUpdateParams::Voice] Voice Agent configuration. Patch this object to enable voice, change the greetin
         #
         # @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -145,6 +155,12 @@ module Zavudev
         end
 
         # Get statistics for an AI agent including invocations, tokens, and costs.
+        #
+        # Covers the messaging channels only. Voice calls are not counted here: a call is
+        # a multi-turn conversation rather than one inbound message and one reply, so it
+        # is recorded as a call, not an execution. An agent that only answers phone calls
+        # reports zeros on every field. Use `GET /v1/calls` for voice activity, duration,
+        # and cost.
         #
         # @overload stats(sender_id, request_options: {})
         #

@@ -4,6 +4,20 @@ module Zavudev
   module Models
     # Type of message. Non-text types are supported by WhatsApp and Telegram (varies
     # by type).
+    #
+    # `location_request` asks the recipient to share their location and is
+    # WhatsApp-only. It takes no `content` object — the prompt goes in `text` (max
+    # 1024 characters) and the button label is fixed by WhatsApp. The recipient's
+    # answer arrives as an inbound `location` message whose `content.replyToMessageId`
+    # is the ID of the request.
+    #
+    # `request_contact_info` asks the recipient to share their phone number and is
+    # WhatsApp-only. Like `location_request` it takes no `content` object — the prompt
+    # goes in `text` (max 1024 characters) and WhatsApp renders a fixed **Share
+    # Contact Info** button. The answer arrives as an inbound `contact` message. Use
+    # it to recover the phone number of a contact who adopted a WhatsApp username and
+    # is only known by their business-scoped user ID (BSUID); when they share it, Zavu
+    # automatically links the phone number to that contact.
     module MessageType
       extend Zavudev::Internal::Type::Enum
 
@@ -21,6 +35,10 @@ module Zavudev
       BUTTONS = T.let(:buttons, Zavudev::MessageType::TaggedSymbol)
       LIST = T.let(:list, Zavudev::MessageType::TaggedSymbol)
       CTA_URL = T.let(:cta_url, Zavudev::MessageType::TaggedSymbol)
+      REQUEST_CONTACT_INFO =
+        T.let(:request_contact_info, Zavudev::MessageType::TaggedSymbol)
+      LOCATION_REQUEST =
+        T.let(:location_request, Zavudev::MessageType::TaggedSymbol)
       REACTION = T.let(:reaction, Zavudev::MessageType::TaggedSymbol)
       TEMPLATE = T.let(:template, Zavudev::MessageType::TaggedSymbol)
 

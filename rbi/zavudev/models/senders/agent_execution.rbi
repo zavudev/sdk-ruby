@@ -44,11 +44,25 @@ module Zavudev
         sig { params(inbound_message_id: String).void }
         attr_writer :inbound_message_id
 
+        # Knowledge-base chunks retrieved for this answer. Zero on an agent that has
+        # documents attached means the reply was not grounded in them, which is otherwise
+        # indistinguishable from a correct answer in this record. Absent on executions
+        # recorded before this field existed, which is not the same as zero.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :knowledge_chunks_used
+
         sig { returns(T.nilable(String)) }
         attr_accessor :response_message_id
 
         sig { returns(T.nilable(String)) }
         attr_accessor :response_text
+
+        # Tools the agent called while producing this reply. Zero on an agent that has
+        # tools configured means it answered without calling any — the case where a reply
+        # says it will look something up and nothing ever reaches your endpoint. Absent on
+        # executions recorded before this field existed, which is not the same as zero.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :tool_calls
 
         sig do
           params(
@@ -62,8 +76,10 @@ module Zavudev
             status: Zavudev::Senders::AgentExecutionStatus::OrSymbol,
             error_message: T.nilable(String),
             inbound_message_id: String,
+            knowledge_chunks_used: T.nilable(Integer),
             response_message_id: T.nilable(String),
-            response_text: T.nilable(String)
+            response_text: T.nilable(String),
+            tool_calls: T.nilable(Integer)
           ).returns(T.attached_class)
         end
         def self.new(
@@ -79,8 +95,18 @@ module Zavudev
           status:,
           error_message: nil,
           inbound_message_id: nil,
+          # Knowledge-base chunks retrieved for this answer. Zero on an agent that has
+          # documents attached means the reply was not grounded in them, which is otherwise
+          # indistinguishable from a correct answer in this record. Absent on executions
+          # recorded before this field existed, which is not the same as zero.
+          knowledge_chunks_used: nil,
           response_message_id: nil,
-          response_text: nil
+          response_text: nil,
+          # Tools the agent called while producing this reply. Zero on an agent that has
+          # tools configured means it answered without calling any — the case where a reply
+          # says it will look something up and nothing ever reaches your endpoint. Absent on
+          # executions recorded before this field existed, which is not the same as zero.
+          tool_calls: nil
         )
         end
 
@@ -97,8 +123,10 @@ module Zavudev
               status: Zavudev::Senders::AgentExecutionStatus::TaggedSymbol,
               error_message: T.nilable(String),
               inbound_message_id: String,
+              knowledge_chunks_used: T.nilable(Integer),
               response_message_id: T.nilable(String),
-              response_text: T.nilable(String)
+              response_text: T.nilable(String),
+              tool_calls: T.nilable(Integer)
             }
           )
         end

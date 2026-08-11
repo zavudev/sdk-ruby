@@ -26,7 +26,9 @@ module Zavudev
             # Must be HTTPS.
             webhook_url:,
             enabled: nil,
-            # Optional secret for webhook signature verification.
+            # Signing secret for the webhook. Optional: Zavu generates one when omitted and
+            # returns it on this response only. Supply your own if you already have a secret
+            # you want reused.
             webhook_secret: nil,
             request_options: {}
           )
@@ -110,7 +112,16 @@ module Zavudev
           def delete(tool_id, sender_id:, request_options: {})
           end
 
-          # Test a tool by triggering its webhook with test parameters.
+          # Run a tool with the parameters you supply and return what it answered.
+          #
+          # The call is synchronous: the response carries the tool's status, body, and
+          # duration, so a green result is evidence the tool ran rather than evidence it was
+          # accepted. Each run is also recorded and readable afterwards via
+          # `GET /v1/senders/{senderId}/agent/tools/{toolId}/test-runs`.
+          #
+          # A tool that answers with an error is reported as a run with `success: false` —
+          # the endpoint itself still returns 200. This fires the tool's real webhook, so a
+          # test has whatever side effects the tool has.
           sig do
             params(
               tool_id: String,
