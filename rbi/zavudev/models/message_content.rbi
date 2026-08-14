@@ -156,6 +156,22 @@ module Zavudev
       sig { params(react_to_message_id: String).void }
       attr_writer :react_to_message_id
 
+      # Click-to-WhatsApp (CTWA) ad attribution: where an inbound conversation came
+      # from.
+      #
+      # WhatsApp only. Present on the **first inbound message** of a conversation opened
+      # from a Meta ad or post, and on no message after it — so store it when it arrives
+      # rather than expecting it again. Organic conversations never carry it.
+      #
+      # Field names are camelCased to match the rest of this API; Meta sends them as
+      # snake_case (`ctwa_clid`, `source_id`, ...). Fields that do not apply are
+      # omitted: a `post` source has no click id, and an image ad has no `videoUrl`.
+      sig { returns(T.nilable(Zavudev::MessageContent::Referral)) }
+      attr_reader :referral
+
+      sig { params(referral: Zavudev::MessageContent::Referral::OrHash).void }
+      attr_writer :referral
+
       # Sender of the quoted message (phone number in E.164 format).
       sig { returns(T.nilable(String)) }
       attr_reader :reply_to_from
@@ -277,6 +293,7 @@ module Zavudev
           media_url: String,
           mime_type: String,
           react_to_message_id: String,
+          referral: Zavudev::MessageContent::Referral::OrHash,
           reply_to_from: String,
           reply_to_message_id: String,
           reply_to_message_type: String,
@@ -331,6 +348,17 @@ module Zavudev
         mime_type: nil,
         # Message ID to react to.
         react_to_message_id: nil,
+        # Click-to-WhatsApp (CTWA) ad attribution: where an inbound conversation came
+        # from.
+        #
+        # WhatsApp only. Present on the **first inbound message** of a conversation opened
+        # from a Meta ad or post, and on no message after it — so store it when it arrives
+        # rather than expecting it again. Organic conversations never carry it.
+        #
+        # Field names are camelCased to match the rest of this API; Meta sends them as
+        # snake_case (`ctwa_clid`, `source_id`, ...). Fields that do not apply are
+        # omitted: a `post` source has no click id, and an image ad has no `videoUrl`.
+        referral: nil,
         # Sender of the quoted message (phone number in E.164 format).
         reply_to_from: nil,
         # Zavu message ID of the quoted message this message replies to. Present on
@@ -401,6 +429,7 @@ module Zavudev
             media_url: String,
             mime_type: String,
             react_to_message_id: String,
+            referral: Zavudev::MessageContent::Referral,
             reply_to_from: String,
             reply_to_message_id: String,
             reply_to_message_type: String,
@@ -492,6 +521,237 @@ module Zavudev
           )
         end
         def self.values
+        end
+      end
+
+      class Referral < Zavudev::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Zavudev::MessageContent::Referral, Zavudev::Internal::AnyHash)
+          end
+
+        # Body copy of the ad or post.
+        sig { returns(T.nilable(String)) }
+        attr_reader :body
+
+        sig { params(body: String).void }
+        attr_writer :body
+
+        # Click-to-WhatsApp click identifier. This is the value Meta's Conversions API
+        # needs to credit a conversion back to the ad that produced the conversation.
+        # Present on `ad` sources; a `post` source has none.
+        sig { returns(T.nilable(String)) }
+        attr_reader :ctwa_clid
+
+        sig { params(ctwa_clid: String).void }
+        attr_writer :ctwa_clid
+
+        # Headline of the ad or post.
+        sig { returns(T.nilable(String)) }
+        attr_reader :headline
+
+        sig { params(headline: String).void }
+        attr_writer :headline
+
+        # Image of the ad. Present when `mediaType` is `image`.
+        sig { returns(T.nilable(String)) }
+        attr_reader :image_url
+
+        sig { params(image_url: String).void }
+        attr_writer :image_url
+
+        # Type of media on the ad, when it had any.
+        sig do
+          returns(
+            T.nilable(Zavudev::MessageContent::Referral::MediaType::OrSymbol)
+          )
+        end
+        attr_reader :media_type
+
+        sig do
+          params(
+            media_type: Zavudev::MessageContent::Referral::MediaType::OrSymbol
+          ).void
+        end
+        attr_writer :media_type
+
+        # Identifier of the ad or post that produced the click.
+        sig { returns(T.nilable(String)) }
+        attr_reader :source_id
+
+        sig { params(source_id: String).void }
+        attr_writer :source_id
+
+        # Where the click came from.
+        sig do
+          returns(
+            T.nilable(Zavudev::MessageContent::Referral::SourceType::OrSymbol)
+          )
+        end
+        attr_reader :source_type
+
+        sig do
+          params(
+            source_type: Zavudev::MessageContent::Referral::SourceType::OrSymbol
+          ).void
+        end
+        attr_writer :source_type
+
+        # Meta permalink to the ad or post.
+        sig { returns(T.nilable(String)) }
+        attr_reader :source_url
+
+        sig { params(source_url: String).void }
+        attr_writer :source_url
+
+        # Thumbnail of the ad media.
+        sig { returns(T.nilable(String)) }
+        attr_reader :thumbnail_url
+
+        sig { params(thumbnail_url: String).void }
+        attr_writer :thumbnail_url
+
+        # Video of the ad. Present when `mediaType` is `video`.
+        sig { returns(T.nilable(String)) }
+        attr_reader :video_url
+
+        sig { params(video_url: String).void }
+        attr_writer :video_url
+
+        # Click-to-WhatsApp (CTWA) ad attribution: where an inbound conversation came
+        # from.
+        #
+        # WhatsApp only. Present on the **first inbound message** of a conversation opened
+        # from a Meta ad or post, and on no message after it — so store it when it arrives
+        # rather than expecting it again. Organic conversations never carry it.
+        #
+        # Field names are camelCased to match the rest of this API; Meta sends them as
+        # snake_case (`ctwa_clid`, `source_id`, ...). Fields that do not apply are
+        # omitted: a `post` source has no click id, and an image ad has no `videoUrl`.
+        sig do
+          params(
+            body: String,
+            ctwa_clid: String,
+            headline: String,
+            image_url: String,
+            media_type: Zavudev::MessageContent::Referral::MediaType::OrSymbol,
+            source_id: String,
+            source_type:
+              Zavudev::MessageContent::Referral::SourceType::OrSymbol,
+            source_url: String,
+            thumbnail_url: String,
+            video_url: String
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Body copy of the ad or post.
+          body: nil,
+          # Click-to-WhatsApp click identifier. This is the value Meta's Conversions API
+          # needs to credit a conversion back to the ad that produced the conversation.
+          # Present on `ad` sources; a `post` source has none.
+          ctwa_clid: nil,
+          # Headline of the ad or post.
+          headline: nil,
+          # Image of the ad. Present when `mediaType` is `image`.
+          image_url: nil,
+          # Type of media on the ad, when it had any.
+          media_type: nil,
+          # Identifier of the ad or post that produced the click.
+          source_id: nil,
+          # Where the click came from.
+          source_type: nil,
+          # Meta permalink to the ad or post.
+          source_url: nil,
+          # Thumbnail of the ad media.
+          thumbnail_url: nil,
+          # Video of the ad. Present when `mediaType` is `video`.
+          video_url: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              body: String,
+              ctwa_clid: String,
+              headline: String,
+              image_url: String,
+              media_type:
+                Zavudev::MessageContent::Referral::MediaType::OrSymbol,
+              source_id: String,
+              source_type:
+                Zavudev::MessageContent::Referral::SourceType::OrSymbol,
+              source_url: String,
+              thumbnail_url: String,
+              video_url: String
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # Type of media on the ad, when it had any.
+        module MediaType
+          extend Zavudev::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Zavudev::MessageContent::Referral::MediaType)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          IMAGE =
+            T.let(
+              :image,
+              Zavudev::MessageContent::Referral::MediaType::TaggedSymbol
+            )
+          VIDEO =
+            T.let(
+              :video,
+              Zavudev::MessageContent::Referral::MediaType::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Zavudev::MessageContent::Referral::MediaType::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        # Where the click came from.
+        module SourceType
+          extend Zavudev::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Zavudev::MessageContent::Referral::SourceType)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          AD =
+            T.let(
+              :ad,
+              Zavudev::MessageContent::Referral::SourceType::TaggedSymbol
+            )
+          POST =
+            T.let(
+              :post,
+              Zavudev::MessageContent::Referral::SourceType::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Zavudev::MessageContent::Referral::SourceType::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
       end
 
