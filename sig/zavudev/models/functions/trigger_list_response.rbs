@@ -1,0 +1,84 @@
+module Zavudev
+  module Models
+    module Functions
+      type trigger_list_response =
+        {
+          triggers: ::Array[Zavudev::Models::Functions::TriggerListResponse::Trigger]
+        }
+
+      class TriggerListResponse < Zavudev::Internal::Type::BaseModel
+        attr_accessor triggers: ::Array[Zavudev::Models::Functions::TriggerListResponse::Trigger]
+
+        def initialize: (
+          triggers: ::Array[Zavudev::Models::Functions::TriggerListResponse::Trigger]
+        ) -> void
+
+        def to_hash: -> {
+          triggers: ::Array[Zavudev::Models::Functions::TriggerListResponse::Trigger]
+        }
+
+        type trigger =
+          {
+            id: String,
+            active: bool,
+            created_at: Time,
+            event_type: String,
+            function_id: String,
+            updated_at: Time,
+            cron: String?,
+            last_run_at: Time?,
+            next_run_at: Time?,
+            sender_id: String?
+          }
+
+        class Trigger < Zavudev::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor active: bool
+
+          attr_accessor created_at: Time
+
+          attr_accessor event_type: String
+
+          attr_accessor function_id: String
+
+          attr_accessor updated_at: Time
+
+          attr_accessor cron: String?
+
+          attr_accessor last_run_at: Time?
+
+          attr_accessor next_run_at: Time?
+
+          attr_accessor sender_id: String?
+
+          def initialize: (
+            id: String,
+            active: bool,
+            created_at: Time,
+            event_type: String,
+            function_id: String,
+            updated_at: Time,
+            ?cron: String?,
+            ?last_run_at: Time?,
+            ?next_run_at: Time?,
+            ?sender_id: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            active: bool,
+            created_at: Time,
+            event_type: String,
+            function_id: String,
+            updated_at: Time,
+            cron: String?,
+            last_run_at: Time?,
+            next_run_at: Time?,
+            sender_id: String?
+          }
+        end
+      end
+    end
+  end
+end

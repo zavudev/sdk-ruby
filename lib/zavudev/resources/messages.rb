@@ -54,6 +54,30 @@ module Zavudev
         )
       end
 
+      # List the stored file attachments for an email message and get a short-lived
+      # signed `downloadUrl` for each. Works for both inbound emails (received via
+      # `message.inbound`) and outbound emails you sent with attachments. Messages
+      # without stored attachments (including SMS, WhatsApp, and other channels) return
+      # an empty list. Each `downloadUrl` is generated fresh per request and expires —
+      # fetch the file promptly and do not cache the URL.
+      #
+      # @overload list_attachments(message_id, request_options: {})
+      #
+      # @param message_id [String]
+      # @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Zavudev::Models::MessageListAttachmentsResponse]
+      #
+      # @see Zavudev::Models::MessageListAttachmentsParams
+      def list_attachments(message_id, params = {})
+        @client.request(
+          method: :get,
+          path: ["v1/messages/%1$s/attachments", message_id],
+          model: Zavudev::Models::MessageListAttachmentsResponse,
+          options: params[:request_options]
+        )
+      end
+
       # Some parameter documentations has been truncated, see
       # {Zavudev::Models::MessageReactParams} for more details.
       #

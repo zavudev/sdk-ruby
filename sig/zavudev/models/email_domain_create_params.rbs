@@ -1,0 +1,23 @@
+module Zavudev
+  module Models
+    type email_domain_create_params =
+      { domain: String } & Zavudev::Internal::Type::request_parameters
+
+    class EmailDomainCreateParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor domain: String
+
+      def initialize: (
+        domain: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        domain: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

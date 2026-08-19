@@ -1,0 +1,21 @@
+module Zavudev
+  module Resources
+    class Agents
+      class Senders
+        def connect: (
+          String agent_id,
+          sender_id: String,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Agents::SenderConnectResponse
+
+        def disconnect: (
+          String sender_id,
+          agent_id: String,
+          ?request_options: Zavudev::request_opts
+        ) -> nil
+
+        def initialize: (client: Zavudev::Client) -> void
+      end
+    end
+  end
+end

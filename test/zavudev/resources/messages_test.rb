@@ -60,6 +60,22 @@ class Zavudev::Test::Resources::MessagesTest < Zavudev::Test::ResourceTest
     end
   end
 
+  def test_list_attachments
+    skip("Mock server tests are disabled")
+
+    response = @zavudev.messages.list_attachments("messageId")
+
+    assert_pattern do
+      response => Zavudev::Models::MessageListAttachmentsResponse
+    end
+
+    assert_pattern do
+      response => {
+        items: ^(Zavudev::Internal::Type::ArrayOf[Zavudev::Models::MessageListAttachmentsResponse::Item])
+      }
+    end
+  end
+
   def test_react_required_params
     skip("Mock server tests are disabled")
 

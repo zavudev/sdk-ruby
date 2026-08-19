@@ -1,0 +1,116 @@
+module Zavudev
+  module Models
+    type email_domain_retrieve_response =
+      { domain: Zavudev::Models::EmailDomainRetrieveResponse::Domain }
+
+    class EmailDomainRetrieveResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor domain: Zavudev::Models::EmailDomainRetrieveResponse::Domain
+
+      def initialize: (
+        domain: Zavudev::Models::EmailDomainRetrieveResponse::Domain
+      ) -> void
+
+      def to_hash: -> {
+        domain: Zavudev::Models::EmailDomainRetrieveResponse::Domain
+      }
+
+      type domain =
+        {
+          id: String,
+          dkim_status: String,
+          domain: String,
+          status: String,
+          dns_records: ::Array[Zavudev::Models::EmailDomainRetrieveResponse::Domain::DNSRecord]
+        }
+
+      class Domain < Zavudev::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor dkim_status: String
+
+        attr_accessor domain: String
+
+        attr_accessor status: String
+
+        attr_reader dns_records: ::Array[Zavudev::Models::EmailDomainRetrieveResponse::Domain::DNSRecord]?
+
+        def dns_records=: (
+          ::Array[Zavudev::Models::EmailDomainRetrieveResponse::Domain::DNSRecord]
+        ) -> ::Array[Zavudev::Models::EmailDomainRetrieveResponse::Domain::DNSRecord]
+
+        def initialize: (
+          id: String,
+          dkim_status: String,
+          domain: String,
+          status: String,
+          ?dns_records: ::Array[Zavudev::Models::EmailDomainRetrieveResponse::Domain::DNSRecord]
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          dkim_status: String,
+          domain: String,
+          status: String,
+          dns_records: ::Array[Zavudev::Models::EmailDomainRetrieveResponse::Domain::DNSRecord]
+        }
+
+        type dns_record =
+          {
+            name: String,
+            purpose: Zavudev::Models::EmailDomainRetrieveResponse::Domain::DNSRecord::purpose,
+            required: bool,
+            type: String,
+            value: String,
+            priority: Integer
+          }
+
+        class DNSRecord < Zavudev::Internal::Type::BaseModel
+          attr_accessor name: String
+
+          attr_accessor purpose: Zavudev::Models::EmailDomainRetrieveResponse::Domain::DNSRecord::purpose
+
+          attr_accessor required: bool
+
+          attr_accessor type: String
+
+          attr_accessor value: String
+
+          attr_reader priority: Integer?
+
+          def priority=: (Integer) -> Integer
+
+          def initialize: (
+            name: String,
+            purpose: Zavudev::Models::EmailDomainRetrieveResponse::Domain::DNSRecord::purpose,
+            required: bool,
+            type: String,
+            value: String,
+            ?priority: Integer
+          ) -> void
+
+          def to_hash: -> {
+            name: String,
+            purpose: Zavudev::Models::EmailDomainRetrieveResponse::Domain::DNSRecord::purpose,
+            required: bool,
+            type: String,
+            value: String,
+            priority: Integer
+          }
+
+          type purpose = :dkim | :spf | :dmarc | :mail_from
+
+          module Purpose
+            extend Zavudev::Internal::Type::Enum
+
+            DKIM: :dkim
+            SPF: :spf
+            DMARC: :dmarc
+            MAIL_FROM: :mail_from
+
+            def self?.values: -> ::Array[Zavudev::Models::EmailDomainRetrieveResponse::Domain::DNSRecord::purpose]
+          end
+        end
+      end
+    end
+  end
+end

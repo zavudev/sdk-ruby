@@ -1,0 +1,33 @@
+module Zavudev
+  module Resources
+    class Conversations
+      def retrieve: (
+        String conversation_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::ConversationRetrieveResponse
+
+      def list: (
+        ?channel: Zavudev::Models::ConversationListParams::channel,
+        ?cursor: String,
+        ?limit: Integer,
+        ?search: String,
+        ?sender_id: String,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Internal::Cursor[Zavudev::Models::ConversationListResponse]
+
+      def list_messages: (
+        String conversation_id,
+        ?cursor: String,
+        ?limit: Integer,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Internal::Cursor[Zavudev::Message]
+
+      def mark_as_read: (
+        String conversation_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::ConversationMarkAsReadResponse
+
+      def initialize: (client: Zavudev::Client) -> void
+    end
+  end
+end

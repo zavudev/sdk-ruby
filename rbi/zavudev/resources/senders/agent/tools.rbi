@@ -5,6 +5,9 @@ module Zavudev
     class Senders
       class Agent
         class Tools
+          sig { returns(Zavudev::Resources::Senders::Agent::Tools::Webhook) }
+          attr_reader :webhook
+
           # Create a new tool for an agent. Tools allow the agent to call external webhooks.
           sig do
             params(
@@ -110,6 +113,28 @@ module Zavudev
             ).void
           end
           def delete(tool_id, sender_id:, request_options: {})
+          end
+
+          # Recent runs of this tool triggered from the test endpoint, newest first. Covers
+          # manual tests only: a tool called by an agent during a real conversation is not
+          # recorded here.
+          sig do
+            params(
+              tool_id: String,
+              sender_id: String,
+              limit: Integer,
+              request_options: Zavudev::RequestOptions::OrHash
+            ).returns(Zavudev::Models::Senders::Agent::ToolListTestRunsResponse)
+          end
+          def list_test_runs(
+            # Path param
+            tool_id,
+            # Path param
+            sender_id:,
+            # Query param
+            limit: nil,
+            request_options: {}
+          )
           end
 
           # Run a tool with the parameters you supply and return what it answered.

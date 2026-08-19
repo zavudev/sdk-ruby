@@ -1,0 +1,46 @@
+module Zavudev
+  module Models
+    type agent_list_voices_response =
+      {
+        items: ::Array[Zavudev::Models::AgentListVoicesResponse::Item],
+        languages: ::Array[String],
+        total: Integer
+      }
+
+    class AgentListVoicesResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor items: ::Array[Zavudev::Models::AgentListVoicesResponse::Item]
+
+      attr_accessor languages: ::Array[String]
+
+      attr_reader total: Integer?
+
+      def total=: (Integer) -> Integer
+
+      def initialize: (
+        items: ::Array[Zavudev::Models::AgentListVoicesResponse::Item],
+        languages: ::Array[String],
+        ?total: Integer
+      ) -> void
+
+      def to_hash: -> {
+        items: ::Array[Zavudev::Models::AgentListVoicesResponse::Item],
+        languages: ::Array[String],
+        total: Integer
+      }
+
+      type item = { id: String, language: String, name: String }
+
+      class Item < Zavudev::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor language: String
+
+        attr_accessor name: String
+
+        def initialize: (id: String, language: String, name: String) -> void
+
+        def to_hash: -> { id: String, language: String, name: String }
+      end
+    end
+  end
+end

@@ -36,6 +36,21 @@ module Zavudev
       )
       end
 
+      # List the stored file attachments for an email message and get a short-lived
+      # signed `downloadUrl` for each. Works for both inbound emails (received via
+      # `message.inbound`) and outbound emails you sent with attachments. Messages
+      # without stored attachments (including SMS, WhatsApp, and other channels) return
+      # an empty list. Each `downloadUrl` is generated fresh per request and expires —
+      # fetch the file promptly and do not cache the URL.
+      sig do
+        params(
+          message_id: String,
+          request_options: Zavudev::RequestOptions::OrHash
+        ).returns(Zavudev::Models::MessageListAttachmentsResponse)
+      end
+      def list_attachments(message_id, request_options: {})
+      end
+
       # Send an emoji reaction to an existing WhatsApp message. Reactions are only
       # supported for WhatsApp messages.
       sig do

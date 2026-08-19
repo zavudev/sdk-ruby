@@ -1,0 +1,159 @@
+module Zavudev
+  module Models
+    module Functions
+      type git_link_update_response =
+        {
+          link: Zavudev::Models::Functions::GitLinkUpdateResponse::Link,
+          webhook_url: String,
+          webhook_secret: String
+        }
+
+      class GitLinkUpdateResponse < Zavudev::Internal::Type::BaseModel
+        attr_accessor link: Zavudev::Models::Functions::GitLinkUpdateResponse::Link
+
+        attr_accessor webhook_url: String
+
+        attr_reader webhook_secret: String?
+
+        def webhook_secret=: (String) -> String
+
+        def initialize: (
+          link: Zavudev::Models::Functions::GitLinkUpdateResponse::Link,
+          webhook_url: String,
+          ?webhook_secret: String
+        ) -> void
+
+        def to_hash: -> {
+          link: Zavudev::Models::Functions::GitLinkUpdateResponse::Link,
+          webhook_url: String,
+          webhook_secret: String
+        }
+
+        type link =
+          {
+            id: String,
+            auto_deploy: bool,
+            branch: String,
+            connection: Zavudev::Models::Functions::GitLinkUpdateResponse::Link::connection,
+            created_at: Time,
+            function_id: String,
+            owner: String,
+            provider: Zavudev::Models::Functions::GitLinkUpdateResponse::Link::provider,
+            repo: String,
+            updated_at: Time,
+            last_commit_message: String?,
+            last_commit_sha: String?,
+            last_deploy_at: Time?,
+            last_error: String?,
+            last_status: Zavudev::Models::Functions::GitLinkUpdateResponse::Link::last_status?,
+            root_dir: String?
+          }
+
+        class Link < Zavudev::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor auto_deploy: bool
+
+          attr_accessor branch: String
+
+          attr_accessor connection: Zavudev::Models::Functions::GitLinkUpdateResponse::Link::connection
+
+          attr_accessor created_at: Time
+
+          attr_accessor function_id: String
+
+          attr_accessor owner: String
+
+          attr_accessor provider: Zavudev::Models::Functions::GitLinkUpdateResponse::Link::provider
+
+          attr_accessor repo: String
+
+          attr_accessor updated_at: Time
+
+          attr_accessor last_commit_message: String?
+
+          attr_accessor last_commit_sha: String?
+
+          attr_accessor last_deploy_at: Time?
+
+          attr_accessor last_error: String?
+
+          attr_accessor last_status: Zavudev::Models::Functions::GitLinkUpdateResponse::Link::last_status?
+
+          attr_accessor root_dir: String?
+
+          def initialize: (
+            id: String,
+            auto_deploy: bool,
+            branch: String,
+            connection: Zavudev::Models::Functions::GitLinkUpdateResponse::Link::connection,
+            created_at: Time,
+            function_id: String,
+            owner: String,
+            provider: Zavudev::Models::Functions::GitLinkUpdateResponse::Link::provider,
+            repo: String,
+            updated_at: Time,
+            ?last_commit_message: String?,
+            ?last_commit_sha: String?,
+            ?last_deploy_at: Time?,
+            ?last_error: String?,
+            ?last_status: Zavudev::Models::Functions::GitLinkUpdateResponse::Link::last_status?,
+            ?root_dir: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            auto_deploy: bool,
+            branch: String,
+            connection: Zavudev::Models::Functions::GitLinkUpdateResponse::Link::connection,
+            created_at: Time,
+            function_id: String,
+            owner: String,
+            provider: Zavudev::Models::Functions::GitLinkUpdateResponse::Link::provider,
+            repo: String,
+            updated_at: Time,
+            last_commit_message: String?,
+            last_commit_sha: String?,
+            last_deploy_at: Time?,
+            last_error: String?,
+            last_status: Zavudev::Models::Functions::GitLinkUpdateResponse::Link::last_status?,
+            root_dir: String?
+          }
+
+          type connection = :app | :manual
+
+          module Connection
+            extend Zavudev::Internal::Type::Enum
+
+            APP: :app
+            MANUAL: :manual
+
+            def self?.values: -> ::Array[Zavudev::Models::Functions::GitLinkUpdateResponse::Link::connection]
+          end
+
+          type provider = :github
+
+          module Provider
+            extend Zavudev::Internal::Type::Enum
+
+            GITHUB: :github
+
+            def self?.values: -> ::Array[Zavudev::Models::Functions::GitLinkUpdateResponse::Link::provider]
+          end
+
+          type last_status = :deploying | :deployed | :failed
+
+          module LastStatus
+            extend Zavudev::Internal::Type::Enum
+
+            DEPLOYING: :deploying
+            DEPLOYED: :deployed
+            FAILED: :failed
+
+            def self?.values: -> ::Array[Zavudev::Models::Functions::GitLinkUpdateResponse::Link::last_status]
+          end
+        end
+      end
+    end
+  end
+end

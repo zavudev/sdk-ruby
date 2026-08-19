@@ -1,0 +1,59 @@
+module Zavudev
+  module Models
+    module Functions
+      type git_link_link_params =
+        {
+          function_id: String,
+          owner: String,
+          repo: String,
+          auto_deploy: bool,
+          branch: String,
+          root_dir: String
+        }
+        & Zavudev::Internal::Type::request_parameters
+
+      class GitLinkLinkParams < Zavudev::Internal::Type::BaseModel
+        extend Zavudev::Internal::Type::RequestParameters::Converter
+        include Zavudev::Internal::Type::RequestParameters
+
+        attr_accessor function_id: String
+
+        attr_accessor owner: String
+
+        attr_accessor repo: String
+
+        attr_reader auto_deploy: bool?
+
+        def auto_deploy=: (bool) -> bool
+
+        attr_reader branch: String?
+
+        def branch=: (String) -> String
+
+        attr_reader root_dir: String?
+
+        def root_dir=: (String) -> String
+
+        def initialize: (
+          function_id: String,
+          owner: String,
+          repo: String,
+          ?auto_deploy: bool,
+          ?branch: String,
+          ?root_dir: String,
+          ?request_options: Zavudev::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          function_id: String,
+          owner: String,
+          repo: String,
+          auto_deploy: bool,
+          branch: String,
+          root_dir: String,
+          request_options: Zavudev::RequestOptions
+        }
+      end
+    end
+  end
+end

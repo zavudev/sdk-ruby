@@ -5,6 +5,8 @@ module Zavudev
 
       attr_reader whatsapp_sync: Zavudev::Resources::Senders::WhatsappSync
 
+      attr_reader telegram: Zavudev::Resources::Senders::Telegram
+
       def create: (
         name: String,
         ?email_address: String,
