@@ -71,6 +71,54 @@ module Zavudev
             def delete(doc_id, sender_id:, kb_id:, request_options: {})
             end
 
+            # Get a single document from a knowledge base.
+            sig do
+              params(
+                doc_id: String,
+                sender_id: String,
+                kb_id: String,
+                request_options: Zavudev::RequestOptions::OrHash
+              ).returns(
+                Zavudev::Models::Senders::Agent::KnowledgeBases::DocumentRetrieveDocumentResponse
+              )
+            end
+            def retrieve_document(
+              doc_id,
+              sender_id:,
+              kb_id:,
+              request_options: {}
+            )
+            end
+
+            # Update a document's title or content. Updating content reprocesses the document
+            # for RAG.
+            sig do
+              params(
+                doc_id: String,
+                sender_id: String,
+                kb_id: String,
+                content: String,
+                title: String,
+                request_options: Zavudev::RequestOptions::OrHash
+              ).returns(
+                Zavudev::Models::Senders::Agent::KnowledgeBases::DocumentUpdateDocumentResponse
+              )
+            end
+            def update_document(
+              # Path param
+              doc_id,
+              # Path param
+              sender_id:,
+              # Path param
+              kb_id:,
+              # Body param
+              content: nil,
+              # Body param
+              title: nil,
+              request_options: {}
+            )
+            end
+
             # @api private
             sig { params(client: Zavudev::Client).returns(T.attached_class) }
             def self.new(client:)

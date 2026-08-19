@@ -61,6 +61,21 @@ module Zavudev
     sig { returns(Zavudev::Resources::Functions) }
     attr_reader :functions
 
+    sig { returns(Zavudev::Resources::Conversations) }
+    attr_reader :conversations
+
+    sig { returns(Zavudev::Resources::Calls) }
+    attr_reader :calls
+
+    sig { returns(Zavudev::Resources::AgentTemplates) }
+    attr_reader :agent_templates
+
+    sig { returns(Zavudev::Resources::EmailDomains) }
+    attr_reader :email_domains
+
+    sig { returns(Zavudev::Resources::Agents) }
+    attr_reader :agents
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

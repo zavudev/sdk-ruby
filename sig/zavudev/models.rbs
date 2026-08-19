@@ -11,6 +11,26 @@ module Zavudev
 
   module AddressStatus = Zavudev::Models::AddressStatus
 
+  class AgentCreateParams = Zavudev::Models::AgentCreateParams
+
+  class AgentDeleteParams = Zavudev::Models::AgentDeleteParams
+
+  class AgentListParams = Zavudev::Models::AgentListParams
+
+  class AgentListVoicesParams = Zavudev::Models::AgentListVoicesParams
+
+  class AgentRetrieveParams = Zavudev::Models::AgentRetrieveParams
+
+  module Agents = Zavudev::Models::Agents
+
+  class AgentTemplateListParams = Zavudev::Models::AgentTemplateListParams
+
+  class AgentTemplateRetrieveParams = Zavudev::Models::AgentTemplateRetrieveParams
+
+  class AgentTestParams = Zavudev::Models::AgentTestParams
+
+  class AgentUpdateParams = Zavudev::Models::AgentUpdateParams
+
   class AvailablePhoneNumber = Zavudev::Models::AvailablePhoneNumber
 
   class BalanceRetrieveParams = Zavudev::Models::BalanceRetrieveParams
@@ -55,6 +75,14 @@ module Zavudev
 
   class BroadcastUpdateParams = Zavudev::Models::BroadcastUpdateParams
 
+  class CallCreateParams = Zavudev::Models::CallCreateParams
+
+  class CallHangupParams = Zavudev::Models::CallHangupParams
+
+  class CallListParams = Zavudev::Models::CallListParams
+
+  class CallRetrieveParams = Zavudev::Models::CallRetrieveParams
+
   module Channel = Zavudev::Models::Channel
 
   class Contact = Zavudev::Models::Contact
@@ -79,6 +107,24 @@ module Zavudev
 
   class ContactUpdateParams = Zavudev::Models::ContactUpdateParams
 
+  class ConversationListMessagesParams = Zavudev::Models::ConversationListMessagesParams
+
+  class ConversationListParams = Zavudev::Models::ConversationListParams
+
+  class ConversationMarkAsReadParams = Zavudev::Models::ConversationMarkAsReadParams
+
+  class ConversationRetrieveParams = Zavudev::Models::ConversationRetrieveParams
+
+  class EmailDomainCreateParams = Zavudev::Models::EmailDomainCreateParams
+
+  class EmailDomainDeleteParams = Zavudev::Models::EmailDomainDeleteParams
+
+  class EmailDomainListParams = Zavudev::Models::EmailDomainListParams
+
+  class EmailDomainRetrieveParams = Zavudev::Models::EmailDomainRetrieveParams
+
+  class EmailDomainVerifyParams = Zavudev::Models::EmailDomainVerifyParams
+
   class FunctionCreateParams = Zavudev::Models::FunctionCreateParams
 
   class FunctionDeleteParams = Zavudev::Models::FunctionDeleteParams
@@ -87,13 +133,21 @@ module Zavudev
 
   class FunctionGetDeploymentParams = Zavudev::Models::FunctionGetDeploymentParams
 
+  class FunctionListDeploymentsParams = Zavudev::Models::FunctionListDeploymentsParams
+
+  class FunctionListEventTypesParams = Zavudev::Models::FunctionListEventTypesParams
+
   class FunctionRetrieveParams = Zavudev::Models::FunctionRetrieveParams
+
+  class FunctionRollbackDeploymentParams = Zavudev::Models::FunctionRollbackDeploymentParams
 
   module Functions = Zavudev::Models::Functions
 
   class FunctionTailLogsParams = Zavudev::Models::FunctionTailLogsParams
 
   class FunctionUpdateParams = Zavudev::Models::FunctionUpdateParams
+
+  class IntrospectValidateEmailParams = Zavudev::Models::IntrospectValidateEmailParams
 
   class IntrospectValidatePhoneParams = Zavudev::Models::IntrospectValidatePhoneParams
 
@@ -114,6 +168,8 @@ module Zavudev
   class Message = Zavudev::Models::Message
 
   class MessageContent = Zavudev::Models::MessageContent
+
+  class MessageListAttachmentsParams = Zavudev::Models::MessageListAttachmentsParams
 
   class MessageListParams = Zavudev::Models::MessageListParams
 
@@ -230,6 +286,10 @@ module Zavudev
   class TemplateRetrieveParams = Zavudev::Models::TemplateRetrieveParams
 
   class TemplateSubmitParams = Zavudev::Models::TemplateSubmitParams
+
+  class TemplateSyncParams = Zavudev::Models::TemplateSyncParams
+
+  class URLEscalateParams = Zavudev::Models::URLEscalateParams
 
   class URLListVerifiedParams = Zavudev::Models::URLListVerifiedParams
 

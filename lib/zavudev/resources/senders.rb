@@ -9,6 +9,9 @@ module Zavudev
       # @return [Zavudev::Resources::Senders::WhatsappSync]
       attr_reader :whatsapp_sync
 
+      # @return [Zavudev::Resources::Senders::Telegram]
+      attr_reader :telegram
+
       # Some parameter documentations has been truncated, see
       # {Zavudev::Models::SenderCreateParams} for more details.
       #
@@ -278,6 +281,7 @@ module Zavudev
         @client = client
         @agent = Zavudev::Resources::Senders::Agent.new(client: client)
         @whatsapp_sync = Zavudev::Resources::Senders::WhatsappSync.new(client: client)
+        @telegram = Zavudev::Resources::Senders::Telegram.new(client: client)
       end
     end
   end

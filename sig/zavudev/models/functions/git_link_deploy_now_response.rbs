@@ -1,0 +1,15 @@
+module Zavudev
+  module Models
+    module Functions
+      type git_link_deploy_now_response = { scheduled: bool }
+
+      class GitLinkDeployNowResponse < Zavudev::Internal::Type::BaseModel
+        attr_accessor scheduled: bool
+
+        def initialize: (scheduled: bool) -> void
+
+        def to_hash: -> { scheduled: bool }
+      end
+    end
+  end
+end

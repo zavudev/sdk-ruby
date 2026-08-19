@@ -1,0 +1,30 @@
+module Zavudev
+  module Models
+    module Senders
+      type telegram_connect_params =
+        { sender_id: String, bot_token: String }
+        & Zavudev::Internal::Type::request_parameters
+
+      class TelegramConnectParams < Zavudev::Internal::Type::BaseModel
+        extend Zavudev::Internal::Type::RequestParameters::Converter
+        include Zavudev::Internal::Type::RequestParameters
+
+        attr_accessor sender_id: String
+
+        attr_accessor bot_token: String
+
+        def initialize: (
+          sender_id: String,
+          bot_token: String,
+          ?request_options: Zavudev::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          sender_id: String,
+          bot_token: String,
+          request_options: Zavudev::RequestOptions
+        }
+      end
+    end
+  end
+end

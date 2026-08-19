@@ -1,0 +1,31 @@
+module Zavudev
+  module Resources
+    class EmailDomains
+      def create: (
+        domain: String,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::EmailDomainCreateResponse
+
+      def retrieve: (
+        String domain_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::EmailDomainRetrieveResponse
+
+      def list: (
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::EmailDomainListResponse
+
+      def delete: (
+        String domain_id,
+        ?request_options: Zavudev::request_opts
+      ) -> nil
+
+      def verify: (
+        String domain_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::EmailDomainVerifyResponse
+
+      def initialize: (client: Zavudev::Client) -> void
+    end
+  end
+end
