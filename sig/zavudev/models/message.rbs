@@ -5,6 +5,7 @@ module Zavudev
         id: String,
         channel: Zavudev::Models::channel,
         created_at: Time,
+        direction: Zavudev::Models::Message::direction,
         message_type: Zavudev::Models::message_type,
         status: Zavudev::Models::message_status,
         to: String,
@@ -29,6 +30,8 @@ module Zavudev
       attr_accessor channel: Zavudev::Models::channel
 
       attr_accessor created_at: Time
+
+      attr_accessor direction: Zavudev::Models::Message::direction
 
       attr_accessor message_type: Zavudev::Models::message_type
 
@@ -82,6 +85,7 @@ module Zavudev
         id: String,
         channel: Zavudev::Models::channel,
         created_at: Time,
+        direction: Zavudev::Models::Message::direction,
         message_type: Zavudev::Models::message_type,
         status: Zavudev::Models::message_status,
         to: String,
@@ -104,6 +108,7 @@ module Zavudev
         id: String,
         channel: Zavudev::Models::channel,
         created_at: Time,
+        direction: Zavudev::Models::Message::direction,
         message_type: Zavudev::Models::message_type,
         status: Zavudev::Models::message_status,
         to: String,
@@ -121,6 +126,17 @@ module Zavudev
         text: String,
         updated_at: Time
       }
+
+      type direction = :inbound | :outbound
+
+      module Direction
+        extend Zavudev::Internal::Type::Enum
+
+        INBOUND: :inbound
+        OUTBOUND: :outbound
+
+        def self?.values: -> ::Array[Zavudev::Models::Message::direction]
+      end
     end
   end
 end
