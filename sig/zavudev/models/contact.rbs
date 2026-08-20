@@ -15,7 +15,6 @@ module Zavudev
         primary_email: String,
         primary_phone: String,
         profile_name: String?,
-        suggested_merge_with: String,
         updated_at: Time
       }
 
@@ -64,10 +63,6 @@ module Zavudev
 
       attr_accessor profile_name: String?
 
-      attr_reader suggested_merge_with: String?
-
-      def suggested_merge_with=: (String) -> String
-
       attr_reader updated_at: Time?
 
       def updated_at=: (Time) -> Time
@@ -86,7 +81,6 @@ module Zavudev
         ?primary_email: String,
         ?primary_phone: String,
         ?profile_name: String?,
-        ?suggested_merge_with: String,
         ?updated_at: Time
       ) -> void
 
@@ -104,7 +98,6 @@ module Zavudev
         primary_email: String,
         primary_phone: String,
         profile_name: String?,
-        suggested_merge_with: String,
         updated_at: Time
       }
 
