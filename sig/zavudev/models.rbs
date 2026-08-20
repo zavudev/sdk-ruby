@@ -93,8 +93,6 @@ module Zavudev
 
   class ContactDeleteParams = Zavudev::Models::ContactDeleteParams
 
-  class ContactDismissMergeSuggestionParams = Zavudev::Models::ContactDismissMergeSuggestionParams
-
   class ContactListParams = Zavudev::Models::ContactListParams
 
   class ContactMergeParams = Zavudev::Models::ContactMergeParams

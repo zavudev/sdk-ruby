@@ -27,7 +27,6 @@ class Zavudev::Test::Resources::ContactsTest < Zavudev::Test::ResourceTest
         primary_email: String | nil,
         primary_phone: String | nil,
         profile_name: String | nil,
-        suggested_merge_with: String | nil,
         updated_at: Time | nil
       }
     end
@@ -57,7 +56,6 @@ class Zavudev::Test::Resources::ContactsTest < Zavudev::Test::ResourceTest
         primary_email: String | nil,
         primary_phone: String | nil,
         profile_name: String | nil,
-        suggested_merge_with: String | nil,
         updated_at: Time | nil
       }
     end
@@ -87,7 +85,6 @@ class Zavudev::Test::Resources::ContactsTest < Zavudev::Test::ResourceTest
         primary_email: String | nil,
         primary_phone: String | nil,
         profile_name: String | nil,
-        suggested_merge_with: String | nil,
         updated_at: Time | nil
       }
     end
@@ -124,7 +121,6 @@ class Zavudev::Test::Resources::ContactsTest < Zavudev::Test::ResourceTest
         primary_email: String | nil,
         primary_phone: String | nil,
         profile_name: String | nil,
-        suggested_merge_with: String | nil,
         updated_at: Time | nil
       }
     end
@@ -134,16 +130,6 @@ class Zavudev::Test::Resources::ContactsTest < Zavudev::Test::ResourceTest
     skip("Mock server tests are disabled")
 
     response = @zavudev.contacts.delete("contactId")
-
-    assert_pattern do
-      response => nil
-    end
-  end
-
-  def test_dismiss_merge_suggestion
-    skip("Mock server tests are disabled")
-
-    response = @zavudev.contacts.dismiss_merge_suggestion("contactId")
 
     assert_pattern do
       response => nil
@@ -174,7 +160,6 @@ class Zavudev::Test::Resources::ContactsTest < Zavudev::Test::ResourceTest
         primary_email: String | nil,
         primary_phone: String | nil,
         profile_name: String | nil,
-        suggested_merge_with: String | nil,
         updated_at: Time | nil
       }
     end
@@ -204,7 +189,6 @@ class Zavudev::Test::Resources::ContactsTest < Zavudev::Test::ResourceTest
         primary_email: String | nil,
         primary_phone: String | nil,
         profile_name: String | nil,
-        suggested_merge_with: String | nil,
         updated_at: Time | nil
       }
     end
