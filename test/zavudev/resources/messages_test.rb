@@ -40,6 +40,7 @@ class Zavudev::Test::Resources::MessagesTest < Zavudev::Test::ResourceTest
         id: String,
         channel: Zavudev::Channel,
         created_at: Time,
+        direction: Zavudev::Message::Direction,
         message_type: Zavudev::MessageType,
         status: Zavudev::MessageStatus,
         to: String,
