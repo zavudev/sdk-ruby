@@ -20,6 +20,13 @@ module Zavudev
       #   @return [Time]
       required :created_at, Time, api_name: :createdAt
 
+      # @!attribute direction
+      #   Who sent the message. Needed to render a thread: `status` cannot tell the two
+      #   apart, because an inbound message is also stored as `delivered`.
+      #
+      #   @return [Symbol, Zavudev::Models::Message::Direction]
+      required :direction, enum: -> { Zavudev::Message::Direction }
+
       # @!attribute message_type
       #   Type of message. Non-text types are supported by WhatsApp and Telegram (varies
       #   by type).
@@ -127,7 +134,7 @@ module Zavudev
       #   @return [Time, nil]
       optional :updated_at, Time, api_name: :updatedAt
 
-      # @!method initialize(id:, channel:, created_at:, message_type:, status:, to:, content: nil, conversation_id: nil, cost: nil, cost_provider: nil, cost_total: nil, error_code: nil, error_message: nil, from: nil, metadata: nil, provider_message_id: nil, sender_id: nil, text: nil, updated_at: nil)
+      # @!method initialize(id:, channel:, created_at:, direction:, message_type:, status:, to:, content: nil, conversation_id: nil, cost: nil, cost_provider: nil, cost_total: nil, error_code: nil, error_message: nil, from: nil, metadata: nil, provider_message_id: nil, sender_id: nil, text: nil, updated_at: nil)
       #   Some parameter documentations has been truncated, see {Zavudev::Models::Message}
       #   for more details.
       #
@@ -136,6 +143,8 @@ module Zavudev
       #   @param channel [Symbol, Zavudev::Models::Channel] Delivery channel. Use 'auto' for intelligent routing.
       #
       #   @param created_at [Time]
+      #
+      #   @param direction [Symbol, Zavudev::Models::Message::Direction] Who sent the message. Needed to render a thread: `status` cannot tell the two ap
       #
       #   @param message_type [Symbol, Zavudev::Models::MessageType] Type of message. Non-text types are supported by WhatsApp and Telegram (varies b
       #
@@ -168,6 +177,20 @@ module Zavudev
       #   @param text [String] Text content or caption.
       #
       #   @param updated_at [Time]
+
+      # Who sent the message. Needed to render a thread: `status` cannot tell the two
+      # apart, because an inbound message is also stored as `delivered`.
+      #
+      # @see Zavudev::Models::Message#direction
+      module Direction
+        extend Zavudev::Internal::Type::Enum
+
+        INBOUND = :inbound
+        OUTBOUND = :outbound
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
     end
   end
 end

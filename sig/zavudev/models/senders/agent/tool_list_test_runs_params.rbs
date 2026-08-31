@@ -1,0 +1,38 @@
+module Zavudev
+  module Models
+    module Senders
+      module Agent
+        type tool_list_test_runs_params =
+          { sender_id: String, tool_id: String, limit: Integer }
+          & Zavudev::Internal::Type::request_parameters
+
+        class ToolListTestRunsParams < Zavudev::Internal::Type::BaseModel
+          extend Zavudev::Internal::Type::RequestParameters::Converter
+          include Zavudev::Internal::Type::RequestParameters
+
+          attr_accessor sender_id: String
+
+          attr_accessor tool_id: String
+
+          attr_reader limit: Integer?
+
+          def limit=: (Integer) -> Integer
+
+          def initialize: (
+            sender_id: String,
+            tool_id: String,
+            ?limit: Integer,
+            ?request_options: Zavudev::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            sender_id: String,
+            tool_id: String,
+            limit: Integer,
+            request_options: Zavudev::RequestOptions
+          }
+        end
+      end
+    end
+  end
+end

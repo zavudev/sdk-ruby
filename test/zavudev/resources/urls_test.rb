@@ -3,6 +3,24 @@
 require_relative "../test_helper"
 
 class Zavudev::Test::Resources::URLsTest < Zavudev::Test::ResourceTest
+  def test_escalate_required_params
+    skip("Mock server tests are disabled")
+
+    response =
+      @zavudev.urls.escalate("urlId", reason: "This is our official landing page and was rejected in error.")
+
+    assert_pattern do
+      response => Zavudev::Models::URLEscalateResponse
+    end
+
+    assert_pattern do
+      response => {
+        message: String,
+        url: Zavudev::VerifiedURL
+      }
+    end
+  end
+
   def test_list_verified
     skip("Mock server tests are disabled")
 

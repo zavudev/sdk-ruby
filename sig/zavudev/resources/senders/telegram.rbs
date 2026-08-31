@@ -1,0 +1,20 @@
+module Zavudev
+  module Resources
+    class Senders
+      class Telegram
+        def connect: (
+          String sender_id,
+          bot_token: String,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Senders::TelegramConnectResponse
+
+        def disconnect: (
+          String sender_id,
+          ?request_options: Zavudev::request_opts
+        ) -> nil
+
+        def initialize: (client: Zavudev::Client) -> void
+      end
+    end
+  end
+end

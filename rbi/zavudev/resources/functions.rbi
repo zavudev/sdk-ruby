@@ -6,6 +6,12 @@ module Zavudev
       sig { returns(Zavudev::Resources::Functions::Secrets) }
       attr_reader :secrets
 
+      sig { returns(Zavudev::Resources::Functions::Triggers) }
+      attr_reader :triggers
+
+      sig { returns(Zavudev::Resources::Functions::GitLink) }
+      attr_reader :git_link
+
       # Create a new Zavu Function. The function starts in `draft` status. A dedicated
       # API key is auto-provisioned and injected as the `ZAVU_API_KEY` secret so the
       # function can call back into the Zavu API without manual setup.
@@ -186,6 +192,55 @@ module Zavudev
       def get_deployment(
         # Function deployment ID.
         deployment_id,
+        request_options: {}
+      )
+      end
+
+      # List a function's deployment history, newest first. Source code is omitted;
+      # fetch a single deployment via GET /v1/functions/deployments/{deploymentId} for
+      # full details.
+      sig do
+        params(
+          function_id: String,
+          limit: Integer,
+          request_options: Zavudev::RequestOptions::OrHash
+        ).returns(Zavudev::Models::FunctionListDeploymentsResponse)
+      end
+      def list_deployments(
+        # Zavu Function ID.
+        function_id,
+        limit: nil,
+        request_options: {}
+      )
+      end
+
+      # List the event types a function trigger can subscribe to. Includes the special
+      # type `cron`, which fires on a schedule (see POST
+      # /v1/functions/{functionId}/triggers) rather than on a messaging event.
+      sig do
+        params(request_options: Zavudev::RequestOptions::OrHash).returns(
+          Zavudev::Models::FunctionListEventTypesResponse
+        )
+      end
+      def list_event_types(request_options: {})
+      end
+
+      # Re-deploy a previous version by copying its source, dependencies, and runtime
+      # pin onto the function's draft, then deploying. Returns immediately with a
+      # deployment ID — poll GET /v1/functions/deployments/{deploymentId} until status
+      # is active or failed. Secrets are not rolled back.
+      sig do
+        params(
+          function_id: String,
+          deployment_id: String,
+          request_options: Zavudev::RequestOptions::OrHash
+        ).returns(Zavudev::Models::FunctionRollbackDeploymentResponse)
+      end
+      def rollback_deployment(
+        # Zavu Function ID.
+        function_id,
+        # ID of the deployment to roll back to.
+        deployment_id:,
         request_options: {}
       )
       end

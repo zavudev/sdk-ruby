@@ -1,7 +1,13 @@
 module Zavudev
   module Models
     type contact_list_params =
-      { cursor: String, limit: Integer, phone_number: String }
+      {
+        cursor: String,
+        limit: Integer,
+        phone_number: String,
+        search: String,
+        tag: ::Array[String]
+      }
       & Zavudev::Internal::Type::request_parameters
 
     class ContactListParams < Zavudev::Internal::Type::BaseModel
@@ -20,10 +26,20 @@ module Zavudev
 
       def phone_number=: (String) -> String
 
+      attr_reader search: String?
+
+      def search=: (String) -> String
+
+      attr_reader tag: ::Array[String]?
+
+      def tag=: (::Array[String]) -> ::Array[String]
+
       def initialize: (
         ?cursor: String,
         ?limit: Integer,
         ?phone_number: String,
+        ?search: String,
+        ?tag: ::Array[String],
         ?request_options: Zavudev::request_opts
       ) -> void
 
@@ -31,6 +47,8 @@ module Zavudev
         cursor: String,
         limit: Integer,
         phone_number: String,
+        search: String,
+        tag: ::Array[String],
         request_options: Zavudev::RequestOptions
       }
     end

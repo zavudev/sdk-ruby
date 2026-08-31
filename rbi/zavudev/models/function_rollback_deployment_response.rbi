@@ -1,0 +1,240 @@
+# typed: strong
+
+module Zavudev
+  module Models
+    class FunctionRollbackDeploymentResponse < Zavudev::Internal::Type::BaseModel
+      OrHash =
+        T.type_alias do
+          T.any(
+            Zavudev::Models::FunctionRollbackDeploymentResponse,
+            Zavudev::Internal::AnyHash
+          )
+        end
+
+      sig do
+        returns(Zavudev::Models::FunctionRollbackDeploymentResponse::Deployment)
+      end
+      attr_reader :deployment
+
+      sig do
+        params(
+          deployment:
+            Zavudev::Models::FunctionRollbackDeploymentResponse::Deployment::OrHash
+        ).void
+      end
+      attr_writer :deployment
+
+      # The draft that was replaced, so a UI can offer to restore it.
+      sig { returns(T.nilable(T.anything)) }
+      attr_accessor :previous_draft
+
+      sig { returns(T.nilable(Integer)) }
+      attr_reader :rolled_back_to_version
+
+      sig { params(rolled_back_to_version: Integer).void }
+      attr_writer :rolled_back_to_version
+
+      sig do
+        params(
+          deployment:
+            Zavudev::Models::FunctionRollbackDeploymentResponse::Deployment::OrHash,
+          previous_draft: T.nilable(T.anything),
+          rolled_back_to_version: Integer
+        ).returns(T.attached_class)
+      end
+      def self.new(
+        deployment:,
+        # The draft that was replaced, so a UI can offer to restore it.
+        previous_draft: nil,
+        rolled_back_to_version: nil
+      )
+      end
+
+      sig do
+        override.returns(
+          {
+            deployment:
+              Zavudev::Models::FunctionRollbackDeploymentResponse::Deployment,
+            previous_draft: T.nilable(T.anything),
+            rolled_back_to_version: Integer
+          }
+        )
+      end
+      def to_hash
+      end
+
+      class Deployment < Zavudev::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Zavudev::Models::FunctionRollbackDeploymentResponse::Deployment,
+              Zavudev::Internal::AnyHash
+            )
+          end
+
+        sig { returns(String) }
+        attr_accessor :id
+
+        sig { returns(Time) }
+        attr_accessor :created_at
+
+        sig { returns(String) }
+        attr_accessor :function_id
+
+        # Stage of a function deployment.
+        sig do
+          returns(
+            Zavudev::Models::FunctionRollbackDeploymentResponse::Deployment::Status::TaggedSymbol
+          )
+        end
+        attr_accessor :status
+
+        # Monotonically increasing deployment version, starting at 1.
+        sig { returns(Integer) }
+        attr_accessor :version
+
+        # What the build printed: dependency installation, the bundler's output, and the
+        # compiler's message when it failed. Returned when fetching a single deployment,
+        # omitted from the list. Read this first when a deploy fails — `errorMessage` is
+        # often the outer wrapper's summary, and the line that names the broken import or
+        # the syntax error is here.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :build_logs
+
+        # Size of the built bundle in bytes. Null until the build finishes.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :bundle_bytes
+
+        sig { returns(T.nilable(Time)) }
+        attr_accessor :deployed_at
+
+        # Failure reason when status is 'failed'.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :error_message
+
+        # Total size of the deployed source tree in bytes.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :source_code_bytes
+
+        sig do
+          params(
+            id: String,
+            created_at: Time,
+            function_id: String,
+            status:
+              Zavudev::Models::FunctionRollbackDeploymentResponse::Deployment::Status::OrSymbol,
+            version: Integer,
+            build_logs: T.nilable(String),
+            bundle_bytes: T.nilable(Integer),
+            deployed_at: T.nilable(Time),
+            error_message: T.nilable(String),
+            source_code_bytes: T.nilable(Integer)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          id:,
+          created_at:,
+          function_id:,
+          # Stage of a function deployment.
+          status:,
+          # Monotonically increasing deployment version, starting at 1.
+          version:,
+          # What the build printed: dependency installation, the bundler's output, and the
+          # compiler's message when it failed. Returned when fetching a single deployment,
+          # omitted from the list. Read this first when a deploy fails — `errorMessage` is
+          # often the outer wrapper's summary, and the line that names the broken import or
+          # the syntax error is here.
+          build_logs: nil,
+          # Size of the built bundle in bytes. Null until the build finishes.
+          bundle_bytes: nil,
+          deployed_at: nil,
+          # Failure reason when status is 'failed'.
+          error_message: nil,
+          # Total size of the deployed source tree in bytes.
+          source_code_bytes: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              created_at: Time,
+              function_id: String,
+              status:
+                Zavudev::Models::FunctionRollbackDeploymentResponse::Deployment::Status::TaggedSymbol,
+              version: Integer,
+              build_logs: T.nilable(String),
+              bundle_bytes: T.nilable(Integer),
+              deployed_at: T.nilable(Time),
+              error_message: T.nilable(String),
+              source_code_bytes: T.nilable(Integer)
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # Stage of a function deployment.
+        module Status
+          extend Zavudev::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Zavudev::Models::FunctionRollbackDeploymentResponse::Deployment::Status
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          PENDING =
+            T.let(
+              :pending,
+              Zavudev::Models::FunctionRollbackDeploymentResponse::Deployment::Status::TaggedSymbol
+            )
+          BUNDLING =
+            T.let(
+              :bundling,
+              Zavudev::Models::FunctionRollbackDeploymentResponse::Deployment::Status::TaggedSymbol
+            )
+          UPLOADING =
+            T.let(
+              :uploading,
+              Zavudev::Models::FunctionRollbackDeploymentResponse::Deployment::Status::TaggedSymbol
+            )
+          PUBLISHING =
+            T.let(
+              :publishing,
+              Zavudev::Models::FunctionRollbackDeploymentResponse::Deployment::Status::TaggedSymbol
+            )
+          ACTIVE =
+            T.let(
+              :active,
+              Zavudev::Models::FunctionRollbackDeploymentResponse::Deployment::Status::TaggedSymbol
+            )
+          FAILED =
+            T.let(
+              :failed,
+              Zavudev::Models::FunctionRollbackDeploymentResponse::Deployment::Status::TaggedSymbol
+            )
+          SUPERSEDED =
+            T.let(
+              :superseded,
+              Zavudev::Models::FunctionRollbackDeploymentResponse::Deployment::Status::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Zavudev::Models::FunctionRollbackDeploymentResponse::Deployment::Status::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+      end
+    end
+  end
+end

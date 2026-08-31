@@ -1,0 +1,30 @@
+module Zavudev
+  module Models
+    module Functions
+      type trigger_update_params =
+        { trigger_id: String, active: bool }
+        & Zavudev::Internal::Type::request_parameters
+
+      class TriggerUpdateParams < Zavudev::Internal::Type::BaseModel
+        extend Zavudev::Internal::Type::RequestParameters::Converter
+        include Zavudev::Internal::Type::RequestParameters
+
+        attr_accessor trigger_id: String
+
+        attr_accessor active: bool
+
+        def initialize: (
+          trigger_id: String,
+          active: bool,
+          ?request_options: Zavudev::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          trigger_id: String,
+          active: bool,
+          request_options: Zavudev::RequestOptions
+        }
+      end
+    end
+  end
+end
