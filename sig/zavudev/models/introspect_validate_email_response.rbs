@@ -1,0 +1,135 @@
+module Zavudev
+  module Models
+    type introspect_validate_email_response =
+      {
+        results: ::Array[Zavudev::Models::IntrospectValidateEmailResponse::Result],
+        summary: Zavudev::Models::IntrospectValidateEmailResponse::Summary
+      }
+
+    class IntrospectValidateEmailResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor results: ::Array[Zavudev::Models::IntrospectValidateEmailResponse::Result]
+
+      attr_accessor summary: Zavudev::Models::IntrospectValidateEmailResponse::Summary
+
+      def initialize: (
+        results: ::Array[Zavudev::Models::IntrospectValidateEmailResponse::Result],
+        summary: Zavudev::Models::IntrospectValidateEmailResponse::Summary
+      ) -> void
+
+      def to_hash: -> {
+        results: ::Array[Zavudev::Models::IntrospectValidateEmailResponse::Result],
+        summary: Zavudev::Models::IntrospectValidateEmailResponse::Summary
+      }
+
+      type result =
+        {
+          domain: String?,
+          email: String,
+          normalized: String?,
+          reasons: ::Array[Zavudev::Models::IntrospectValidateEmailResponse::Result::reason],
+          verdict: Zavudev::Models::IntrospectValidateEmailResponse::Result::verdict
+        }
+
+      class Result < Zavudev::Internal::Type::BaseModel
+        attr_accessor domain: String?
+
+        attr_accessor email: String
+
+        attr_accessor normalized: String?
+
+        attr_accessor reasons: ::Array[Zavudev::Models::IntrospectValidateEmailResponse::Result::reason]
+
+        attr_accessor verdict: Zavudev::Models::IntrospectValidateEmailResponse::Result::verdict
+
+        def initialize: (
+          domain: String?,
+          email: String,
+          normalized: String?,
+          reasons: ::Array[Zavudev::Models::IntrospectValidateEmailResponse::Result::reason],
+          verdict: Zavudev::Models::IntrospectValidateEmailResponse::Result::verdict
+        ) -> void
+
+        def to_hash: -> {
+          domain: String?,
+          email: String,
+          normalized: String?,
+          reasons: ::Array[Zavudev::Models::IntrospectValidateEmailResponse::Result::reason],
+          verdict: Zavudev::Models::IntrospectValidateEmailResponse::Result::verdict
+        }
+
+        type reason =
+          :invalid_syntax
+          | :domain_not_found
+          | :domain_no_mx
+          | :disposable_domain
+          | :role_address
+          | :suppressed_hard_bounce
+          | :suppressed_soft_bounce
+          | :suppressed_complaint
+          | :suppressed_manual
+          | :suppressed_unsubscribe
+
+        module Reason
+          extend Zavudev::Internal::Type::Enum
+
+          INVALID_SYNTAX: :invalid_syntax
+          DOMAIN_NOT_FOUND: :domain_not_found
+          DOMAIN_NO_MX: :domain_no_mx
+          DISPOSABLE_DOMAIN: :disposable_domain
+          ROLE_ADDRESS: :role_address
+          SUPPRESSED_HARD_BOUNCE: :suppressed_hard_bounce
+          SUPPRESSED_SOFT_BOUNCE: :suppressed_soft_bounce
+          SUPPRESSED_COMPLAINT: :suppressed_complaint
+          SUPPRESSED_MANUAL: :suppressed_manual
+          SUPPRESSED_UNSUBSCRIBE: :suppressed_unsubscribe
+
+          def self?.values: -> ::Array[Zavudev::Models::IntrospectValidateEmailResponse::Result::reason]
+        end
+
+        type verdict = :deliverable | :risky | :undeliverable
+
+        module Verdict
+          extend Zavudev::Internal::Type::Enum
+
+          DELIVERABLE: :deliverable
+          RISKY: :risky
+          UNDELIVERABLE: :undeliverable
+
+          def self?.values: -> ::Array[Zavudev::Models::IntrospectValidateEmailResponse::Result::verdict]
+        end
+      end
+
+      type summary =
+        {
+          deliverable: Integer,
+          risky: Integer,
+          total: Integer,
+          undeliverable: Integer
+        }
+
+      class Summary < Zavudev::Internal::Type::BaseModel
+        attr_accessor deliverable: Integer
+
+        attr_accessor risky: Integer
+
+        attr_accessor total: Integer
+
+        attr_accessor undeliverable: Integer
+
+        def initialize: (
+          deliverable: Integer,
+          risky: Integer,
+          total: Integer,
+          undeliverable: Integer
+        ) -> void
+
+        def to_hash: -> {
+          deliverable: Integer,
+          risky: Integer,
+          total: Integer,
+          undeliverable: Integer
+        }
+      end
+    end
+  end
+end

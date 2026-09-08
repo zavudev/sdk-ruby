@@ -51,13 +51,18 @@ module Zavudev
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Zavudev::Models::ContactUpdateParams} for more details.
+      #
       # Update contact
       #
-      # @overload update(contact_id, default_channel: nil, metadata: nil, request_options: {})
+      # @overload update(contact_id, default_channel: nil, display_name: nil, metadata: nil, request_options: {})
       #
       # @param contact_id [String]
       #
       # @param default_channel [Symbol, Zavudev::Models::ContactUpdateParams::DefaultChannel, nil] Preferred channel for this contact. Set to null to clear.
+      #
+      # @param display_name [String, nil] Human-readable name for this contact. Set to null to clear it and fall back to t
       #
       # @param metadata [Hash{Symbol=>String}]
       #
@@ -77,13 +82,23 @@ module Zavudev
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Zavudev::Models::ContactListParams} for more details.
+      #
       # List contacts with their communication channels.
       #
-      # @overload list(cursor: nil, limit: nil, phone_number: nil, request_options: {})
+      # @overload list(cursor: nil, limit: nil, phone_number: nil, search: nil, tag: nil, request_options: {})
       #
-      # @param cursor [String]
+      # @param cursor [String] Opaque cursor from a previous response's `nextCursor`. Do not construct it.
+      #
       # @param limit [Integer]
-      # @param phone_number [String]
+      #
+      # @param phone_number [String] Exact match on the contact's primary phone number, in E.164.
+      #
+      # @param search [String] Free-text match over the contact's name (`displayName` and the WhatsApp profile
+      #
+      # @param tag [Array<String>] Tag name. Repeatable: `?tag=vip&tag=chile` returns contacts carrying **every** t
+      #
       # @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Zavudev::Internal::Cursor<Zavudev::Models::Contact>]
@@ -121,25 +136,6 @@ module Zavudev
         @client.request(
           method: :delete,
           path: ["v1/contacts/%1$s", contact_id],
-          model: NilClass,
-          options: params[:request_options]
-        )
-      end
-
-      # Dismiss the merge suggestion for a contact.
-      #
-      # @overload dismiss_merge_suggestion(contact_id, request_options: {})
-      #
-      # @param contact_id [String]
-      # @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}, nil]
-      #
-      # @return [nil]
-      #
-      # @see Zavudev::Models::ContactDismissMergeSuggestionParams
-      def dismiss_merge_suggestion(contact_id, params = {})
-        @client.request(
-          method: :delete,
-          path: ["v1/contacts/%1$s/merge-suggestion", contact_id],
           model: NilClass,
           options: params[:request_options]
         )

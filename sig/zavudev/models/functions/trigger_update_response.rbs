@@ -1,0 +1,17 @@
+module Zavudev
+  module Models
+    module Functions
+      type trigger_update_response = { active: bool, ok: bool }
+
+      class TriggerUpdateResponse < Zavudev::Internal::Type::BaseModel
+        attr_accessor active: bool
+
+        attr_accessor ok: bool
+
+        def initialize: (active: bool, ok: bool) -> void
+
+        def to_hash: -> { active: bool, ok: bool }
+      end
+    end
+  end
+end

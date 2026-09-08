@@ -18,6 +18,7 @@ module Zavudev
       def update: (
         String contact_id,
         ?default_channel: Zavudev::Models::ContactUpdateParams::default_channel?,
+        ?display_name: String?,
         ?metadata: ::Hash[Symbol, String],
         ?request_options: Zavudev::request_opts
       ) -> Zavudev::Contact
@@ -26,15 +27,12 @@ module Zavudev
         ?cursor: String,
         ?limit: Integer,
         ?phone_number: String,
+        ?search: String,
+        ?tag: ::Array[String],
         ?request_options: Zavudev::request_opts
       ) -> Zavudev::Internal::Cursor[Zavudev::Contact]
 
       def delete: (
-        String contact_id,
-        ?request_options: Zavudev::request_opts
-      ) -> nil
-
-      def dismiss_merge_suggestion: (
         String contact_id,
         ?request_options: Zavudev::request_opts
       ) -> nil

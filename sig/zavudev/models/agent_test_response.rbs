@@ -1,0 +1,78 @@
+module Zavudev
+  module Models
+    type agent_test_response =
+      {
+        error: String?,
+        input_tokens: Integer,
+        knowledge_chunks_used: Integer,
+        latency_ms: Integer,
+        output_tokens: Integer,
+        success: bool,
+        text: String?,
+        warnings: ::Array[String],
+        executed_tool_calls: ::Array[Zavudev::Models::AgentTestResponse::ExecutedToolCall]
+      }
+
+    class AgentTestResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor error: String?
+
+      attr_accessor input_tokens: Integer
+
+      attr_accessor knowledge_chunks_used: Integer
+
+      attr_accessor latency_ms: Integer
+
+      attr_accessor output_tokens: Integer
+
+      attr_accessor success: bool
+
+      attr_accessor text: String?
+
+      attr_accessor warnings: ::Array[String]
+
+      attr_reader executed_tool_calls: ::Array[Zavudev::Models::AgentTestResponse::ExecutedToolCall]?
+
+      def executed_tool_calls=: (
+        ::Array[Zavudev::Models::AgentTestResponse::ExecutedToolCall]
+      ) -> ::Array[Zavudev::Models::AgentTestResponse::ExecutedToolCall]
+
+      def initialize: (
+        error: String?,
+        input_tokens: Integer,
+        knowledge_chunks_used: Integer,
+        latency_ms: Integer,
+        output_tokens: Integer,
+        success: bool,
+        text: String?,
+        warnings: ::Array[String],
+        ?executed_tool_calls: ::Array[Zavudev::Models::AgentTestResponse::ExecutedToolCall]
+      ) -> void
+
+      def to_hash: -> {
+        error: String?,
+        input_tokens: Integer,
+        knowledge_chunks_used: Integer,
+        latency_ms: Integer,
+        output_tokens: Integer,
+        success: bool,
+        text: String?,
+        warnings: ::Array[String],
+        executed_tool_calls: ::Array[Zavudev::Models::AgentTestResponse::ExecutedToolCall]
+      }
+
+      type executed_tool_call = { name: String, ok: bool, error: String? }
+
+      class ExecutedToolCall < Zavudev::Internal::Type::BaseModel
+        attr_accessor name: String
+
+        attr_accessor ok: bool
+
+        attr_accessor error: String?
+
+        def initialize: (name: String, ok: bool, ?error: String?) -> void
+
+        def to_hash: -> { name: String, ok: bool, error: String? }
+      end
+    end
+  end
+end

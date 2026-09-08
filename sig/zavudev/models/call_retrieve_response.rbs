@@ -1,0 +1,196 @@
+module Zavudev
+  module Models
+    type call_retrieve_response =
+      { call: Zavudev::Models::CallRetrieveResponse::Call }
+
+    class CallRetrieveResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor call: Zavudev::Models::CallRetrieveResponse::Call
+
+      def initialize: (
+        call: Zavudev::Models::CallRetrieveResponse::Call
+      ) -> void
+
+      def to_hash: -> { call: Zavudev::Models::CallRetrieveResponse::Call }
+
+      type call =
+        {
+          id: String,
+          created_at: Time,
+          direction: Zavudev::Models::CallRetrieveResponse::Call::direction,
+          from: String,
+          status: Zavudev::Models::CallRetrieveResponse::Call::status,
+          to: String,
+          answered_at: Time?,
+          cost: Float?,
+          duration_seconds: Integer?,
+          ended_at: Time?,
+          end_reason: String?,
+          metadata: ::Hash[Symbol, String],
+          transcript: ::Array[Zavudev::Models::CallRetrieveResponse::Call::Transcript],
+          turn_count: Integer?,
+          updated_at: Time
+        }
+
+      class Call < Zavudev::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor direction: Zavudev::Models::CallRetrieveResponse::Call::direction
+
+        attr_accessor from: String
+
+        attr_accessor status: Zavudev::Models::CallRetrieveResponse::Call::status
+
+        attr_accessor to: String
+
+        attr_accessor answered_at: Time?
+
+        attr_accessor cost: Float?
+
+        attr_accessor duration_seconds: Integer?
+
+        attr_accessor ended_at: Time?
+
+        attr_accessor end_reason: String?
+
+        attr_reader metadata: ::Hash[Symbol, String]?
+
+        def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+        attr_reader transcript: ::Array[Zavudev::Models::CallRetrieveResponse::Call::Transcript]?
+
+        def transcript=: (
+          ::Array[Zavudev::Models::CallRetrieveResponse::Call::Transcript]
+        ) -> ::Array[Zavudev::Models::CallRetrieveResponse::Call::Transcript]
+
+        attr_accessor turn_count: Integer?
+
+        attr_reader updated_at: Time?
+
+        def updated_at=: (Time) -> Time
+
+        def initialize: (
+          id: String,
+          created_at: Time,
+          direction: Zavudev::Models::CallRetrieveResponse::Call::direction,
+          from: String,
+          status: Zavudev::Models::CallRetrieveResponse::Call::status,
+          to: String,
+          ?answered_at: Time?,
+          ?cost: Float?,
+          ?duration_seconds: Integer?,
+          ?ended_at: Time?,
+          ?end_reason: String?,
+          ?metadata: ::Hash[Symbol, String],
+          ?transcript: ::Array[Zavudev::Models::CallRetrieveResponse::Call::Transcript],
+          ?turn_count: Integer?,
+          ?updated_at: Time
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          created_at: Time,
+          direction: Zavudev::Models::CallRetrieveResponse::Call::direction,
+          from: String,
+          status: Zavudev::Models::CallRetrieveResponse::Call::status,
+          to: String,
+          answered_at: Time?,
+          cost: Float?,
+          duration_seconds: Integer?,
+          ended_at: Time?,
+          end_reason: String?,
+          metadata: ::Hash[Symbol, String],
+          transcript: ::Array[Zavudev::Models::CallRetrieveResponse::Call::Transcript],
+          turn_count: Integer?,
+          updated_at: Time
+        }
+
+        type direction = :inbound | :outbound
+
+        module Direction
+          extend Zavudev::Internal::Type::Enum
+
+          INBOUND: :inbound
+          OUTBOUND: :outbound
+
+          def self?.values: -> ::Array[Zavudev::Models::CallRetrieveResponse::Call::direction]
+        end
+
+        type status =
+          :queued
+          | :ringing
+          | :in_progress
+          | :completed
+          | :failed
+          | :busy
+          | :no_answer
+          | :canceled
+
+        module Status
+          extend Zavudev::Internal::Type::Enum
+
+          QUEUED: :queued
+          RINGING: :ringing
+          IN_PROGRESS: :in_progress
+          COMPLETED: :completed
+          FAILED: :failed
+          BUSY: :busy
+          NO_ANSWER: :no_answer
+          CANCELED: :canceled
+
+          def self?.values: -> ::Array[Zavudev::Models::CallRetrieveResponse::Call::status]
+        end
+
+        type transcript =
+          {
+            role: Zavudev::Models::CallRetrieveResponse::Call::Transcript::role,
+            seq: Integer,
+            text: String,
+            ended_at: Time?,
+            started_at: Time?
+          }
+
+        class Transcript < Zavudev::Internal::Type::BaseModel
+          attr_accessor role: Zavudev::Models::CallRetrieveResponse::Call::Transcript::role
+
+          attr_accessor seq: Integer
+
+          attr_accessor text: String
+
+          attr_accessor ended_at: Time?
+
+          attr_accessor started_at: Time?
+
+          def initialize: (
+            role: Zavudev::Models::CallRetrieveResponse::Call::Transcript::role,
+            seq: Integer,
+            text: String,
+            ?ended_at: Time?,
+            ?started_at: Time?
+          ) -> void
+
+          def to_hash: -> {
+            role: Zavudev::Models::CallRetrieveResponse::Call::Transcript::role,
+            seq: Integer,
+            text: String,
+            ended_at: Time?,
+            started_at: Time?
+          }
+
+          type role = :user | :assistant | :tool
+
+          module Role
+            extend Zavudev::Internal::Type::Enum
+
+            USER: :user
+            ASSISTANT: :assistant
+            TOOL: :tool
+
+            def self?.values: -> ::Array[Zavudev::Models::CallRetrieveResponse::Call::Transcript::role]
+          end
+        end
+      end
+    end
+  end
+end

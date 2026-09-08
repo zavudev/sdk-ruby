@@ -1,0 +1,23 @@
+module Zavudev
+  module Models
+    type conversation_retrieve_params =
+      { conversation_id: String } & Zavudev::Internal::Type::request_parameters
+
+    class ConversationRetrieveParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor conversation_id: String
+
+      def initialize: (
+        conversation_id: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        conversation_id: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

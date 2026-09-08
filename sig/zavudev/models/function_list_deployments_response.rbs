@@ -1,0 +1,107 @@
+module Zavudev
+  module Models
+    type function_list_deployments_response =
+      {
+        deployments: ::Array[Zavudev::Models::FunctionListDeploymentsResponse::Deployment]
+      }
+
+    class FunctionListDeploymentsResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor deployments: ::Array[Zavudev::Models::FunctionListDeploymentsResponse::Deployment]
+
+      def initialize: (
+        deployments: ::Array[Zavudev::Models::FunctionListDeploymentsResponse::Deployment]
+      ) -> void
+
+      def to_hash: -> {
+        deployments: ::Array[Zavudev::Models::FunctionListDeploymentsResponse::Deployment]
+      }
+
+      type deployment =
+        {
+          id: String,
+          bundle_size_bytes: Integer?,
+          created_at: Time,
+          deployed_at: Time?,
+          error_message: String?,
+          is_active: bool,
+          status: Zavudev::Models::FunctionListDeploymentsResponse::Deployment::status,
+          version: Integer
+        }
+
+      class Deployment < Zavudev::Internal::Type::BaseModel
+        attr_reader id: String?
+
+        def id=: (String) -> String
+
+        attr_accessor bundle_size_bytes: Integer?
+
+        attr_reader created_at: Time?
+
+        def created_at=: (Time) -> Time
+
+        attr_accessor deployed_at: Time?
+
+        attr_accessor error_message: String?
+
+        attr_reader is_active: bool?
+
+        def is_active=: (bool) -> bool
+
+        attr_reader status: Zavudev::Models::FunctionListDeploymentsResponse::Deployment::status?
+
+        def status=: (
+          Zavudev::Models::FunctionListDeploymentsResponse::Deployment::status
+        ) -> Zavudev::Models::FunctionListDeploymentsResponse::Deployment::status
+
+        attr_reader version: Integer?
+
+        def version=: (Integer) -> Integer
+
+        def initialize: (
+          ?id: String,
+          ?bundle_size_bytes: Integer?,
+          ?created_at: Time,
+          ?deployed_at: Time?,
+          ?error_message: String?,
+          ?is_active: bool,
+          ?status: Zavudev::Models::FunctionListDeploymentsResponse::Deployment::status,
+          ?version: Integer
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          bundle_size_bytes: Integer?,
+          created_at: Time,
+          deployed_at: Time?,
+          error_message: String?,
+          is_active: bool,
+          status: Zavudev::Models::FunctionListDeploymentsResponse::Deployment::status,
+          version: Integer
+        }
+
+        type status =
+          :pending
+          | :bundling
+          | :uploading
+          | :publishing
+          | :active
+          | :failed
+          | :superseded
+
+        module Status
+          extend Zavudev::Internal::Type::Enum
+
+          PENDING: :pending
+          BUNDLING: :bundling
+          UPLOADING: :uploading
+          PUBLISHING: :publishing
+          ACTIVE: :active
+          FAILED: :failed
+          SUPERSEDED: :superseded
+
+          def self?.values: -> ::Array[Zavudev::Models::FunctionListDeploymentsResponse::Deployment::status]
+        end
+      end
+    end
+  end
+end

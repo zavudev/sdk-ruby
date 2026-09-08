@@ -1,0 +1,83 @@
+module Zavudev
+  module Models
+    type conversation_list_params =
+      {
+        channel: Zavudev::Models::ConversationListParams::channel,
+        cursor: String,
+        limit: Integer,
+        search: String,
+        sender_id: String
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class ConversationListParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_reader channel: Zavudev::Models::ConversationListParams::channel?
+
+      def channel=: (
+        Zavudev::Models::ConversationListParams::channel
+      ) -> Zavudev::Models::ConversationListParams::channel
+
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_reader search: String?
+
+      def search=: (String) -> String
+
+      attr_reader sender_id: String?
+
+      def sender_id=: (String) -> String
+
+      def initialize: (
+        ?channel: Zavudev::Models::ConversationListParams::channel,
+        ?cursor: String,
+        ?limit: Integer,
+        ?search: String,
+        ?sender_id: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        channel: Zavudev::Models::ConversationListParams::channel,
+        cursor: String,
+        limit: Integer,
+        search: String,
+        sender_id: String,
+        request_options: Zavudev::RequestOptions
+      }
+
+      type channel =
+        :sms
+        | :sms_oneway
+        | :whatsapp
+        | :email
+        | :telegram
+        | :instagram
+        | :messenger
+        | :voice
+
+      module Channel
+        extend Zavudev::Internal::Type::Enum
+
+        SMS: :sms
+        SMS_ONEWAY: :sms_oneway
+        WHATSAPP: :whatsapp
+        EMAIL: :email
+        TELEGRAM: :telegram
+        INSTAGRAM: :instagram
+        MESSENGER: :messenger
+        VOICE: :voice
+
+        def self?.values: -> ::Array[Zavudev::Models::ConversationListParams::channel]
+      end
+    end
+  end
+end

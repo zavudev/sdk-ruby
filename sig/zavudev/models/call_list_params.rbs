@@ -1,0 +1,89 @@
+module Zavudev
+  module Models
+    type call_list_params =
+      {
+        cursor: String,
+        direction: Zavudev::Models::CallListParams::direction,
+        limit: Integer,
+        status: Zavudev::Models::CallListParams::status
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class CallListParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader direction: Zavudev::Models::CallListParams::direction?
+
+      def direction=: (
+        Zavudev::Models::CallListParams::direction
+      ) -> Zavudev::Models::CallListParams::direction
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_reader status: Zavudev::Models::CallListParams::status?
+
+      def status=: (
+        Zavudev::Models::CallListParams::status
+      ) -> Zavudev::Models::CallListParams::status
+
+      def initialize: (
+        ?cursor: String,
+        ?direction: Zavudev::Models::CallListParams::direction,
+        ?limit: Integer,
+        ?status: Zavudev::Models::CallListParams::status,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        cursor: String,
+        direction: Zavudev::Models::CallListParams::direction,
+        limit: Integer,
+        status: Zavudev::Models::CallListParams::status,
+        request_options: Zavudev::RequestOptions
+      }
+
+      type direction = :inbound | :outbound
+
+      module Direction
+        extend Zavudev::Internal::Type::Enum
+
+        INBOUND: :inbound
+        OUTBOUND: :outbound
+
+        def self?.values: -> ::Array[Zavudev::Models::CallListParams::direction]
+      end
+
+      type status =
+        :queued
+        | :ringing
+        | :in_progress
+        | :completed
+        | :failed
+        | :busy
+        | :no_answer
+        | :canceled
+
+      module Status
+        extend Zavudev::Internal::Type::Enum
+
+        QUEUED: :queued
+        RINGING: :ringing
+        IN_PROGRESS: :in_progress
+        COMPLETED: :completed
+        FAILED: :failed
+        BUSY: :busy
+        NO_ANSWER: :no_answer
+        CANCELED: :canceled
+
+        def self?.values: -> ::Array[Zavudev::Models::CallListParams::status]
+      end
+    end
+  end
+end

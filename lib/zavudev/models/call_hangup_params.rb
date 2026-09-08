@@ -2,18 +2,18 @@
 
 module Zavudev
   module Models
-    # @see Zavudev::Resources::Contacts#dismiss_merge_suggestion
-    class ContactDismissMergeSuggestionParams < Zavudev::Internal::Type::BaseModel
+    # @see Zavudev::Resources::Calls#hangup
+    class CallHangupParams < Zavudev::Internal::Type::BaseModel
       extend Zavudev::Internal::Type::RequestParameters::Converter
       include Zavudev::Internal::Type::RequestParameters
 
-      # @!attribute contact_id
+      # @!attribute call_id
       #
       #   @return [String]
-      required :contact_id, String
+      required :call_id, String
 
-      # @!method initialize(contact_id:, request_options: {})
-      #   @param contact_id [String]
+      # @!method initialize(call_id:, request_options: {})
+      #   @param call_id [String]
       #   @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}]
     end
   end

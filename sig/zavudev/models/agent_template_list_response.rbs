@@ -1,0 +1,73 @@
+module Zavudev
+  module Models
+    type agent_template_list_response =
+      { items: ::Array[Zavudev::Models::AgentTemplateListResponse::Item] }
+
+    class AgentTemplateListResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor items: ::Array[Zavudev::Models::AgentTemplateListResponse::Item]
+
+      def initialize: (
+        items: ::Array[Zavudev::Models::AgentTemplateListResponse::Item]
+      ) -> void
+
+      def to_hash: -> {
+        items: ::Array[Zavudev::Models::AgentTemplateListResponse::Item]
+      }
+
+      type item =
+        {
+          id: String,
+          category: Zavudev::Models::AgentTemplateListResponse::Item::category,
+          name: String,
+          summary: String,
+          tool_count: Integer,
+          voice: bool
+        }
+
+      class Item < Zavudev::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor category: Zavudev::Models::AgentTemplateListResponse::Item::category
+
+        attr_accessor name: String
+
+        attr_accessor summary: String
+
+        attr_accessor tool_count: Integer
+
+        attr_accessor voice: bool
+
+        def initialize: (
+          id: String,
+          category: Zavudev::Models::AgentTemplateListResponse::Item::category,
+          name: String,
+          summary: String,
+          tool_count: Integer,
+          voice: bool
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          category: Zavudev::Models::AgentTemplateListResponse::Item::category,
+          name: String,
+          summary: String,
+          tool_count: Integer,
+          voice: bool
+        }
+
+        type category = :sales | :support | :frontDesk | :ops
+
+        module Category
+          extend Zavudev::Internal::Type::Enum
+
+          SALES: :sales
+          SUPPORT: :support
+          FRONT_DESK: :frontDesk
+          OPS: :ops
+
+          def self?.values: -> ::Array[Zavudev::Models::AgentTemplateListResponse::Item::category]
+        end
+      end
+    end
+  end
+end

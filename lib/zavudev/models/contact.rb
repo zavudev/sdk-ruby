@@ -78,18 +78,12 @@ module Zavudev
       #   @return [String, nil]
       optional :profile_name, String, api_name: :profileName, nil?: true
 
-      # @!attribute suggested_merge_with
-      #   ID of a contact suggested for merging.
-      #
-      #   @return [String, nil]
-      optional :suggested_merge_with, String, api_name: :suggestedMergeWith
-
       # @!attribute updated_at
       #
       #   @return [Time, nil]
       optional :updated_at, Time, api_name: :updatedAt
 
-      # @!method initialize(id:, available_channels:, created_at:, metadata:, verified:, channels: nil, country_code: nil, default_channel: nil, display_name: nil, phone_number: nil, primary_email: nil, primary_phone: nil, profile_name: nil, suggested_merge_with: nil, updated_at: nil)
+      # @!method initialize(id:, available_channels:, created_at:, metadata:, verified:, channels: nil, country_code: nil, default_channel: nil, display_name: nil, phone_number: nil, primary_email: nil, primary_phone: nil, profile_name: nil, updated_at: nil)
       #   @param id [String]
       #
       #   @param available_channels [Array<String>] List of available messaging channels for this contact.
@@ -115,8 +109,6 @@ module Zavudev
       #   @param primary_phone [String] Primary phone number in E.164 format.
       #
       #   @param profile_name [String, nil] Contact's WhatsApp profile name. Only available for WhatsApp contacts.
-      #
-      #   @param suggested_merge_with [String] ID of a contact suggested for merging.
       #
       #   @param updated_at [Time]
 

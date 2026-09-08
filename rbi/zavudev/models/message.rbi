@@ -16,6 +16,11 @@ module Zavudev
       sig { returns(Time) }
       attr_accessor :created_at
 
+      # Who sent the message. Needed to render a thread: `status` cannot tell the two
+      # apart, because an inbound message is also stored as `delivered`.
+      sig { returns(Zavudev::Message::Direction::TaggedSymbol) }
+      attr_accessor :direction
+
       # Type of message. Non-text types are supported by WhatsApp and Telegram (varies
       # by type).
       #
@@ -120,6 +125,7 @@ module Zavudev
           id: String,
           channel: Zavudev::Channel::OrSymbol,
           created_at: Time,
+          direction: Zavudev::Message::Direction::OrSymbol,
           message_type: Zavudev::MessageType::OrSymbol,
           status: Zavudev::MessageStatus::OrSymbol,
           to: String,
@@ -143,6 +149,9 @@ module Zavudev
         # Delivery channel. Use 'auto' for intelligent routing.
         channel:,
         created_at:,
+        # Who sent the message. Needed to render a thread: `status` cannot tell the two
+        # apart, because an inbound message is also stored as `delivered`.
+        direction:,
         # Type of message. Non-text types are supported by WhatsApp and Telegram (varies
         # by type).
         #
@@ -195,6 +204,7 @@ module Zavudev
             id: String,
             channel: Zavudev::Channel::TaggedSymbol,
             created_at: Time,
+            direction: Zavudev::Message::Direction::TaggedSymbol,
             message_type: Zavudev::MessageType::TaggedSymbol,
             status: Zavudev::MessageStatus::TaggedSymbol,
             to: String,
@@ -215,6 +225,25 @@ module Zavudev
         )
       end
       def to_hash
+      end
+
+      # Who sent the message. Needed to render a thread: `status` cannot tell the two
+      # apart, because an inbound message is also stored as `delivered`.
+      module Direction
+        extend Zavudev::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, Zavudev::Message::Direction) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        INBOUND = T.let(:inbound, Zavudev::Message::Direction::TaggedSymbol)
+        OUTBOUND = T.let(:outbound, Zavudev::Message::Direction::TaggedSymbol)
+
+        sig do
+          override.returns(T::Array[Zavudev::Message::Direction::TaggedSymbol])
+        end
+        def self.values
+        end
       end
     end
   end

@@ -1,0 +1,32 @@
+module Zavudev
+  module Models
+    type introspect_validate_email_params =
+      { email: String, emails: ::Array[String] }
+      & Zavudev::Internal::Type::request_parameters
+
+    class IntrospectValidateEmailParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_reader email: String?
+
+      def email=: (String) -> String
+
+      attr_reader emails: ::Array[String]?
+
+      def emails=: (::Array[String]) -> ::Array[String]
+
+      def initialize: (
+        ?email: String,
+        ?emails: ::Array[String],
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        email: String,
+        emails: ::Array[String],
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

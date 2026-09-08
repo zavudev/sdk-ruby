@@ -1,0 +1,13 @@
+module Zavudev
+  module Models
+    type function_list_event_types_response = { events: ::Array[String] }
+
+    class FunctionListEventTypesResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor events: ::Array[String]
+
+      def initialize: (events: ::Array[String]) -> void
+
+      def to_hash: -> { events: ::Array[String] }
+    end
+  end
+end

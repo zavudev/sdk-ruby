@@ -1,0 +1,33 @@
+module Zavudev
+  module Resources
+    class Functions
+      class Triggers
+        def create: (
+          String function_id,
+          event_types: ::Array[String],
+          sender_ids: ::Array[String?],
+          ?cron: String,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Functions::TriggerCreateResponse
+
+        def update: (
+          String trigger_id,
+          active: bool,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Functions::TriggerUpdateResponse
+
+        def list: (
+          String function_id,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Functions::TriggerListResponse
+
+        def delete: (
+          String trigger_id,
+          ?request_options: Zavudev::request_opts
+        ) -> nil
+
+        def initialize: (client: Zavudev::Client) -> void
+      end
+    end
+  end
+end

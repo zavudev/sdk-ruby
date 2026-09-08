@@ -1,6 +1,12 @@
 module Zavudev
   module Resources
     class Introspect
+      def validate_email: (
+        ?email: String,
+        ?emails: ::Array[String],
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::IntrospectValidateEmailResponse
+
       def validate_phone: (
         phone_number: String,
         ?request_options: Zavudev::request_opts

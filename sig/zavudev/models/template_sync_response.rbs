@@ -1,0 +1,45 @@
+module Zavudev
+  module Models
+    type template_sync_response =
+      {
+        accounts_synced: Integer,
+        errors: ::Array[String],
+        imported: Integer,
+        linked: Integer,
+        skipped: Integer,
+        updated: Integer
+      }
+
+    class TemplateSyncResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor accounts_synced: Integer
+
+      attr_accessor errors: ::Array[String]
+
+      attr_accessor imported: Integer
+
+      attr_accessor linked: Integer
+
+      attr_accessor skipped: Integer
+
+      attr_accessor updated: Integer
+
+      def initialize: (
+        accounts_synced: Integer,
+        errors: ::Array[String],
+        imported: Integer,
+        linked: Integer,
+        skipped: Integer,
+        updated: Integer
+      ) -> void
+
+      def to_hash: -> {
+        accounts_synced: Integer,
+        errors: ::Array[String],
+        imported: Integer,
+        linked: Integer,
+        skipped: Integer,
+        updated: Integer
+      }
+    end
+  end
+end

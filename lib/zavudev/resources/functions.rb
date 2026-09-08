@@ -6,6 +6,12 @@ module Zavudev
       # @return [Zavudev::Resources::Functions::Secrets]
       attr_reader :secrets
 
+      # @return [Zavudev::Resources::Functions::Triggers]
+      attr_reader :triggers
+
+      # @return [Zavudev::Resources::Functions::GitLink]
+      attr_reader :git_link
+
       # Some parameter documentations has been truncated, see
       # {Zavudev::Models::FunctionCreateParams} for more details.
       #
@@ -193,6 +199,80 @@ module Zavudev
         )
       end
 
+      # List a function's deployment history, newest first. Source code is omitted;
+      # fetch a single deployment via GET /v1/functions/deployments/{deploymentId} for
+      # full details.
+      #
+      # @overload list_deployments(function_id, limit: nil, request_options: {})
+      #
+      # @param function_id [String] Zavu Function ID.
+      #
+      # @param limit [Integer]
+      #
+      # @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Zavudev::Models::FunctionListDeploymentsResponse]
+      #
+      # @see Zavudev::Models::FunctionListDeploymentsParams
+      def list_deployments(function_id, params = {})
+        parsed, options = Zavudev::FunctionListDeploymentsParams.dump_request(params)
+        query = Zavudev::Internal::Util.encode_query_params(parsed)
+        @client.request(
+          method: :get,
+          path: ["v1/functions/%1$s/deployments", function_id],
+          query: query,
+          model: Zavudev::Models::FunctionListDeploymentsResponse,
+          options: options
+        )
+      end
+
+      # List the event types a function trigger can subscribe to. Includes the special
+      # type `cron`, which fires on a schedule (see POST
+      # /v1/functions/{functionId}/triggers) rather than on a messaging event.
+      #
+      # @overload list_event_types(request_options: {})
+      #
+      # @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Zavudev::Models::FunctionListEventTypesResponse]
+      #
+      # @see Zavudev::Models::FunctionListEventTypesParams
+      def list_event_types(params = {})
+        @client.request(
+          method: :get,
+          path: "v1/functions/event-types",
+          model: Zavudev::Models::FunctionListEventTypesResponse,
+          options: params[:request_options]
+        )
+      end
+
+      # Re-deploy a previous version by copying its source, dependencies, and runtime
+      # pin onto the function's draft, then deploying. Returns immediately with a
+      # deployment ID — poll GET /v1/functions/deployments/{deploymentId} until status
+      # is active or failed. Secrets are not rolled back.
+      #
+      # @overload rollback_deployment(function_id, deployment_id:, request_options: {})
+      #
+      # @param function_id [String] Zavu Function ID.
+      #
+      # @param deployment_id [String] ID of the deployment to roll back to.
+      #
+      # @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Zavudev::Models::FunctionRollbackDeploymentResponse]
+      #
+      # @see Zavudev::Models::FunctionRollbackDeploymentParams
+      def rollback_deployment(function_id, params)
+        parsed, options = Zavudev::FunctionRollbackDeploymentParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: ["v1/functions/%1$s/rollback", function_id],
+          body: parsed,
+          model: Zavudev::Models::FunctionRollbackDeploymentResponse,
+          options: options
+        )
+      end
+
       # Fetch invocation logs for a function. Logs are paginated via `nextToken`. Pass
       # `startTime` / `endTime` (Unix epoch milliseconds) to bound the window, or
       # `filterPattern` to filter messages.
@@ -239,6 +319,8 @@ module Zavudev
       def initialize(client:)
         @client = client
         @secrets = Zavudev::Resources::Functions::Secrets.new(client: client)
+        @triggers = Zavudev::Resources::Functions::Triggers.new(client: client)
+        @git_link = Zavudev::Resources::Functions::GitLink.new(client: client)
       end
     end
   end

@@ -21,15 +21,28 @@ module Zavudev
                api_name: :defaultChannel,
                nil?: true
 
+      # @!attribute display_name
+      #   Human-readable name for this contact. Set to null to clear it and fall back to
+      #   the contact's identifier. Contacts created automatically from an inbound message
+      #   have no display name until you set one.
+      #
+      #   @return [String, nil]
+      optional :display_name, String, api_name: :displayName, nil?: true
+
       # @!attribute metadata
       #
       #   @return [Hash{Symbol=>String}, nil]
       optional :metadata, Zavudev::Internal::Type::HashOf[String]
 
-      # @!method initialize(contact_id:, default_channel: nil, metadata: nil, request_options: {})
+      # @!method initialize(contact_id:, default_channel: nil, display_name: nil, metadata: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {Zavudev::Models::ContactUpdateParams} for more details.
+      #
       #   @param contact_id [String]
       #
       #   @param default_channel [Symbol, Zavudev::Models::ContactUpdateParams::DefaultChannel, nil] Preferred channel for this contact. Set to null to clear.
+      #
+      #   @param display_name [String, nil] Human-readable name for this contact. Set to null to clear it and fall back to t
       #
       #   @param metadata [Hash{Symbol=>String}]
       #

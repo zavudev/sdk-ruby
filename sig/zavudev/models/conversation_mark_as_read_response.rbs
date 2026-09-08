@@ -1,0 +1,201 @@
+module Zavudev
+  module Models
+    type conversation_mark_as_read_response =
+      {
+        conversation: Zavudev::Models::ConversationMarkAsReadResponse::Conversation
+      }
+
+    class ConversationMarkAsReadResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor conversation: Zavudev::Models::ConversationMarkAsReadResponse::Conversation
+
+      def initialize: (
+        conversation: Zavudev::Models::ConversationMarkAsReadResponse::Conversation
+      ) -> void
+
+      def to_hash: -> {
+        conversation: Zavudev::Models::ConversationMarkAsReadResponse::Conversation
+      }
+
+      type conversation =
+        {
+          id: String,
+          channels: ::Array[String],
+          contact_identifier: String,
+          created_at: Time,
+          last_message: Zavudev::Models::ConversationMarkAsReadResponse::Conversation::LastMessage,
+          message_count: Integer,
+          unread_count: Integer,
+          updated_at: Time,
+          contact_id: String,
+          email: String,
+          group: Zavudev::Models::ConversationMarkAsReadResponse::Conversation::Group,
+          sender_id: String,
+          whatsapp: Zavudev::Models::ConversationMarkAsReadResponse::Conversation::Whatsapp
+        }
+
+      class Conversation < Zavudev::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor channels: ::Array[String]
+
+        attr_accessor contact_identifier: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor last_message: Zavudev::Models::ConversationMarkAsReadResponse::Conversation::LastMessage
+
+        attr_accessor message_count: Integer
+
+        attr_accessor unread_count: Integer
+
+        attr_accessor updated_at: Time
+
+        attr_reader contact_id: String?
+
+        def contact_id=: (String) -> String
+
+        attr_reader email: String?
+
+        def email=: (String) -> String
+
+        attr_reader group: Zavudev::Models::ConversationMarkAsReadResponse::Conversation::Group?
+
+        def group=: (
+          Zavudev::Models::ConversationMarkAsReadResponse::Conversation::Group
+        ) -> Zavudev::Models::ConversationMarkAsReadResponse::Conversation::Group
+
+        attr_reader sender_id: String?
+
+        def sender_id=: (String) -> String
+
+        attr_reader whatsapp: Zavudev::Models::ConversationMarkAsReadResponse::Conversation::Whatsapp?
+
+        def whatsapp=: (
+          Zavudev::Models::ConversationMarkAsReadResponse::Conversation::Whatsapp
+        ) -> Zavudev::Models::ConversationMarkAsReadResponse::Conversation::Whatsapp
+
+        def initialize: (
+          id: String,
+          channels: ::Array[String],
+          contact_identifier: String,
+          created_at: Time,
+          last_message: Zavudev::Models::ConversationMarkAsReadResponse::Conversation::LastMessage,
+          message_count: Integer,
+          unread_count: Integer,
+          updated_at: Time,
+          ?contact_id: String,
+          ?email: String,
+          ?group: Zavudev::Models::ConversationMarkAsReadResponse::Conversation::Group,
+          ?sender_id: String,
+          ?whatsapp: Zavudev::Models::ConversationMarkAsReadResponse::Conversation::Whatsapp
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          channels: ::Array[String],
+          contact_identifier: String,
+          created_at: Time,
+          last_message: Zavudev::Models::ConversationMarkAsReadResponse::Conversation::LastMessage,
+          message_count: Integer,
+          unread_count: Integer,
+          updated_at: Time,
+          contact_id: String,
+          email: String,
+          group: Zavudev::Models::ConversationMarkAsReadResponse::Conversation::Group,
+          sender_id: String,
+          whatsapp: Zavudev::Models::ConversationMarkAsReadResponse::Conversation::Whatsapp
+        }
+
+        type last_message =
+          {
+            id: String,
+            at: Time,
+            channel: Zavudev::Models::channel,
+            direction: Zavudev::Models::ConversationMarkAsReadResponse::Conversation::LastMessage::direction,
+            text: String
+          }
+
+        class LastMessage < Zavudev::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor at: Time
+
+          attr_accessor channel: Zavudev::Models::channel
+
+          attr_accessor direction: Zavudev::Models::ConversationMarkAsReadResponse::Conversation::LastMessage::direction
+
+          attr_accessor text: String
+
+          def initialize: (
+            id: String,
+            at: Time,
+            channel: Zavudev::Models::channel,
+            direction: Zavudev::Models::ConversationMarkAsReadResponse::Conversation::LastMessage::direction,
+            text: String
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            at: Time,
+            channel: Zavudev::Models::channel,
+            direction: Zavudev::Models::ConversationMarkAsReadResponse::Conversation::LastMessage::direction,
+            text: String
+          }
+
+          type direction = :inbound | :outbound
+
+          module Direction
+            extend Zavudev::Internal::Type::Enum
+
+            INBOUND: :inbound
+            OUTBOUND: :outbound
+
+            def self?.values: -> ::Array[Zavudev::Models::ConversationMarkAsReadResponse::Conversation::LastMessage::direction]
+          end
+        end
+
+        type group = { id: String, participant_count: Integer, subject: String }
+
+        class Group < Zavudev::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_reader participant_count: Integer?
+
+          def participant_count=: (Integer) -> Integer
+
+          attr_reader subject: String?
+
+          def subject=: (String) -> String
+
+          def initialize: (
+            id: String,
+            ?participant_count: Integer,
+            ?subject: String
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            participant_count: Integer,
+            subject: String
+          }
+        end
+
+        type whatsapp = { bsuid: String, username: String }
+
+        class Whatsapp < Zavudev::Internal::Type::BaseModel
+          attr_reader bsuid: String?
+
+          def bsuid=: (String) -> String
+
+          attr_reader username: String?
+
+          def username=: (String) -> String
+
+          def initialize: (?bsuid: String, ?username: String) -> void
+
+          def to_hash: -> { bsuid: String, username: String }
+        end
+      end
+    end
+  end
+end

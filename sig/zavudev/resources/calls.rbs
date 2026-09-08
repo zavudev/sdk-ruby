@@ -1,0 +1,35 @@
+module Zavudev
+  module Resources
+    class Calls
+      def create: (
+        to: String,
+        ?greeting: String,
+        ?language: String,
+        ?max_duration_minutes: Integer,
+        ?metadata: ::Hash[Symbol, String],
+        ?sender_id: String,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::CallCreateResponse
+
+      def retrieve: (
+        String call_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::CallRetrieveResponse
+
+      def list: (
+        ?cursor: String,
+        ?direction: Zavudev::Models::CallListParams::direction,
+        ?limit: Integer,
+        ?status: Zavudev::Models::CallListParams::status,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Internal::Cursor[Zavudev::Models::CallListResponse]
+
+      def hangup: (
+        String call_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::CallHangupResponse
+
+      def initialize: (client: Zavudev::Client) -> void
+    end
+  end
+end

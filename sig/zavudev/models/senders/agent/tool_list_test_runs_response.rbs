@@ -1,0 +1,83 @@
+module Zavudev
+  module Models
+    module Senders
+      module Agent
+        type tool_list_test_runs_response =
+          {
+            items: ::Array[Zavudev::Models::Senders::Agent::ToolListTestRunsResponse::Item]
+          }
+
+        class ToolListTestRunsResponse < Zavudev::Internal::Type::BaseModel
+          attr_accessor items: ::Array[Zavudev::Models::Senders::Agent::ToolListTestRunsResponse::Item]
+
+          def initialize: (
+            items: ::Array[Zavudev::Models::Senders::Agent::ToolListTestRunsResponse::Item]
+          ) -> void
+
+          def to_hash: -> {
+            items: ::Array[Zavudev::Models::Senders::Agent::ToolListTestRunsResponse::Item]
+          }
+
+          type item =
+            {
+              id: String,
+              created_at: Time,
+              duration_ms: Integer,
+              success: bool,
+              tool_id: String,
+              error: String?,
+              params: ::Hash[Symbol, top],
+              response: String?,
+              status_code: Integer?
+            }
+
+          class Item < Zavudev::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor created_at: Time
+
+            attr_accessor duration_ms: Integer
+
+            attr_accessor success: bool
+
+            attr_accessor tool_id: String
+
+            attr_accessor error: String?
+
+            attr_reader params: ::Hash[Symbol, top]?
+
+            def params=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+            attr_accessor response: String?
+
+            attr_accessor status_code: Integer?
+
+            def initialize: (
+              id: String,
+              created_at: Time,
+              duration_ms: Integer,
+              success: bool,
+              tool_id: String,
+              ?error: String?,
+              ?params: ::Hash[Symbol, top],
+              ?response: String?,
+              ?status_code: Integer?
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              created_at: Time,
+              duration_ms: Integer,
+              success: bool,
+              tool_id: String,
+              error: String?,
+              params: ::Hash[Symbol, top],
+              response: String?,
+              status_code: Integer?
+            }
+          end
+        end
+      end
+    end
+  end
+end

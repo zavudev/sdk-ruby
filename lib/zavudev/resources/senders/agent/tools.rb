@@ -5,6 +5,9 @@ module Zavudev
     class Senders
       class Agent
         class Tools
+          # @return [Zavudev::Resources::Senders::Agent::Tools::Webhook]
+          attr_reader :webhook
+
           # Some parameter documentations has been truncated, see
           # {Zavudev::Models::Senders::Agent::ToolCreateParams} for more details.
           #
@@ -158,6 +161,39 @@ module Zavudev
             )
           end
 
+          # Recent runs of this tool triggered from the test endpoint, newest first. Covers
+          # manual tests only: a tool called by an agent during a real conversation is not
+          # recorded here.
+          #
+          # @overload list_test_runs(tool_id, sender_id:, limit: nil, request_options: {})
+          #
+          # @param tool_id [String] Path param
+          #
+          # @param sender_id [String] Path param
+          #
+          # @param limit [Integer] Query param
+          #
+          # @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}, nil]
+          #
+          # @return [Zavudev::Models::Senders::Agent::ToolListTestRunsResponse]
+          #
+          # @see Zavudev::Models::Senders::Agent::ToolListTestRunsParams
+          def list_test_runs(tool_id, params)
+            parsed, options = Zavudev::Senders::Agent::ToolListTestRunsParams.dump_request(params)
+            query = Zavudev::Internal::Util.encode_query_params(parsed)
+            sender_id =
+              parsed.delete(:sender_id) do
+                raise ArgumentError.new("missing required path argument #{_1}")
+              end
+            @client.request(
+              method: :get,
+              path: ["v1/senders/%1$s/agent/tools/%2$s/test-runs", sender_id, tool_id],
+              query: query,
+              model: Zavudev::Models::Senders::Agent::ToolListTestRunsResponse,
+              options: options
+            )
+          end
+
           # Run a tool with the parameters you supply and return what it answered.
           #
           # The call is synchronous: the response carries the tool's status, body, and
@@ -202,6 +238,7 @@ module Zavudev
           # @param client [Zavudev::Client]
           def initialize(client:)
             @client = client
+            @webhook = Zavudev::Resources::Senders::Agent::Tools::Webhook.new(client: client)
           end
         end
       end

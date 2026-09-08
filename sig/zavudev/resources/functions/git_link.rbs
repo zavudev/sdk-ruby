@@ -1,0 +1,42 @@
+module Zavudev
+  module Resources
+    class Functions
+      class GitLink
+        def retrieve: (
+          String function_id,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Functions::GitLinkRetrieveResponse
+
+        def update: (
+          String function_id,
+          ?auto_deploy: bool,
+          ?branch: String,
+          ?root_dir: String?,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Functions::GitLinkUpdateResponse
+
+        def deploy_now: (
+          String function_id,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Functions::GitLinkDeployNowResponse
+
+        def link: (
+          String function_id,
+          owner: String,
+          repo: String,
+          ?auto_deploy: bool,
+          ?branch: String,
+          ?root_dir: String,
+          ?request_options: Zavudev::request_opts
+        ) -> Zavudev::Models::Functions::GitLinkLinkResponse
+
+        def unlink: (
+          String function_id,
+          ?request_options: Zavudev::request_opts
+        ) -> nil
+
+        def initialize: (client: Zavudev::Client) -> void
+      end
+    end
+  end
+end

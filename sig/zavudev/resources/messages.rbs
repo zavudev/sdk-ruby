@@ -15,6 +15,11 @@ module Zavudev
         ?request_options: Zavudev::request_opts
       ) -> Zavudev::Internal::Cursor[Zavudev::Message]
 
+      def list_attachments: (
+        String message_id,
+        ?request_options: Zavudev::request_opts
+      ) -> Zavudev::Models::MessageListAttachmentsResponse
+
       def react: (
         String message_id,
         emoji: String,

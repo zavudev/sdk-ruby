@@ -3,6 +3,31 @@
 module Zavudev
   module Resources
     class URLs
+      # Request manual review of a rejected URL. Only URLs in 'rejected' status can be
+      # escalated; the status then moves to 'escalated'.
+      #
+      # @overload escalate(url_id, reason:, request_options: {})
+      #
+      # @param url_id [String]
+      #
+      # @param reason [String] Why the URL should be reviewed manually.
+      #
+      # @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Zavudev::Models::URLEscalateResponse]
+      #
+      # @see Zavudev::Models::URLEscalateParams
+      def escalate(url_id, params)
+        parsed, options = Zavudev::URLEscalateParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: ["v1/urls/%1$s/escalate", url_id],
+          body: parsed,
+          model: Zavudev::Models::URLEscalateResponse,
+          options: options
+        )
+      end
+
       # List URLs that have been verified for this project.
       #
       # @overload list_verified(cursor: nil, limit: nil, status: nil, request_options: {})

@@ -2,33 +2,33 @@
 
 module Zavudev
   module Models
-    class ContactDismissMergeSuggestionParams < Zavudev::Internal::Type::BaseModel
+    class MessageListAttachmentsParams < Zavudev::Internal::Type::BaseModel
       extend Zavudev::Internal::Type::RequestParameters::Converter
       include Zavudev::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
           T.any(
-            Zavudev::ContactDismissMergeSuggestionParams,
+            Zavudev::MessageListAttachmentsParams,
             Zavudev::Internal::AnyHash
           )
         end
 
       sig { returns(String) }
-      attr_accessor :contact_id
+      attr_accessor :message_id
 
       sig do
         params(
-          contact_id: String,
+          message_id: String,
           request_options: Zavudev::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
-      def self.new(contact_id:, request_options: {})
+      def self.new(message_id:, request_options: {})
       end
 
       sig do
         override.returns(
-          { contact_id: String, request_options: Zavudev::RequestOptions }
+          { message_id: String, request_options: Zavudev::RequestOptions }
         )
       end
       def to_hash

@@ -160,4 +160,25 @@ class Zavudev::Test::Resources::TemplatesTest < Zavudev::Test::ResourceTest
       }
     end
   end
+
+  def test_sync
+    skip("Mock server tests are disabled")
+
+    response = @zavudev.templates.sync
+
+    assert_pattern do
+      response => Zavudev::Models::TemplateSyncResponse
+    end
+
+    assert_pattern do
+      response => {
+        accounts_synced: Integer,
+        errors: ^(Zavudev::Internal::Type::ArrayOf[String]),
+        imported: Integer,
+        linked: Integer,
+        skipped: Integer,
+        updated: Integer
+      }
+    end
+  end
 end

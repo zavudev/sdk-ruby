@@ -21,6 +21,7 @@ module Zavudev
         media_url: String,
         mime_type: String,
         react_to_message_id: String,
+        referral: Zavudev::MessageContent::Referral,
         reply_to_from: String,
         reply_to_message_id: String,
         reply_to_message_type: String,
@@ -116,6 +117,12 @@ module Zavudev
 
       def react_to_message_id=: (String) -> String
 
+      attr_reader referral: Zavudev::MessageContent::Referral?
+
+      def referral=: (
+        Zavudev::MessageContent::Referral
+      ) -> Zavudev::MessageContent::Referral
+
       attr_reader reply_to_from: String?
 
       def reply_to_from=: (String) -> String
@@ -184,6 +191,7 @@ module Zavudev
         ?media_url: String,
         ?mime_type: String,
         ?react_to_message_id: String,
+        ?referral: Zavudev::MessageContent::Referral,
         ?reply_to_from: String,
         ?reply_to_message_id: String,
         ?reply_to_message_type: String,
@@ -216,6 +224,7 @@ module Zavudev
         media_url: String,
         mime_type: String,
         react_to_message_id: String,
+        referral: Zavudev::MessageContent::Referral,
         reply_to_from: String,
         reply_to_message_id: String,
         reply_to_message_type: String,
@@ -267,6 +276,114 @@ module Zavudev
         DOCUMENT: :document
 
         def self?.values: -> ::Array[Zavudev::Models::MessageContent::cta_header_type]
+      end
+
+      type referral =
+        {
+          body: String,
+          ctwa_clid: String,
+          headline: String,
+          image_url: String,
+          media_type: Zavudev::Models::MessageContent::Referral::media_type,
+          source_id: String,
+          source_type: Zavudev::Models::MessageContent::Referral::source_type,
+          source_url: String,
+          thumbnail_url: String,
+          video_url: String
+        }
+
+      class Referral < Zavudev::Internal::Type::BaseModel
+        attr_reader body: String?
+
+        def body=: (String) -> String
+
+        attr_reader ctwa_clid: String?
+
+        def ctwa_clid=: (String) -> String
+
+        attr_reader headline: String?
+
+        def headline=: (String) -> String
+
+        attr_reader image_url: String?
+
+        def image_url=: (String) -> String
+
+        attr_reader media_type: Zavudev::Models::MessageContent::Referral::media_type?
+
+        def media_type=: (
+          Zavudev::Models::MessageContent::Referral::media_type
+        ) -> Zavudev::Models::MessageContent::Referral::media_type
+
+        attr_reader source_id: String?
+
+        def source_id=: (String) -> String
+
+        attr_reader source_type: Zavudev::Models::MessageContent::Referral::source_type?
+
+        def source_type=: (
+          Zavudev::Models::MessageContent::Referral::source_type
+        ) -> Zavudev::Models::MessageContent::Referral::source_type
+
+        attr_reader source_url: String?
+
+        def source_url=: (String) -> String
+
+        attr_reader thumbnail_url: String?
+
+        def thumbnail_url=: (String) -> String
+
+        attr_reader video_url: String?
+
+        def video_url=: (String) -> String
+
+        def initialize: (
+          ?body: String,
+          ?ctwa_clid: String,
+          ?headline: String,
+          ?image_url: String,
+          ?media_type: Zavudev::Models::MessageContent::Referral::media_type,
+          ?source_id: String,
+          ?source_type: Zavudev::Models::MessageContent::Referral::source_type,
+          ?source_url: String,
+          ?thumbnail_url: String,
+          ?video_url: String
+        ) -> void
+
+        def to_hash: -> {
+          body: String,
+          ctwa_clid: String,
+          headline: String,
+          image_url: String,
+          media_type: Zavudev::Models::MessageContent::Referral::media_type,
+          source_id: String,
+          source_type: Zavudev::Models::MessageContent::Referral::source_type,
+          source_url: String,
+          thumbnail_url: String,
+          video_url: String
+        }
+
+        type media_type = :image | :video
+
+        module MediaType
+          extend Zavudev::Internal::Type::Enum
+
+          IMAGE: :image
+          VIDEO: :video
+
+          def self?.values: -> ::Array[Zavudev::Models::MessageContent::Referral::media_type]
+        end
+
+        type source_type = :ad | :post
+
+        module SourceType
+          extend Zavudev::Internal::Type::Enum
+
+          AD: :ad
+          POST: :post
+
+          def self?.values: -> ::Array[Zavudev::Models::MessageContent::Referral::source_type]
+        end
       end
 
       type section =

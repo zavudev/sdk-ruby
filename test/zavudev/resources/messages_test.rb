@@ -40,6 +40,7 @@ class Zavudev::Test::Resources::MessagesTest < Zavudev::Test::ResourceTest
         id: String,
         channel: Zavudev::Channel,
         created_at: Time,
+        direction: Zavudev::Message::Direction,
         message_type: Zavudev::MessageType,
         status: Zavudev::MessageStatus,
         to: String,
@@ -56,6 +57,22 @@ class Zavudev::Test::Resources::MessagesTest < Zavudev::Test::ResourceTest
         sender_id: String | nil,
         text: String | nil,
         updated_at: Time | nil
+      }
+    end
+  end
+
+  def test_list_attachments
+    skip("Mock server tests are disabled")
+
+    response = @zavudev.messages.list_attachments("messageId")
+
+    assert_pattern do
+      response => Zavudev::Models::MessageListAttachmentsResponse
+    end
+
+    assert_pattern do
+      response => {
+        items: ^(Zavudev::Internal::Type::ArrayOf[Zavudev::Models::MessageListAttachmentsResponse::Item])
       }
     end
   end

@@ -1,0 +1,112 @@
+module Zavudev
+  module Models
+    type agent_template_retrieve_response =
+      { template: Zavudev::Models::AgentTemplateRetrieveResponse::Template }
+
+    class AgentTemplateRetrieveResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor template: Zavudev::Models::AgentTemplateRetrieveResponse::Template
+
+      def initialize: (
+        template: Zavudev::Models::AgentTemplateRetrieveResponse::Template
+      ) -> void
+
+      def to_hash: -> {
+        template: Zavudev::Models::AgentTemplateRetrieveResponse::Template
+      }
+
+      type template =
+        {
+          id: String,
+          category: Zavudev::Models::AgentTemplateRetrieveResponse::Template::category,
+          default_slug: String,
+          dependencies: ::Hash[Symbol, String],
+          files: ::Array[Zavudev::Models::AgentTemplateRetrieveResponse::Template::File],
+          name: String,
+          required_secrets: ::Array[Zavudev::Models::AgentTemplateRetrieveResponse::Template::RequiredSecret],
+          summary: String,
+          voice: bool
+        }
+
+      class Template < Zavudev::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor category: Zavudev::Models::AgentTemplateRetrieveResponse::Template::category
+
+        attr_accessor default_slug: String
+
+        attr_accessor dependencies: ::Hash[Symbol, String]
+
+        attr_accessor files: ::Array[Zavudev::Models::AgentTemplateRetrieveResponse::Template::File]
+
+        attr_accessor name: String
+
+        attr_accessor required_secrets: ::Array[Zavudev::Models::AgentTemplateRetrieveResponse::Template::RequiredSecret]
+
+        attr_accessor summary: String
+
+        attr_accessor voice: bool
+
+        def initialize: (
+          id: String,
+          category: Zavudev::Models::AgentTemplateRetrieveResponse::Template::category,
+          default_slug: String,
+          dependencies: ::Hash[Symbol, String],
+          files: ::Array[Zavudev::Models::AgentTemplateRetrieveResponse::Template::File],
+          name: String,
+          required_secrets: ::Array[Zavudev::Models::AgentTemplateRetrieveResponse::Template::RequiredSecret],
+          summary: String,
+          voice: bool
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          category: Zavudev::Models::AgentTemplateRetrieveResponse::Template::category,
+          default_slug: String,
+          dependencies: ::Hash[Symbol, String],
+          files: ::Array[Zavudev::Models::AgentTemplateRetrieveResponse::Template::File],
+          name: String,
+          required_secrets: ::Array[Zavudev::Models::AgentTemplateRetrieveResponse::Template::RequiredSecret],
+          summary: String,
+          voice: bool
+        }
+
+        type category = :sales | :support | :frontDesk | :ops
+
+        module Category
+          extend Zavudev::Internal::Type::Enum
+
+          SALES: :sales
+          SUPPORT: :support
+          FRONT_DESK: :frontDesk
+          OPS: :ops
+
+          def self?.values: -> ::Array[Zavudev::Models::AgentTemplateRetrieveResponse::Template::category]
+        end
+
+        type file = { content: String, path: String }
+
+        class File < Zavudev::Internal::Type::BaseModel
+          attr_accessor content: String
+
+          attr_accessor path: String
+
+          def initialize: (content: String, path: String) -> void
+
+          def to_hash: -> { content: String, path: String }
+        end
+
+        type required_secret = { hint: String, key: String }
+
+        class RequiredSecret < Zavudev::Internal::Type::BaseModel
+          attr_accessor hint: String
+
+          attr_accessor key: String
+
+          def initialize: (hint: String, key: String) -> void
+
+          def to_hash: -> { hint: String, key: String }
+        end
+      end
+    end
+  end
+end
