@@ -46,6 +46,17 @@ module Zavudev
         attr_accessor :state
 
         # Status of a 10DLC brand registration.
+        #
+        # - `draft`: created, not yet submitted to the carrier.
+        # - `pending`: submitted, awaiting the carrier's answer.
+        # - `verified`: the carrier registered the brand AND verified the business behind
+        #   it.
+        # - `unverified`: the carrier registered the brand but did not verify the business
+        #   — the registration exists, the identity check did not pass or has not been
+        #   resolved. Campaigns are allowed, with lower daily limits. Read
+        #   `identityStatus` for the carrier's own wording.
+        # - `rejected`: refused by the carrier.
+        # - `failed`: the registration never reached the carrier; the fee is refunded.
         sig { returns(Zavudev::Number10dlc::TenDlcBrand::Status::TaggedSymbol) }
         attr_accessor :status
 
@@ -80,6 +91,13 @@ module Zavudev
 
         sig { returns(T.nilable(String)) }
         attr_accessor :first_name
+
+        # The carrier's raw identity verdict on the business, as the carrier spells it
+        # (`VERIFIED`, `VETTED_VERIFIED`, `SELF_DECLARED`, `UNVERIFIED`). Null while the
+        # identity has not been resolved — which is not the same as verified, and is why
+        # such a brand reports `status: unverified`.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :identity_status
 
         sig { returns(T.nilable(String)) }
         attr_accessor :last_name
@@ -122,6 +140,7 @@ module Zavudev
             ein: T.nilable(String),
             failure_reason: T.nilable(String),
             first_name: T.nilable(String),
+            identity_status: T.nilable(String),
             last_name: T.nilable(String),
             stock_exchange: T.nilable(String),
             stock_symbol: T.nilable(String),
@@ -146,6 +165,17 @@ module Zavudev
           postal_code:,
           state:,
           # Status of a 10DLC brand registration.
+          #
+          # - `draft`: created, not yet submitted to the carrier.
+          # - `pending`: submitted, awaiting the carrier's answer.
+          # - `verified`: the carrier registered the brand AND verified the business behind
+          #   it.
+          # - `unverified`: the carrier registered the brand but did not verify the business
+          #   — the registration exists, the identity check did not pass or has not been
+          #   resolved. Campaigns are allowed, with lower daily limits. Read
+          #   `identityStatus` for the carrier's own wording.
+          # - `rejected`: refused by the carrier.
+          # - `failed`: the registration never reached the carrier; the fee is refunded.
           status:,
           street:,
           updated_at:,
@@ -161,6 +191,11 @@ module Zavudev
           # Reason for rejection, if applicable.
           failure_reason: nil,
           first_name: nil,
+          # The carrier's raw identity verdict on the business, as the carrier spells it
+          # (`VERIFIED`, `VETTED_VERIFIED`, `SELF_DECLARED`, `UNVERIFIED`). Null while the
+          # identity has not been resolved — which is not the same as verified, and is why
+          # such a brand reports `status: unverified`.
+          identity_status: nil,
           last_name: nil,
           stock_exchange: nil,
           stock_symbol: nil,
@@ -194,6 +229,7 @@ module Zavudev
               ein: T.nilable(String),
               failure_reason: T.nilable(String),
               first_name: T.nilable(String),
+              identity_status: T.nilable(String),
               last_name: T.nilable(String),
               stock_exchange: T.nilable(String),
               stock_symbol: T.nilable(String),
@@ -254,6 +290,17 @@ module Zavudev
         end
 
         # Status of a 10DLC brand registration.
+        #
+        # - `draft`: created, not yet submitted to the carrier.
+        # - `pending`: submitted, awaiting the carrier's answer.
+        # - `verified`: the carrier registered the brand AND verified the business behind
+        #   it.
+        # - `unverified`: the carrier registered the brand but did not verify the business
+        #   — the registration exists, the identity check did not pass or has not been
+        #   resolved. Campaigns are allowed, with lower daily limits. Read
+        #   `identityStatus` for the carrier's own wording.
+        # - `rejected`: refused by the carrier.
+        # - `failed`: the registration never reached the carrier; the fee is refunded.
         module Status
           extend Zavudev::Internal::Type::Enum
 
@@ -278,9 +325,19 @@ module Zavudev
               :verified,
               Zavudev::Number10dlc::TenDlcBrand::Status::TaggedSymbol
             )
+          UNVERIFIED =
+            T.let(
+              :unverified,
+              Zavudev::Number10dlc::TenDlcBrand::Status::TaggedSymbol
+            )
           REJECTED =
             T.let(
               :rejected,
+              Zavudev::Number10dlc::TenDlcBrand::Status::TaggedSymbol
+            )
+          FAILED =
+            T.let(
+              :failed,
               Zavudev::Number10dlc::TenDlcBrand::Status::TaggedSymbol
             )
 

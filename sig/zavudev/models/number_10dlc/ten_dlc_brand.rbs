@@ -23,6 +23,7 @@ module Zavudev
           ein: String?,
           failure_reason: String?,
           first_name: String?,
+          identity_status: String?,
           last_name: String?,
           stock_exchange: String?,
           stock_symbol: String?,
@@ -72,6 +73,8 @@ module Zavudev
 
         attr_accessor first_name: String?
 
+        attr_accessor identity_status: String?
+
         attr_accessor last_name: String?
 
         attr_accessor stock_exchange: String?
@@ -105,6 +108,7 @@ module Zavudev
           ?ein: String?,
           ?failure_reason: String?,
           ?first_name: String?,
+          ?identity_status: String?,
           ?last_name: String?,
           ?stock_exchange: String?,
           ?stock_symbol: String?,
@@ -134,6 +138,7 @@ module Zavudev
           ein: String?,
           failure_reason: String?,
           first_name: String?,
+          identity_status: String?,
           last_name: String?,
           stock_exchange: String?,
           stock_symbol: String?,
@@ -161,7 +166,8 @@ module Zavudev
           def self?.values: -> ::Array[Zavudev::Models::Number10dlc::TenDlcBrand::entity_type]
         end
 
-        type status = :draft | :pending | :verified | :rejected
+        type status =
+          :draft | :pending | :verified | :unverified | :rejected | :failed
 
         module Status
           extend Zavudev::Internal::Type::Enum
@@ -169,7 +175,9 @@ module Zavudev
           DRAFT: :draft
           PENDING: :pending
           VERIFIED: :verified
+          UNVERIFIED: :unverified
           REJECTED: :rejected
+          FAILED: :failed
 
           def self?.values: -> ::Array[Zavudev::Models::Number10dlc::TenDlcBrand::status]
         end

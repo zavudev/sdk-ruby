@@ -66,6 +66,17 @@ module Zavudev
         # @!attribute status
         #   Status of a 10DLC brand registration.
         #
+        #   - `draft`: created, not yet submitted to the carrier.
+        #   - `pending`: submitted, awaiting the carrier's answer.
+        #   - `verified`: the carrier registered the brand AND verified the business behind
+        #     it.
+        #   - `unverified`: the carrier registered the brand but did not verify the business
+        #     — the registration exists, the identity check did not pass or has not been
+        #     resolved. Campaigns are allowed, with lower daily limits. Read
+        #     `identityStatus` for the carrier's own wording.
+        #   - `rejected`: refused by the carrier.
+        #   - `failed`: the registration never reached the carrier; the fee is refunded.
+        #
         #   @return [Symbol, Zavudev::Models::Number10dlc::TenDlcBrand::Status]
         required :status, enum: -> { Zavudev::Number10dlc::TenDlcBrand::Status }
 
@@ -119,6 +130,15 @@ module Zavudev
         #   @return [String, nil]
         optional :first_name, String, api_name: :firstName, nil?: true
 
+        # @!attribute identity_status
+        #   The carrier's raw identity verdict on the business, as the carrier spells it
+        #   (`VERIFIED`, `VETTED_VERIFIED`, `SELF_DECLARED`, `UNVERIFIED`). Null while the
+        #   identity has not been resolved — which is not the same as verified, and is why
+        #   such a brand reports `status: unverified`.
+        #
+        #   @return [String, nil]
+        optional :identity_status, String, api_name: :identityStatus, nil?: true
+
         # @!attribute last_name
         #
         #   @return [String, nil]
@@ -149,7 +169,10 @@ module Zavudev
         #   @return [String, nil]
         optional :website, String, nil?: true
 
-        # @!method initialize(id:, city:, country:, created_at:, display_name:, email:, entity_type:, phone:, postal_code:, state:, status:, street:, updated_at:, vertical:, brand_relationship: nil, brand_score: nil, company_name: nil, ein: nil, failure_reason: nil, first_name: nil, last_name: nil, stock_exchange: nil, stock_symbol: nil, submitted_at: nil, verified_at: nil, website: nil)
+        # @!method initialize(id:, city:, country:, created_at:, display_name:, email:, entity_type:, phone:, postal_code:, state:, status:, street:, updated_at:, vertical:, brand_relationship: nil, brand_score: nil, company_name: nil, ein: nil, failure_reason: nil, first_name: nil, identity_status: nil, last_name: nil, stock_exchange: nil, stock_symbol: nil, submitted_at: nil, verified_at: nil, website: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Zavudev::Models::Number10dlc::TenDlcBrand} for more details.
+        #
         #   @param id [String]
         #
         #   @param city [String]
@@ -190,6 +213,8 @@ module Zavudev
         #
         #   @param first_name [String, nil]
         #
+        #   @param identity_status [String, nil] The carrier's raw identity verdict on the business, as the carrier spells it (`V
+        #
         #   @param last_name [String, nil]
         #
         #   @param stock_exchange [String, nil]
@@ -220,6 +245,17 @@ module Zavudev
 
         # Status of a 10DLC brand registration.
         #
+        # - `draft`: created, not yet submitted to the carrier.
+        # - `pending`: submitted, awaiting the carrier's answer.
+        # - `verified`: the carrier registered the brand AND verified the business behind
+        #   it.
+        # - `unverified`: the carrier registered the brand but did not verify the business
+        #   — the registration exists, the identity check did not pass or has not been
+        #   resolved. Campaigns are allowed, with lower daily limits. Read
+        #   `identityStatus` for the carrier's own wording.
+        # - `rejected`: refused by the carrier.
+        # - `failed`: the registration never reached the carrier; the fee is refunded.
+        #
         # @see Zavudev::Models::Number10dlc::TenDlcBrand#status
         module Status
           extend Zavudev::Internal::Type::Enum
@@ -227,7 +263,9 @@ module Zavudev
           DRAFT = :draft
           PENDING = :pending
           VERIFIED = :verified
+          UNVERIFIED = :unverified
           REJECTED = :rejected
+          FAILED = :failed
 
           # @!method self.values
           #   @return [Array<Symbol>]

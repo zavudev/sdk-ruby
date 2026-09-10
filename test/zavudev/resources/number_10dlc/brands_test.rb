@@ -101,6 +101,7 @@ class Zavudev::Test::Resources::Number10dlc::BrandsTest < Zavudev::Test::Resourc
         ein: String | nil,
         failure_reason: String | nil,
         first_name: String | nil,
+        identity_status: String | nil,
         last_name: String | nil,
         stock_exchange: String | nil,
         stock_symbol: String | nil,
