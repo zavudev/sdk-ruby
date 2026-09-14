@@ -4,6 +4,7 @@ module Zavudev
   module Models
     class RequirementType < Zavudev::Internal::Type::BaseModel
       # @!attribute id
+      #   Send this as `requirementType` in `regulatoryRequirements` when purchasing.
       #
       #   @return [String]
       required :id, String
@@ -40,7 +41,7 @@ module Zavudev
       # @!method initialize(id:, description:, name:, type:, acceptance_criteria: nil, example: nil)
       #   A specific requirement type within a requirement group.
       #
-      #   @param id [String]
+      #   @param id [String] Send this as `requirementType` in `regulatoryRequirements` when purchasing.
       #
       #   @param description [String]
       #
