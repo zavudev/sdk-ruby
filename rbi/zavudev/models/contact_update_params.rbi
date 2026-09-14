@@ -22,6 +22,12 @@ module Zavudev
       end
       attr_accessor :default_channel
 
+      # Human-readable name for this contact. Set to null to clear it and fall back to
+      # the contact's identifier. Contacts created automatically from an inbound message
+      # have no display name until you set one.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :display_name
+
       sig { returns(T.nilable(T::Hash[Symbol, String])) }
       attr_reader :metadata
 
@@ -33,6 +39,7 @@ module Zavudev
           contact_id: String,
           default_channel:
             T.nilable(Zavudev::ContactUpdateParams::DefaultChannel::OrSymbol),
+          display_name: T.nilable(String),
           metadata: T::Hash[Symbol, String],
           request_options: Zavudev::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -41,6 +48,10 @@ module Zavudev
         contact_id:,
         # Preferred channel for this contact. Set to null to clear.
         default_channel: nil,
+        # Human-readable name for this contact. Set to null to clear it and fall back to
+        # the contact's identifier. Contacts created automatically from an inbound message
+        # have no display name until you set one.
+        display_name: nil,
         metadata: nil,
         request_options: {}
       )
@@ -52,6 +63,7 @@ module Zavudev
             contact_id: String,
             default_channel:
               T.nilable(Zavudev::ContactUpdateParams::DefaultChannel::OrSymbol),
+            display_name: T.nilable(String),
             metadata: T::Hash[Symbol, String],
             request_options: Zavudev::RequestOptions
           }

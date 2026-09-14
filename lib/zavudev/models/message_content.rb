@@ -120,6 +120,21 @@ module Zavudev
       #   @return [String, nil]
       optional :react_to_message_id, String, api_name: :reactToMessageId
 
+      # @!attribute referral
+      #   Click-to-WhatsApp (CTWA) ad attribution: where an inbound conversation came
+      #   from.
+      #
+      #   WhatsApp only. Present on the **first inbound message** of a conversation opened
+      #   from a Meta ad or post, and on no message after it — so store it when it arrives
+      #   rather than expecting it again. Organic conversations never carry it.
+      #
+      #   Field names are camelCased to match the rest of this API; Meta sends them as
+      #   snake_case (`ctwa_clid`, `source_id`, ...). Fields that do not apply are
+      #   omitted: a `post` source has no click id, and an image ad has no `videoUrl`.
+      #
+      #   @return [Zavudev::Models::MessageContent::Referral, nil]
+      optional :referral, -> { Zavudev::MessageContent::Referral }
+
       # @!attribute reply_to_from
       #   Sender of the quoted message (phone number in E.164 format).
       #
@@ -209,7 +224,7 @@ module Zavudev
       #   @return [Hash{Symbol=>String}, nil]
       optional :template_variables, Zavudev::Internal::Type::HashOf[String], api_name: :templateVariables
 
-      # @!method initialize(buttons: nil, contacts: nil, cta_display_text: nil, cta_header_media_url: nil, cta_header_text: nil, cta_header_type: nil, cta_url: nil, emoji: nil, filename: nil, footer_text: nil, latitude: nil, list_button: nil, location_address: nil, location_name: nil, longitude: nil, media_id: nil, media_url: nil, mime_type: nil, react_to_message_id: nil, reply_to_from: nil, reply_to_message_id: nil, reply_to_message_type: nil, reply_to_provider_message_id: nil, reply_to_text: nil, sections: nil, template_button_variables: nil, template_header_variables: nil, template_id: nil, template_variables: nil)
+      # @!method initialize(buttons: nil, contacts: nil, cta_display_text: nil, cta_header_media_url: nil, cta_header_text: nil, cta_header_type: nil, cta_url: nil, emoji: nil, filename: nil, footer_text: nil, latitude: nil, list_button: nil, location_address: nil, location_name: nil, longitude: nil, media_id: nil, media_url: nil, mime_type: nil, react_to_message_id: nil, referral: nil, reply_to_from: nil, reply_to_message_id: nil, reply_to_message_type: nil, reply_to_provider_message_id: nil, reply_to_text: nil, sections: nil, template_button_variables: nil, template_header_variables: nil, template_id: nil, template_variables: nil)
       #   Some parameter documentations has been truncated, see
       #   {Zavudev::Models::MessageContent} for more details.
       #
@@ -252,6 +267,8 @@ module Zavudev
       #   @param mime_type [String] MIME type of the media.
       #
       #   @param react_to_message_id [String] Message ID to react to.
+      #
+      #   @param referral [Zavudev::Models::MessageContent::Referral] Click-to-WhatsApp (CTWA) ad attribution: where an inbound conversation came from
       #
       #   @param reply_to_from [String] Sender of the quoted message (phone number in E.164 format).
       #
@@ -318,6 +335,136 @@ module Zavudev
 
         # @!method self.values
         #   @return [Array<Symbol>]
+      end
+
+      # @see Zavudev::Models::MessageContent#referral
+      class Referral < Zavudev::Internal::Type::BaseModel
+        # @!attribute body
+        #   Body copy of the ad or post.
+        #
+        #   @return [String, nil]
+        optional :body, String
+
+        # @!attribute ctwa_clid
+        #   Click-to-WhatsApp click identifier. This is the value Meta's Conversions API
+        #   needs to credit a conversion back to the ad that produced the conversation.
+        #   Present on `ad` sources; a `post` source has none.
+        #
+        #   @return [String, nil]
+        optional :ctwa_clid, String, api_name: :ctwaClid
+
+        # @!attribute headline
+        #   Headline of the ad or post.
+        #
+        #   @return [String, nil]
+        optional :headline, String
+
+        # @!attribute image_url
+        #   Image of the ad. Present when `mediaType` is `image`.
+        #
+        #   @return [String, nil]
+        optional :image_url, String, api_name: :imageUrl
+
+        # @!attribute media_type
+        #   Type of media on the ad, when it had any.
+        #
+        #   @return [Symbol, Zavudev::Models::MessageContent::Referral::MediaType, nil]
+        optional :media_type, enum: -> { Zavudev::MessageContent::Referral::MediaType }, api_name: :mediaType
+
+        # @!attribute source_id
+        #   Identifier of the ad or post that produced the click.
+        #
+        #   @return [String, nil]
+        optional :source_id, String, api_name: :sourceId
+
+        # @!attribute source_type
+        #   Where the click came from.
+        #
+        #   @return [Symbol, Zavudev::Models::MessageContent::Referral::SourceType, nil]
+        optional :source_type,
+                 enum: -> {
+                   Zavudev::MessageContent::Referral::SourceType
+                 },
+                 api_name: :sourceType
+
+        # @!attribute source_url
+        #   Meta permalink to the ad or post.
+        #
+        #   @return [String, nil]
+        optional :source_url, String, api_name: :sourceUrl
+
+        # @!attribute thumbnail_url
+        #   Thumbnail of the ad media.
+        #
+        #   @return [String, nil]
+        optional :thumbnail_url, String, api_name: :thumbnailUrl
+
+        # @!attribute video_url
+        #   Video of the ad. Present when `mediaType` is `video`.
+        #
+        #   @return [String, nil]
+        optional :video_url, String, api_name: :videoUrl
+
+        # @!method initialize(body: nil, ctwa_clid: nil, headline: nil, image_url: nil, media_type: nil, source_id: nil, source_type: nil, source_url: nil, thumbnail_url: nil, video_url: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Zavudev::Models::MessageContent::Referral} for more details.
+        #
+        #   Click-to-WhatsApp (CTWA) ad attribution: where an inbound conversation came
+        #   from.
+        #
+        #   WhatsApp only. Present on the **first inbound message** of a conversation opened
+        #   from a Meta ad or post, and on no message after it — so store it when it arrives
+        #   rather than expecting it again. Organic conversations never carry it.
+        #
+        #   Field names are camelCased to match the rest of this API; Meta sends them as
+        #   snake_case (`ctwa_clid`, `source_id`, ...). Fields that do not apply are
+        #   omitted: a `post` source has no click id, and an image ad has no `videoUrl`.
+        #
+        #   @param body [String] Body copy of the ad or post.
+        #
+        #   @param ctwa_clid [String] Click-to-WhatsApp click identifier. This is the value Meta's Conversions API nee
+        #
+        #   @param headline [String] Headline of the ad or post.
+        #
+        #   @param image_url [String] Image of the ad. Present when `mediaType` is `image`.
+        #
+        #   @param media_type [Symbol, Zavudev::Models::MessageContent::Referral::MediaType] Type of media on the ad, when it had any.
+        #
+        #   @param source_id [String] Identifier of the ad or post that produced the click.
+        #
+        #   @param source_type [Symbol, Zavudev::Models::MessageContent::Referral::SourceType] Where the click came from.
+        #
+        #   @param source_url [String] Meta permalink to the ad or post.
+        #
+        #   @param thumbnail_url [String] Thumbnail of the ad media.
+        #
+        #   @param video_url [String] Video of the ad. Present when `mediaType` is `video`.
+
+        # Type of media on the ad, when it had any.
+        #
+        # @see Zavudev::Models::MessageContent::Referral#media_type
+        module MediaType
+          extend Zavudev::Internal::Type::Enum
+
+          IMAGE = :image
+          VIDEO = :video
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # Where the click came from.
+        #
+        # @see Zavudev::Models::MessageContent::Referral#source_type
+        module SourceType
+          extend Zavudev::Internal::Type::Enum
+
+          AD = :ad
+          POST = :post
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
 
       class Section < Zavudev::Internal::Type::BaseModel

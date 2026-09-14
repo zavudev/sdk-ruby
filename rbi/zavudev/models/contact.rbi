@@ -77,13 +77,6 @@ module Zavudev
       sig { returns(T.nilable(String)) }
       attr_accessor :profile_name
 
-      # ID of a contact suggested for merging.
-      sig { returns(T.nilable(String)) }
-      attr_reader :suggested_merge_with
-
-      sig { params(suggested_merge_with: String).void }
-      attr_writer :suggested_merge_with
-
       sig { returns(T.nilable(Time)) }
       attr_reader :updated_at
 
@@ -105,7 +98,6 @@ module Zavudev
           primary_email: String,
           primary_phone: String,
           profile_name: T.nilable(String),
-          suggested_merge_with: String,
           updated_at: Time
         ).returns(T.attached_class)
       end
@@ -132,8 +124,6 @@ module Zavudev
         primary_phone: nil,
         # Contact's WhatsApp profile name. Only available for WhatsApp contacts.
         profile_name: nil,
-        # ID of a contact suggested for merging.
-        suggested_merge_with: nil,
         updated_at: nil
       )
       end
@@ -154,7 +144,6 @@ module Zavudev
             primary_email: String,
             primary_phone: String,
             profile_name: T.nilable(String),
-            suggested_merge_with: String,
             updated_at: Time
           }
         )

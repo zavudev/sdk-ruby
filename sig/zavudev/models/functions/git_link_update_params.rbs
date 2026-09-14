@@ -1,0 +1,47 @@
+module Zavudev
+  module Models
+    module Functions
+      type git_link_update_params =
+        {
+          function_id: String,
+          auto_deploy: bool,
+          branch: String,
+          root_dir: String?
+        }
+        & Zavudev::Internal::Type::request_parameters
+
+      class GitLinkUpdateParams < Zavudev::Internal::Type::BaseModel
+        extend Zavudev::Internal::Type::RequestParameters::Converter
+        include Zavudev::Internal::Type::RequestParameters
+
+        attr_accessor function_id: String
+
+        attr_reader auto_deploy: bool?
+
+        def auto_deploy=: (bool) -> bool
+
+        attr_reader branch: String?
+
+        def branch=: (String) -> String
+
+        attr_accessor root_dir: String?
+
+        def initialize: (
+          function_id: String,
+          ?auto_deploy: bool,
+          ?branch: String,
+          ?root_dir: String?,
+          ?request_options: Zavudev::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          function_id: String,
+          auto_deploy: bool,
+          branch: String,
+          root_dir: String?,
+          request_options: Zavudev::RequestOptions
+        }
+      end
+    end
+  end
+end

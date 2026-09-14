@@ -1,0 +1,36 @@
+module Zavudev
+  module Models
+    type conversation_list_messages_params =
+      { conversation_id: String, cursor: String, limit: Integer }
+      & Zavudev::Internal::Type::request_parameters
+
+    class ConversationListMessagesParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor conversation_id: String
+
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      def initialize: (
+        conversation_id: String,
+        ?cursor: String,
+        ?limit: Integer,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        conversation_id: String,
+        cursor: String,
+        limit: Integer,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Zavudev
+  module Models
+    type call_retrieve_params =
+      { call_id: String } & Zavudev::Internal::Type::request_parameters
+
+    class CallRetrieveParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor call_id: String
+
+      def initialize: (
+        call_id: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        call_id: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

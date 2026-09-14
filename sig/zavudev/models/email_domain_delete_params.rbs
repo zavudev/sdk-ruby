@@ -1,0 +1,23 @@
+module Zavudev
+  module Models
+    type email_domain_delete_params =
+      { domain_id: String } & Zavudev::Internal::Type::request_parameters
+
+    class EmailDomainDeleteParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor domain_id: String
+
+      def initialize: (
+        domain_id: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        domain_id: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

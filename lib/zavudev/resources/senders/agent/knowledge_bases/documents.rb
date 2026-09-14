@@ -103,6 +103,77 @@ module Zavudev
               )
             end
 
+            # Get a single document from a knowledge base.
+            #
+            # @overload retrieve_document(doc_id, sender_id:, kb_id:, request_options: {})
+            #
+            # @param doc_id [String]
+            # @param sender_id [String]
+            # @param kb_id [String]
+            # @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}, nil]
+            #
+            # @return [Zavudev::Models::Senders::Agent::KnowledgeBases::DocumentRetrieveDocumentResponse]
+            #
+            # @see Zavudev::Models::Senders::Agent::KnowledgeBases::DocumentRetrieveDocumentParams
+            def retrieve_document(doc_id, params)
+              parsed, options =
+                Zavudev::Senders::Agent::KnowledgeBases::DocumentRetrieveDocumentParams.dump_request(params)
+              sender_id =
+                parsed.delete(:sender_id) do
+                  raise ArgumentError.new("missing required path argument #{_1}")
+                end
+              kb_id =
+                parsed.delete(:kb_id) do
+                  raise ArgumentError.new("missing required path argument #{_1}")
+                end
+              @client.request(
+                method: :get,
+                path: ["v1/senders/%1$s/agent/knowledge-bases/%2$s/documents/%3$s", sender_id, kb_id, doc_id],
+                model: Zavudev::Models::Senders::Agent::KnowledgeBases::DocumentRetrieveDocumentResponse,
+                options: options
+              )
+            end
+
+            # Update a document's title or content. Updating content reprocesses the document
+            # for RAG.
+            #
+            # @overload update_document(doc_id, sender_id:, kb_id:, content: nil, title: nil, request_options: {})
+            #
+            # @param doc_id [String] Path param
+            #
+            # @param sender_id [String] Path param
+            #
+            # @param kb_id [String] Path param
+            #
+            # @param content [String] Body param
+            #
+            # @param title [String] Body param
+            #
+            # @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}, nil]
+            #
+            # @return [Zavudev::Models::Senders::Agent::KnowledgeBases::DocumentUpdateDocumentResponse]
+            #
+            # @see Zavudev::Models::Senders::Agent::KnowledgeBases::DocumentUpdateDocumentParams
+            def update_document(doc_id, params)
+              parsed, options =
+                Zavudev::Senders::Agent::KnowledgeBases::DocumentUpdateDocumentParams.dump_request(params)
+              sender_id =
+                parsed.delete(:sender_id) do
+                  raise ArgumentError.new("missing required path argument #{_1}")
+                end
+              kb_id =
+                parsed.delete(:kb_id) do
+                  raise ArgumentError.new("missing required path argument #{_1}")
+                end
+              @client.request(
+                method: :patch,
+                path: ["v1/senders/%1$s/agent/knowledge-bases/%2$s/documents/%3$s", sender_id, kb_id, doc_id],
+                body: parsed,
+                model: Zavudev::Models::Senders::Agent::KnowledgeBases::DocumentUpdateDocumentResponse,
+                options: options
+              )
+            end
+
             # @api private
             #
             # @param client [Zavudev::Client]

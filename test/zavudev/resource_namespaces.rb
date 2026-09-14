@@ -6,6 +6,12 @@ module Zavudev
       module Agent
         module KnowledgeBases
         end
+
+        module Tools
+        end
+      end
+
+      module Agents
       end
 
       module Broadcasts
@@ -32,10 +38,16 @@ module Zavudev
         module Agent
           module KnowledgeBases
           end
+
+          module Tools
+          end
         end
       end
 
       module SubAccounts
+      end
+
+      module Tools
       end
     end
   end

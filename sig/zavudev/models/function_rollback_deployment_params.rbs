@@ -1,0 +1,28 @@
+module Zavudev
+  module Models
+    type function_rollback_deployment_params =
+      { function_id: String, deployment_id: String }
+      & Zavudev::Internal::Type::request_parameters
+
+    class FunctionRollbackDeploymentParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor function_id: String
+
+      attr_accessor deployment_id: String
+
+      def initialize: (
+        function_id: String,
+        deployment_id: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        function_id: String,
+        deployment_id: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

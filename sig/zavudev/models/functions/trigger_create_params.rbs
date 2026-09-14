@@ -1,0 +1,45 @@
+module Zavudev
+  module Models
+    module Functions
+      type trigger_create_params =
+        {
+          function_id: String,
+          event_types: ::Array[String],
+          sender_ids: ::Array[String?],
+          cron: String
+        }
+        & Zavudev::Internal::Type::request_parameters
+
+      class TriggerCreateParams < Zavudev::Internal::Type::BaseModel
+        extend Zavudev::Internal::Type::RequestParameters::Converter
+        include Zavudev::Internal::Type::RequestParameters
+
+        attr_accessor function_id: String
+
+        attr_accessor event_types: ::Array[String]
+
+        attr_accessor sender_ids: ::Array[String?]
+
+        attr_reader cron: String?
+
+        def cron=: (String) -> String
+
+        def initialize: (
+          function_id: String,
+          event_types: ::Array[String],
+          sender_ids: ::Array[String?],
+          ?cron: String,
+          ?request_options: Zavudev::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          function_id: String,
+          event_types: ::Array[String],
+          sender_ids: ::Array[String?],
+          cron: String,
+          request_options: Zavudev::RequestOptions
+        }
+      end
+    end
+  end
+end

@@ -100,6 +100,22 @@ class Zavudev::Test::Resources::Senders::Agent::ToolsTest < Zavudev::Test::Resou
     end
   end
 
+  def test_list_test_runs_required_params
+    skip("Mock server tests are disabled")
+
+    response = @zavudev.senders.agent.tools.list_test_runs("toolId", sender_id: "senderId")
+
+    assert_pattern do
+      response => Zavudev::Models::Senders::Agent::ToolListTestRunsResponse
+    end
+
+    assert_pattern do
+      response => {
+        items: ^(Zavudev::Internal::Type::ArrayOf[Zavudev::Models::Senders::Agent::ToolListTestRunsResponse::Item])
+      }
+    end
+  end
+
   def test_test__required_params
     skip("Mock server tests are disabled")
 

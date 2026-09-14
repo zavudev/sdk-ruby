@@ -1,0 +1,23 @@
+module Zavudev
+  module Models
+    type agent_delete_params =
+      { agent_id: String } & Zavudev::Internal::Type::request_parameters
+
+    class AgentDeleteParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor agent_id: String
+
+      def initialize: (
+        agent_id: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        agent_id: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

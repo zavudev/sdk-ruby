@@ -4,6 +4,7 @@ module Zavudev
       {
         contact_id: String,
         default_channel: Zavudev::Models::ContactUpdateParams::default_channel?,
+        display_name: String?,
         metadata: ::Hash[Symbol, String]
       }
       & Zavudev::Internal::Type::request_parameters
@@ -16,6 +17,8 @@ module Zavudev
 
       attr_accessor default_channel: Zavudev::Models::ContactUpdateParams::default_channel?
 
+      attr_accessor display_name: String?
+
       attr_reader metadata: ::Hash[Symbol, String]?
 
       def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
@@ -23,6 +26,7 @@ module Zavudev
       def initialize: (
         contact_id: String,
         ?default_channel: Zavudev::Models::ContactUpdateParams::default_channel?,
+        ?display_name: String?,
         ?metadata: ::Hash[Symbol, String],
         ?request_options: Zavudev::request_opts
       ) -> void
@@ -30,6 +34,7 @@ module Zavudev
       def to_hash: -> {
         contact_id: String,
         default_channel: Zavudev::Models::ContactUpdateParams::default_channel?,
+        display_name: String?,
         metadata: ::Hash[Symbol, String],
         request_options: Zavudev::RequestOptions
       }

@@ -1,0 +1,25 @@
+module Zavudev
+  module Models
+    type agent_list_voices_params =
+      { language: String } & Zavudev::Internal::Type::request_parameters
+
+    class AgentListVoicesParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_reader language: String?
+
+      def language=: (String) -> String
+
+      def initialize: (
+        ?language: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        language: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

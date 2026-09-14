@@ -3,6 +3,23 @@
 require_relative "../test_helper"
 
 class Zavudev::Test::Resources::IntrospectTest < Zavudev::Test::ResourceTest
+  def test_validate_email
+    skip("Mock server tests are disabled")
+
+    response = @zavudev.introspect.validate_email
+
+    assert_pattern do
+      response => Zavudev::Models::IntrospectValidateEmailResponse
+    end
+
+    assert_pattern do
+      response => {
+        results: ^(Zavudev::Internal::Type::ArrayOf[Zavudev::Models::IntrospectValidateEmailResponse::Result]),
+        summary: Zavudev::Models::IntrospectValidateEmailResponse::Summary
+      }
+    end
+  end
+
   def test_validate_phone_required_params
     skip("Mock server tests are disabled")
 

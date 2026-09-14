@@ -65,4 +65,46 @@ class Zavudev::Test::Resources::Senders::Agent::KnowledgeBases::DocumentsTest < 
       response => nil
     end
   end
+
+  def test_retrieve_document_required_params
+    skip("Mock server tests are disabled")
+
+    response =
+      @zavudev.senders.agent.knowledge_bases.documents.retrieve_document(
+        "docId",
+        sender_id: "senderId",
+        kb_id: "kbId"
+      )
+
+    assert_pattern do
+      response => Zavudev::Models::Senders::Agent::KnowledgeBases::DocumentRetrieveDocumentResponse
+    end
+
+    assert_pattern do
+      response => {
+        document: Zavudev::Senders::Agent::AgentDocument
+      }
+    end
+  end
+
+  def test_update_document_required_params
+    skip("Mock server tests are disabled")
+
+    response =
+      @zavudev.senders.agent.knowledge_bases.documents.update_document(
+        "docId",
+        sender_id: "senderId",
+        kb_id: "kbId"
+      )
+
+    assert_pattern do
+      response => Zavudev::Models::Senders::Agent::KnowledgeBases::DocumentUpdateDocumentResponse
+    end
+
+    assert_pattern do
+      response => {
+        document: Zavudev::Senders::Agent::AgentDocument
+      }
+    end
+  end
 end

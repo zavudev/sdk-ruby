@@ -1,0 +1,28 @@
+module Zavudev
+  module Models
+    type url_escalate_params =
+      { url_id: String, reason: String }
+      & Zavudev::Internal::Type::request_parameters
+
+    class URLEscalateParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor url_id: String
+
+      attr_accessor reason: String
+
+      def initialize: (
+        url_id: String,
+        reason: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        url_id: String,
+        reason: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

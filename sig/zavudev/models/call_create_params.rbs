@@ -1,0 +1,61 @@
+module Zavudev
+  module Models
+    type call_create_params =
+      {
+        to: String,
+        greeting: String,
+        language: String,
+        max_duration_minutes: Integer,
+        metadata: ::Hash[Symbol, String],
+        sender_id: String
+      }
+      & Zavudev::Internal::Type::request_parameters
+
+    class CallCreateParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor to: String
+
+      attr_reader greeting: String?
+
+      def greeting=: (String) -> String
+
+      attr_reader language: String?
+
+      def language=: (String) -> String
+
+      attr_reader max_duration_minutes: Integer?
+
+      def max_duration_minutes=: (Integer) -> Integer
+
+      attr_reader metadata: ::Hash[Symbol, String]?
+
+      def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+      attr_reader sender_id: String?
+
+      def sender_id=: (String) -> String
+
+      def initialize: (
+        to: String,
+        ?greeting: String,
+        ?language: String,
+        ?max_duration_minutes: Integer,
+        ?metadata: ::Hash[Symbol, String],
+        ?sender_id: String,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        to: String,
+        greeting: String,
+        language: String,
+        max_duration_minutes: Integer,
+        metadata: ::Hash[Symbol, String],
+        sender_id: String,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

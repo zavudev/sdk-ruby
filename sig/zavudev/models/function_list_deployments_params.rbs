@@ -1,0 +1,30 @@
+module Zavudev
+  module Models
+    type function_list_deployments_params =
+      { function_id: String, limit: Integer }
+      & Zavudev::Internal::Type::request_parameters
+
+    class FunctionListDeploymentsParams < Zavudev::Internal::Type::BaseModel
+      extend Zavudev::Internal::Type::RequestParameters::Converter
+      include Zavudev::Internal::Type::RequestParameters
+
+      attr_accessor function_id: String
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      def initialize: (
+        function_id: String,
+        ?limit: Integer,
+        ?request_options: Zavudev::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        function_id: String,
+        limit: Integer,
+        request_options: Zavudev::RequestOptions
+      }
+    end
+  end
+end

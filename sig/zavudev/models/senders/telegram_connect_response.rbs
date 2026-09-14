@@ -1,0 +1,49 @@
+module Zavudev
+  module Models
+    module Senders
+      type telegram_connect_response =
+        {
+          telegram: Zavudev::Models::Senders::TelegramConnectResponse::Telegram
+        }
+
+      class TelegramConnectResponse < Zavudev::Internal::Type::BaseModel
+        attr_accessor telegram: Zavudev::Models::Senders::TelegramConnectResponse::Telegram
+
+        def initialize: (
+          telegram: Zavudev::Models::Senders::TelegramConnectResponse::Telegram
+        ) -> void
+
+        def to_hash: -> {
+          telegram: Zavudev::Models::Senders::TelegramConnectResponse::Telegram
+        }
+
+        type telegram =
+          { connected: bool, bot_id: String, bot_username: String }
+
+        class Telegram < Zavudev::Internal::Type::BaseModel
+          attr_accessor connected: bool
+
+          attr_reader bot_id: String?
+
+          def bot_id=: (String) -> String
+
+          attr_reader bot_username: String?
+
+          def bot_username=: (String) -> String
+
+          def initialize: (
+            connected: bool,
+            ?bot_id: String,
+            ?bot_username: String
+          ) -> void
+
+          def to_hash: -> {
+            connected: bool,
+            bot_id: String,
+            bot_username: String
+          }
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,70 @@
+module Zavudev
+  module Models
+    type message_list_attachments_response =
+      { items: ::Array[Zavudev::Models::MessageListAttachmentsResponse::Item] }
+
+    class MessageListAttachmentsResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor items: ::Array[Zavudev::Models::MessageListAttachmentsResponse::Item]
+
+      def initialize: (
+        items: ::Array[Zavudev::Models::MessageListAttachmentsResponse::Item]
+      ) -> void
+
+      def to_hash: -> {
+        items: ::Array[Zavudev::Models::MessageListAttachmentsResponse::Item]
+      }
+
+      type item =
+        {
+          id: String,
+          content_id: String?,
+          created_at: Time,
+          download_url: String?,
+          filename: String,
+          is_inline: bool,
+          mime_type: String,
+          size: Integer
+        }
+
+      class Item < Zavudev::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor content_id: String?
+
+        attr_accessor created_at: Time
+
+        attr_accessor download_url: String?
+
+        attr_accessor filename: String
+
+        attr_accessor is_inline: bool
+
+        attr_accessor mime_type: String
+
+        attr_accessor size: Integer
+
+        def initialize: (
+          id: String,
+          content_id: String?,
+          created_at: Time,
+          download_url: String?,
+          filename: String,
+          is_inline: bool,
+          mime_type: String,
+          size: Integer
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          content_id: String?,
+          created_at: Time,
+          download_url: String?,
+          filename: String,
+          is_inline: bool,
+          mime_type: String,
+          size: Integer
+        }
+      end
+    end
+  end
+end

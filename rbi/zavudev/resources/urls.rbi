@@ -3,6 +3,23 @@
 module Zavudev
   module Resources
     class URLs
+      # Request manual review of a rejected URL. Only URLs in 'rejected' status can be
+      # escalated; the status then moves to 'escalated'.
+      sig do
+        params(
+          url_id: String,
+          reason: String,
+          request_options: Zavudev::RequestOptions::OrHash
+        ).returns(Zavudev::Models::URLEscalateResponse)
+      end
+      def escalate(
+        url_id,
+        # Why the URL should be reviewed manually.
+        reason:,
+        request_options: {}
+      )
+      end
+
       # List URLs that have been verified for this project.
       sig do
         params(

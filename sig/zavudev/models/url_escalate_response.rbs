@@ -1,0 +1,15 @@
+module Zavudev
+  module Models
+    type url_escalate_response = { message: String, url: Zavudev::VerifiedURL }
+
+    class URLEscalateResponse < Zavudev::Internal::Type::BaseModel
+      attr_accessor message: String
+
+      attr_accessor url: Zavudev::VerifiedURL
+
+      def initialize: (message: String, url: Zavudev::VerifiedURL) -> void
+
+      def to_hash: -> { message: String, url: Zavudev::VerifiedURL }
+    end
+  end
+end

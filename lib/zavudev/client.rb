@@ -66,6 +66,21 @@ module Zavudev
     # @return [Zavudev::Resources::Functions]
     attr_reader :functions
 
+    # @return [Zavudev::Resources::Conversations]
+    attr_reader :conversations
+
+    # @return [Zavudev::Resources::Calls]
+    attr_reader :calls
+
+    # @return [Zavudev::Resources::AgentTemplates]
+    attr_reader :agent_templates
+
+    # @return [Zavudev::Resources::EmailDomains]
+    attr_reader :email_domains
+
+    # @return [Zavudev::Resources::Agents]
+    attr_reader :agents
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -143,6 +158,11 @@ module Zavudev
       @number_10dlc = Zavudev::Resources::Number10dlc.new(client: self)
       @me = Zavudev::Resources::Me.new(client: self)
       @functions = Zavudev::Resources::Functions.new(client: self)
+      @conversations = Zavudev::Resources::Conversations.new(client: self)
+      @calls = Zavudev::Resources::Calls.new(client: self)
+      @agent_templates = Zavudev::Resources::AgentTemplates.new(client: self)
+      @email_domains = Zavudev::Resources::EmailDomains.new(client: self)
+      @agents = Zavudev::Resources::Agents.new(client: self)
     end
   end
 end
