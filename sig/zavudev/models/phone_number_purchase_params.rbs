@@ -1,7 +1,12 @@
 module Zavudev
   module Models
     type phone_number_purchase_params =
-      { phone_number: String, name: String }
+      {
+        phone_number: String,
+        name: String,
+        regulatory_requirements: ::Array[Zavudev::PhoneNumberPurchaseParams::RegulatoryRequirement],
+        type: Zavudev::Models::phone_number_type
+      }
       & Zavudev::Internal::Type::request_parameters
 
     class PhoneNumberPurchaseParams < Zavudev::Internal::Type::BaseModel
@@ -14,17 +19,46 @@ module Zavudev
 
       def name=: (String) -> String
 
+      attr_reader regulatory_requirements: ::Array[Zavudev::PhoneNumberPurchaseParams::RegulatoryRequirement]?
+
+      def regulatory_requirements=: (
+        ::Array[Zavudev::PhoneNumberPurchaseParams::RegulatoryRequirement]
+      ) -> ::Array[Zavudev::PhoneNumberPurchaseParams::RegulatoryRequirement]
+
+      attr_reader type: Zavudev::Models::phone_number_type?
+
+      def type=: (
+        Zavudev::Models::phone_number_type
+      ) -> Zavudev::Models::phone_number_type
+
       def initialize: (
         phone_number: String,
         ?name: String,
+        ?regulatory_requirements: ::Array[Zavudev::PhoneNumberPurchaseParams::RegulatoryRequirement],
+        ?type: Zavudev::Models::phone_number_type,
         ?request_options: Zavudev::request_opts
       ) -> void
 
       def to_hash: -> {
         phone_number: String,
         name: String,
+        regulatory_requirements: ::Array[Zavudev::PhoneNumberPurchaseParams::RegulatoryRequirement],
+        type: Zavudev::Models::phone_number_type,
         request_options: Zavudev::RequestOptions
       }
+
+      type regulatory_requirement =
+        { field_value: String, requirement_type: String }
+
+      class RegulatoryRequirement < Zavudev::Internal::Type::BaseModel
+        attr_accessor field_value: String
+
+        attr_accessor requirement_type: String
+
+        def initialize: (field_value: String, requirement_type: String) -> void
+
+        def to_hash: -> { field_value: String, requirement_type: String }
+      end
     end
   end
 end

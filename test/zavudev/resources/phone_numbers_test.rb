@@ -58,6 +58,7 @@ class Zavudev::Test::Resources::PhoneNumbersTest < Zavudev::Test::ResourceTest
         created_at: Time,
         phone_number: String,
         pricing: Zavudev::OwnedPhoneNumberPricing,
+        regulatory_status: Zavudev::OwnedPhoneNumber::RegulatoryStatus,
         status: Zavudev::PhoneNumberStatus,
         name: String | nil,
         next_renewal_date: Time | nil,
@@ -93,10 +94,10 @@ class Zavudev::Test::Resources::PhoneNumbersTest < Zavudev::Test::ResourceTest
     end
   end
 
-  def test_requirements_required_params
+  def test_requirements
     skip("Mock server tests are disabled")
 
-    response = @zavudev.phone_numbers.requirements(country_code: "xx")
+    response = @zavudev.phone_numbers.requirements
 
     assert_pattern do
       response => Zavudev::Models::PhoneNumberRequirementsResponse

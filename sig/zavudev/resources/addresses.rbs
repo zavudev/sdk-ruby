@@ -3,14 +3,14 @@ module Zavudev
     class Addresses
       def create: (
         country_code: String,
+        first_name: String,
+        last_name: String,
         locality: String,
         postal_code: String,
         street_address: String,
         ?administrative_area: String,
         ?business_name: String,
         ?extended_address: String,
-        ?first_name: String,
-        ?last_name: String,
         ?request_options: Zavudev::request_opts
       ) -> Zavudev::Models::AddressCreateResponse
 
