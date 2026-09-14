@@ -21,10 +21,12 @@ module Zavudev
       required :phone_number, String, api_name: :phoneNumber
 
       # @!attribute channels
-      #   Channels this sender can actually send on right now, computed from its
-      #   configuration. Empty means the sender cannot send or receive anything yet: a
-      #   phoneNumber alone does not enable SMS or voice. Check this rather than inferring
-      #   capability from phoneNumber or emailAddress.
+      #   Channels this sender can actually send on right now: configured AND activated.
+      #   Empty means the sender cannot send or receive anything yet: a phoneNumber alone
+      #   does not enable SMS or voice, and a connected account that is not activated is
+      #   left out, because every send on it is refused. Check this rather than inferring
+      #   capability from phoneNumber or emailAddress, and turn a connected channel on
+      #   with `POST /v1/senders/{senderId}/channels/{channel}/activate`.
       #
       #   @return [Array<String>, nil]
       optional :channels, Zavudev::Internal::Type::ArrayOf[String]
@@ -88,7 +90,7 @@ module Zavudev
       #
       #   @param phone_number [String] Phone number in E.164 format.
       #
-      #   @param channels [Array<String>] Channels this sender can actually send on right now, computed from its configura
+      #   @param channels [Array<String>] Channels this sender can actually send on right now: configured AND activated. E
       #
       #   @param created_at [Time]
       #
