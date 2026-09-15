@@ -23,6 +23,8 @@ module Zavudev
       def purchase: (
         phone_number: String,
         ?name: String,
+        ?regulatory_requirements: ::Array[Zavudev::PhoneNumberPurchaseParams::RegulatoryRequirement],
+        ?type: Zavudev::Models::phone_number_type,
         ?request_options: Zavudev::request_opts
       ) -> Zavudev::Models::PhoneNumberPurchaseResponse
 
@@ -32,7 +34,8 @@ module Zavudev
       ) -> nil
 
       def requirements: (
-        country_code: String,
+        ?country_code: String,
+        ?phone_number: String,
         ?type: Zavudev::Models::phone_number_type,
         ?request_options: Zavudev::request_opts
       ) -> Zavudev::Models::PhoneNumberRequirementsResponse

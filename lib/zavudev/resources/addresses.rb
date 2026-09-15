@@ -3,20 +3,33 @@
 module Zavudev
   module Resources
     class Addresses
-      # Create a regulatory address for phone number purchases. Some countries require a
-      # verified address before phone numbers can be activated.
+      # Some parameter documentations has been truncated, see
+      # {Zavudev::Models::AddressCreateParams} for more details.
       #
-      # @overload create(country_code:, locality:, postal_code:, street_address:, administrative_area: nil, business_name: nil, extended_address: nil, first_name: nil, last_name: nil, request_options: {})
+      # Create a regulatory address, to use as the value of an `address` requirement
+      # when buying a phone number. It is registered for review when it is created, with
+      # status `pending`.
+      #
+      # @overload create(country_code:, first_name:, last_name:, locality:, postal_code:, street_address:, administrative_area: nil, business_name: nil, extended_address: nil, request_options: {})
       #
       # @param country_code [String]
+      #
+      # @param first_name [String] First name of the person the address is registered to.
+      #
+      # @param last_name [String] Last name of the person the address is registered to.
+      #
       # @param locality [String]
+      #
       # @param postal_code [String]
+      #
       # @param street_address [String]
+      #
       # @param administrative_area [String]
-      # @param business_name [String]
+      #
+      # @param business_name [String] Business name, when the address belongs to a business. Defaults to the person's
+      #
       # @param extended_address [String]
-      # @param first_name [String]
-      # @param last_name [String]
+      #
       # @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Zavudev::Models::AddressCreateResponse]
@@ -76,7 +89,9 @@ module Zavudev
         )
       end
 
-      # Delete a regulatory address. Cannot delete addresses that are in use.
+      # Delete a regulatory address from this project. Any address can be deleted,
+      # whatever its status. Phone numbers already purchased with it are not affected,
+      # and neither is information already submitted for later purchases in its country.
       #
       # @overload delete(address_id, request_options: {})
       #

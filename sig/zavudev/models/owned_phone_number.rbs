@@ -7,6 +7,7 @@ module Zavudev
         created_at: Time,
         phone_number: String,
         pricing: Zavudev::OwnedPhoneNumberPricing,
+        regulatory_status: Zavudev::Models::OwnedPhoneNumber::regulatory_status,
         status: Zavudev::Models::phone_number_status,
         name: String,
         next_renewal_date: Time,
@@ -24,6 +25,8 @@ module Zavudev
       attr_accessor phone_number: String
 
       attr_accessor pricing: Zavudev::OwnedPhoneNumberPricing
+
+      attr_accessor regulatory_status: Zavudev::Models::OwnedPhoneNumber::regulatory_status
 
       attr_accessor status: Zavudev::Models::phone_number_status
 
@@ -49,6 +52,7 @@ module Zavudev
         created_at: Time,
         phone_number: String,
         pricing: Zavudev::OwnedPhoneNumberPricing,
+        regulatory_status: Zavudev::Models::OwnedPhoneNumber::regulatory_status,
         status: Zavudev::Models::phone_number_status,
         ?name: String,
         ?next_renewal_date: Time,
@@ -62,12 +66,25 @@ module Zavudev
         created_at: Time,
         phone_number: String,
         pricing: Zavudev::OwnedPhoneNumberPricing,
+        regulatory_status: Zavudev::Models::OwnedPhoneNumber::regulatory_status,
         status: Zavudev::Models::phone_number_status,
         name: String,
         next_renewal_date: Time,
         sender_id: String,
         updated_at: Time
       }
+
+      type regulatory_status = :approved | :pending_review | :rejected
+
+      module RegulatoryStatus
+        extend Zavudev::Internal::Type::Enum
+
+        APPROVED: :approved
+        PENDING_REVIEW: :pending_review
+        REJECTED: :rejected
+
+        def self?.values: -> ::Array[Zavudev::Models::OwnedPhoneNumber::regulatory_status]
+      end
     end
   end
 end

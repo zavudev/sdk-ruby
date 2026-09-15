@@ -38,8 +38,10 @@ module Zavudev
       sig { params(email_from_name: String).void }
       attr_writer :email_from_name
 
-      # Enable inbound email receiving on this sender. Requires a verified MX record on
-      # the domain; ignored otherwise.
+      # Enable inbound email receiving on this sender. Requires a verified inbound MX
+      # record on the domain; the request is ignored otherwise. Read
+      # `emailReceivingEnabled` back off the response to see whether it was applied — it
+      # comes back `false` when the MX has not verified.
       sig { returns(T.nilable(T::Boolean)) }
       attr_reader :email_receiving_enabled
 
@@ -68,8 +70,10 @@ module Zavudev
       # Phone number in E.164 format, and it must be a number your project already owns
       # (see `GET /v1/phone-numbers`). The number is routed to the sender as part of
       # this call, which is what turns the SMS channel on. Passing a number the project
-      # does not own, or one already attached to another sender, returns 400 rather than
-      # creating a sender that cannot send. Omit for an email-only sender.
+      # does not own, one already attached to another sender, or one rejected in
+      # regulatory review returns 400 rather than creating a sender that cannot send. A
+      # number still under review is attached and starts carrying messages when it is
+      # approved. Omit for an email-only sender.
       sig { returns(T.nilable(String)) }
       attr_reader :phone_number
 
@@ -156,8 +160,10 @@ module Zavudev
         email_domain_id: nil,
         # Display name shown in the recipient's inbox for the email channel.
         email_from_name: nil,
-        # Enable inbound email receiving on this sender. Requires a verified MX record on
-        # the domain; ignored otherwise.
+        # Enable inbound email receiving on this sender. Requires a verified inbound MX
+        # record on the domain; the request is ignored otherwise. Read
+        # `emailReceivingEnabled` back off the response to see whether it was applied — it
+        # comes back `false` when the MX has not verified.
         email_receiving_enabled: nil,
         # Enable the one-way SMS channel (`sms_oneway`). Needs nothing else — no phone
         # number, no credential — so it is the fastest way to get a sender that can send.
@@ -171,8 +177,10 @@ module Zavudev
         # Phone number in E.164 format, and it must be a number your project already owns
         # (see `GET /v1/phone-numbers`). The number is routed to the sender as part of
         # this call, which is what turns the SMS channel on. Passing a number the project
-        # does not own, or one already attached to another sender, returns 400 rather than
-        # creating a sender that cannot send. Omit for an email-only sender.
+        # does not own, one already attached to another sender, or one rejected in
+        # regulatory review returns 400 rather than creating a sender that cannot send. A
+        # number still under review is attached and starts carrying messages when it is
+        # approved. Omit for an email-only sender.
         phone_number: nil,
         set_as_default: nil,
         # Events to subscribe to.
