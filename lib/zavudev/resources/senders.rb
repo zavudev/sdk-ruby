@@ -27,7 +27,7 @@ module Zavudev
       #
       # @param email_from_name [String] Display name shown in the recipient's inbox for the email channel.
       #
-      # @param email_receiving_enabled [Boolean] Enable inbound email receiving on this sender. Requires a verified MX record on
+      # @param email_receiving_enabled [Boolean] Enable inbound email receiving on this sender. Requires a verified inbound MX re
       #
       # @param enable_sms_oneway [Boolean] Enable the one-way SMS channel (`sms_oneway`). Needs nothing else — no phone num
       #
@@ -95,7 +95,7 @@ module Zavudev
       #
       # @param email_from_name [String] Display name shown in the recipient's inbox for the email channel.
       #
-      # @param email_receiving_enabled [Boolean] Enable or disable inbound email receiving for this sender.
+      # @param email_receiving_enabled [Boolean] Enable or disable inbound email receiving for this sender. Enabling requires a v
       #
       # @param enable_sms_oneway [Boolean] Turn the one-way SMS channel on or off. Enabling needs nothing else and takes ef
       #
