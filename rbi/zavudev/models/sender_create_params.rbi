@@ -38,8 +38,10 @@ module Zavudev
       sig { params(email_from_name: String).void }
       attr_writer :email_from_name
 
-      # Enable inbound email receiving on this sender. Requires a verified MX record on
-      # the domain; ignored otherwise.
+      # Enable inbound email receiving on this sender. Requires a verified inbound MX
+      # record on the domain; the request is ignored otherwise. Read
+      # `emailReceivingEnabled` back off the response to see whether it was applied — it
+      # comes back `false` when the MX has not verified.
       sig { returns(T.nilable(T::Boolean)) }
       attr_reader :email_receiving_enabled
 
@@ -158,8 +160,10 @@ module Zavudev
         email_domain_id: nil,
         # Display name shown in the recipient's inbox for the email channel.
         email_from_name: nil,
-        # Enable inbound email receiving on this sender. Requires a verified MX record on
-        # the domain; ignored otherwise.
+        # Enable inbound email receiving on this sender. Requires a verified inbound MX
+        # record on the domain; the request is ignored otherwise. Read
+        # `emailReceivingEnabled` back off the response to see whether it was applied — it
+        # comes back `false` when the MX has not verified.
         email_receiving_enabled: nil,
         # Enable the one-way SMS channel (`sms_oneway`). Needs nothing else — no phone
         # number, no credential — so it is the fastest way to get a sender that can send.

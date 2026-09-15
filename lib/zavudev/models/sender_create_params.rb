@@ -34,8 +34,10 @@ module Zavudev
       optional :email_from_name, String, api_name: :emailFromName
 
       # @!attribute email_receiving_enabled
-      #   Enable inbound email receiving on this sender. Requires a verified MX record on
-      #   the domain; ignored otherwise.
+      #   Enable inbound email receiving on this sender. Requires a verified inbound MX
+      #   record on the domain; the request is ignored otherwise. Read
+      #   `emailReceivingEnabled` back off the response to see whether it was applied — it
+      #   comes back `false` when the MX has not verified.
       #
       #   @return [Boolean, nil]
       optional :email_receiving_enabled, Zavudev::Internal::Type::Boolean, api_name: :emailReceivingEnabled
@@ -119,7 +121,7 @@ module Zavudev
       #
       #   @param email_from_name [String] Display name shown in the recipient's inbox for the email channel.
       #
-      #   @param email_receiving_enabled [Boolean] Enable inbound email receiving on this sender. Requires a verified MX record on
+      #   @param email_receiving_enabled [Boolean] Enable inbound email receiving on this sender. Requires a verified inbound MX re
       #
       #   @param enable_sms_oneway [Boolean] Enable the one-way SMS channel (`sms_oneway`). Needs nothing else — no phone num
       #
