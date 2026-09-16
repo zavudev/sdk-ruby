@@ -34,7 +34,8 @@ module Zavudev
       sig { returns(Integer) }
       attr_accessor :skipped
 
-      # Templates whose approval status changed to match Meta.
+      # Templates brought back in line with Meta — approval status, category, or both. A
+      # template whose status and category both moved is counted once.
       sig { returns(Integer) }
       attr_accessor :updated
 
@@ -62,7 +63,8 @@ module Zavudev
         # Meta templates left alone: already linked to a Zavu template, or
         # rejected/disabled on Meta.
         skipped:,
-        # Templates whose approval status changed to match Meta.
+        # Templates brought back in line with Meta — approval status, category, or both. A
+        # template whose status and category both moved is counted once.
         updated:
       )
       end

@@ -38,7 +38,8 @@ module Zavudev
       required :skipped, Integer
 
       # @!attribute updated
-      #   Templates whose approval status changed to match Meta.
+      #   Templates brought back in line with Meta — approval status, category, or both. A
+      #   template whose status and category both moved is counted once.
       #
       #   @return [Integer]
       required :updated, Integer
@@ -57,7 +58,7 @@ module Zavudev
       #
       #   @param skipped [Integer] Meta templates left alone: already linked to a Zavu template, or rejected/disabl
       #
-      #   @param updated [Integer] Templates whose approval status changed to match Meta.
+      #   @param updated [Integer] Templates brought back in line with Meta — approval status, category, or both. A
     end
   end
 end
