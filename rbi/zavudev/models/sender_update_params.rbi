@@ -58,7 +58,9 @@ module Zavudev
 
       # Turn the one-way SMS channel on or off. Enabling needs nothing else and takes
       # effect immediately; disabling removes the channel from the sender. Confirm with
-      # the `channels` array on the response.
+      # the `channels` array on the response. Turning the channel on needs nothing, but
+      # SENDING on it requires an approved business verification (KYB): without one
+      # every send is refused with `403 kyb_required`.
       sig { returns(T.nilable(T::Boolean)) }
       attr_reader :enable_sms_oneway
 
@@ -176,7 +178,9 @@ module Zavudev
         email_receiving_enabled: nil,
         # Turn the one-way SMS channel on or off. Enabling needs nothing else and takes
         # effect immediately; disabling removes the channel from the sender. Confirm with
-        # the `channels` array on the response.
+        # the `channels` array on the response. Turning the channel on needs nothing, but
+        # SENDING on it requires an approved business verification (KYB): without one
+        # every send is refused with `403 kyb_required`.
         enable_sms_oneway: nil,
         # Turn the voice channel on or off. The sender must already have a phone number
         # provisioned for calls; enabling it otherwise returns 400 instead of storing a
