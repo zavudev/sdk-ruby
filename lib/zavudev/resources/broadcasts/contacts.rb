@@ -4,6 +4,9 @@ module Zavudev
   module Resources
     class Broadcasts
       class Contacts
+        # Some parameter documentations has been truncated, see
+        # {Zavudev::Models::Broadcasts::ContactListParams} for more details.
+        #
         # List contacts in a broadcast with optional status filter.
         #
         # @overload list(broadcast_id, cursor: nil, limit: nil, status: nil, request_options: {})

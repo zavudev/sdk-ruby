@@ -91,6 +91,7 @@ class Zavudev::Test::Resources::BroadcastsTest < Zavudev::Test::ResourceTest
         scheduled_at: Time | nil,
         sender_id: String | nil,
         sending_count: Integer | nil,
+        sent_count: Integer | nil,
         started_at: Time | nil,
         text: String | nil,
         updated_at: Time | nil
@@ -164,6 +165,7 @@ class Zavudev::Test::Resources::BroadcastsTest < Zavudev::Test::ResourceTest
         estimated_completion_at: Time | nil,
         estimated_cost: Float | nil,
         reserved_amount: Float | nil,
+        sent: Integer | nil,
         started_at: Time | nil
       }
     end

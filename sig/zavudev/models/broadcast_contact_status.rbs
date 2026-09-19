@@ -1,7 +1,7 @@
 module Zavudev
   module Models
     type broadcast_contact_status =
-      :pending | :queued | :sending | :delivered | :failed | :skipped
+      :pending | :queued | :sending | :sent | :delivered | :failed | :skipped
 
     module BroadcastContactStatus
       extend Zavudev::Internal::Type::Enum
@@ -9,6 +9,7 @@ module Zavudev
       PENDING: :pending
       QUEUED: :queued
       SENDING: :sending
+      SENT: :sent
       DELIVERED: :delivered
       FAILED: :failed
       SKIPPED: :skipped
