@@ -14,6 +14,14 @@ module Zavudev
       sig { returns(String) }
       attr_accessor :country_code
 
+      # First name of the person the address is registered to.
+      sig { returns(String) }
+      attr_accessor :first_name
+
+      # Last name of the person the address is registered to.
+      sig { returns(String) }
+      attr_accessor :last_name
+
       sig { returns(String) }
       attr_accessor :locality
 
@@ -29,6 +37,8 @@ module Zavudev
       sig { params(administrative_area: String).void }
       attr_writer :administrative_area
 
+      # Business name, when the address belongs to a business. Defaults to the person's
+      # full name.
       sig { returns(T.nilable(String)) }
       attr_reader :business_name
 
@@ -41,42 +51,34 @@ module Zavudev
       sig { params(extended_address: String).void }
       attr_writer :extended_address
 
-      sig { returns(T.nilable(String)) }
-      attr_reader :first_name
-
-      sig { params(first_name: String).void }
-      attr_writer :first_name
-
-      sig { returns(T.nilable(String)) }
-      attr_reader :last_name
-
-      sig { params(last_name: String).void }
-      attr_writer :last_name
-
       sig do
         params(
           country_code: String,
+          first_name: String,
+          last_name: String,
           locality: String,
           postal_code: String,
           street_address: String,
           administrative_area: String,
           business_name: String,
           extended_address: String,
-          first_name: String,
-          last_name: String,
           request_options: Zavudev::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
         country_code:,
+        # First name of the person the address is registered to.
+        first_name:,
+        # Last name of the person the address is registered to.
+        last_name:,
         locality:,
         postal_code:,
         street_address:,
         administrative_area: nil,
+        # Business name, when the address belongs to a business. Defaults to the person's
+        # full name.
         business_name: nil,
         extended_address: nil,
-        first_name: nil,
-        last_name: nil,
         request_options: {}
       )
       end
@@ -85,14 +87,14 @@ module Zavudev
         override.returns(
           {
             country_code: String,
+            first_name: String,
+            last_name: String,
             locality: String,
             postal_code: String,
             street_address: String,
             administrative_area: String,
             business_name: String,
             extended_address: String,
-            first_name: String,
-            last_name: String,
             request_options: Zavudev::RequestOptions
           }
         )

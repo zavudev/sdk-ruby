@@ -48,6 +48,7 @@ module Zavudev
       sig { params(content: Zavudev::BroadcastContent::OrHash).void }
       attr_writer :content
 
+      # Recipients with confirmed delivery to the device.
       sig { returns(T.nilable(Integer)) }
       attr_reader :delivered_count
 
@@ -119,6 +120,14 @@ module Zavudev
       sig { params(sending_count: Integer).void }
       attr_writer :sending_count
 
+      # Recipients whose message the provider accepted, without a confirmed delivery
+      # yet. Channels that never report delivery keep their recipients here.
+      sig { returns(T.nilable(Integer)) }
+      attr_reader :sent_count
+
+      sig { params(sent_count: Integer).void }
+      attr_writer :sent_count
+
       sig { returns(T.nilable(Time)) }
       attr_reader :started_at
 
@@ -161,6 +170,7 @@ module Zavudev
           scheduled_at: Time,
           sender_id: String,
           sending_count: Integer,
+          sent_count: Integer,
           started_at: Time,
           text: String,
           updated_at: Time
@@ -183,6 +193,7 @@ module Zavudev
         completed_at: nil,
         # Content for non-text broadcast message types.
         content: nil,
+        # Recipients with confirmed delivery to the device.
         delivered_count: nil,
         email_subject: nil,
         # Estimated total cost in USD.
@@ -199,6 +210,9 @@ module Zavudev
         scheduled_at: nil,
         sender_id: nil,
         sending_count: nil,
+        # Recipients whose message the provider accepted, without a confirmed delivery
+        # yet. Channels that never report delivery keep their recipients here.
+        sent_count: nil,
         started_at: nil,
         text: nil,
         updated_at: nil
@@ -230,6 +244,7 @@ module Zavudev
             scheduled_at: Time,
             sender_id: String,
             sending_count: Integer,
+            sent_count: Integer,
             started_at: Time,
             text: String,
             updated_at: Time

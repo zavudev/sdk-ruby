@@ -42,13 +42,17 @@ module Zavudev
         email_domain_id: nil,
         # Display name shown in the recipient's inbox for the email channel.
         email_from_name: nil,
-        # Enable inbound email receiving on this sender. Requires a verified MX record on
-        # the domain; ignored otherwise.
+        # Enable inbound email receiving on this sender. Requires a verified inbound MX
+        # record on the domain; the request is ignored otherwise. Read
+        # `emailReceivingEnabled` back off the response to see whether it was applied — it
+        # comes back `false` when the MX has not verified.
         email_receiving_enabled: nil,
         # Enable the one-way SMS channel (`sms_oneway`). Needs nothing else — no phone
         # number, no credential — so it is the fastest way to get a sender that can send.
         # Recipients cannot reply. Confirm with `sms_oneway` in the `channels` array on
-        # the response.
+        # the response. Turning the channel on needs nothing, but SENDING on it requires
+        # an approved business verification (KYB): without one every send is refused with
+        # `403 kyb_required`.
         enable_sms_oneway: nil,
         # Let this sender place and answer phone calls. Requires `phoneNumber`; enabling
         # it without one returns 400. Check the `channels` array on the response to
@@ -57,8 +61,10 @@ module Zavudev
         # Phone number in E.164 format, and it must be a number your project already owns
         # (see `GET /v1/phone-numbers`). The number is routed to the sender as part of
         # this call, which is what turns the SMS channel on. Passing a number the project
-        # does not own, or one already attached to another sender, returns 400 rather than
-        # creating a sender that cannot send. Omit for an email-only sender.
+        # does not own, one already attached to another sender, or one rejected in
+        # regulatory review returns 400 rather than creating a sender that cannot send. A
+        # number still under review is attached and starts carrying messages when it is
+        # approved. Omit for an email-only sender.
         phone_number: nil,
         set_as_default: nil,
         # Events to subscribe to.
@@ -127,11 +133,16 @@ module Zavudev
         email_domain_id: nil,
         # Display name shown in the recipient's inbox for the email channel.
         email_from_name: nil,
-        # Enable or disable inbound email receiving for this sender.
+        # Enable or disable inbound email receiving for this sender. Enabling requires a
+        # verified inbound MX record on the domain; the request is ignored otherwise, and
+        # `emailReceivingEnabled` comes back `false` on the response. Disabling always
+        # applies.
         email_receiving_enabled: nil,
         # Turn the one-way SMS channel on or off. Enabling needs nothing else and takes
         # effect immediately; disabling removes the channel from the sender. Confirm with
-        # the `channels` array on the response.
+        # the `channels` array on the response. Turning the channel on needs nothing, but
+        # SENDING on it requires an approved business verification (KYB): without one
+        # every send is refused with `403 kyb_required`.
         enable_sms_oneway: nil,
         # Turn the voice channel on or off. The sender must already have a phone number
         # provisioned for calls; enabling it otherwise returns 400 instead of storing a

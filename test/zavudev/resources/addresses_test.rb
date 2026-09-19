@@ -9,6 +9,8 @@ class Zavudev::Test::Resources::AddressesTest < Zavudev::Test::ResourceTest
     response =
       @zavudev.addresses.create(
         country_code: "DE",
+        first_name: "John",
+        last_name: "Doe",
         locality: "Berlin",
         postal_code: "10115",
         street_address: "123 Main St"

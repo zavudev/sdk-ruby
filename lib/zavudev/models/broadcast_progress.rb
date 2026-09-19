@@ -10,7 +10,7 @@ module Zavudev
       required :broadcast_id, String, api_name: :broadcastId
 
       # @!attribute delivered
-      #   Successfully delivered.
+      #   Confirmed delivered to the device.
       #
       #   @return [Integer]
       required :delivered, Integer
@@ -80,15 +80,21 @@ module Zavudev
       #   @return [Float, nil]
       optional :reserved_amount, Float, api_name: :reservedAmount, nil?: true
 
+      # @!attribute sent
+      #   Accepted by the provider, delivery not confirmed yet.
+      #
+      #   @return [Integer, nil]
+      optional :sent, Integer
+
       # @!attribute started_at
       #
       #   @return [Time, nil]
       optional :started_at, Time, api_name: :startedAt
 
-      # @!method initialize(broadcast_id:, delivered:, failed:, pending:, percent_complete:, sending:, skipped:, status:, total:, actual_cost: nil, estimated_completion_at: nil, estimated_cost: nil, reserved_amount: nil, started_at: nil)
+      # @!method initialize(broadcast_id:, delivered:, failed:, pending:, percent_complete:, sending:, skipped:, status:, total:, actual_cost: nil, estimated_completion_at: nil, estimated_cost: nil, reserved_amount: nil, sent: nil, started_at: nil)
       #   @param broadcast_id [String]
       #
-      #   @param delivered [Integer] Successfully delivered.
+      #   @param delivered [Integer] Confirmed delivered to the device.
       #
       #   @param failed [Integer] Failed to deliver.
       #
@@ -111,6 +117,8 @@ module Zavudev
       #   @param estimated_cost [Float, nil] Estimated total cost in USD.
       #
       #   @param reserved_amount [Float, nil] Amount reserved from balance in USD.
+      #
+      #   @param sent [Integer] Accepted by the provider, delivery not confirmed yet.
       #
       #   @param started_at [Time]
     end

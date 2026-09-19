@@ -18,7 +18,9 @@ module Zavudev
       sig { returns(T.nilable(String)) }
       attr_accessor :name
 
-      # Sender ID to assign the phone number to. Set to null to unassign.
+      # Sender ID to assign the phone number to. Set to null to unassign. A number under
+      # regulatory review is recorded now and connected to the sender when approved; a
+      # rejected number is refused.
       sig { returns(T.nilable(String)) }
       attr_accessor :sender_id
 
@@ -34,7 +36,9 @@ module Zavudev
         phone_number_id:,
         # Custom name for the phone number. Set to null to clear.
         name: nil,
-        # Sender ID to assign the phone number to. Set to null to unassign.
+        # Sender ID to assign the phone number to. Set to null to unassign. A number under
+        # regulatory review is recorded now and connected to the sender when approved; a
+        # rejected number is refused.
         sender_id: nil,
         request_options: {}
       )
