@@ -51,9 +51,7 @@ module Zavudev
       # Enable the one-way SMS channel (`sms_oneway`). Needs nothing else — no phone
       # number, no credential — so it is the fastest way to get a sender that can send.
       # Recipients cannot reply. Confirm with `sms_oneway` in the `channels` array on
-      # the response. Turning the channel on needs nothing, but SENDING on it requires
-      # an approved business verification (KYB): without one every send is refused with
-      # `403 kyb_required`.
+      # the response.
       sig { returns(T.nilable(T::Boolean)) }
       attr_reader :enable_sms_oneway
 
@@ -170,9 +168,7 @@ module Zavudev
         # Enable the one-way SMS channel (`sms_oneway`). Needs nothing else — no phone
         # number, no credential — so it is the fastest way to get a sender that can send.
         # Recipients cannot reply. Confirm with `sms_oneway` in the `channels` array on
-        # the response. Turning the channel on needs nothing, but SENDING on it requires
-        # an approved business verification (KYB): without one every send is refused with
-        # `403 kyb_required`.
+        # the response.
         enable_sms_oneway: nil,
         # Let this sender place and answer phone calls. Requires `phoneNumber`; enabling
         # it without one returns 400. Check the `channels` array on the response to
