@@ -52,9 +52,7 @@ module Zavudev
       # @!attribute enable_sms_oneway
       #   Turn the one-way SMS channel on or off. Enabling needs nothing else and takes
       #   effect immediately; disabling removes the channel from the sender. Confirm with
-      #   the `channels` array on the response. Turning the channel on needs nothing, but
-      #   SENDING on it requires an approved business verification (KYB): without one
-      #   every send is refused with `403 kyb_required`.
+      #   the `channels` array on the response.
       #
       #   @return [Boolean, nil]
       optional :enable_sms_oneway, Zavudev::Internal::Type::Boolean, api_name: :enableSmsOneway
