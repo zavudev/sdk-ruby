@@ -30,6 +30,16 @@ module Zavudev
       # @!attribute status
       #   Status of a contact within a broadcast.
       #
+      #   - `pending`, `queued`, `sending`: not handed to the provider yet.
+      #   - `sent`: accepted by the provider; delivery is not confirmed yet. Channels that
+      #     never report delivery leave the recipient here.
+      #   - `delivered`: the channel confirmed delivery to the device. A WhatsApp read
+      #     receipt also counts as delivered.
+      #   - `failed`: not delivered. A recipient can move from `sent` or `delivered` to
+      #     `failed` when the provider reports a failure late.
+      #   - `skipped`: not sent, because the recipient opted out of the channel or the
+      #     broadcast was cancelled before reaching it.
+      #
       #   @return [Symbol, Zavudev::Models::BroadcastContactStatus]
       required :status, enum: -> { Zavudev::BroadcastContactStatus }
 
@@ -79,6 +89,9 @@ module Zavudev
       optional :template_variables, Zavudev::Internal::Type::HashOf[String], api_name: :templateVariables
 
       # @!method initialize(id:, created_at:, recipient:, recipient_type:, status:, cost: nil, error_code: nil, error_message: nil, message_id: nil, processed_at: nil, template_button_variables: nil, template_header_variables: nil, template_variables: nil)
+      #   Some parameter documentations has been truncated, see
+      #   {Zavudev::Models::BroadcastContact} for more details.
+      #
       #   @param id [String]
       #
       #   @param created_at [Time]

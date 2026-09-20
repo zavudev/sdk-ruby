@@ -61,6 +61,7 @@ module Zavudev
       optional :content, -> { Zavudev::BroadcastContent }
 
       # @!attribute delivered_count
+      #   Recipients with confirmed delivery to the device.
       #
       #   @return [Integer, nil]
       optional :delivered_count, Integer, api_name: :deliveredCount
@@ -124,6 +125,13 @@ module Zavudev
       #   @return [Integer, nil]
       optional :sending_count, Integer, api_name: :sendingCount
 
+      # @!attribute sent_count
+      #   Recipients whose message the provider accepted, without a confirmed delivery
+      #   yet. Channels that never report delivery keep their recipients here.
+      #
+      #   @return [Integer, nil]
+      optional :sent_count, Integer, api_name: :sentCount
+
       # @!attribute started_at
       #
       #   @return [Time, nil]
@@ -139,7 +147,10 @@ module Zavudev
       #   @return [Time, nil]
       optional :updated_at, Time, api_name: :updatedAt
 
-      # @!method initialize(id:, channel:, created_at:, message_type:, name:, status:, total_contacts:, actual_cost: nil, completed_at: nil, content: nil, delivered_count: nil, email_subject: nil, estimated_cost: nil, failed_count: nil, metadata: nil, pending_count: nil, reserved_amount: nil, review_attempts: nil, review_result: nil, scheduled_at: nil, sender_id: nil, sending_count: nil, started_at: nil, text: nil, updated_at: nil)
+      # @!method initialize(id:, channel:, created_at:, message_type:, name:, status:, total_contacts:, actual_cost: nil, completed_at: nil, content: nil, delivered_count: nil, email_subject: nil, estimated_cost: nil, failed_count: nil, metadata: nil, pending_count: nil, reserved_amount: nil, review_attempts: nil, review_result: nil, scheduled_at: nil, sender_id: nil, sending_count: nil, sent_count: nil, started_at: nil, text: nil, updated_at: nil)
+      #   Some parameter documentations has been truncated, see
+      #   {Zavudev::Models::Broadcast} for more details.
+      #
       #   @param id [String]
       #
       #   @param channel [Symbol, Zavudev::Models::BroadcastChannel] Broadcast delivery channel. Use 'smart' for per-contact intelligent routing.
@@ -160,7 +171,7 @@ module Zavudev
       #
       #   @param content [Zavudev::Models::BroadcastContent] Content for non-text broadcast message types.
       #
-      #   @param delivered_count [Integer]
+      #   @param delivered_count [Integer] Recipients with confirmed delivery to the device.
       #
       #   @param email_subject [String]
       #
@@ -183,6 +194,8 @@ module Zavudev
       #   @param sender_id [String]
       #
       #   @param sending_count [Integer]
+      #
+      #   @param sent_count [Integer] Recipients whose message the provider accepted, without a confirmed delivery yet
       #
       #   @param started_at [Time]
       #

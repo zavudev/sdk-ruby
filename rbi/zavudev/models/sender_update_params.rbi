@@ -46,7 +46,10 @@ module Zavudev
       sig { params(email_from_name: String).void }
       attr_writer :email_from_name
 
-      # Enable or disable inbound email receiving for this sender.
+      # Enable or disable inbound email receiving for this sender. Enabling requires a
+      # verified inbound MX record on the domain; the request is ignored otherwise, and
+      # `emailReceivingEnabled` comes back `false` on the response. Disabling always
+      # applies.
       sig { returns(T.nilable(T::Boolean)) }
       attr_reader :email_receiving_enabled
 
@@ -166,7 +169,10 @@ module Zavudev
         email_domain_id: nil,
         # Display name shown in the recipient's inbox for the email channel.
         email_from_name: nil,
-        # Enable or disable inbound email receiving for this sender.
+        # Enable or disable inbound email receiving for this sender. Enabling requires a
+        # verified inbound MX record on the domain; the request is ignored otherwise, and
+        # `emailReceivingEnabled` comes back `false` on the response. Disabling always
+        # applies.
         email_receiving_enabled: nil,
         # Turn the one-way SMS channel on or off. Enabling needs nothing else and takes
         # effect immediately; disabling removes the channel from the sender. Confirm with

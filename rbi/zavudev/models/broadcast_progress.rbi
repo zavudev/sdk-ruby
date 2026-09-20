@@ -11,7 +11,7 @@ module Zavudev
       sig { returns(String) }
       attr_accessor :broadcast_id
 
-      # Successfully delivered.
+      # Confirmed delivered to the device.
       sig { returns(Integer) }
       attr_accessor :delivered
 
@@ -61,6 +61,13 @@ module Zavudev
       sig { returns(T.nilable(Float)) }
       attr_accessor :reserved_amount
 
+      # Accepted by the provider, delivery not confirmed yet.
+      sig { returns(T.nilable(Integer)) }
+      attr_reader :sent
+
+      sig { params(sent: Integer).void }
+      attr_writer :sent
+
       sig { returns(T.nilable(Time)) }
       attr_reader :started_at
 
@@ -82,12 +89,13 @@ module Zavudev
           estimated_completion_at: Time,
           estimated_cost: T.nilable(Float),
           reserved_amount: T.nilable(Float),
+          sent: Integer,
           started_at: Time
         ).returns(T.attached_class)
       end
       def self.new(
         broadcast_id:,
-        # Successfully delivered.
+        # Confirmed delivered to the device.
         delivered:,
         # Failed to deliver.
         failed:,
@@ -110,6 +118,8 @@ module Zavudev
         estimated_cost: nil,
         # Amount reserved from balance in USD.
         reserved_amount: nil,
+        # Accepted by the provider, delivery not confirmed yet.
+        sent: nil,
         started_at: nil
       )
       end
@@ -130,6 +140,7 @@ module Zavudev
             estimated_completion_at: Time,
             estimated_cost: T.nilable(Float),
             reserved_amount: T.nilable(Float),
+            sent: Integer,
             started_at: Time
           }
         )

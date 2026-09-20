@@ -4,9 +4,10 @@ module Zavudev
   module Models
     class PhoneNumberPricing < Zavudev::Internal::Type::BaseModel
       # @!attribute is_free_eligible
-      #   Whether this number qualifies as the plan-included US number on paid plans. The
-      #   benefit is one per account: it is never offered again once claimed, not even
-      #   after the number is released.
+      #   Whether this number qualifies as the plan-included number: a US or Canadian
+      #   number (a +1 number) costing $20 a month or less. The benefit is one per
+      #   account: it is never offered again once claimed, not even after the number is
+      #   released.
       #
       #   @return [Boolean, nil]
       optional :is_free_eligible, Zavudev::Internal::Type::Boolean, api_name: :isFreeEligible
@@ -27,7 +28,7 @@ module Zavudev
       #   Some parameter documentations has been truncated, see
       #   {Zavudev::Models::PhoneNumberPricing} for more details.
       #
-      #   @param is_free_eligible [Boolean] Whether this number qualifies as the plan-included US number on paid plans. The
+      #   @param is_free_eligible [Boolean] Whether this number qualifies as the plan-included number: a US or Canadian numb
       #
       #   @param monthly_price [Float] Monthly price in USD.
       #

@@ -12,6 +12,18 @@ module Zavudev
       #   @return [String]
       required :country_code, String, api_name: :countryCode
 
+      # @!attribute first_name
+      #   First name of the person the address is registered to.
+      #
+      #   @return [String]
+      required :first_name, String, api_name: :firstName
+
+      # @!attribute last_name
+      #   Last name of the person the address is registered to.
+      #
+      #   @return [String]
+      required :last_name, String, api_name: :lastName
+
       # @!attribute locality
       #
       #   @return [String]
@@ -33,6 +45,8 @@ module Zavudev
       optional :administrative_area, String, api_name: :administrativeArea
 
       # @!attribute business_name
+      #   Business name, when the address belongs to a business. Defaults to the person's
+      #   full name.
       #
       #   @return [String, nil]
       optional :business_name, String, api_name: :businessName
@@ -42,26 +56,28 @@ module Zavudev
       #   @return [String, nil]
       optional :extended_address, String, api_name: :extendedAddress
 
-      # @!attribute first_name
+      # @!method initialize(country_code:, first_name:, last_name:, locality:, postal_code:, street_address:, administrative_area: nil, business_name: nil, extended_address: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {Zavudev::Models::AddressCreateParams} for more details.
       #
-      #   @return [String, nil]
-      optional :first_name, String, api_name: :firstName
-
-      # @!attribute last_name
-      #
-      #   @return [String, nil]
-      optional :last_name, String, api_name: :lastName
-
-      # @!method initialize(country_code:, locality:, postal_code:, street_address:, administrative_area: nil, business_name: nil, extended_address: nil, first_name: nil, last_name: nil, request_options: {})
       #   @param country_code [String]
+      #
+      #   @param first_name [String] First name of the person the address is registered to.
+      #
+      #   @param last_name [String] Last name of the person the address is registered to.
+      #
       #   @param locality [String]
+      #
       #   @param postal_code [String]
+      #
       #   @param street_address [String]
+      #
       #   @param administrative_area [String]
-      #   @param business_name [String]
+      #
+      #   @param business_name [String] Business name, when the address belongs to a business. Defaults to the person's
+      #
       #   @param extended_address [String]
-      #   @param first_name [String]
-      #   @param last_name [String]
+      #
       #   @param request_options [Zavudev::RequestOptions, Hash{Symbol=>Object}]
     end
   end

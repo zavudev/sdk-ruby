@@ -24,6 +24,7 @@ module Zavudev
         scheduled_at: Time,
         sender_id: String,
         sending_count: Integer,
+        sent_count: Integer,
         started_at: Time,
         text: String,
         updated_at: Time
@@ -94,6 +95,10 @@ module Zavudev
 
       def sending_count=: (Integer) -> Integer
 
+      attr_reader sent_count: Integer?
+
+      def sent_count=: (Integer) -> Integer
+
       attr_reader started_at: Time?
 
       def started_at=: (Time) -> Time
@@ -129,6 +134,7 @@ module Zavudev
         ?scheduled_at: Time,
         ?sender_id: String,
         ?sending_count: Integer,
+        ?sent_count: Integer,
         ?started_at: Time,
         ?text: String,
         ?updated_at: Time
@@ -157,6 +163,7 @@ module Zavudev
         scheduled_at: Time,
         sender_id: String,
         sending_count: Integer,
+        sent_count: Integer,
         started_at: Time,
         text: String,
         updated_at: Time

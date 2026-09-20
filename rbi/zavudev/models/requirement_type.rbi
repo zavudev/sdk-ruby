@@ -8,6 +8,7 @@ module Zavudev
           T.any(Zavudev::RequirementType, Zavudev::Internal::AnyHash)
         end
 
+      # Send this as `requirementType` in `regulatoryRequirements` when purchasing.
       sig { returns(String) }
       attr_accessor :id
 
@@ -47,6 +48,7 @@ module Zavudev
         ).returns(T.attached_class)
       end
       def self.new(
+        # Send this as `requirementType` in `regulatoryRequirements` when purchasing.
         id:,
         description:,
         name:,
