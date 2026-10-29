@@ -8,9 +8,13 @@ Gem::Specification.new do |s|
   s.summary = "Ruby library to access the Zavudev API"
   s.authors = ["Zavudev"]
   s.email = "hi@zavu.dev"
-  s.homepage = "https://gemdocs.org/gems/zavudev"
+  s.homepage = "https://zavu.dev"
+  s.license = "Apache-2.0"
   s.metadata["homepage_uri"] = s.homepage
   s.metadata["source_code_uri"] = "https://github.com/zavudev/sdk-ruby"
+  s.metadata["documentation_uri"] = "https://docs.zavu.dev"
+  s.metadata["bug_tracker_uri"] = "https://github.com/zavudev/sdk-ruby/issues"
+  s.metadata["changelog_uri"] = "https://github.com/zavudev/sdk-ruby/blob/main/CHANGELOG.md"
   s.metadata["rubygems_mfa_required"] = false.to_s
   s.required_ruby_version = ">= 3.2.0"
 
